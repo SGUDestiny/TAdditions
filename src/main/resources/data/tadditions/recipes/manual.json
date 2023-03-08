@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "tadditions:upgrades_manual"
+    }
+  ],
+  "result": {
+    "item": "tardis:manual"
+  }
+}

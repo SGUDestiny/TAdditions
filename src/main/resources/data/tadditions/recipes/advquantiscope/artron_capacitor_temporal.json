@@ -1,0 +1,20 @@
+{
+	"type": "tadditions:advquantiscope",
+	"ingredients":[
+		{"item":"tadditions:artron_capacitor_ultra"},
+		{"item":"minecraft:netherite_ingot"},
+		{"item":"tardis:xion_crystal"},
+		{"item":"tardis:circuits"},
+		{"item":"tardis:mercury_bottle"},
+		{"item":"tardis:artron_capacitor_high"},
+		{"item":"tadditions:artron_capacitor_speed"},
+		{"item":"tardis:circuits"},
+		{"item":"tardis:mercury_bottle"},
+		{"item":"minecraft:netherite_ingot"},
+		{"item":"tardis:xion_crystal"},
+		{"item":"tardis:artron_capacitor_high"}
+	],
+	"result":{
+		"item":"tadditions:artron_capacitor_temporal"
+	}
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "ABA",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item": "tardis:xion_crystal"
+    },
+    "B": {
+      "item": "tardis:artron_battery"
+    }
+  },
+  "result": {
+    "item": "tadditions:aeon_crystal"
+  }
+}

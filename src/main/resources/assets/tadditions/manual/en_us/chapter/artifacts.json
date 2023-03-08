@@ -1,0 +1,7 @@
+{
+  "display_name": "Artifacts",
+  "pages": [
+    "tadditions:artifacts/artifacts_intro",
+    "tadditions:artifacts/murasama"
+  ]
+}

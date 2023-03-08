@@ -1,0 +1,14 @@
+{
+	"type": "tardis:quantiscope",
+	"repair":false,
+	"ingredients":[
+		{"item":"tardis:mercury_bottle"},
+		{"item":"tardis:circuits"},
+		{"item":"tardis:artron_capacitor_high"},
+		{"item":"tardis:xion_crystal"},
+		{"item":"minecraft:emerald"}
+	],
+	"result":{
+		"item":"tadditions:artron_capacitor_speed"
+	}
+}

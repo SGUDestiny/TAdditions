@@ -1,0 +1,20 @@
+{
+	"variants":{
+    	"facing=north":{
+			"model": "tadditions:block/advanced_quantiscope_iron",
+			"y": 0
+		},
+		"facing=east":{
+			"model": "tadditions:block/advanced_quantiscope_iron",
+			"y": 90
+		},
+		"facing=south":{
+			"model": "tadditions:block/advanced_quantiscope_iron",
+			"y": 180
+		},
+		"facing=west":{
+			"model": "tadditions:block/advanced_quantiscope_iron",
+			"y": 270
+		}
+	}
+}

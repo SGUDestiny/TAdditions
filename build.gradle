@@ -1,0 +1,167 @@
+buildscript {
+    repositories {
+        maven { url = 'https://maven.minecraftforge.net' }
+        maven { url='https://repo.spongepowered.org/repository/maven-public' }
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '4.1+', changing: true
+        classpath group: 'org.spongepowered', name: 'mixingradle', version: '0.7-SNAPSHOT'
+        classpath "gradle.plugin.com.matthewprenger:CurseGradle:1.4.0"
+    }
+}
+apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'org.spongepowered.mixin'
+apply plugin: 'eclipse'
+apply plugin: 'maven-publish'
+apply plugin: "com.matthewprenger.cursegradle"
+
+version = "${mod_version}"
+group = "${mod_base_package}"
+archivesBaseName = "${project.jar_name}-${minecraft_version}"
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(8)
+
+minecraft {
+    mappings channel: "${mappings_channel}", version: "${mappings_version}"
+    
+    runs {
+        client {
+            workingDirectory project.file('run')
+            arg "-mixin.config=tardis.mixins.json"
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${buildDir}/createSrgToMcp/output.srg"
+            property 'forge.logging.console.level', 'debug'
+            mods {
+                "${mod_id}" {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        server {
+            workingDirectory project.file('run')
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${buildDir}/createSrgToMcp/output.srg"
+ 			property 'forge.logging.console.level', 'debug'
+            mods {
+                "${mod_id}" {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        data {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.console.level', 'debug'
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${buildDir}/createSrgToMcp/output.srg"
+            args '--mod', mod_id, '--all', '--output', file('src/main/generated/')
+            mods {
+                "${mod_id}" {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+}
+
+mixin {
+    add sourceSets.main, "${mod_id}.refmap.json"
+}
+
+repositories{
+  maven { url "https://dvs1.progwml6.com/files/maven/" } //JEI Maven
+  maven { url "https://maven.blamejared.com/" } // IE Maven
+  maven { url "https://www.cursemaven.com" } //Curse Maven
+  //maven { url "https://maven.enginehub.org/repo/" } //WorldEdit Maven
+  maven { url 'https://modmaven.dev/' } //Mekanism Maven
+  maven { url 'https://jitpack.io' }
+}
+
+
+
+dependencies {
+    implementation 'org.projectlombok:lombok:1.18.20'
+    minecraft "net.minecraftforge:forge:${forge_version}"
+    annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"
+    //compileOnly fg.deobf("blusunrize.immersiveengineering:ImmersiveEngineering:${ie_version}")
+    //runtimeOnly fg.deobf("blusunrize.immersiveengineering:ImmersiveEngineering:${ie_version}")
+    compileOnly fg.deobf("mezz.jei:jei-${jei_version}:api")
+    runtimeOnly fg.deobf("mezz.jei:jei-${jei_version}")
+    runtimeOnly fg.deobf("curse.maven:configured-457570:${configured_version}")
+    runtimeOnly fg.deobf("curse.maven:terraforged-363820:3451426")
+    //runtimeOnly  ("com.sk89q.worldedit:worldedit-core:${world_edit_version}")
+    //runtimeOnly fg.deobf("com.sk89q.worldedit:worldedit-forge-mc${world_edit_mc_version}:${world_edit_version}")
+    runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}")// core
+    runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}:generators")// Mekanism: Generators
+
+    implementation fg.deobf('com.gitlab.Spectre0987:TardisMod:1.5.4')
+}
+
+
+//Reference: https://github.com/SizableShrimp/ForgeTemplate/blob/1.16.x/build.gradle#L158-L188
+def resourceTargets = ['META-INF/mods.toml', 'pack.mcmeta']
+def intoTargets = ["$rootDir/out/production/resources/", "$rootDir/out/production/${project.name}.main/", "$rootDir/bin/main/"]
+def replaceProperties = [mod_id: mod_id, mod_name: mod_name, mod_version: mod_version,
+                   mod_authors: mod_authors, credits:credits, mod_description: mod_description,
+                   display_url:display_url, logo_file:logo_file,
+                   update_json_url: update_json_url,
+                   license: license,
+                   forge_version_range: forge_version_range, minecraft_version_range: minecraft_version_range,
+                   loader_version_range: loader_version_range]
+processResources {
+    inputs.properties replaceProperties
+    replaceProperties.put 'project', project
+
+    filesMatching(resourceTargets) {
+        expand replaceProperties
+    }
+
+    intoTargets.each { target ->
+        if (file(target).exists()) {
+            copy {
+                from(sourceSets.main.resources) {
+                    include resourceTargets
+                    expand replaceProperties
+                }
+                into target
+            }
+        }
+    }
+}
+
+jar {
+    manifest {
+        attributes([
+                "Specification-Title"     : mod_id,
+                "Specification-Vendor"    : mod_authors,
+                "Specification-Version"   : "0.2.0",
+                "Implementation-Title"    : project.name,
+                "Implementation-Version"  : mod_version,
+                "Implementation-Vendor"   : mod_authors,
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+                "MixinConfigs": "${mod_id}.mixins.json"
+        ])
+    }
+}
+def reobfFile = file("$buildDir/reobfJar/output.jar")
+def reobfArtifact = artifacts.add('default', reobfFile) {
+    type 'jar'
+    builtBy 'reobfJar'
+}
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifact reobfArtifact
+        }
+    }
+    repositories {
+        maven {
+            url "file:///${project.projectDir}/mcmodsrepo"
+        }
+    }
+}

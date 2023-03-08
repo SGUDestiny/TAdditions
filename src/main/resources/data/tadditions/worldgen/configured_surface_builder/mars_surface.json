@@ -1,0 +1,14 @@
+{
+  "config": {
+    "top_material": {
+      "Name": "tadditions:mars_dust"
+    },
+    "under_material": {
+      "Name": "tadditions:mars_rock"
+    },
+    "underwater_material": {
+      "Name": "minecraft:gravel"
+    }
+  },
+  "type": "tadditions:mars_surface"
+}

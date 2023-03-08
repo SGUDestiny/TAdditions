@@ -1,0 +1,9 @@
+{
+"display_name": "Flight Events",
+"pages": [
+  "tadditions:flight_events/flight_events_intro",
+"tadditions:flight_events/alternating_time_winds",
+"tadditions:flight_events/vector_calculation_erorrs",
+"tadditions:flight_events/time_storm"
+  ]
+}

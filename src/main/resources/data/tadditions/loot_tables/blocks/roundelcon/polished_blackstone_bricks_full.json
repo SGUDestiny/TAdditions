@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "name": "tadditions:roundelcon/polished_blackstone_bricks_full",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "tadditions:roundelcon/polished_blackstone_bricks_full"
+        }
+      ]
+    }
+  ]
+}

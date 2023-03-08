@@ -1,0 +1,14 @@
+{
+	"type": "tardis:quantiscope",
+	"repair":false,
+	"ingredients":[
+		{"item":"minecraft:scute"},
+		{"item":"tardis:circuits"},
+		{"item":"tardis:upgrades/electro_convert"},
+		{"item":"tardis:circuits"},
+		{"item":"minecraft:sea_lantern"}
+	],
+	"result":{
+		"item":"tadditions:upgrades/ec2"
+	}
+}

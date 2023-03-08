@@ -1,0 +1,6 @@
+{
+	"parent":"tardis:item/artron_battery",
+	"textures":{
+		"0":"tadditions:item/b6"
+	}
+}

@@ -1,0 +1,22 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:crushing",
+  "group": "minecraft:misc",
+  "ingredients": [
+    {
+      "item": "tadditions:mars_rock"
+    }
+  ],
+  "results": [
+    {
+      "item": "tadditions:mars_dust",
+      "count": 1
+    }
+  ],
+  "processingTime": 150
+}

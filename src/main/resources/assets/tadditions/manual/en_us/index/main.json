@@ -1,0 +1,13 @@
+{
+  "chapters": [
+    "tadditions:main",
+    "tadditions:machinery",
+    "tadditions:artron",
+    "tadditions:upgrades",
+    "tadditions:flight_events",
+    "tadditions:storage",
+    "tadditions:artifacts"
+
+
+  ]
+}

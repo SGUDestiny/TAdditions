@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "name": "tadditions:roundelcon/red_terracotta_full",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "tadditions:roundelcon/red_terracotta_full"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:milling",
+  "group": "minecraft:misc",
+  "ingredients": [
+    {
+      "item": "tardis:cinnabar_ore"
+    }
+  ],
+  "results": [
+    {
+      "item": "forge:cinnabar",
+      "count": 1,
+      "chance": 1
+    }
+  ],
+  "processingTime": 150
+}

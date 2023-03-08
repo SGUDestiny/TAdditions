@@ -1,0 +1,20 @@
+{
+	"type": "tadditions:advquantiscope",
+	"ingredients":[
+		{"item":"minecraft:glass"},
+		{"item":"tardis:artron_battery_high"},
+		{"item":"tardis:artron_battery_high"},
+		{"item":"tardis:artron_battery_high"},
+		{"item":"tardis:artron_battery_high"},
+		{"item":"minecraft:redstone_block"},
+		{"item":"minecraft:netherite_scrap"},
+		{"item":"tardis:circuits"},
+		{"item":"minecraft:redstone"},
+		{"item":"tardis:circuits"},
+		{"item":"minecraft:ender_eye"},
+		{"item":"minecraft:redstone"}
+	],
+	"result":{
+		"item":"tadditions:artron_battery_ultra"
+	}
+}

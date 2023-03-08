@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "name": "tadditions:roundelcon/polished_basalt_offset",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "tadditions:roundelcon/polished_basalt_offset"
+        }
+      ]
+    }
+  ]
+}

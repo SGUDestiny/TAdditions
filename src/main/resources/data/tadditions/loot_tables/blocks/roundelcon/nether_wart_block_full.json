@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "name": "tadditions:roundelcon/nether_wart_block_full",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "tadditions:roundelcon/nether_wart_block_full"
+        }
+      ]
+    }
+  ]
+}

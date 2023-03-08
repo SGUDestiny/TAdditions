@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "name": "tadditions:roundelcon/gray_concrete_full",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "tadditions:roundelcon/gray_concrete_full"
+        }
+      ]
+    }
+  ]
+}

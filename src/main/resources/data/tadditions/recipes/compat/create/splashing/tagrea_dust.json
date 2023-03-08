@@ -1,0 +1,25 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:splashing",
+  "group": "minecraft:misc",
+  "ingredients": [
+    {
+      "item": "tadditions:tagrea_dust"
+    }
+  ],
+  "results": [
+    {
+      "item": "tardis:xion_crystal",
+      "chance": 0.075
+    },
+    {
+      "item": "minecraft:sand",
+      "chance": 0.925
+    }
+  ]
+}

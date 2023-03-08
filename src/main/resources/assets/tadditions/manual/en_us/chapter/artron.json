@@ -1,0 +1,12 @@
+{
+  "display_name": "Artron",
+  "pages": [
+    "tadditions:artron/artron_intro",
+    "tadditions:artron/artron_capacitor_speed",
+    "tadditions:artron/artron_capacitor_ultra",
+    "tadditions:artron/artron_capacitor_temporal",
+    "tadditions:artron/artron_battery_speed",
+    "tadditions:artron/artron_battery_ultra",
+    "tadditions:artron/artron_battery_temporal"
+  ]
+}

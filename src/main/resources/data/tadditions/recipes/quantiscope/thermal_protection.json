@@ -1,0 +1,13 @@
+{
+	"type": "tardis:quantiscope",
+	"repair":false,
+	"ingredients":[
+		{"item":"minecraft:netherite_ingot"},
+		{"item":"tardis:circuits"},
+		{"item":"tardis:blank_upgrade"},
+		{"item":"tardis:xion_crystal"}
+	],
+	"result":{
+		"item":"tadditions:upgrades/thermal_protection"
+	}
+}

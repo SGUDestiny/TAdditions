@@ -1,0 +1,14 @@
+{
+	"type": "tardis:quantiscope",
+	"repair":false,
+	"ingredients":[
+		{"item":"minecraft:milk_bucket"},
+		{"item":"minecraft:emerald"},
+		{"item":"tardis:upgrades/zero_room"},
+		{"item":"tardis:circuits"},
+		{"item":"minecraft:netherite_scrap"}
+	],
+	"result":{
+		"item":"tadditions:upgrades/goodomen"
+	}
+}

@@ -1,0 +1,14 @@
+{
+	"type": "tardis:quantiscope",
+	"repair":false,
+	"ingredients":[
+		{"item":"minecraft:ghast_tear"},
+		{"item":"minecraft:milk_bucket"},
+		{"item":"tardis:upgrades/zero_room"},
+		{"item":"tardis:circuits"},
+		{"item":"minecraft:netherite_ingot"}
+	],
+	"result":{
+		"item":"tadditions:upgrades/zr2"
+	}
+}

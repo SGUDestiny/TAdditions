@@ -1,0 +1,31 @@
+{
+  "parent": "tadditions:tadditions",
+  "display": {
+    "icon": {
+      "item": "tardis:regolith_sand"
+    },
+    "title": {
+      "translate": "advancements.tadditions.title.mars"
+    },
+    "description": {
+      "translate": "advancements.tadditions.desc.mars"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "0": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "tadditions:mars"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}

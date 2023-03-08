@@ -1,0 +1,36 @@
+{
+  "display": {
+    "title": {
+      "translate": "advancements.tadditions.title.olim"
+    },
+    "description": {
+      "translate": "advancements.tadditions.desc.olim"
+    },
+    "icon": {
+      "item": "tadditions:onetimeremote"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "tardis:textures/block/roundel/white_concrete_full.png"
+  },
+  "parent": "tadditions:advq",
+  "criteria": {
+    "tadditions:onetimeremote": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tadditions:onetimeremote"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "tadditions:onetimeremote"
+    ]
+  ]
+}

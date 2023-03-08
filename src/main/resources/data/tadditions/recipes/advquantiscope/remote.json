@@ -1,0 +1,20 @@
+{
+	"type": "tadditions:advquantiscope",
+	"ingredients":[
+		{"item":"minecraft:netherite_scrap"},
+		{"item":"minecraft:netherite_scrap"},
+		{"item":"minecraft:redstone"},
+		{"item":"minecraft:netherite_scrap"},
+		{"item":"tardis:xion_crystal"},
+		{"item":"tardis:circuits"},
+		{"item":"minecraft:netherite_scrap"},
+		{"item":"minecraft:netherite_scrap"},
+		{"item":"tardis:xion_crystal"},
+		{"item":"minecraft:netherite_scrap"},
+		{"item":"minecraft:redstone"},
+		{"item":"tardis:subsystem/interstitial_antenna"}
+	],
+	"result":{
+		"item":"tardis:stattenheim_remote"
+	}
+}

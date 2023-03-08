@@ -1,0 +1,35 @@
+{
+  "display": {
+    "title": {
+      "translate": "advancements.tadditions.title.temporalcap"
+    },
+    "description": {
+      "translate": "advancements.tadditions.desc.temporalcap"
+    },
+    "icon": {
+      "item": "tadditions:artron_capacitor_temporal"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "background": "tardis:textures/block/roundel/white_concrete_full.png"
+  },
+  "parent": "tadditions:cap",
+  "criteria": {
+    "tadditions:artron_capacitor_temporal": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tadditions:artron_capacitor_temporal"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "tadditions:artron_capacitor_temporal"
+    ]
+  ]
+}

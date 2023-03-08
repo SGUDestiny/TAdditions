@@ -1,0 +1,8 @@
+{
+  "display_name": "Machinery",
+  "pages": [
+    "tadditions:machinery/machinery_intro",
+    "tadditions:machinery/food_machine",
+    "tadditions:machinery/advanced_quantiscope"
+  ]
+}

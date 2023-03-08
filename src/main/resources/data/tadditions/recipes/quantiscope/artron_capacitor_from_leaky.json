@@ -1,0 +1,12 @@
+{
+	"type": "tardis:quantiscope",
+	"repair":false,
+	"ingredients":[
+		{"item":"minecraft:iron_ingot"},
+		{"item":"tardis:leaky_capacitor"},
+		{"item":"minecraft:redstone"}
+	],
+	"result":{
+		"item":"tardis:artron_capacitor"
+	}
+}

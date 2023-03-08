@@ -1,0 +1,36 @@
+{
+  "display": {
+    "title": {
+      "translate": "advancements.tadditions.title.murasama"
+    },
+    "description": {
+      "translate": "advancements.tadditions.desc.murasama"
+    },
+    "icon": {
+      "item": "tadditions:murasama"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true,
+    "background": "tardis:textures/block/roundel/white_concrete_full.png"
+  },
+  "parent": "tadditions:advq",
+  "criteria": {
+    "tadditions:murasama": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tadditions:murasama"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "tadditions:murasama"
+    ]
+  ]
+}

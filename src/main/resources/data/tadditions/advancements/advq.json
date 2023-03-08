@@ -1,0 +1,35 @@
+{
+  "display": {
+    "title": {
+      "translate": "advancements.tadditions.title.advanced_quantiscope"
+    },
+    "description": {
+      "translate": "advancements.tadditions.desc.advanced_quantiscope"
+    },
+    "icon": {
+      "item": "tadditions:advanced_quantiscope"
+    },
+    "frame": "task",
+    "announce_to_chat": true,
+    "show_toast": true,
+    "background": "tardis:textures/block/roundel/white_concrete_full.png"
+  },
+  "parent": "tadditions:tadditions",
+  "criteria": {
+    "advq": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tadditions:advanced_quantiscope"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "advq"
+    ]
+  ]
+}

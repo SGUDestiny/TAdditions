@@ -1,0 +1,14 @@
+{
+  "type": "tardis:quantiscope",
+  "repair":false,
+  "ingredients":[
+    {"item":"minecraft:emerald"},
+    {"item":"tardis:circuits"},
+    {"item":"tardis:artron_battery_high"},
+    {"item":"minecraft:diamond"},
+    {"item":"minecraft:redstone_block"}
+  ],
+  "result":{
+    "item":"tadditions:artron_battery_speed"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "net.tadditions.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "InvisRenMixin",
+    "SPMixin",
+    "EHMixin",
+    "DimConMixin",
+    "ConsoleMixin"
+  ],
+  "minVersion": "0.8"
+}

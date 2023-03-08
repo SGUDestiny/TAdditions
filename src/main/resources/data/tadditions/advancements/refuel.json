@@ -1,0 +1,35 @@
+{
+  "display": {
+    "title": {
+      "translate": "advancements.tadditions.title.ultra_high_refuel"
+    },
+    "description": {
+      "translate": "advancements.tadditions.desc.ultra_high_refuel"
+    },
+    "icon": {
+      "item": "tadditions:artron_capacitor_speed"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "background": "tardis:textures/block/roundel/white_concrete_full.png"
+  },
+  "parent": "tadditions:cap",
+  "criteria": {
+    "tadditions:artron_capacitor_speed": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tadditions:artron_capacitor_speed"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "tadditions:artron_capacitor_speed"
+    ]
+  ]
+}

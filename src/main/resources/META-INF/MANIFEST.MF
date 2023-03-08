@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: build
+MixinConfigs: tadditions.mixins.json
+Implementation-Version: 0.3.0
+Specification-Vendor: mistersecret312
+Specification-Title: tadditions
+Implementation-Timestamp: 2022-08-14T13:19:38+0000
+Specification-Version: 1.0.0
+Implementation-Vendor:  mistersecret312
+

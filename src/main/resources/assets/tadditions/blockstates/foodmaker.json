@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "tadditions:block/foodmaker",
+      "y": 0
+    },
+    "facing=north": {
+      "model": "tadditions:block/foodmaker",
+      "y": 270
+    },
+    "facing=south": {
+      "model": "tadditions:block/foodmaker",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "tadditions:block/foodmaker",
+      "y": 180
+    }
+
+  }
+}
+

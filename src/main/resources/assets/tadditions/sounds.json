@@ -1,0 +1,29 @@
+{
+  "disc1": {
+    "subtitle": "subtitle.tadditions.disc1",
+    "sounds": [
+      "tadditions:disc1"
+    ]
+  },
+  "disc2": {
+    "subtitle": "subtitle.tadditions.disc2",
+    "sounds": [
+      "tadditions:disc2"
+    ]
+  },"disc3": {
+  "subtitle": "subtitle.tadditions.disc3",
+  "sounds": [
+    "tadditions:disc3"
+  ]
+ },"verge_ambient1": {
+  "subtitle": "subtitle.verge_ambient1",
+  "sounds": [
+    "tadditions:ambient/verge_ambient1"
+  ]
+},"verge_ambient2": {
+  "subtitle": "subtitle.verge_ambient2",
+  "sounds": [
+    "tadditions:ambient/verge_ambient2"
+  ]
+}
+}

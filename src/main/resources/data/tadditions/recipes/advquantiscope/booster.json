@@ -1,0 +1,20 @@
+{
+	"type": "tadditions:advquantiscope",
+	"ingredients":[
+		{"item":"minecraft:redstone_block"},
+		{"item":"tadditions:aeon_crystal"},
+		{"item":"tardis:xion_crystal"},
+		{"item":"tadditions:aeon_crystal"},
+		{"item":"tardis:xion_crystal"},
+		{"item":"tardis:circuits"},
+		{"item":"minecraft:redstone_block"},
+		{"item":"tadditions:aeon_crystal"},
+		{"item":"tardis:xion_crystal"},
+		{"item":"tadditions:aeon_crystal"},
+		{"item":"tardis:xion_crystal"},
+		{"item":"tardis:circuits"}
+	],
+	"result":{
+		"item":"tadditions:upgrades/booster"
+	}
+}

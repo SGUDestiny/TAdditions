@@ -1,0 +1,20 @@
+{
+	"type": "tadditions:advquantiscope",
+	"ingredients":[
+		{"item":"minecraft:repeater"},
+		{"item":"minecraft:redstone_block"},
+		{"item":"minecraft:netherite_ingot"},
+		{"item":"tardis:xion_crystal"},
+		{"item":"tardis:xion_crystal"},
+		{"item":"tadditions:aeon_crystal"},
+		{"item":"tardis:circuits"},
+		{"item":"tardis:xion_crystal"},
+		{"item":"tardis:xion_crystal"},
+		{"item":"minecraft:redstone_block"},
+		{"item":"minecraft:netherite_ingot"},
+		{"item":"tardis:stattenheim_remote"}
+	],
+	"result":{
+		"item":"tadditions:onetimeremote"
+	}
+}
