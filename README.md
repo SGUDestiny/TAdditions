@@ -29,7 +29,7 @@ Craft and explore many wonderoud things added to New TARDIS Mod!
     <td>Models/Textures/Some Ideas</td>
   </tr>
   <tr>
-    <td><a href="https://youtube.com/@thedoctor1970">TheDoctor>/a></td>
+    <td><a href="https://youtube.com/@thedoctor1970">TheDoctor</a></td>
     <td>Toyota Exterior Assets</td>
   </tr>
 </table>
