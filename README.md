@@ -7,3 +7,6 @@ mistersecret312 - Lead Developer
 TheDoctor and Monsterwaill - Contributors
 
 But most importantly, have fun!
+
+Discord Server: https://discord.gg/xdPBseQWKK
+Curseforge Page: https://www.curseforge.com/minecraft/mc-mods/t-additons
