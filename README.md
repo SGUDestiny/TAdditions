@@ -8,7 +8,7 @@ TheDoctor and Monsterwaill - Contributors<p/>
 
 But most importantly, have fun!
 
-<p>Discord Server: <a href="https://discord.gg/xdPBseQWKK">Join</a>
+<p>Discord: <a href="https://discord.gg/xdPBseQWKK">Join</a>
 <br>
-Curseforge Page: <a href="https://www.curseforge.com/minecraft/mc-mods/t-additons">Visit</a>
+Curseforge: <a href="https://www.curseforge.com/minecraft/mc-mods/t-additons">Visit</a>
 <p/>
