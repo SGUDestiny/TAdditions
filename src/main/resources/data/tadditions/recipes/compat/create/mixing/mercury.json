@@ -8,18 +8,21 @@
   "type": "create:mixing",
   "ingredients": [
     {
-      "item": "forge:cinnabar"
+      "item": "tardis:cinnabar"
+    },
+    {
+      "item": "tardis:cinnabar"
     },
     {
       "fluid": "minecraft:water",
       "nbt": {},
-      "amount": 250
+      "amount": 500
     }
   ],
   "results": [
     {
       "fluid": "tadditions:mercury",
-      "amount": 250
+      "amount": 500
     }
   ],
   "heatRequirement": "heated"

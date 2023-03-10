@@ -9,17 +9,18 @@
   "ingredients": [
     {
       "tag":"tardis:plants",
-      "count": 4
+      "count": 32
     },
     {
       "fluid": "minecraft:water",
       "nbt": {},
-      "amount": 250
+      "amount": 500
     }
   ],
   "results": [
     {
-      "item": "tardis:circuit_paste"
+      "item": "tardis:circuit_paste",
+      "count": 2
     }
   ],
   "heatRequirement": "heated"

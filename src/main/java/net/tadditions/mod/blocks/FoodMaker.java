@@ -45,51 +45,11 @@ public class FoodMaker extends HorizontalBlock {
         return this.getDefaultState().with(HORIZONTAL_FACING, context.getPlacementHorizontalFacing().getOpposite());
     }
 
-    private static final VoxelShape SHAPE_E = Stream.of(
-            Block.makeCuboidShape(1.95, 24.175, 2, 5, 25.175, 14.125),
-            Block.makeCuboidShape(1.95, 0.275, 1.975, 13.95, 25.5, 14.125),
-            Block.makeCuboidShape(14, 2, 6, 14.25, 9, 10),
-            Block.makeCuboidShape(1.75, 2, 6, 2, 9, 10),
-            Block.makeCuboidShape(14, 11, 4, 14.25, 14.25, 12)
-    ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, IBooleanFunction.OR)).get();
-
-    private static final VoxelShape SHAPE_N = Stream.of(
-            Block.makeCuboidShape(1.9, 24.175, 1.98, 14, 25.175, 5),
-            Block.makeCuboidShape(1.9, 0.275, 1.98, 14, 25.5245, 13.98),
-            Block.makeCuboidShape(6, 2, 14, 10, 9, 14.28),
-            Block.makeCuboidShape(6, 2, 1.78125, 10, 9, 2),
-            Block.makeCuboidShape(4, 11, 14, 12, 14.25, 14.28)
-            ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, IBooleanFunction.OR)).get();
-
-    private static final VoxelShape SHAPE_W = Stream.of(
-            Block.makeCuboidShape(11, 24.175, 1.94, 14, 25.175, 14),
-            Block.makeCuboidShape(2, 0.275, 1.94, 14, 25.5245, 14),
-            Block.makeCuboidShape(1.75, 2, 6, 2, 9, 10),
-            Block.makeCuboidShape(14, 2, 6, 14.25, 9, 10),
-            Block.makeCuboidShape(1.75, 11, 4, 2, 14.25, 12)
-    ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, IBooleanFunction.OR)).get();
-
-    private static final VoxelShape SHAPE_S = Stream.of(
-            Block.makeCuboidShape(1.96875, 24.175, 11.03, 14, 25.175, 14),
-            Block.makeCuboidShape(1.94376, 0.275, 2, 14.09375, 25.525, 14),
-            Block.makeCuboidShape(5.96875, 2, 1.78, 9.96875, 9, 2),
-            Block.makeCuboidShape(5.96875, 2, 14.03, 9.96875, 9, 14.3),
-            Block.makeCuboidShape(3.96875, 11, 1.78, 11.96875, 14.25, 2)
+    private static final VoxelShape SHAPE = Stream.of(Block.makeCuboidShape(1.95, 0.275, 1.975, 13.95, 25.525, 14.125)
     ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, IBooleanFunction.OR)).get();
 
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        switch (state.get(HORIZONTAL_FACING)){
-            case NORTH:
-                return SHAPE_N;
-            case EAST:
-                return SHAPE_E;
-            case WEST:
-                return SHAPE_W;
-            case SOUTH:
-                return SHAPE_S;
-            default:
-                return SHAPE_N;
-        }
+        return SHAPE;
     }
 
     @Override

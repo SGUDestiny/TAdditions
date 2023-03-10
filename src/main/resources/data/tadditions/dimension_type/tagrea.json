@@ -7,6 +7,7 @@
   "has_ceiling": false,
   "infiniburn": "minecraft:infiniburn_overworld",
   "logical_height" : 256,
+  "fixed_time": 18000,
   "has_raids" : false,
   "respawn_anchor_works": true,
   "bed_works" : true,

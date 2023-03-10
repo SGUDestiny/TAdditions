@@ -37,8 +37,10 @@ public class SPMixin {
                     }
                 });
                 console.getSonicItem().getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
-                    cap.setDimdata(false);
-                    ((IConsoleHelp) console).setDimOver(true);
+                    if(cap.isDimdata()) {
+                        cap.setDimdata(false);
+                        ((IConsoleHelp) console).setDimOver(true);
+                    }
                 });
 
             }

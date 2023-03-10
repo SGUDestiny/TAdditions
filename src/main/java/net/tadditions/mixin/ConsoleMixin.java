@@ -335,60 +335,26 @@ public class ConsoleMixin extends TileEntity implements IConsoleHelp {
         this.markDirty();
     }
 
-  //  @Override
-  //  public boolean getIntGrav() {
-  //      return this.intGravs;
-  //  }
-  //
-  //  @Override
-  //  public void setIntGrav(boolean enabled) {
-  //      this.intGravs = enabled;
-  //      if (!world.isRemote) {
-  //          ((ConsoleTile) (Object) this).getWorld().getPlayers().forEach(player -> {
-  //              player.abilities.allowFlying = enabled;
-  //              player.sendPlayerAbilities();
-  //          });
-  //          this.markDirty();
-  //      }
-  //  }
-
     public void fly() {
-        if(((ConsoleTile) (Object) this).isInFlight()) {
-
-            if(this.isDimOver() && ((ConsoleTile) (Object) this).getDestinationDimension() == MDimensions.TAGREA && ((ConsoleTile) (Object) this).getPercentageJourney() == 0.9 && ((ConsoleTile) (Object) this).getCurrentDimension() != MDimensions.TAGREA ) {
-                if (!((ConsoleTile) (Object) this).getUpgrade(FrameStabUpgrade.class).isPresent()) {
-                    ((ConsoleTile) (Object) this).crash(new CrashType(100, 0, true));
-                    ((ConsoleTile) (Object) this).getInteriorManager().setAlarmOn(false);
-                    ((ConsoleTile) (Object) this).getSubSystems().forEach(sub -> {
-                        sub.damage(null, 38);
-                    });
-                    ((ConsoleTile) (Object) this).getSubsystem(FlightSubsystem.class).ifPresent(fly -> {
-                        fly.damage(null, 650);
-                    });
-                    ((ConsoleTile) (Object) this).getInteriorManager().setMonitorOverrides(new MonitorOverride(((ConsoleTile) (Object) this), 600, String.valueOf(new TranslationTextComponent("warning.spatial_rupture").getString())));
-                    ((ConsoleTile) (Object) this).onPowerDown(true);
-                    ((ConsoleTile) (Object) this).getInteriorManager().setAlarmOn(true);
-                }
-                else ((ConsoleTile) (Object) this).getUpgrade(FrameStabUpgrade.class).ifPresent(up -> {up.damage(20, Upgrade.DamageType.ITEM,null);});
-            }
+        if (((ConsoleTile) (Object) this).isInFlight()) {
 
             ((ConsoleTile) (Object) this).prevFlightTicks = this.flightTicks;
             ++this.flightTicks;
 
-            if(((ConsoleTile) (Object) this).isLanding())
+            if (((ConsoleTile) (Object) this).isLanding())
                 this.location = ((ConsoleTile) (Object) this).getPositionInFlight().getPos();
 
             //If crashing, play crash effects
-            if(((ConsoleTile) (Object) this).isCrashing())
+            if (((ConsoleTile) (Object) this).isCrashing())
                 ((ConsoleTile) (Object) this).playCrashEffects();
 
             //Land if reached destination and stabilized
-            if(!world.isRemote && this.flightTicks >= this.reachDestinationTick && landTime <= 0){
+            if (!world.isRemote && this.flightTicks >= this.reachDestinationTick && landTime <= 0) {
                 if (this.isBeingTowed) {
                     ((ConsoleTile) (Object) this).initLand();
                 }
                 ((ConsoleTile) (Object) this).getSubsystem(StabilizerSubsystem.class).ifPresent(sys -> {
-                    if(sys.isControlActivated()) {
+                    if (sys.isControlActivated()) {
                         //Only call land if we're not being towed.
                         //Prevents land being called twice, which could cause the Tardis' position to get recalculated
                         if (!this.isBeingTowed) {
@@ -398,19 +364,19 @@ public class ConsoleMixin extends TileEntity implements IConsoleHelp {
                 });
             }
 
-            if(!world.isRemote && this.flightTicks > this.landTime && this.landTime > 0) {
+            if (!world.isRemote && this.flightTicks > this.landTime && this.landTime > 0) {
                 this.flightTicks = this.reachDestinationTick = this.landTime = 0;
                 ((ConsoleTile) (Object) this).updateClient();
             }
 
             //Crash if it can't fly
-            if(!world.isRemote && !((ConsoleTile) (Object) this).canFly()) {
+            if (!world.isRemote && !((ConsoleTile) (Object) this).canFly()) {
                 ((ConsoleTile) (Object) this).crash(CrashTypes.DEFAULT);
                 return;
             }
 
             //Artron usage
-            if(!world.isRemote) {
+            if (!world.isRemote) {
                 ArtronUse use = ((ConsoleTile) (Object) this).getOrCreateArtronUse(ArtronUse.ArtronType.FLIGHT);
                 use.setArtronUsePerTick(((ConsoleTile) (Object) this).calcFuelUse());
                 use.setTicksToDrain(1);
@@ -424,39 +390,55 @@ public class ConsoleMixin extends TileEntity implements IConsoleHelp {
                     }
                 }
 
-                if(world.getGameTime() % 20 == 0)
+                if (world.getGameTime() % 20 == 0)
                     Network.sendToAllAround(new ConsoleUpdateMessage(DataTypes.FUEL, new Fuel(this.artron, this.max_artron)), world.getDimensionKey(), this.getPos(), 20);
 
             }
 
             if (!world.isRemote) {
 
+                if (((ConsoleTile) (Object) this).getDestinationDimension() == MDimensions.TAGREA && ((ConsoleTile) (Object) this).getPercentageJourney() == 0.7 && !((ConsoleTile) (Object) this).getUpgrade(FrameStabUpgrade.class).isPresent()) {
+                    ((ConsoleTile) (Object) this).crash(new CrashType(100, 0, true));
+                    ((ConsoleTile) (Object) this).getInteriorManager().setAlarmOn(false);
+                    ((ConsoleTile) (Object) this).getSubSystems().forEach(sub -> {
+                        sub.damage(null, 38);
+                    });
+                    ((ConsoleTile) (Object) this).getSubsystem(FlightSubsystem.class).ifPresent(fly -> {
+                        fly.damage(null, 650);
+                    });
+                    ((ConsoleTile) (Object) this).getInteriorManager().setMonitorOverrides(new MonitorOverride(((ConsoleTile) (Object) this), 600, String.valueOf(new TranslationTextComponent("warning.spatial_rupture").getString())));
+                    ((ConsoleTile) (Object) this).onPowerDown(true);
+                    ((ConsoleTile) (Object) this).getInteriorManager().setAlarmOn(true);
+                } else ((ConsoleTile) (Object) this).getUpgrade(FrameStabUpgrade.class).ifPresent(up -> {
+                    up.damage(20, Upgrade.DamageType.ITEM, null);
+                });
+
                 //If this has an event and it's time, complete it
-                if(!this.isBeingTowed && currentEvent != null && this.currentEvent.getMissedTime() < this.flightTicks) {
+                if (!this.isBeingTowed && currentEvent != null && this.currentEvent.getMissedTime() < this.flightTicks) {
                     currentEvent.onComplete(((ConsoleTile) (Object) this));
 
                     //Search for collisions
                     this.currentEvent = null;
 
                     //If Not landing
-                    if(this.landTime <= 0) {
+                    if (this.landTime <= 0) {
                         ObjectWrapper<Boolean> collided = new ObjectWrapper<>(false);
                         Iterator<ServerWorld> it = world.getServer().getWorlds().iterator();
-                        while(it.hasNext()) {
+                        while (it.hasNext()) {
                             ServerWorld world = it.next();
 
                             //Stop if found one to collide with
-                            if(collided.getValue())
+                            if (collided.getValue())
                                 break;
 
                             TardisHelper.getConsoleInWorld(world).ifPresent(tile -> {
                                 //if unstabilized and not ourselves
                                 ((ConsoleTile) (Object) this).getSubsystem(StabilizerSubsystem.class).ifPresent(sys -> {
-                                    if(tile != ((ConsoleTile) (Object) this) && tile.isInFlight() && !sys.isControlActivated()) {
+                                    if (tile != ((ConsoleTile) (Object) this) && tile.isInFlight() && !sys.isControlActivated()) {
                                         //If not landing and not already colliding
-                                        if(tile.getLandTime() == 0 && !(tile.getFlightEvent() instanceof TardisCollideInstigate) && !(tile.getFlightEvent() instanceof TardisCollideRecieve)) {
-                                            if(tile.getPositionInFlight().getPos().withinDistance(((ConsoleTile) (Object) this).getPositionInFlight().getPos(), TConfig.SERVER.collisionRange.get())) {
-                                                ((ConsoleTile) (Object) this).setFlightEvent(((TardisCollideInstigate)FlightEventRegistry.COLLIDE_INSTIGATE.get().create(((ConsoleTile) (Object) this))).setOtherTARDIS(tile));
+                                        if (tile.getLandTime() == 0 && !(tile.getFlightEvent() instanceof TardisCollideInstigate) && !(tile.getFlightEvent() instanceof TardisCollideRecieve)) {
+                                            if (tile.getPositionInFlight().getPos().withinDistance(((ConsoleTile) (Object) this).getPositionInFlight().getPos(), TConfig.SERVER.collisionRange.get())) {
+                                                ((ConsoleTile) (Object) this).setFlightEvent(((TardisCollideInstigate) FlightEventRegistry.COLLIDE_INSTIGATE.get().create(((ConsoleTile) (Object) this))).setOtherTARDIS(tile));
                                                 collided.setValue(true);
                                             }
                                         }
@@ -466,20 +448,18 @@ public class ConsoleMixin extends TileEntity implements IConsoleHelp {
                         }
                     }
 
-                    if(((ConsoleTile) (Object) this).canGiveNewEvent() && this.currentEvent == null)
+                    if (((ConsoleTile) (Object) this).canGiveNewEvent() && this.currentEvent == null)
                         ((ConsoleTile) (Object) this).setFlightEvent(FlightEventRegistry.getRandomEvent(rand).create(((ConsoleTile) (Object) this)));
 
-                }
-
-                else if(this.currentEvent == null && ((ConsoleTile) (Object) this).canGiveNewEvent())
+                } else if (this.currentEvent == null && ((ConsoleTile) (Object) this).canGiveNewEvent())
                     ((ConsoleTile) (Object) this).setFlightEvent(FlightEventRegistry.getRandomEvent(rand).create(((ConsoleTile) (Object) this)));
 
             }
 
             //Shake
-            if(!world.isRemote && world.getGameTime() % 3 == 0) {
-                if(this.currentEvent != null && !this.currentEvent.getControls().isEmpty())
-                    for(PlayerEntity player : world.getPlayers()) {
+            if (!world.isRemote && world.getGameTime() % 3 == 0) {
+                if (this.currentEvent != null && !this.currentEvent.getControls().isEmpty())
+                    for (PlayerEntity player : world.getPlayers()) {
                         player.getCapability(Capabilities.PLAYER_DATA).ifPresent(cap -> {
                             cap.setShaking(5);
                             cap.update();
@@ -491,8 +471,8 @@ public class ConsoleMixin extends TileEntity implements IConsoleHelp {
         ((ConsoleTile) (Object) this).playFlightLoop();
 
         //Fuck TARDIS abusers
-        if(!world.isRemote && this.sparkLevel != SparkingLevel.NONE && world.getGameTime() % 60 == 0) {
-            if(((ConsoleTile) (Object) this).getEmotionHandler().getMood() > EmotionHandler.EnumHappyState.DISCONTENT.getTreshold())
+        if (!world.isRemote && this.sparkLevel != SparkingLevel.NONE && world.getGameTime() % 60 == 0) {
+            if (((ConsoleTile) (Object) this).getEmotionHandler().getMood() > EmotionHandler.EnumHappyState.DISCONTENT.getTreshold())
                 ((ConsoleTile) (Object) this).getEmotionHandler().addMood(-1);
         }
 

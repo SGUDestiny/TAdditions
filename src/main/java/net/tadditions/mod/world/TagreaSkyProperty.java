@@ -27,7 +27,7 @@ public class TagreaSkyProperty extends DimensionRenderInfo {
     //adjustSkyColor
     @Override
     public Vector3d func_230494_a_(Vector3d color, float sunHeight) {
-        return new Vector3d(0.6,0,0);
+        return new Vector3d(0.824,0.067,0.067);
     }
 
     //isFoggyAt

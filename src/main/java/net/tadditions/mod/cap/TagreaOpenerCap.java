@@ -27,7 +27,7 @@ import java.util.Objects;
 
 public class TagreaOpenerCap implements IOpener {
 
-    private boolean dimdata;
+    private boolean dimdata = true;
     private ItemStack remote;
 
     public TagreaOpenerCap(ItemStack stack) {

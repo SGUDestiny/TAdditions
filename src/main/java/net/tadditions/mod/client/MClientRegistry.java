@@ -2,6 +2,8 @@ package net.tadditions.mod.client;
 
 import com.google.common.collect.Maps;
 import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.client.world.DimensionRenderInfo;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -9,6 +11,7 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.tadditions.mod.QolMod;
+import net.tadditions.mod.blocks.ModBlocks;
 import net.tadditions.mod.client.renderers.sky.TagreaSkyRenderer;
 import net.tadditions.mod.container.MContainers;
 import net.tadditions.mod.screens.AdvQuantiscopeWeldScreen;
@@ -17,6 +20,7 @@ import net.tadditions.mod.screens.misc.AdvQuantiscopeScreenType;
 import net.tadditions.mod.world.MDimensions;
 import net.tadditions.mod.world.MarsSkyProperty;
 import net.tadditions.mod.world.TagreaSkyProperty;
+import net.tardis.mod.blocks.TBlocks;
 import net.tardis.mod.client.TClientRegistry;
 import net.tardis.mod.entity.TEntities;
 import net.tardis.mod.world.dimensions.MoonSkyProperty;
@@ -37,10 +41,15 @@ public class MClientRegistry extends TClientRegistry {
         registerScreens();
         DimensionRenderInfo.field_239208_a_.put(MDimensions.MARS_SKY_PROPERTY_KEY, new MarsSkyProperty());
         DimensionRenderInfo.field_239208_a_.put(MDimensions.TAGREA_SKY_PROPERTY_KEY, new TagreaSkyProperty());
+        event.enqueueWork(() -> {
+            //Block Render Layers
+            RenderTypeLookup.setRenderLayer(ModBlocks.electromagnetic_solenoid_container.get(), RenderType.getCutout());
+        });
     }
 
 
     private static void registerTileRenderers() {
+
     }
 
 

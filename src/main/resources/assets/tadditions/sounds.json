@@ -18,12 +18,12 @@
  },"verge_ambient1": {
   "subtitle": "subtitle.verge_ambient1",
   "sounds": [
-    "tadditions:ambient/verge_ambient1"
+    "tadditions:ambient/fateofthereality"
   ]
 },"verge_ambient2": {
   "subtitle": "subtitle.verge_ambient2",
   "sounds": [
-    "tadditions:ambient/verge_ambient2"
+    "tadditions:ambient/wanderingthegreyplanes"
   ]
 }
 }

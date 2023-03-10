@@ -22,6 +22,7 @@ import net.tadditions.mod.tileentity.RoundelContainerTileEntity;
 import net.tardis.mod.ars.IARS;
 import net.tardis.mod.cap.Capabilities;
 import net.tardis.mod.cap.ILightCap;
+import net.tardis.mod.properties.Prop;
 import net.tardis.mod.properties.TardisBlockProperties;
 
 import javax.annotation.Nullable;
@@ -30,7 +31,7 @@ import java.util.Random;
 public class RoundelContainer extends ContainerBlock implements IARS {
 
     public RoundelContainer(Block.Properties properties) {
-        super(properties);
+        super(properties.hardnessAndResistance(1,2));
         this.setDefaultState(this.getDefaultState().with(TardisBlockProperties.LIGHT, 15));
     }
 

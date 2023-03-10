@@ -19,7 +19,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 
 public class SolenoidConTileEntity extends LockableLootTileEntity {
 
-    public NonNullList<ItemStack> Contents = NonNullList.withSize(1, ItemStack.EMPTY);
+    public NonNullList<ItemStack> Contents = NonNullList.withSize(2, ItemStack.EMPTY);
 
     public SolenoidConTileEntity(TileEntityType<?> tileEntityTypeIn) {
         super(tileEntityTypeIn);

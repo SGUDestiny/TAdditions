@@ -17,6 +17,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.Mod;
 import net.tadditions.mod.items.ModItems;
 import net.tadditions.mod.screens.MClientHelper;
 import net.tadditions.mod.screens.MConstants;
@@ -49,7 +50,7 @@ public class SolenoidConBlock extends TileBlock {
         ItemStack held = player.getHeldItemMainhand();
         if (worldIn.isRemote) {
             SolenoidConTileEntity tileEntity = (SolenoidConTileEntity) worldIn.getTileEntity(pos);
-            if (held != ItemStack.EMPTY && tileEntity.Contents.equals(ItemStack.EMPTY)) {
+            if (held == ModItems.QUANTUM_EXOTIC_MATTER.get().getDefaultInstance() && tileEntity.Contents.equals(ItemStack.EMPTY)) {
                 tileEntity.setItem(held);
                 held.shrink(1);
                 return ActionResultType.SUCCESS;
