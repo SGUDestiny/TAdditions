@@ -31,9 +31,9 @@ public class ModBlocks {
 
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, QolMod.MOD_ID);
 
-    public static final RegistryObject<Block> tagrea_dust = registerforblock("tagrea_dust", () -> setUpBlock(new SandBlock(0, Prop.Blocks.BASIC_SAND.get())));
+    public static final RegistryObject<Block> tagrea_dust = registerforblock("ash", () -> setUpBlock(new SandBlock(0, Prop.Blocks.BASIC_SAND.get())));
 
-    public static final RegistryObject<Block> tagrea_rock = registerforblock("tagrea_rock", () -> setUpBlock(new Block(Prop.Blocks.BASIC_STONE.get())));
+    public static final RegistryObject<Block> tagrea_rock = registerforblock("ash_packed", () -> setUpBlock(new Block(Prop.Blocks.BASIC_STONE.get())));
 
 
     public static final RegistryObject<Block> mars_dust = registerforblock("mars_dust", () -> setUpBlock(new SandBlock(0, Prop.Blocks.BASIC_SAND.get())));
@@ -620,7 +620,7 @@ public class ModBlocks {
 //Blocks
     private static <T extends Block> RegistryObject<T> registerforblock(String id, Supplier<T> blockSupplier){
         RegistryObject<T> registryObject = BLOCKS.register(id, blockSupplier);
-        ModItems.ITEMS.register(id, () -> new BlockItem(registryObject.get(), new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)));
+        ModItems.ITEMS.register(id, () -> new BlockItem(registryObject.get(), new Item.Properties().group(TItemGroups.FUTURE)));
         return registryObject;
     }
 

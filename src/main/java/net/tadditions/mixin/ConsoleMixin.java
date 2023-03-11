@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
 import net.minecraft.nbt.ListNBT;
+import net.minecraft.potion.Effects;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
@@ -17,6 +18,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.GameType;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.util.Constants;
@@ -397,22 +399,6 @@ public class ConsoleMixin extends TileEntity implements IConsoleHelp {
 
             if (!world.isRemote) {
 
-                if (((ConsoleTile) (Object) this).getDestinationDimension() == MDimensions.TAGREA && ((ConsoleTile) (Object) this).getPercentageJourney() == 0.7 && !((ConsoleTile) (Object) this).getUpgrade(FrameStabUpgrade.class).isPresent()) {
-                    ((ConsoleTile) (Object) this).crash(new CrashType(100, 0, true));
-                    ((ConsoleTile) (Object) this).getInteriorManager().setAlarmOn(false);
-                    ((ConsoleTile) (Object) this).getSubSystems().forEach(sub -> {
-                        sub.damage(null, 38);
-                    });
-                    ((ConsoleTile) (Object) this).getSubsystem(FlightSubsystem.class).ifPresent(fly -> {
-                        fly.damage(null, 650);
-                    });
-                    ((ConsoleTile) (Object) this).getInteriorManager().setMonitorOverrides(new MonitorOverride(((ConsoleTile) (Object) this), 600, String.valueOf(new TranslationTextComponent("warning.spatial_rupture").getString())));
-                    ((ConsoleTile) (Object) this).onPowerDown(true);
-                    ((ConsoleTile) (Object) this).getInteriorManager().setAlarmOn(true);
-                } else ((ConsoleTile) (Object) this).getUpgrade(FrameStabUpgrade.class).ifPresent(up -> {
-                    up.damage(20, Upgrade.DamageType.ITEM, null);
-                });
-
                 //If this has an event and it's time, complete it
                 if (!this.isBeingTowed && currentEvent != null && this.currentEvent.getMissedTime() < this.flightTicks) {
                     currentEvent.onComplete(((ConsoleTile) (Object) this));
@@ -448,6 +434,10 @@ public class ConsoleMixin extends TileEntity implements IConsoleHelp {
                         }
                     }
 
+                    if(shouldVerCrash()){
+                        VerCrash();
+                    }
+
                     if (((ConsoleTile) (Object) this).canGiveNewEvent() && this.currentEvent == null)
                         ((ConsoleTile) (Object) this).setFlightEvent(FlightEventRegistry.getRandomEvent(rand).create(((ConsoleTile) (Object) this)));
 
@@ -477,5 +467,28 @@ public class ConsoleMixin extends TileEntity implements IConsoleHelp {
         }
 
 
+    }
+
+    public void VerCrash(){
+        if (this.shouldVerCrash()) {
+            ((ConsoleTile) (Object) this).getPilot().setGameType(GameType.SPECTATOR);
+            ((ConsoleTile) (Object) this).crash(new CrashType(100, 0, true));
+            ((ConsoleTile) (Object) this).getInteriorManager().setAlarmOn(false);
+            ((ConsoleTile) (Object) this).getSubSystems().forEach(sub -> {
+                sub.damage(null, 38);
+            });
+            ((ConsoleTile) (Object) this).getSubsystem(FlightSubsystem.class).ifPresent(fly -> {
+                fly.damage(null, 650);
+            });
+            ((ConsoleTile) (Object) this).getInteriorManager().setMonitorOverrides(new MonitorOverride(((ConsoleTile) (Object) this), 600, String.valueOf(new TranslationTextComponent("warning.spatial_rupture").getString())));
+            ((ConsoleTile) (Object) this).onPowerDown(true);
+            ((ConsoleTile) (Object) this).getInteriorManager().setAlarmOn(true);
+        } else ((ConsoleTile) (Object) this).getUpgrade(FrameStabUpgrade.class).ifPresent(up -> {
+            up.damage(20, Upgrade.DamageType.ITEM, null);
+        });
+    }
+
+    public boolean shouldVerCrash(){
+        return ((ConsoleTile) (Object) this).getDestinationDimension() == MDimensions.TAGREA && !((ConsoleTile) (Object) this).getUpgrade(FrameStabUpgrade.class).isPresent();
     }
 }

@@ -6,6 +6,7 @@ import net.minecraft.client.audio.BackgroundMusicTracks;
 import net.minecraft.client.gui.screen.WinGameScreen;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.client.MinecraftForgeClient;
 import net.tadditions.mod.sound.BackMusic;
 import net.tadditions.mod.sound.MSounds;
 import net.tadditions.mod.world.MDimensions;
@@ -23,12 +24,7 @@ public class MCAmbMixin {
             if (((Minecraft) (Object) this).player.world.getDimensionKey() == World.THE_END) {
                 return ((Minecraft) (Object) this).ingameGUI.getBossOverlay().shouldPlayEndBossMusic() ? BackgroundMusicTracks.DRAGON_FIGHT_MUSIC : BackgroundMusicTracks.END_MUSIC;
             } else if(((Minecraft) (Object) this).player.world.getDimensionKey() == MDimensions.TAGREA){
-              if(((Minecraft) (Object) this).player.world.getBiome(((Minecraft) (Object) this).player.getPosition()).getRegistryName() == MBiomes.TAGREA_BIOME_KEY.getRegistryName()){
-                  return BackMusic.VERWORLD_MUSIC;
-              }
-              else if(((Minecraft) (Object) this).player.world.getBiome(((Minecraft) (Object) this).player.getPosition()).getRegistryName() == MBiomes.TAGREA_BIOME_KEY.getRegistryName()){
-                  return BackMusic.VERWORLD_MUSIC2;
-              }
+                  return ((Minecraft) (Object) this).ingameGUI.getBossOverlay().shouldPlayEndBossMusic() ? BackMusic.VERWORLD_MUSIC : BackMusic.VERWORLD_MUSIC2;
             } else {
                 Biome.Category biome$category = ((Minecraft) (Object) this).player.world.getBiome(((Minecraft) (Object) this).player.getPosition()).getCategory();
                 if (!((Minecraft) (Object) this).getMusicTicker().isBackgroundMusicPlaying(BackgroundMusicTracks.UNDER_WATER_MUSIC) && (!((Minecraft) (Object) this).player.canSwim() || biome$category != Biome.Category.OCEAN && biome$category != Biome.Category.RIVER)) {
@@ -40,7 +36,6 @@ public class MCAmbMixin {
         } else {
             return BackgroundMusicTracks.MAIN_MENU_MUSIC;
         }
-        return BackgroundMusicTracks.MAIN_MENU_MUSIC;
     }
 
 }

@@ -17,31 +17,25 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
-public class SolenoidConTileEntity extends LockableLootTileEntity {
+public class SolenoidConTileEntity extends TileEntity {
 
-    public NonNullList<ItemStack> Contents = NonNullList.withSize(2, ItemStack.EMPTY);
+    public boolean Contents = false;
 
     public SolenoidConTileEntity(TileEntityType<?> tileEntityTypeIn) {
         super(tileEntityTypeIn);
     }
 
-    @Override
-    public NonNullList<ItemStack> getItems() {
+
+    public boolean getItem() {
         return this.Contents;
     }
 
-    public ItemStack getItem() {
-        return this.Contents.get(1);
-    }
 
-    @Override
-    protected void setItems(NonNullList<ItemStack> itemsIn) {
+    public void setItem(boolean itemsIn) {
         this.Contents = itemsIn;
     }
 
-    public void setItem(ItemStack itemsIn) {
-        this.Contents.set(1, itemsIn);
-    }
+
 
     public SolenoidConTileEntity() {
         this(ModTileEntitys.SOLENOID.get());
@@ -49,35 +43,14 @@ public class SolenoidConTileEntity extends LockableLootTileEntity {
 
     public CompoundNBT write(CompoundNBT compound) {
         super.write(compound);
-        if (!this.checkLootAndWrite(compound)) {
-            ItemStackHelper.saveAllItems(compound, this.Contents);
-        }
+        compound.putBoolean("contents", this.Contents);
 
 
         return compound;
     }
 
-    @Override
-    protected ITextComponent getDefaultName() {
-        return null;
-    }
-
-    @Override
-    protected Container createMenu(int id, PlayerInventory player) {
-        return null;
-    }
-
     public void read(BlockState state, CompoundNBT nbt) {
         super.read(state, nbt);
-        this.Contents = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
-        if (!this.checkLootAndRead(nbt)) {
-            ItemStackHelper.loadAllItems(nbt, this.Contents);
-        }
-
-    }
-
-    @Override
-    public int getSizeInventory() {
-        return 1;
+        this.Contents = nbt.getBoolean("contents");
     }
 }

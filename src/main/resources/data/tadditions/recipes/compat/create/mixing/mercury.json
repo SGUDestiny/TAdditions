@@ -8,10 +8,10 @@
   "type": "create:mixing",
   "ingredients": [
     {
-      "item": "tardis:cinnabar"
+      "item": "forge:dusts/cinnabar"
     },
     {
-      "item": "tardis:cinnabar"
+      "item": "forge:dusts/cinnabar"
     },
     {
       "fluid": "minecraft:water",

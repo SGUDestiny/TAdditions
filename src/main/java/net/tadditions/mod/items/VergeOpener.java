@@ -75,14 +75,6 @@ public class VergeOpener extends Item {
         super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
     }
 
-    @Override
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-
-        tooltip.add(new TranslationTextComponent("tooltip.tadditions.opener"));
-
-        super.addInformation(stack, worldIn, tooltip, flagIn);
-    }
-
 
 
 }

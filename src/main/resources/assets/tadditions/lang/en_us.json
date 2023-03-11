@@ -10,13 +10,13 @@
   "item.tadditions.artron_battery_temporal":"Artron Battery (\u00A74Temporal\u00A7r)",
   "item.tadditions.upgrades.thermal_protection": "Thermal Protection Upgrade",
   "item.tadditions.upgrades.crystal_flash_drive": "Crystal Flash Drive",
-  "tooltip.tadditions.opener": "Place in sonic port",
   "item.tadditions.upgrades_manual": "Manual Vol.2",
   "item.tadditions.foodcube": "Food Cube",
   "item.tadditions.onetimeremote": "Olim Remote(WIP)",
   "item.tadditions.undeadlocker": "Undeadlocker",
   "item.tadditions.murasama": "\u00A74High-Frequency Murasama",
   "item.tadditions.crystal_flash": "Crystal Flash",
+  "item.tadditions.subsystem.stabilizers": "Stabilizers",
   "message.tardis.boti_warning": "Please disable your BOTI if you plan on using our One Time Use Remote, as it allows you to land in another TARDIS, and in some specific cases it could cause clientside crashes.",
   "tooltip.tadditions.murasama_shift": "\u00A74There will be blood-shed!\u00A7r \n\n \u00A74\u00A7oIn memory of Samuel Rodrigues, with love by Destiny",
   "tooltip.tadditions.murasama": "Hold \u00A7lShift\u00A7r to view description",
@@ -24,8 +24,8 @@
   "block.tadditions.foodmaker": "Food Maker",
   "block.tadditions.mars_dust": "Mars Dust",
   "block.tadditions.mars_rock": "Mars Rock",
-  "block.tadditions.tagrea_dust": "Tagrean Dust",
-  "block.tadditions.tagrea_rock": "Tagrean Rock",
+  "block.tadditions.ash": "Ash",
+  "block.tadditions.ash_packed": "Packed Ash",
   "block.tadditions.advanced_quantiscope": "Advanced Quantiscope",
   "block.tadditions.roundelcon.alabaster": "Alabaster Roundel Container",
   "block.tadditions.roundelcon.acacia_planks_full": "Acacia Planks Full Roundel Container",
@@ -218,5 +218,6 @@
   "protocol.tardis.intgrav_on": "Enable Interior gravity",
   "protocol.tardis.intgrav_off": "Disable Interior gravity",
   "advancements.tadditions.title.olim": "Infinite possibilities",
-  "advancements.tadditions.desc.olim": "Obtain the Olim Remote"
+  "advancements.tadditions.desc.olim": "Obtain the Olim Remote",
+  "exterior_animation.tardis.fullnew_who": "Exterior Animation: Full New Who"
 }

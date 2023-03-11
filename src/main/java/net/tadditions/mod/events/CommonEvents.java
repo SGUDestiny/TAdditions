@@ -48,10 +48,6 @@ public class CommonEvents {
     @SubscribeEvent
     public static void attachWorldCaps(AttachCapabilitiesEvent<World> event) {
 
-        if (event.getObject().getDimensionKey() == MDimensions.MARS) {
-            event.addCapability(SPACE_DIM_CAP, new ISpaceDimProperties.Provider(new SpaceDimensionCapability(event.getObject().getDimensionKey())));
-        }
-
     }
     @SubscribeEvent
     public static void attachItemStackCap(AttachCapabilitiesEvent<ItemStack> event) {
@@ -67,9 +63,7 @@ public class CommonEvents {
     public static void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
         PlayerEntity player = event.getPlayer();
         if (player.world.isRemote()) {
-                if (TConfig.CLIENT.enableBoti.get()) {
-                    player.sendStatusMessage(new TranslationTextComponent("message.tardis.boti_warning").modifyStyle(style -> style.setFormatting(TextFormatting.DARK_RED)), false);
-                }
+
             }
         }
 

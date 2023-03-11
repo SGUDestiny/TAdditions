@@ -38,7 +38,7 @@ public class MBiomes {
      */
     public static void registerBiomeKeys() {
     	MOON_BIOME_KEY = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, new ResourceLocation(Tardis.MODID, "mars_field"));
-        TAGREA_BIOME_KEY = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, new ResourceLocation(Tardis.MODID, "mars_field"));
+        TAGREA_BIOME_KEY = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, new ResourceLocation(Tardis.MODID, "tagrea_field"));
 
     }
     

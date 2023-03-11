@@ -5,6 +5,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.MusicDiscItem;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -42,7 +43,7 @@ public class ModItems {
     public static final RegistryObject<Item> EC2_UPGRADE = ITEMS.register("upgrades/ec2", () -> createItem(new TardisPartItem(TardisConstants.Part.PartType.UPGRADE, false, false, TardisConstants.Translations.TEMPORAL_GRACE)));
     public static final RegistryObject<Item> NOBADOMEN_UPGRADE = ITEMS.register("upgrades/goodomen", () -> createItem(new TardisPartItem(TardisConstants.Part.PartType.UPGRADE, false, false, TardisConstants.Translations.TEMPORAL_GRACE)));
     public static final RegistryObject<Item> ZR2_UPGRADE = ITEMS.register("upgrades/zr2", () -> createItem(new TardisPartItem(TardisConstants.Part.PartType.UPGRADE, false, false, TardisConstants.Translations.TEMPORAL_GRACE)));
-    public static final RegistryObject<Item> FRAME_UPGRADE = ITEMS.register("upgrades/frame_stabilizer", () -> createItem(new TardisPartItem(TardisConstants.Part.PartType.UPGRADE, false, false, TardisConstants.Translations.DEMAT_CIRCUIT)));
+    public static final RegistryObject<Item> FRAME_UPGRADE = ITEMS.register("upgrades/frame_stabilizer", () -> createItem(new TardisPartItem(TardisConstants.Part.PartType.UPGRADE, false, false, new TranslationTextComponent("item." + QolMod.MOD_ID + ".subsystem.stabilizers"))));
     public static final RegistryObject<Item> MURASAMA = ITEMS.register("murasama", () -> createItem(new Murasama(MItemTier.MURASAMA, 1,-2f, new Item.Properties().group(ItemGroup.COMBAT).isImmuneToFire())));
     public static final RegistryObject<Item> ONEUSEREMOTE = ITEMS.register("onetimeremote", () -> createItem(new OneUseRemoteItem(Prop.Items.ONE.get().group(TItemGroups.MAIN))));
     public static final RegistryObject<Item> BOOS_UPGRADE = ITEMS.register("upgrades/crystal_flash_drive", () -> createItem(new VergeOpener(Prop.Items.ONE.get().group(TItemGroups.MAINTENANCE))));

@@ -1,13 +1,13 @@
 {
   "config": {
     "top_material": {
-      "Name": "tadditions:tagrea_dust"
+      "Name": "tadditions:ash"
     },
     "under_material": {
-      "Name": "tadditions:tagrea_rock"
+      "Name": "tadditions:ash_packed"
     },
     "underwater_material": {
-      "Name": "minecraft:gravel"
+      "Name": "tadditions:ash"
     }
   },
   "type": "tadditions:tagrea_surface"

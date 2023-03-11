@@ -1,6 +1,6 @@
 {
 	"parent":"block/cube_all",
 	"textures":{
-		"all":"tadditions:block/tagrea_dust"
+		"all":"tadditions:block/ash"
 	}
 }

@@ -3,7 +3,9 @@ package net.tadditions.mod.blocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ITileEntityProvider;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
@@ -18,7 +20,11 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Mod;
+import net.tadditions.mod.cap.QuantCapability;
 import net.tadditions.mod.items.ModItems;
+import net.tadditions.mod.network.MNetwork;
+import net.tadditions.mod.network.packets.FoodSpawnMessage;
+import net.tadditions.mod.network.packets.QuanSpawnMessage;
 import net.tadditions.mod.screens.MClientHelper;
 import net.tadditions.mod.screens.MConstants;
 import net.tadditions.mod.tileentity.AdvQuantiscopeTile;
@@ -47,19 +53,16 @@ public class SolenoidConBlock extends TileBlock {
 
     @Override
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        ItemStack held = player.getHeldItemMainhand();
+        Item held = player.getHeldItemMainhand().getStack().getItem();
         if (worldIn.isRemote) {
             SolenoidConTileEntity tileEntity = (SolenoidConTileEntity) worldIn.getTileEntity(pos);
-            if (held == ModItems.QUANTUM_EXOTIC_MATTER.get().getDefaultInstance() && tileEntity.Contents.equals(ItemStack.EMPTY)) {
-                tileEntity.setItem(held);
-                held.shrink(1);
-                return ActionResultType.SUCCESS;
-            } else if (held == ItemStack.EMPTY && !tileEntity.Contents.equals(ItemStack.EMPTY)) {
-                player.addItemStackToInventory(tileEntity.getItem());
-                tileEntity.setItem(ItemStack.EMPTY);
-                return ActionResultType.SUCCESS;
+            if (held == ModItems.QUANTUM_EXOTIC_MATTER.get() && !tileEntity.Contents) {
+                tileEntity.setItem(true);
+                held.getDefaultInstance().shrink(1);
+            } else if (held == ItemStack.EMPTY.getItem() && tileEntity.Contents) {
+                MNetwork.sendToServer(new QuanSpawnMessage(ModItems.QUANTUM_EXOTIC_MATTER.get()));
+                tileEntity.setItem(false);
             }
-            else return ActionResultType.FAIL;
 
 
         }
