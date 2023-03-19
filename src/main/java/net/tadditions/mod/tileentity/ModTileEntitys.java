@@ -9,7 +9,9 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.tadditions.mod.QolMod;
 import net.tadditions.mod.blocks.ModBlocks;
+import net.tardis.mod.blocks.TBlocks;
 import net.tardis.mod.blocks.TileBlock;
+import net.tardis.mod.tileentities.exteriors.ModernPoliceBoxExteriorTile;
 
 public class ModTileEntitys {
 
@@ -21,6 +23,8 @@ public class ModTileEntitys {
     public static final RegistryObject<TileEntityType<AdvQuantiscopeTile>> ADVQ = TILES.register("advq", () -> registerTiles(AdvQuantiscopeTile::new, ModBlocks.advanced_quantiscope_iron.get()));
 
     public static final RegistryObject<TileEntityType<SolenoidConTileEntity>> SOLENOID = TILES.register("solenoid", () -> registerTiles(SolenoidConTileEntity::new, ModBlocks.electromagnetic_solenoid_container.get()));
+
+    public static final RegistryObject<TileEntityType<ToyotaPoliceBoxExteriorTile>> EXTERIOR_TOYOTA_POLICE_BOX = TILES.register("exterior_toyota_police_box", () ->  registerTiles(ToyotaPoliceBoxExteriorTile::new, ModBlocks.exterior_toyota_police_box.get()));
 
 
 

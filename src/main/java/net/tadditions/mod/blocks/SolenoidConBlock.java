@@ -34,6 +34,7 @@ import net.tardis.mod.constants.TardisConstants;
 import net.tardis.mod.helper.TInventoryHelper;
 import net.tardis.mod.helper.WorldHelper;
 import net.tardis.mod.misc.GuiContext;
+import net.tardis.mod.tileentities.BrokenExteriorTile;
 
 import javax.annotation.Nullable;
 import java.util.stream.Stream;
@@ -53,19 +54,23 @@ public class SolenoidConBlock extends TileBlock {
 
     @Override
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        Item held = player.getHeldItemMainhand().getStack().getItem();
-        if (worldIn.isRemote) {
-            SolenoidConTileEntity tileEntity = (SolenoidConTileEntity) worldIn.getTileEntity(pos);
-            if (held == ModItems.QUANTUM_EXOTIC_MATTER.get() && !tileEntity.Contents) {
-                tileEntity.setItem(true);
-                held.getDefaultInstance().shrink(1);
-            } else if (held == ItemStack.EMPTY.getItem() && tileEntity.Contents) {
-                MNetwork.sendToServer(new QuanSpawnMessage(ModItems.QUANTUM_EXOTIC_MATTER.get()));
-                tileEntity.setItem(false);
+
+        if(worldIn.isRemote)
+            return ActionResultType.CONSUME;
+
+        ItemStack held = player.getHeldItem(handIn);
+        TileEntity te = worldIn.getTileEntity(pos);
+
+        if(te instanceof SolenoidConTileEntity){
+            if(((SolenoidConTileEntity) te).onPlayerRightClick(held)) {
+                //Consume item
+                if(!player.isCreative())
+                    player.getHeldItem(handIn).shrink(1);
             }
-
-
         }
+
+
+
         return ActionResultType.SUCCESS;
     }
     @Override

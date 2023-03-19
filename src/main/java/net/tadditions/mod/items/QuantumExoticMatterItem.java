@@ -2,16 +2,19 @@ package net.tadditions.mod.items;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.container.Container;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.tileentity.LockableLootTileEntity;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.LazyOptional;
+import net.tadditions.mod.cap.IQuant;
 import net.tadditions.mod.cap.MCapabilities;
 
 import javax.annotation.Nullable;
@@ -39,16 +42,31 @@ public class QuantumExoticMatterItem extends Item {
     }
 
     @Override
-    public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+    public boolean onEntityItemUpdate(final ItemStack stack, final ItemEntity entity){
+        World worldIn = entity.getEntityWorld();
+        this.tickFuse(stack, worldIn, entity);
+        return super.onEntityItemUpdate(stack, entity);
+    }
+
+    public void tickFuse(ItemStack stack, World worldIn, Entity entityIn){
         if (!worldIn.isRemote) {
-                stack.getCapability(MCapabilities.QUANT_CAPABILITY).ifPresent(cap -> {
-                    cap.tick(worldIn, entityIn);
-                });
+            stack.getCapability(MCapabilities.QUANT_CAPABILITY).ifPresent(cap -> {
+                cap.tick(worldIn, entityIn);
+            });
             if (worldIn.getGameTime() % 20 == 0) {
                 syncCapability(stack); //sync capabilities each second instead of every tick
             }
         }
-        super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
+    }
+
+    @Override
+    public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+        if (!worldIn.isRemote) {
+            if(!(entityIn instanceof PlayerEntity)){
+                this.tickFuse(stack, worldIn, entityIn);
+            }
+            else this.tickFuse(stack, worldIn, entityIn);
+        }
     }
 
     @Nullable
@@ -77,5 +95,16 @@ public class QuantumExoticMatterItem extends Item {
                 stack.getCapability(MCapabilities.QUANT_CAPABILITY).ifPresent(handler -> handler.deserializeNBT(nbt.getCompound("cap_sync")));
             }
         }
+    }
+    public double getDurabilityForDisplay(final ItemStack stack) {
+        return Math.abs(1.0 - this.getFuse(stack) / (double)100);
+    }
+
+    public boolean showDurabilityBar(final ItemStack stack) {
+        return this.getFuse(stack) > 0 && this.getFuse(stack) < 100;
+    }
+
+    public int getFuse(final ItemStack stack) {
+      return stack.getOrCreateTag().getInt("time");
     }
 }

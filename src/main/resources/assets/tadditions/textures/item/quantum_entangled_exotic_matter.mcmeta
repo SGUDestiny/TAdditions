@@ -1,11 +1,13 @@
 {
   "animation": {
-    "interpolate": false,
-    "width": 16,
-    "height": 16,
-    "frametime": 7,
+    "frametime": 2
     "frames": [
-      1, 2, 3, 4, 5
+    0,
+    1,
+    2,
+    3,
+    4,
     ]
+
   }
 }

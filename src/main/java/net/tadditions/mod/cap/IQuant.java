@@ -25,6 +25,10 @@ public interface IQuant extends INBTSerializable<CompoundNBT> {
 
     void setGenerated(boolean generated);
 
+    void setPaused(boolean paused);
+
+    boolean isPaused();
+
 
     void tick(World world, Entity ent);
 

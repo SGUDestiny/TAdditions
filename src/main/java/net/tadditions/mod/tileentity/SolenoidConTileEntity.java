@@ -13,29 +13,48 @@ import net.minecraft.tileentity.ChestTileEntity;
 import net.minecraft.tileentity.LockableLootTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.util.Hand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraftforge.fml.network.NetworkHooks;
+import net.tadditions.mod.cap.MCapabilities;
+import net.tadditions.mod.items.ModItems;
+import net.tadditions.mod.network.MNetwork;
+import net.tadditions.mod.network.packets.QuanSpawnMessage;
+import net.tardis.mod.misc.TardisLike;
 
 public class SolenoidConTileEntity extends TileEntity {
 
-    public boolean Contents = false;
+    private ItemStack item = ItemStack.EMPTY;
 
     public SolenoidConTileEntity(TileEntityType<?> tileEntityTypeIn) {
         super(tileEntityTypeIn);
     }
 
-
-    public boolean getItem() {
-        return this.Contents;
+    protected void setItem(ItemStack itemsIn) {
+        this.item = itemsIn;
     }
 
+    public boolean onPlayerRightClick(ItemStack stack) {
 
-    public void setItem(boolean itemsIn) {
-        this.Contents = itemsIn;
+        if(stack.getItem() == ModItems.QUANTUM_EXOTIC_MATTER.get() && item.isEmpty()) {
+            this.setItem(stack);
+            item.getCapability(MCapabilities.QUANT_CAPABILITY).ifPresent(quan -> {
+                quan.setPaused(true);
+            });
+            return true;
+        }
+        if(stack == ItemStack.EMPTY && item.getItem() == ModItems.QUANTUM_EXOTIC_MATTER.get()){
+            item.getCapability(MCapabilities.QUANT_CAPABILITY).ifPresent(quan -> {
+                quan.setPaused(false);
+            });
+            this.setItem(ItemStack.EMPTY);
+            MNetwork.sendToServer(new QuanSpawnMessage(ModItems.QUANTUM_EXOTIC_MATTER.get()));
+            return true;
+        }
+        return false;
     }
-
-
 
     public SolenoidConTileEntity() {
         this(ModTileEntitys.SOLENOID.get());
@@ -43,14 +62,15 @@ public class SolenoidConTileEntity extends TileEntity {
 
     public CompoundNBT write(CompoundNBT compound) {
         super.write(compound);
-        compound.putBoolean("contents", this.Contents);
-
+        compound.put("item", this.item.serializeNBT());
 
         return compound;
     }
 
+
+
     public void read(BlockState state, CompoundNBT nbt) {
         super.read(state, nbt);
-        this.Contents = nbt.getBoolean("contents");
+        this.item = ItemStack.read(nbt.getCompound("item"));
     }
 }

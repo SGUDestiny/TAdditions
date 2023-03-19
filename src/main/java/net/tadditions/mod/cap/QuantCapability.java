@@ -31,6 +31,7 @@ public class QuantCapability implements IQuant {
     private final ItemStack remote;
     private int time = 0;
     private boolean generated = false;
+    private boolean paused = false;
 
     public QuantCapability(ItemStack stack) {
         this.remote = stack;
@@ -41,6 +42,7 @@ public class QuantCapability implements IQuant {
         CompoundNBT tag = new CompoundNBT();
         tag.putInt("time", this.time);
         tag.putBoolean("generated", this.generated);
+        tag.putBoolean("paused", this.paused);
         return tag;
     }
 
@@ -48,6 +50,7 @@ public class QuantCapability implements IQuant {
     public void deserializeNBT(CompoundNBT nbt) {
         this.generated = nbt.getBoolean("generated");
         this.time = nbt.getInt("time");
+        this.paused = nbt.getBoolean("paused");
     }
 
     @Override
@@ -70,6 +73,16 @@ public class QuantCapability implements IQuant {
         this.generated = generated;
     }
 
+    @Override
+    public void setPaused(boolean paused) {
+        this.paused = paused;
+    }
+
+    @Override
+    public boolean isPaused() {
+        return this.paused;
+    }
+
 
     @Override
     public void tick(World world, Entity ent) {
@@ -77,7 +90,12 @@ public class QuantCapability implements IQuant {
         if (!world.isRemote) {
             if (world.getGameTime() % 40 == 0) {
                 if (this.getGenerated()) {
-                    this.setTimer(this.getTimer() - 1);
+                    if (this.isPaused()) {
+                        this.setTimer(this.getTimer());
+                    }
+                    if (!this.isPaused()) {
+                        this.setTimer(this.getTimer() - 1);
+                    }
                 }
                 if(!this.getGenerated()){
                     this.setTimer((int) (random.nextFloat() * 100));
@@ -90,4 +108,6 @@ public class QuantCapability implements IQuant {
             }
         }
     }
+
+
 }

@@ -34,7 +34,6 @@ public class QuanSpawnMessage {
     public static void handle(QuanSpawnMessage mes, Supplier<NetworkEvent.Context> con) {
         con.get().enqueueWork(() -> {
             ServerWorld world = con.get().getSender().getServerWorld();
-
                 if(mes.key instanceof Item) {
                     int amount = 1;
                         InventoryHelper.spawnItemStack(world,

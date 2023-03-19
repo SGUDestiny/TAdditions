@@ -17,6 +17,7 @@ import net.tadditions.mod.items.ModItems;
 import net.tardis.mod.blocks.QuantiscopeBlock;
 import net.tardis.mod.blocks.RoundelBlock;
 import net.tardis.mod.blocks.WaypointBankBlock;
+import net.tardis.mod.blocks.exteriors.ExteriorBlock;
 import net.tardis.mod.itemgroups.TItemGroups;
 import net.tardis.mod.items.TItems;
 import net.tadditions.mod.blocks.RoundelContainer;
@@ -30,6 +31,8 @@ import java.util.function.ToIntFunction;
 public class ModBlocks {
 
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, QolMod.MOD_ID);
+
+    public static final RegistryObject<Block> exterior_toyota_police_box = register("exterior_toyota_police_box", () -> setUpBlock(new ExteriorBlock()), false);
 
     public static final RegistryObject<Block> tagrea_dust = registerforblock("ash", () -> setUpBlock(new SandBlock(0, Prop.Blocks.BASIC_SAND.get())));
 
