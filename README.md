@@ -8,5 +8,5 @@ Development Team:<br>
 
 But most importantly, have fun!
 
-<p>Discord: [<img alt="alt_text" width="40px" src="https://cdn.discordapp.com/attachments/927582814042488913/1092827526654595152/join-discord-png-10.png" />](https://discord.gg/xdPBseQWKK)
+<a href="https://discord.gg/xdPBseQWKK"><img src="https://cdn.discordapp.com/attachments/927582814042488913/1092827526654595152/join-discord-png-10.png" width="150px"></img></a>
 <p/>
