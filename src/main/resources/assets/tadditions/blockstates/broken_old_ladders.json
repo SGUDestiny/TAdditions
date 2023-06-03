@@ -1,0 +1,16 @@
+{
+    "variants": {
+        "facing=north": {
+        	"model": "tadditions:block/broken_old_ladders"
+        },
+        "facing=east":  {
+        	"model": "tadditions:block/broken_old_ladders", "y": 90
+        },
+        "facing=south": {
+        	"model": "tadditions:block/broken_old_ladders", "y": 180
+        },
+        "facing=west":  {
+        	"model": "tadditions:block/broken_old_ladders", "y": 270
+        }
+    }
+}

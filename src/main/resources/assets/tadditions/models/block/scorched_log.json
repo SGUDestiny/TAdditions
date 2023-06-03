@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "tadditions:block/scorched_log_top",
+    "side": "tadditions:block/scorched_log"
+  }
+}

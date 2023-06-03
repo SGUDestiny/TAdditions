@@ -1,0 +1,30 @@
+{
+  "config": {
+    "feature": {
+      "config": {
+        "feature": {
+           "config": {
+             "probability": 0.78
+           },
+           "type": "tadditions:realvoid"
+         },
+         "decorator": {
+            "config": {},
+            "type": "minecraft:heightmap_world_surface"
+         }
+      },
+      "decorator": {
+          "config": {},
+          "type": "minecraft:square"
+      },
+      "type": "minecraft:decorated"
+    },
+    "decorator": {
+      "config": {
+        "chance": 78
+      },
+      "type": "minecraft:chance"
+    }
+  },
+  "type": "minecraft:decorated"
+}

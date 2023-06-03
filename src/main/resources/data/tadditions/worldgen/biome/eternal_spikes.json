@@ -1,0 +1,45 @@
+{
+  "surface_builder": "tadditions:the_verge_of_reality_surface",
+  "depth": 1.1,
+  "scale": 1.1,
+  "temperature": 0.2,
+  "downfall": 0.1,
+  "precipitation": "none",
+  "temperature_modifier": "none",
+  "category": "extreme_hills",
+  "player_spawn_friendly": false,
+  "creature_spawn_probability": 0,
+  "effects": {
+    "sky_color": 9868950,
+    "fog_color": 13158600,
+    "water_color": 4159204,
+    "water_fog_color": 329011,
+    "grass_color": 7600187,
+    "foliage_color": 7593531,
+    "mood_sound": {
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000,
+      "block_search_extent": 8,
+      "offset": 2
+    },
+    "additions_sound": {
+      "sound": "tadditions:verge_ambient1",
+      "tick_chance": 0.000125
+    },
+    "particle": {
+      "options": {
+        "type": "minecraft:white_ash"
+      },
+      "probability": 0.118093334
+    }
+  },
+  "starts": [
+    "tadditions:scorched"
+  ],
+  "spawners": {},
+  "spawn_costs": {},
+  "carvers": {},
+  "features": [
+    ["tadditions:realspike"]
+  ]
+}

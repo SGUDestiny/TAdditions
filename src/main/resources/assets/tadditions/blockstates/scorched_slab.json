@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "tadditions:block/scorched_slab"
+    },
+    "type=double": {
+      "model": "tadditions:block/scorched_planks"
+    },
+    "type=top": {
+      "model": "tadditions:block/scorched_slab_top"
+    }
+  }
+}

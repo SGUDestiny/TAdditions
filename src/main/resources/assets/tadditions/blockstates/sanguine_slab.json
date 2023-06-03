@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "tadditions:block/sangue_slab"
+    },
+    "type=double": {
+      "model": "tadditions:block/sangue_planks"
+    },
+    "type=top": {
+      "model": "tadditions:block/sangue_slab_top"
+    }
+  }
+}

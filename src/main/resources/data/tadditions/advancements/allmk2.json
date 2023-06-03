@@ -1,0 +1,53 @@
+{
+  "display": {
+    "icon": {
+      "item": "tadditions:disc1"
+    },
+    "title": {"translate": "advancements.tadditions.title.allmk2"},
+    "description": {"translate": "advancements.tadditions.descs.allmk2"},
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "parent": "tadditions:tadditions",
+  "criteria": {
+    "1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tadditions:subsystem/dematerialisation_circuit_mk2"
+          },
+          {
+            "item": "tadditions:subsystem/fluid_link_mk2"
+          },
+          {
+            "item": "tadditions:subsystem/chameleon_circuit_mk2"
+          },
+          {
+            "item": "tadditions:subsystem/interstitial_antenna_mk2"
+          },
+          {
+            "item": "tadditions:subsystem/temporal_grace_mk2"
+          },
+          {
+            "item": "tadditions:subsystem/stabilizer_mk2"
+          },
+          {
+            "item": "tadditions:subsystem/nav_com_mk2"
+          }
+        ]
+      }
+    }
+},
+
+  "rewards": {
+    "experience": 10
+  },
+  "requirements": [
+    [
+      "1"
+    ]
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "display": {
+    "icon": {
+      "item": "tadditions:dusty_music_disc_hold_strong"
+    },
+    "title": {"translate": "advancements.tadditions.title.onedisc"},
+    "description": {"translate": "advancements.tadditions.descs.onedisc"},
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "parent": "tadditions:tadditions",
+  "criteria": {
+    "1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tadditions:dusty_music_disc_hold_strong"
+          }
+        ]
+      }
+    },
+    "2": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tadditions:dusty_music_disc_madmans_lullaby"
+          }
+        ]
+      }
+    },
+    "3": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tadditions:dusty_music_disc_fallen_flame"
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 10
+  },
+  "requirements": [
+    [
+      "1",
+      "2",
+      "3"
+    ]
+  ]
+}

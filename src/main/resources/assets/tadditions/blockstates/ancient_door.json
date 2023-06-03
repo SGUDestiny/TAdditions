@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "locked=false,active=true,vanish=false": {
+      "model": "tadditions:block/ancient_door_part_active"
+    },
+    "locked=false,active=false,vanish=false": {
+      "model": "tadditions:block/ancient_door_part_active"
+    },
+    "active=false,vanish=false,locked=true": {
+      "model": "tadditions:block/ancient_door_part_off"
+    },
+    "active=true,vanish=false,locked=true": {
+      "model": "tadditions:block/ancient_door_part_active"
+    },
+    "vanish=true,active=false": {
+      "model": "tadditions:block/ancient_door_part_vanished"
+    },
+    "vanish=true,active=true": {
+      "model": "tadditions:block/ancient_door_part_vanished"
+    }
+  }
+}

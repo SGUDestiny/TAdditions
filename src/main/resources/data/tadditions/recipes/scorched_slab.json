@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_slab",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "tadditions:scorched_planks"
+    }
+  },
+  "result": {
+    "item": "tadditions:scorched_slab",
+    "count": 6
+  }
+}

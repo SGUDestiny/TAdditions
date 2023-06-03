@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "tadditions:block/katana_stand",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "tadditions:block/katana_stand",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "tadditions:block/katana_stand",
+      "y": 0
+    },
+    "facing=east": {
+      "model": "tadditions:block/katana_stand",
+      "y": 270
+    }
+
+  }
+}
+

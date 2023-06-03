@@ -1,0 +1,14 @@
+{
+  "config": {
+    "top_material": {
+      "Name": "tadditions:ash"
+    },
+    "under_material": {
+      "Name": "tadditions:dense_ash"
+    },
+    "underwater_material": {
+      "Name": "tadditions:ash"
+    }
+  },
+  "type": "tadditions:spikes_surface"
+}

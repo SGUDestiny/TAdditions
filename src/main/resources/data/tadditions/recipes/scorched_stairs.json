@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_stairs",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "tadditions:scorched_planks"
+    }
+  },
+  "result": {
+    "item": "tadditions:scorched_stairs",
+    "count": 4
+  }
+}

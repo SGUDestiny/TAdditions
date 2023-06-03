@@ -1,0 +1,71 @@
+{
+  "effects": {
+    "mood_sound": {
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000,
+      "block_search_extent": 8,
+      "offset": 2.0
+    },
+    "sky_color": 9868950,
+    "fog_color": 13158600,
+    "foliage_color": 7593531,
+    "grass_color": 7600187,
+    "water_color": 4159204,
+    "water_fog_color": 329011,
+    "additions_sound": {
+      "sound": "tadditions:verge_ambient1",
+      "tick_chance": 0.000125
+    },
+    "particle": {
+      "options": {
+        "type": "minecraft:white_ash"
+      },
+      "probability": 0.118093334
+    }
+  },
+  "surface_builder": "tadditions:the_verge_of_reality_surface",
+  "carvers": {
+    "air": [
+      {
+        "config": {
+          "probability": 1
+        },
+        "type": "tadditions:void_ravine"
+      }
+    ]
+  },
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [
+      "tadditions:realvoid"
+    ],
+    [],
+    [],
+    [],
+    [],
+    []
+  ],
+  "starts": [
+    "tadditions:scorched_tree_1"
+  ],
+  "spawners": {
+    "monster": [],
+    "creature": [],
+    "ambient": [],
+    "water_creature": [],
+    "water_ambient": [],
+    "misc": []
+  },
+  "spawn_costs": {},
+  "creature_spawn_probability": 0.20,
+  "player_spawn_friendly": true,
+  "precipitation": "none",
+  "temperature": 0.9,
+  "downfall": 0.8,
+  "category": "none",
+  "depth": 0.2,
+  "scale": 0.2
+}

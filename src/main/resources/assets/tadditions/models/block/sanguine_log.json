@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "tadditions:block/sangue_log_top",
+    "side": "tadditions:block/sangue_log"
+  }
+}
