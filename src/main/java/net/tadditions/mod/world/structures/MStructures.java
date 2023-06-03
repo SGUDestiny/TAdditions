@@ -35,7 +35,7 @@ public class MStructures {
 
     }
     public static void setupStructures() {
-        setupStructure(Structures.SCORCHEED.get(), new StructureSeparationSettings(15, 10, 1234567890), true);
+        TStructures.setupStructure(Structures.SCORCHEED.get(), new StructureSeparationSettings(15, 10, 1234567890), true);
     }
 
     public static class ConfiguredStructures {
@@ -55,56 +55,13 @@ public class MStructures {
     }
 
     private static <T extends Structure<?>> RegistryObject<T> setupStructure(String name, Supplier<T> structure) {
-        return MStructures.Structures.STRUCTURES.register(name, structure);
+        return TStructures.Structures.STRUCTURES.register(name, structure);
     }
 
     public static IStructurePieceType registerStructurePiece(IStructurePieceType type, String key) {
         return Registry.register(Registry.STRUCTURE_PIECE, new ResourceLocation(QolMod.MOD_ID, key), type);
     }
 
-    public static <F extends Structure<?>> void setupStructure(
-            F structure,
-            StructureSeparationSettings structureSeparationSettings,
-            boolean transformSurroundingLand)
-    {
-        /*
-         * We need to add our structures into the map in Structure alongside vanilla
-         * structures or else it will cause errors. Called by registerStructure.
-         *
-         * If the registration is setup properly for the structure,
-         * getRegistryName() should never return null.
-         */
-        Structure.NAME_STRUCTURE_BIMAP.put(structure.getRegistryName().toString(), structure);
 
-        /*
-         * Whether surrounding land will be modified automatically to conform to the bottom of the structure.
-         * Basically, it adds land at the base of the structure like it does for Villages and Outposts.
-         * Doesn't work well on structure that have pieces stacked vertically or change in heights.
-         *
-         * Note: The air space this method will create will be filled with water if the structure is below sealevel.
-         * This means this is best for structure above sealevel so keep that in mind.
-         */
-        if(transformSurroundingLand){
-            Structure.field_236384_t_ =
-                    ImmutableList.<Structure<?>>builder()
-                            .addAll(Structure.field_236384_t_)
-                            .add(structure)
-                            .build();
-        }
-
-        /*
-         * Adds the structure's spacing into several places so that the structure's spacing remains
-         * correct in any dimension or worldtype instead of not spawning.
-         *
-         * However, it seems it doesn't always work for code made dimensions as they read from
-         * this list beforehand. Use the WorldEvent.Load event in StructureTutorialMain to add
-         * the structure spacing from this list into that dimension.
-         */
-        DimensionStructuresSettings.field_236191_b_ =
-                ImmutableMap.<Structure<?>, StructureSeparationSettings>builder()
-                        .putAll(DimensionStructuresSettings.field_236191_b_)
-                        .put(structure, structureSeparationSettings)
-                        .build();
-    }
 
 }
