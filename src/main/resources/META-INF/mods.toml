@@ -23,3 +23,9 @@ mandatory = true
 versionRange = "${minecraft_version_range}"
 ordering = "NONE"
 side = "BOTH"
+[[dependencies.${mod_id}]]
+modId = "tardis"
+mandatory = true
+versionRange = "[1.5.4,)"
+ordering = "BEFORE"
+side = "BOTH"

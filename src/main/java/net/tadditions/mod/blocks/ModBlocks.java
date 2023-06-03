@@ -8,12 +8,14 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.tadditions.mod.QolMod;
 import net.tadditions.mod.items.ModItemGroups;
 import net.tadditions.mod.items.ModItems;
+import net.tardis.mod.blocks.HoloLadderBlock;
 import net.tardis.mod.blocks.QuantiscopeBlock;
 import net.tardis.mod.blocks.RoundelBlock;
 import net.tardis.mod.blocks.WaypointBankBlock;
@@ -32,11 +34,50 @@ public class ModBlocks {
 
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, QolMod.MOD_ID);
 
+    public static final RegistryObject<Block> lihtbox = registerforblock("lightbox", () -> setUpBlock(new LightBox(Prop.Blocks.BASIC_TECH.get().setLightLevel((state) -> {
+        return 1;
+    }))));
+    public static final RegistryObject<Block> weaponholder = registerforblock("katana_stand", () -> setUpBlock(new WeaponHolder(AbstractBlock.Properties.create(Material.WOOD).harvestTool(ToolType.AXE))));
+
+    public static final RegistryObject<Block> broken_old_ladder = registerforblock("broken_old_ladders", () -> setUpBlock(new HoloLadderBlock(Prop.Blocks.BASIC_TECH.get().notSolid())));
+    public static final RegistryObject<Block> old_ladder = registerforblock("old_ladders", () -> setUpBlock(new HoloLadderBlock(Prop.Blocks.BASIC_TECH.get().notSolid())));
+
+    public static final RegistryObject<Block> ancient_keyholder = registerforblock("ancient_keyholder", () -> setUpBlock(new DisappearDoorKeyBlock(AbstractBlock.Properties.create(Material.IRON).hardnessAndResistance(-1).notSolid())));
+    public static final RegistryObject<Block> ancient_door = registerforblock("ancient_door", () -> setUpBlock(new DisappearDoorBlock(AbstractBlock.Properties.create(Material.IRON).hardnessAndResistance(-1).notSolid())));
+
+
+    public static final RegistryObject<Block> sanguine_log = registerforblock("sanguine_log", () -> setUpBlock(new RotatedPillarBlock(Prop.Blocks.BASIC_WOOD.get())));
+
+    public static final RegistryObject<Block> sanguine_planks = registerforblock("sanguine_planks", () -> setUpBlock(new Block(Prop.Blocks.BASIC_WOOD.get())));
+
+    public static final RegistryObject<Block> sanguine_door = registerforblock("sanguine_door", () -> setUpBlock(new DoorBlock(Prop.Blocks.BASIC_WOOD.get().notSolid())));
+    public static final RegistryObject<Block> sanguine_trapdoor = registerforblock("sanguine_trapdoor", () -> setUpBlock(new TrapDoorBlock(Prop.Blocks.BASIC_WOOD.get().notSolid())));
+
+
+    public static final RegistryObject<Block> sanguine_stairs = registerforblock("sanguine_stairs", () -> setUpBlock(new StairsBlock(() -> sanguine_planks.get().getDefaultState(), AbstractBlock.Properties.from(sanguine_planks.get()))));
+
+    public static final RegistryObject<Block> sanguine_slab = registerforblock("sanguine_slab", () -> setUpBlock(new SlabBlock(Prop.Blocks.BASIC_WOOD.get())));
+
+    public static final RegistryObject<Block> sanguine_fence = registerforblock("sanguine_fence", () -> setUpBlock(new FenceBlock(Prop.Blocks.BASIC_WOOD.get())));
+    public static final RegistryObject<Block> sanguine_fence_gate = registerforblock("sanguine_fence_gate", () -> setUpBlock(new FenceGateBlock(Prop.Blocks.BASIC_WOOD.get())));
+
+
+    public static final RegistryObject<Block> scorched_log = registerforblock("scorched_log", () -> setUpBlock(new RotatedPillarBlock(Prop.Blocks.BASIC_WOOD.get())));
+
+    public static final RegistryObject<Block> scorched_planks = registerforblock("scorched_planks", () -> setUpBlock(new Block(Prop.Blocks.BASIC_WOOD.get())));
+
+    public static final RegistryObject<Block> scorched_stairs = registerforblock("scorched_stairs", () -> setUpBlock(new StairsBlock(() -> scorched_planks.get().getDefaultState(), AbstractBlock.Properties.from(scorched_planks.get()))));
+
+    public static final RegistryObject<Block> scorched_slab = registerforblock("scorched_slab", () -> setUpBlock(new SlabBlock(Prop.Blocks.BASIC_WOOD.get())));
+
+    public static final RegistryObject<Block> scorched_fence = registerforblock("scorched_fence", () -> setUpBlock(new FenceBlock(Prop.Blocks.BASIC_WOOD.get())));
+    public static final RegistryObject<Block> scorched_fence_gate = registerforblock("scorched_fence_gate", () -> setUpBlock(new FenceGateBlock(Prop.Blocks.BASIC_WOOD.get())));
+
     public static final RegistryObject<Block> exterior_toyota_police_box = register("exterior_toyota_police_box", () -> setUpBlock(new ExteriorBlock()), false);
 
-    public static final RegistryObject<Block> tagrea_dust = registerforblock("ash", () -> setUpBlock(new SandBlock(0, Prop.Blocks.BASIC_SAND.get())));
+    public static final RegistryObject<Block> ash = registerforblock("ash", () -> setUpBlock(new SandBlock(0, Prop.Blocks.BASIC_SAND.get())));
 
-    public static final RegistryObject<Block> tagrea_rock = registerforblock("ash_packed", () -> setUpBlock(new Block(Prop.Blocks.BASIC_STONE.get())));
+    public static final RegistryObject<Block> dense_ash = registerforblock("dense_ash", () -> setUpBlock(new Block(Prop.Blocks.BASIC_STONE.get())));
 
 
     public static final RegistryObject<Block> mars_dust = registerforblock("mars_dust", () -> setUpBlock(new SandBlock(0, Prop.Blocks.BASIC_SAND.get())));
@@ -44,6 +85,8 @@ public class ModBlocks {
     public static final RegistryObject<Block> mars_rock = registerforblock("mars_rock", () -> setUpBlock(new Block(Prop.Blocks.BASIC_STONE.get())));
 
     public static final RegistryObject<Block> advanced_quantiscope_iron = register("advanced_quantiscope", () -> setUpBlock(new AdvQuantiscopeBlock()), TItemGroups.MAINTENANCE);
+
+    public static final RegistryObject<Block> filled_electromagnetic_solenoid_container = register("filled_electromagnetic_solenoid_container", () -> setUpBlock(new SolenoidConBlock(Prop.Blocks.BASIC_TECH.get())), TItemGroups.MAINTENANCE);
 
     public static final RegistryObject<Block> electromagnetic_solenoid_container = register("electromagnetic_solenoid_container", () -> setUpBlock(new SolenoidConBlock(Prop.Blocks.BASIC_TECH.get())), TItemGroups.MAINTENANCE);
 
@@ -570,10 +613,6 @@ public class ModBlocks {
         return 15;
     }))));
     
-    
-    
-    
-    
     public static final RegistryObject<Block> foodmaker = register("foodmaker", () -> setUpBlock(new FoodMaker()), TItemGroups.MAINTENANCE);
 
 
@@ -592,6 +631,12 @@ public class ModBlocks {
     private static <T extends Block> RegistryObject<T> register(String id, Supplier<T> blockSupplier, ItemGroup itemGroup){
         RegistryObject<T> registryObject = BLOCKS.register(id, blockSupplier);
         ModItems.ITEMS.register(id, () -> new BlockItem(registryObject.get(), new Item.Properties().group(itemGroup)));
+        return registryObject;
+    }
+
+    private static <T extends Block> RegistryObject<T> register(String id, Supplier<T> blockSupplier, ItemGroup itemGroup, Item con){
+        RegistryObject<T> registryObject = BLOCKS.register(id, blockSupplier);
+        ModItems.ITEMS.register(id, () -> new BlockItem(registryObject.get(), new Item.Properties().group(itemGroup).containerItem(con)));
         return registryObject;
     }
 

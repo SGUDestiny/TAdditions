@@ -1,18 +1,24 @@
 package net.tadditions.mixin;
 
+import net.minecraft.advancements.*;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 import net.tadditions.mod.cap.MCapabilities;
 import net.tadditions.mod.helper.IConsoleHelp;
 import net.tadditions.mod.items.ModItems;
 import net.tadditions.mod.world.MDimensions;
+import net.tardis.mod.cap.entity.PlayerDataCapability;
 import net.tardis.mod.controls.BaseControl;
 import net.tardis.mod.controls.DimensionControl;
 import net.tardis.mod.entity.ControlEntity;
@@ -75,8 +81,11 @@ public abstract class DimConMixin extends BaseControl {
         if(!console.getWorld().isRemote() && console.getLandTime() <= 0) {
             this.createDimListIfEmpty();
             if(!this.dimList.isEmpty()) {
-                if (!dimList.contains(ServerLifecycleHooks.getCurrentServer().getWorld(MDimensions.TAGREA)) && ((IConsoleHelp) console).isDimOver()) {
-                     dimList.add(ServerLifecycleHooks.getCurrentServer().getWorld(MDimensions.TAGREA));
+                if (!dimList.contains(ServerLifecycleHooks.getCurrentServer().getWorld(MDimensions.THE_VERGE)) && ((IConsoleHelp) console).isDimOver()) {
+                     dimList.add(ServerLifecycleHooks.getCurrentServer().getWorld(MDimensions.THE_VERGE));
+                }
+                if(!dimList.contains(ServerLifecycleHooks.getCurrentServer().getWorld(World.THE_END)) && hasFreeTheEndAdvancement((ServerPlayerEntity)player)){
+                    dimList.add(ServerLifecycleHooks.getCurrentServer().getWorld(World.THE_END));
                 }
                 this.modIndex(player.isSneaking() ? -1 : 1);
                 ServerWorld type = this.dimList.get(index);
@@ -111,7 +120,7 @@ public abstract class DimConMixin extends BaseControl {
             ServerLifecycleHooks.getCurrentServer().getWorlds().forEach(world -> {
                 if (WorldHelper.canTravelToDimension(world))
                 dimList.add(world);
-                dimList.remove(ServerLifecycleHooks.getCurrentServer().getWorld(MDimensions.TAGREA));
+                dimList.remove(ServerLifecycleHooks.getCurrentServer().getWorld(MDimensions.THE_VERGE));
             });
         }
     }
@@ -134,4 +143,10 @@ public abstract class DimConMixin extends BaseControl {
         return new CompoundNBT();
     }
 
+    public boolean hasFreeTheEndAdvancement(ServerPlayerEntity player) {
+        AdvancementManager manager = player.getServer().getAdvancementManager();
+        Advancement advancement = manager.getAdvancement(new ResourceLocation("minecraft:end/kill_dragon"));
+        AdvancementProgress progress = player.getAdvancements().getProgress(advancement);
+        return progress.isDone();
+    }
 }

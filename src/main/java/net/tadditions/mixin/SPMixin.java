@@ -22,10 +22,16 @@ public class SPMixin {
     public boolean onRightClicked(ConsoleTile console, PlayerEntity player) {
         if(!console.getWorld().isRemote()) {
             if(player.getHeldItemMainhand().getItem() == TItems.SONIC.get() && console.getSonicItem().isEmpty() || player.getHeldItemMainhand().getItem() == ModItems.BOOS_UPGRADE.get() && console.getSonicItem().isEmpty()) {
+                if(player.getHeldItemMainhand().getItem() == ModItems.BOOS_UPGRADE.get()){
+                    player.getHeldItemMainhand().getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
+                        if(cap.isDimdata()) {
+                            cap.setDimdata(false);
+                            ((IConsoleHelp) console).setDimOver(true);
+                        }
+                    });
+                }
                 console.setSonicItem(player.getHeldItemMainhand());
                 player.setHeldItem(Hand.MAIN_HAND, ItemStack.EMPTY);
-                player.abilities.allowFlying = true;
-                console.doesConsoleWorldHaveNoPlayers();
                 console.getSonicItem().getCapability(Capabilities.SONIC_CAPABILITY).ifPresent(cap -> {
                     cap.setCharge(cap.getMaxCharge());
                     console.setArtron(console.getArtron()-(cap.getMaxCharge()-cap.getCharge()));
@@ -36,13 +42,6 @@ public class SPMixin {
                             cap.getSchematics().remove(s);
                     }
                 });
-                console.getSonicItem().getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
-                    if(cap.isDimdata()) {
-                        cap.setDimdata(false);
-                        ((IConsoleHelp) console).setDimOver(true);
-                    }
-                });
-
             }
             else if(player.getHeldItemMainhand().isEmpty() && !console.getSonicItem().isEmpty()) {
                 InventoryHelper.spawnItemStack(console.getWorld(), player.getPosX(), player.getPosY(), player.getPosZ(), console.getSonicItem());

@@ -1,4 +1,9 @@
 {
+	"conditions": [
+		{
+			"type": "tadditions:true"
+		}
+	],
 	"type": "tadditions:advquantiscope",
 	"ingredients":[
 		{"item":"minecraft:netherite_scrap"},

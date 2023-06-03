@@ -2,7 +2,7 @@
   "parent": "tadditions:advq",
   "display": {
     "icon": {
-      "item": "tardis:regolith_sand"
+      "item": "tardis:ash"
     },
     "title": {
       "translate": "advancements.tadditions.title.tagrea"
@@ -19,7 +19,7 @@
     "0": {
       "trigger": "minecraft:changed_dimension",
       "conditions": {
-        "to": "tadditions:tagrea"
+        "to": "tadditions:the_verge_of_reality"
       }
     }
   },

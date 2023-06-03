@@ -4,11 +4,11 @@
       "Name": "tadditions:ash"
     },
     "under_material": {
-      "Name": "tadditions:ash_packed"
+      "Name": "tadditions:dense_ash"
     },
     "underwater_material": {
       "Name": "tadditions:ash"
     }
   },
-  "type": "tadditions:tagrea_surface"
+  "type": "tadditions:remains_surface"
 }

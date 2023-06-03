@@ -1,5 +1,5 @@
 {
-  "type": "tadditions:tagrea",
+  "type": "tadditions:the_verge_of_reality",
   "generator": {
     "biome_source": {
       "type": "minecraft:multi_noise",
@@ -13,7 +13,27 @@
             "temperature": 0.0,
             "humidity": 0.0
           },
-          "biome": "tadditions:tagrea_field"
+          "biome": "tadditions:remains_of_the_universe"
+        },
+        {
+          "parameters": {
+            "altitude": 0.0,
+            "weirdness": 0.1,
+            "offset": 0.1,
+            "temperature": 0.2,
+            "humidity": 0.1
+          },
+          "biome": "tadditions:tattered_planes"
+        },
+        {
+          "parameters": {
+            "altitude": 0.0,
+            "weirdness": 0.3,
+            "offset": 0.4,
+            "temperature": 0.1,
+            "humidity": 0.2
+          },
+          "biome": "tadditions:eternal_spikes"
         }
       ],
       
@@ -47,7 +67,7 @@
       }
     },
     "seed": 0,
-    "settings": "tadditions:tagrea",
+    "settings": "tadditions:the_verge_of_reality",
     "type": "minecraft:noise"
   }
 }

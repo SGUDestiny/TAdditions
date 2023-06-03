@@ -6,12 +6,26 @@ import org.apache.commons.lang3.tuple.Pair;
 public class MConfigs {
     public static final MConfigs.Common COMMON;
     public static final ForgeConfigSpec COMMON_SPEC;
-
+    public static final MConfigs.Server SERVER;
+    public static final ForgeConfigSpec SERVER_SPEC;
 
     static {
         final Pair<MConfigs.Common, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder().configure(MConfigs.Common::new);
         COMMON = specPair.getLeft();
         COMMON_SPEC = specPair.getRight();
+        final Pair<MConfigs.Server, ForgeConfigSpec> specServerPair = new ForgeConfigSpec.Builder().configure(MConfigs.Server::new);
+        SERVER = specServerPair.getLeft();
+        SERVER_SPEC = specServerPair.getRight();
+    }
+
+    public static class Server {
+        public ForgeConfigSpec.ConfigValue<Boolean> StattenheimRecipe;
+
+        public Server(ForgeConfigSpec.Builder builder) {
+            StattenheimRecipe = builder.comment("Changes if the craft of a Stattenheim Remote is available")
+                    .translation("config.tadditions.StattenheimRecipe")
+                    .define("StattenheimRecipe", true);
+        }
     }
 
     public static class Common {
@@ -43,7 +57,9 @@ public class MConfigs {
 
             OlimCallInOther = builder.comment("Changes if calling a TARDIS into another TARDIS is allowed")
                     .translation("config.tadditions.OlimCallInOther")
-                    .define("OlimCallInOther", false);
+                    .define("OlimCallInOther", true);
+
+
         }
 
 

@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Vector3f;
+import net.minecraftforge.common.util.LazyOptional;
 import net.tadditions.mod.QolMod;
 import net.tadditions.mod.client.renderers.ToyotaExteriorRenderer;
 import net.tadditions.mod.helper.IMDoorType;
@@ -21,9 +22,13 @@ import net.tardis.mod.client.renderers.exteriors.ExteriorRenderer;
 import net.tardis.mod.client.renderers.exteriors.ModernPoliceBoxExteriorRenderer;
 import net.tardis.mod.enums.EnumDoorState;
 import net.tardis.mod.enums.EnumMatterState;
+import net.tardis.mod.helper.TardisHelper;
 import net.tardis.mod.helper.WorldHelper;
 import net.tardis.mod.misc.IDoorType;
+import net.tardis.mod.tileentities.ConsoleTile;
 import net.tardis.mod.tileentities.exteriors.ExteriorTile;
+
+import java.util.Objects;
 
 public class ToyotaExteriorModel extends ExteriorModel {
 	private final ModelRenderer base;
@@ -32,7 +37,7 @@ public class ToyotaExteriorModel extends ExteriorModel {
 	private final LightModelRenderer lampglow;
 	private final ModelRenderer door1;
 	private final ModelRenderer door1right;
-	private final ModelRenderer door1rightsign;
+	private final LightModelRenderer door1rightsign;
 	private final ModelRenderer door1rightwindow;
 	private final ModelRenderer door1rightwindowframe;
 	private final ModelRenderer door1rightwindowframe7_r1;
@@ -42,7 +47,7 @@ public class ToyotaExteriorModel extends ExteriorModel {
 	private final ModelRenderer door1rightwindowframe3_r1;
 	private final ModelRenderer door1rightwindowframe2_r1;
 	private final ModelRenderer door1rightwindowframe1_r1;
-	private final ModelRenderer door1rightwindowglass;
+	private final LightModelRenderer door1rightwindowglass;
 	private final ModelRenderer door1left;
 	private final ModelRenderer door1leftwindow;
 	private final ModelRenderer door1leftwindowframe;
@@ -53,7 +58,7 @@ public class ToyotaExteriorModel extends ExteriorModel {
 	private final ModelRenderer door1leftwindowframe3_r1;
 	private final ModelRenderer door1leftwindowframe2_r1;
 	private final ModelRenderer door1leftwindowframe1_r1;
-	private final ModelRenderer door1leftwindowglass;
+	private final LightModelRenderer door1leftwindowglass;
 	private final ModelRenderer door2;
 	private final ModelRenderer door2right;
 	private final ModelRenderer door2rightwindow;
@@ -65,7 +70,7 @@ public class ToyotaExteriorModel extends ExteriorModel {
 	private final ModelRenderer door2rightwindowframe3_r1;
 	private final ModelRenderer door2rightwindowframe2_r1;
 	private final ModelRenderer door2rightwindowframe1_r1;
-	private final ModelRenderer door2rightwindowglass;
+	private final LightModelRenderer door2rightwindowglass;
 	private final ModelRenderer door2left;
 	private final ModelRenderer door2leftwindow;
 	private final ModelRenderer door2leftwindowframe;
@@ -76,7 +81,7 @@ public class ToyotaExteriorModel extends ExteriorModel {
 	private final ModelRenderer door2leftwindowframe3_r1;
 	private final ModelRenderer door2leftwindowframe2_r1;
 	private final ModelRenderer door2leftwindowframe1_r1;
-	private final ModelRenderer door2leftwindowglass;
+	private final LightModelRenderer door2leftwindowglass;
 	private final ModelRenderer door3;
 	private final ModelRenderer door3right;
 	private final ModelRenderer door3rightwindow;
@@ -88,7 +93,7 @@ public class ToyotaExteriorModel extends ExteriorModel {
 	private final ModelRenderer door3rightwindowframe3_r1;
 	private final ModelRenderer door3rightwindowframe2_r1;
 	private final ModelRenderer door3rightwindowframe1_r1;
-	private final ModelRenderer door3rightwindowglass;
+	private final LightModelRenderer door3rightwindowglass;
 	private final ModelRenderer door3left;
 	private final ModelRenderer door3leftwindow;
 	private final ModelRenderer door3leftwindowframe;
@@ -99,7 +104,7 @@ public class ToyotaExteriorModel extends ExteriorModel {
 	private final ModelRenderer door3leftwindowframe3_r1;
 	private final ModelRenderer door3leftwindowframe2_r1;
 	private final ModelRenderer door3leftwindowframe1_r1;
-	private final ModelRenderer door3leftwindowglass;
+	private final LightModelRenderer door3leftwindowglass;
 	private final ModelRenderer door4;
 	private final ModelRenderer door4right;
 	private final ModelRenderer door4rightwindow;
@@ -111,7 +116,7 @@ public class ToyotaExteriorModel extends ExteriorModel {
 	private final ModelRenderer door4rightwindowframe3_r1;
 	private final ModelRenderer door4rightwindowframe2_r1;
 	private final ModelRenderer door4rightwindowframe1_r1;
-	private final ModelRenderer door4rightwindowglass;
+	private final LightModelRenderer door4rightwindowglass;
 	private final ModelRenderer door4left;
 	private final ModelRenderer door4leftwindow;
 	private final ModelRenderer door4leftwindowframe;
@@ -122,7 +127,7 @@ public class ToyotaExteriorModel extends ExteriorModel {
 	private final ModelRenderer door4leftwindowframe3_r1;
 	private final ModelRenderer door4leftwindowframe2_r1;
 	private final ModelRenderer door4leftwindowframe1_r1;
-	private final ModelRenderer door4leftwindowglass;
+	private final LightModelRenderer door4leftwindowglass;
 
 	public ToyotaExteriorModel() {
 		textureWidth = 256;
@@ -189,7 +194,7 @@ public class ToyotaExteriorModel extends ExteriorModel {
         door1right.setTextureOffset(0, 120).addBox(1.0F, 7.5F, 0.0F, 6.0F, 1.0F, 1.0F, 0.0F, false);
         door1right.setTextureOffset(0, 120).addBox(1.0F, -0.5F, 0.0F, 6.0F, 1.0F, 1.0F, 0.0F, false);
 
-        door1rightsign = new ModelRenderer(this);
+        door1rightsign = new LightModelRenderer(this);
         door1rightsign.setRotationPoint(8.5F, 18.5F, 10.0F);
         door1right.addChild(door1rightsign);
         door1rightsign.setTextureOffset(52, 118).addBox(-7.0F, -25.5F, -9.875F, 5.0F, 6.0F, 0.0F, 0.0F, false);
@@ -246,7 +251,7 @@ public class ToyotaExteriorModel extends ExteriorModel {
         setRotationAngle(door1rightwindowframe1_r1, 0.0F, -0.7854F, 0.0F);
         door1rightwindowframe1_r1.setTextureOffset(130, 0).addBox(-0.25F, -3.5F, -0.25F, 1.0F, 7.0F, 1.0F, 0.0F, false);
 
-        door1rightwindowglass = new ModelRenderer(this);
+        door1rightwindowglass = new LightModelRenderer(this);
         door1rightwindowglass.setRotationPoint(0.0F, 0.0F, 0.0F);
         door1rightwindow.addChild(door1rightwindowglass);
         door1rightwindowglass.setTextureOffset(114, 32).addBox(1.5F, -33.75F, -9.625F, 6.0F, 3.0F, 1.0F, 0.0F, false);
@@ -319,7 +324,7 @@ public class ToyotaExteriorModel extends ExteriorModel {
         setRotationAngle(door1leftwindowframe1_r1, 0.0F, -0.7854F, 0.0F);
         door1leftwindowframe1_r1.setTextureOffset(130, 0).addBox(-0.25F, -3.5F, -0.25F, 1.0F, 7.0F, 1.0F, 0.0F, false);
 
-        door1leftwindowglass = new ModelRenderer(this);
+        door1leftwindowglass = new LightModelRenderer(this);
         door1leftwindowglass.setRotationPoint(0.0F, 0.0F, 0.0F);
         door1leftwindow.addChild(door1leftwindowglass);
         door1leftwindowglass.setTextureOffset(114, 32).addBox(1.5F, -33.75F, -9.625F, 6.0F, 3.0F, 1.0F, 0.0F, false);
@@ -401,7 +406,7 @@ public class ToyotaExteriorModel extends ExteriorModel {
         setRotationAngle(door2rightwindowframe1_r1, 0.0F, -0.7854F, 0.0F);
         door2rightwindowframe1_r1.setTextureOffset(130, 0).addBox(-0.25F, -3.5F, -0.25F, 1.0F, 7.0F, 1.0F, 0.0F, false);
 
-        door2rightwindowglass = new ModelRenderer(this);
+        door2rightwindowglass = new LightModelRenderer(this);
         door2rightwindowglass.setRotationPoint(0.0F, 0.0F, 0.0F);
         door2rightwindow.addChild(door2rightwindowglass);
         door2rightwindowglass.setTextureOffset(114, 32).addBox(1.5F, -33.75F, -9.625F, 6.0F, 3.0F, 1.0F, 0.0F, false);
@@ -473,7 +478,7 @@ public class ToyotaExteriorModel extends ExteriorModel {
         setRotationAngle(door2leftwindowframe1_r1, 0.0F, -0.7854F, 0.0F);
         door2leftwindowframe1_r1.setTextureOffset(130, 0).addBox(-0.25F, -3.5F, -0.25F, 1.0F, 7.0F, 1.0F, 0.0F, false);
 
-        door2leftwindowglass = new ModelRenderer(this);
+        door2leftwindowglass = new LightModelRenderer(this);
         door2leftwindowglass.setRotationPoint(0.0F, 0.0F, 0.0F);
         door2leftwindow.addChild(door2leftwindowglass);
         door2leftwindowglass.setTextureOffset(114, 32).addBox(1.5F, -33.75F, -9.625F, 6.0F, 3.0F, 1.0F, 0.0F, false);
@@ -555,7 +560,7 @@ public class ToyotaExteriorModel extends ExteriorModel {
         setRotationAngle(door3rightwindowframe1_r1, 0.0F, -0.7854F, 0.0F);
         door3rightwindowframe1_r1.setTextureOffset(130, 0).addBox(-0.25F, -3.5F, -0.25F, 1.0F, 7.0F, 1.0F, 0.0F, false);
 
-        door3rightwindowglass = new ModelRenderer(this);
+        door3rightwindowglass = new LightModelRenderer(this);
         door3rightwindowglass.setRotationPoint(0.0F, 0.0F, 0.0F);
         door3rightwindow.addChild(door3rightwindowglass);
         door3rightwindowglass.setTextureOffset(114, 32).addBox(1.5F, -33.75F, -9.625F, 6.0F, 3.0F, 1.0F, 0.0F, false);
@@ -627,7 +632,7 @@ public class ToyotaExteriorModel extends ExteriorModel {
         setRotationAngle(door3leftwindowframe1_r1, 0.0F, -0.7854F, 0.0F);
         door3leftwindowframe1_r1.setTextureOffset(130, 0).addBox(-0.25F, -3.5F, -0.25F, 1.0F, 7.0F, 1.0F, 0.0F, false);
 
-        door3leftwindowglass = new ModelRenderer(this);
+        door3leftwindowglass = new LightModelRenderer(this);
         door3leftwindowglass.setRotationPoint(0.0F, 0.0F, 0.0F);
         door3leftwindow.addChild(door3leftwindowglass);
         door3leftwindowglass.setTextureOffset(114, 32).addBox(1.5F, -33.75F, -9.625F, 6.0F, 3.0F, 1.0F, 0.0F, false);
@@ -709,7 +714,7 @@ public class ToyotaExteriorModel extends ExteriorModel {
         setRotationAngle(door4rightwindowframe1_r1, 0.0F, -0.7854F, 0.0F);
         door4rightwindowframe1_r1.setTextureOffset(130, 0).addBox(-0.25F, -3.5F, -0.25F, 1.0F, 7.0F, 1.0F, 0.0F, false);
 
-        door4rightwindowglass = new ModelRenderer(this);
+        door4rightwindowglass = new LightModelRenderer(this);
         door4rightwindowglass.setRotationPoint(0.0F, 0.0F, 0.0F);
         door4rightwindow.addChild(door4rightwindowglass);
         door4rightwindowglass.setTextureOffset(114, 32).addBox(1.5F, -33.75F, -9.625F, 6.0F, 3.0F, 1.0F, 0.0F, false);
@@ -781,7 +786,7 @@ public class ToyotaExteriorModel extends ExteriorModel {
         setRotationAngle(door4leftwindowframe1_r1, 0.0F, -0.7854F, 0.0F);
         door4leftwindowframe1_r1.setTextureOffset(130, 0).addBox(-0.25F, -3.5F, -0.25F, 1.0F, 7.0F, 1.0F, 0.0F, false);
 
-        door4leftwindowglass = new ModelRenderer(this);
+        door4leftwindowglass = new LightModelRenderer(this);
         door4leftwindowglass.setRotationPoint(0.0F, 0.0F, 0.0F);
         door4leftwindow.addChild(door4leftwindowglass);
         door4leftwindowglass.setTextureOffset(114, 32).addBox(1.5F, -33.75F, -9.625F, 6.0F, 3.0F, 1.0F, 0.0F, false);
@@ -818,7 +823,17 @@ public class ToyotaExteriorModel extends ExteriorModel {
 		door2.render(matrixStack, buffer, packedLight, packedOverlay,1,1,1, alpha);
 		door3.render(matrixStack, buffer, packedLight, packedOverlay,1,1,1, alpha);
 		door4.render(matrixStack, buffer, packedLight, packedOverlay,1,1,1, alpha);
-        lampglow.setBright(1);
+
+        lampglow.setBright(exterior.getLightLevel());
+        door1leftwindowglass.setBright(exterior.getLightLevel());
+        door1rightwindowglass.setBright(exterior.getLightLevel());
+        door2leftwindowglass.setBright(exterior.getLightLevel());
+        door2rightwindowglass.setBright(exterior.getLightLevel());
+        door3leftwindowglass.setBright(exterior.getLightLevel());
+        door3rightwindowglass.setBright(exterior.getLightLevel());
+        door4leftwindowglass.setBright(exterior.getLightLevel());
+        door4rightwindowglass.setBright(exterior.getLightLevel());
+        door1rightsign.setBright(exterior.getLightLevel());
 	}
 
 	@Override
@@ -849,32 +864,42 @@ public class ToyotaExteriorModel extends ExteriorModel {
 			info.setPosition(exterior.getPos());
 			info.setWorldShell(exterior.getBotiWorld());
 			info.setTranslate(matrix -> {
-				matrix.translate(-0.5, 1.1, -0.5);
+                matrix.rotate(Vector3f.YP.rotationDegrees(WorldHelper.getAngleFromFacing(exterior.getBotiWorld().getPortalDirection())));
+                matrix.translate(-0.47f, -0.53f, -1.15f);
 				ExteriorRenderer.applyTransforms(matrix, exterior);
 			});
 			info.setTranslatePortal(matrix -> {
-				matrix.translate(0, 1, 0);
+				matrix.translate(0, 0, 0);
 				matrix.rotate(Vector3f.XP.rotationDegrees(180));
 				matrix.rotate(Vector3f.YP.rotationDegrees(180));
-				matrix.rotate(Vector3f.YP.rotationDegrees(WorldHelper.getAngleFromFacing(exterior.getBotiWorld().getPortalDirection())));
-				matrix.translate(-0.5, -0.5, -0.5);
+                matrix.translate(-0.55f, 0.2, 0f);
 			});
 
 			info.setRenderPortal((matrix, buf) -> {
 				matrix.push();
 				matrix.scale(1.1F, 1.1F, 1.1F);
-				this.boti.render(matrix, buf.getBuffer(RenderType.getEntityCutout(ToyotaExteriorRenderer.TEXTURE)), packedLight, packedOverlay);
+                matrix.translate(0.0f, 0, 0);
+                this.boti.render(matrix, buf.getBuffer(RenderType.getEntityCutout(ToyotaExteriorRenderer.TEXTURE)), packedLight, packedOverlay);
 				matrix.pop();
 			});
 
 			info.setRenderDoor((matrix, buf) -> {
 				matrix.push();
-				matrix.scale(1.1F, 1.1F, 1.1F);
+                matrix.translate(0.03f, -1.68f, 0.55f);
+				matrix.scale(1.1F, 1.1F, 1.05F);
 				this.door1.render(matrix, buf.getBuffer(RenderType.getEntityCutout(ToyotaExteriorRenderer.TEXTURE)), packedLight, packedOverlay);
 				matrix.pop();
 			});
 
-			BOTIRenderer.addPortal(info);
+            BOTIRenderer.addPortal(info);
 		}
 	}
+
+    public float emission(ExteriorTile tile){
+        float x;
+        if(tile.getWorld() != null){
+            x = -tile.getWorld().getLight(tile.getPos());
+        } else x = tile.getLightLevel();
+    return x;
+      }
 }

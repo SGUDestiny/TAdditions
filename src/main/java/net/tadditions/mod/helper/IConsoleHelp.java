@@ -6,8 +6,8 @@ public interface IConsoleHelp {
 
    void setDimOver(boolean DimOver);
 
-  // boolean getIntGrav();
+   int getWindowMode();
 
-  // void setIntGrav(boolean enabled);
+   void setWindowMode(int WindowMode);
 
 }

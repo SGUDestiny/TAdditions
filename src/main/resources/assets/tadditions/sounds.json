@@ -2,28 +2,46 @@
   "disc1": {
     "subtitle": "subtitle.tadditions.disc1",
     "sounds": [
-      "tadditions:disc1"
+      "tadditions:disc/fallen_flame"
     ]
   },
   "disc2": {
     "subtitle": "subtitle.tadditions.disc2",
     "sounds": [
-      "tadditions:disc2"
+      "tadditions:disc/a_madmans_lullaby"
     ]
-  },"disc3": {
+  },
+  "disc3": {
   "subtitle": "subtitle.tadditions.disc3",
   "sounds": [
-    "tadditions:disc3"
+    "tadditions:disc/hold_strong"
   ]
- },"verge_ambient1": {
-  "subtitle": "subtitle.verge_ambient1",
+  },"disc4": {
+  "subtitle": "subtitle.tadditions.disc4",
   "sounds": [
-    "tadditions:ambient/fateofthereality"
+    "tadditions:disc/raw_unfiltered_calamity"
   ]
-},"verge_ambient2": {
-  "subtitle": "subtitle.verge_ambient2",
+  },"verge_ambient1": {
+  "subtitle": "subtitle.tadditions.verge_ambient",
   "sounds": [
-    "tadditions:ambient/wanderingthegreyplanes"
+    "tadditions:ambient/thevergeofrealityambience"
   ]
-}
+  },"remasound": {
+  "subtitle": "subtitle.tadditions.fullremat",
+  "sounds": [
+    "tadditions:tardis_land_long"
+  ]
+  },
+  "murasama": {
+    "subtitle": "subtitle.tadditions.murasama",
+    "sounds": [
+      "tadditions:tyrus_spadra_totikfr_alternative_mix"
+    ]
+  },
+  "poweraxe": {
+    "subtitle": "subtitle.tadditions.murasama",
+    "sounds": [
+      "tadditions:guillaume_david_warhammer_noosphere"
+    ]
+  }
 }

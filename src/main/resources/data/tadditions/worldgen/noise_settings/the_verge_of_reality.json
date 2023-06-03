@@ -39,7 +39,7 @@
     }
   },
   "default_block": {
-    "Name": "tadditions:ash_packed"
+    "Name": "tadditions:ash"
   },
   "default_fluid": {
     "Properties": {

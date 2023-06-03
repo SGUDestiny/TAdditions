@@ -35,7 +35,7 @@ public class QuanSpawnMessage {
         con.get().enqueueWork(() -> {
             ServerWorld world = con.get().getSender().getServerWorld();
                 if(mes.key instanceof Item) {
-                    int amount = 1;
+                    int amount = 0;
                         InventoryHelper.spawnItemStack(world,
                                 con.get().getSender().getPosX(),
                                 con.get().getSender().getPosY(),

@@ -17,11 +17,11 @@ public class MDimensions {
 	public static RegistryKey<World> MARS = RegistryKey.getOrCreateKey(Registry.WORLD_KEY,
 			new ResourceLocation(QolMod.MOD_ID, "mars"));
 
-	public static RegistryKey<World> TAGREA = RegistryKey.getOrCreateKey(Registry.WORLD_KEY,
-			new ResourceLocation(QolMod.MOD_ID, "tagrea"));
+	public static RegistryKey<World> THE_VERGE = RegistryKey.getOrCreateKey(Registry.WORLD_KEY,
+			new ResourceLocation(QolMod.MOD_ID, "the_verge_of_reality"));
 
 	public static final ResourceLocation MARS_SKY_PROPERTY_KEY = new ResourceLocation(QolMod.MOD_ID, "mars_sky_property");
-	public static final ResourceLocation TAGREA_SKY_PROPERTY_KEY = new ResourceLocation(QolMod.MOD_ID, "tagrea_sky_property");
+	public static final ResourceLocation TAGREA_SKY_PROPERTY_KEY = new ResourceLocation(QolMod.MOD_ID, "the_verge_of_reality_sky_property");
 
 }
 

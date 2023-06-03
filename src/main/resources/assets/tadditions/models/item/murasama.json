@@ -5820,5 +5820,13 @@
 				}
 			]
 		}
+	],
+	"overrides": [
+		{
+			"predicate": {
+				"tadditions:blockin": 1.0
+			},
+			"model": "tadditions:item/murasamablock"
+		}
 	]
 }

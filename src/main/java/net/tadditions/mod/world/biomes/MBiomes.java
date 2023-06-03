@@ -8,6 +8,7 @@ import net.minecraft.world.biome.BiomeMaker;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.tadditions.mod.QolMod;
 import net.tardis.mod.Tardis;
 
 import java.util.function.Supplier;
@@ -15,9 +16,12 @@ import java.util.function.Supplier;
 public class MBiomes {
 
     public static RegistryKey<Biome> MOON_BIOME_KEY;
-    public static RegistryKey<Biome> TAGREA_BIOME_KEY;
-	
-    public static final DeferredRegister<Biome> BIOMES = DeferredRegister.create(ForgeRegistries.BIOMES, Tardis.MODID);
+    public static RegistryKey<Biome> REMAINS_BIOME_KEY;
+    public static RegistryKey<Biome> PLANES_BIOME_KEY;
+    public static RegistryKey<Biome> SPIKES_BIOME_KEY;
+
+
+    public static final DeferredRegister<Biome> BIOMES = DeferredRegister.create(ForgeRegistries.BIOMES, QolMod.MOD_ID);
     //Register the Tardis biome via code. This ensures the SingleBiomeProvider, which is used in the TardisChunkGenerator, won't experience MC-197616
 
     //Register dummy biomes here for our json dimensions so that the ID is safely taken up and can be replaced by jsons
@@ -37,8 +41,10 @@ public class MBiomes {
      * <br> Call this in an enqueueWork lambda function inside FMLCommonSetupEvent
      */
     public static void registerBiomeKeys() {
-    	MOON_BIOME_KEY = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, new ResourceLocation(Tardis.MODID, "mars_field"));
-        TAGREA_BIOME_KEY = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, new ResourceLocation(Tardis.MODID, "tagrea_field"));
+    	MOON_BIOME_KEY = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, new ResourceLocation(QolMod.MOD_ID, "mars_field"));
+        REMAINS_BIOME_KEY = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, new ResourceLocation(QolMod.MOD_ID, "remains_of_the_universe"));
+        PLANES_BIOME_KEY = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, new ResourceLocation(QolMod.MOD_ID, "tattered_planes"));
+        SPIKES_BIOME_KEY = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, new ResourceLocation(QolMod.MOD_ID, "eternal_spikes"));
 
     }
     

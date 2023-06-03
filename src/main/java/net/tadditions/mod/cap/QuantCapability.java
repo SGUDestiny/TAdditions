@@ -88,7 +88,7 @@ public class QuantCapability implements IQuant {
     public void tick(World world, Entity ent) {
         Random random = world.rand;
         if (!world.isRemote) {
-            if (world.getGameTime() % 40 == 0) {
+            if (world.getGameTime() % 20 == 0) {
                 if (this.getGenerated()) {
                     if (this.isPaused()) {
                         this.setTimer(this.getTimer());
@@ -98,7 +98,7 @@ public class QuantCapability implements IQuant {
                     }
                 }
                 if(!this.getGenerated()){
-                    this.setTimer((int) (random.nextFloat() * 100));
+                    this.setTimer((int) (random.nextFloat() * 30));
                     this.setGenerated(true);
                 }
                 if(this.getTimer() == 0 && this.getGenerated()){

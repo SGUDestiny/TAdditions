@@ -1,19 +1,25 @@
 package net.tadditions.mod.items;
 
+import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUseContext;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.LockableLootTileEntity;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.LazyOptional;
+import net.tadditions.mod.blocks.ModBlocks;
+import net.tadditions.mod.blocks.SolenoidConBlock;
 import net.tadditions.mod.cap.IQuant;
 import net.tadditions.mod.cap.MCapabilities;
 
@@ -41,6 +47,17 @@ public class QuantumExoticMatterItem extends Item {
 
     }
 
+    public ActionResultType onItemUse(ItemUseContext context) {
+        World world = context.getWorld();
+        BlockPos blockpos = context.getPos();
+        Block block = world.getBlockState(blockpos).getBlock();
+        if(block instanceof SolenoidConBlock && block.matchesBlock(ModBlocks.electromagnetic_solenoid_container.get())){
+            world.setBlockState(blockpos,ModBlocks.filled_electromagnetic_solenoid_container.get().getDefaultState());
+            return ActionResultType.SUCCESS;
+        }
+        else return ActionResultType.FAIL;
+    }
+
     @Override
     public boolean onEntityItemUpdate(final ItemStack stack, final ItemEntity entity){
         World worldIn = entity.getEntityWorld();
@@ -62,10 +79,7 @@ public class QuantumExoticMatterItem extends Item {
     @Override
     public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
         if (!worldIn.isRemote) {
-            if(!(entityIn instanceof PlayerEntity)){
-                this.tickFuse(stack, worldIn, entityIn);
-            }
-            else this.tickFuse(stack, worldIn, entityIn);
+            this.tickFuse(stack, worldIn, entityIn);
         }
     }
 

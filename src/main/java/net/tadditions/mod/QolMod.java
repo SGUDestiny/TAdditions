@@ -1,12 +1,24 @@
 package net.tadditions.mod;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.client.renderer.entity.model.BipedModel;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.Hand;
+import net.minecraftforge.client.event.RenderArmEvent;
+import net.minecraftforge.client.event.RenderHandEvent;
+import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
+import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
@@ -26,17 +38,20 @@ import net.tadditions.mod.container.MContainers;
 import net.tadditions.mod.events.CommonEvents;
 import net.tadditions.mod.flightevents.MFlightEvent;
 import net.tadditions.mod.fluids.MFluids;
-import net.tadditions.mod.helper.MExteriorAnimationRegistry;
-import net.tadditions.mod.helper.MExteriorRegistry;
-import net.tadditions.mod.helper.MSoundSchemeRegistry;
+import net.tadditions.mod.helper.*;
 import net.tadditions.mod.items.ModItems;
+import net.tadditions.mod.items.Murasama;
 import net.tadditions.mod.network.MNetwork;
 import net.tadditions.mod.protocol.MProtocolRegistry;
 import net.tadditions.mod.recipe.TARecipeSerialisers;
+import net.tadditions.mod.sound.MSounds;
 import net.tadditions.mod.tileentity.ModTileEntitys;
 import net.tadditions.mod.traits.MTraits;
 import net.tadditions.mod.upgrades.MUpgradeRegistry;
 import net.tadditions.mod.world.biomes.MBiomes;
+import net.tadditions.mod.world.carver.MCarvers;
+import net.tadditions.mod.world.features.MFeatures;
+import net.tadditions.mod.world.structures.MStructures;
 import net.tadditions.mod.world.surfacebuilders.MCSB;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -64,10 +79,14 @@ public class QolMod
         TARecipeSerialisers.RECIPE_SERIALISERS.register(eventBus);
         MBiomes.BIOMES.register(eventBus);
         MFluids.register(eventBus);
+        MFeatures.FEATURES.register(eventBus);
+        MCarvers.CARVERS.register(eventBus);
+        MStructures.Structures.STRUCTURES.register(eventBus);
         MCSB.SurfaceBuilders.SURFACE_BUILDERS.register(eventBus);
         MExteriorAnimationRegistry.EXTERIOR_ANIMATIONS.register(eventBus);
         MSoundSchemeRegistry.SOUND_SCHEMES.register(eventBus);
         MExteriorRegistry.EXTERIORS.register(eventBus);
+        MSounds.SOUND_EVENT.register(eventBus);
 
 
 
@@ -83,6 +102,7 @@ public class QolMod
 
         MNetwork.init();
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, MConfigs.COMMON_SPEC);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, MConfigs.SERVER_SPEC);
         MinecraftForge.EVENT_BUS.register(this);
     }
 
@@ -92,8 +112,13 @@ public class QolMod
                 {
                     MFlightEvent.registerRandomEntries();
                     MBiomes.registerBiomeKeys();
+                    MTraits.registerRarities();
+                    MStructures.setupStructures();
+                    MStructures.ConfiguredStructures.registerConfiguredStructures();
+                    MFeatures.registerConfiguredFeatures();
                 });
         CommonEvents.getAllMappingEntries();
+        CraftingHelper.register(TrueConCondition.Serializer.INSTANCE);
         CapabilityManager.INSTANCE.register(IOneRemote.class, new IOneRemote.Storage(), () -> new OneUseRemoteCapability(null));
         CapabilityManager.INSTANCE.register(IOpener.class, new IOpener.Storage(), () -> new TagreaOpenerCap(null));
         CapabilityManager.INSTANCE.register(IQuant.class, new IQuant.Storage(), () -> new QuantCapability(null));
@@ -133,7 +158,4 @@ public class QolMod
         }
     }
 
-    public static ResourceLocation asResource(String path) {
-        return new ResourceLocation(MOD_ID, path);
-    }
 }

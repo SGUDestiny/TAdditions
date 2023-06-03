@@ -23,7 +23,8 @@ public class MCSB {
 
         //Register the earlier created instance of our surface builder. We have to do this seperately the surface builders register AFTER biomes, so this is just to ensure it won't cause issues when the game has fully setup.
         public static final RegistryObject<SurfaceBuilder<SurfaceBuilderConfig>> MARS_SURFACE_BUILDER = createSurfaceBuilder("mars_surface", () -> new MarsSurfaceBuilder(SurfaceBuilderConfig.CODEC));
-        public static final RegistryObject<SurfaceBuilder<SurfaceBuilderConfig>> TAGREA_SURFACE_BUILDER = createSurfaceBuilder("tagrea_surface", () -> new MarsSurfaceBuilder(SurfaceBuilderConfig.CODEC));
+        public static final RegistryObject<SurfaceBuilder<SurfaceBuilderConfig>> REMAINS_SURFACE_BUILDER = createSurfaceBuilder("remains_surface", () -> new RemainsSurfaceBuilder(SurfaceBuilderConfig.CODEC));
+        public static final RegistryObject<SurfaceBuilder<SurfaceBuilderConfig>> SPIKES_SURFACE_BUILDER = createSurfaceBuilder("spikes_surface", () -> new SpikesSurfaceBuilder(SurfaceBuilderConfig.CODEC));
 
     }
 

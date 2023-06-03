@@ -1,12 +1,12 @@
 {
 	"type": "katana",
 	"attributes": {
-		"common": {
-			"armor_negation": 75.0,
-  			"impact": 10.0,
-			"max_strikes": 4.0,
-            "damage_bonus": 3.0,
-            "speed_bonus": 3.5
+		"two_hand": {
+			"armor_negation": 20.0,
+  			"impact": 2.5,
+			"max_strikes": 3.0,
+            "damage_bonus": 0.0,
+            "speed_bonus": 0.0
 		}
 	}
 }

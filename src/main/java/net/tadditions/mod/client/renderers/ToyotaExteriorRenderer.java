@@ -7,6 +7,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Vector3f;
 import net.tadditions.mod.QolMod;
 import net.tadditions.mod.client.model.ToyotaExteriorModel;
+import net.tadditions.mod.helper.MTextureVariants;
 import net.tadditions.mod.tileentity.ToyotaPoliceBoxExteriorTile;
 import net.tardis.mod.Tardis;
 import net.tardis.mod.client.TRenderTypes;
@@ -17,7 +18,9 @@ import net.tardis.mod.tileentities.exteriors.ModernPoliceBoxExteriorTile;
 
 public class ToyotaExteriorRenderer extends ExteriorRenderer<ToyotaPoliceBoxExteriorTile> {
     public static final ResourceLocation TEXTURE = new ResourceLocation(QolMod.MOD_ID,
-            "textures/toyota_exterior.png");
+            "textures/exteriors/toyota_exterior.png");
+    public static final ResourceLocation ON = new ResourceLocation(QolMod.MOD_ID,
+            "textures/exteriors/toyota_exterior_on.png");
     public static final WorldText TEXT = new WorldText(1.1F, 0.125F, 0.015F, 0xFFFFFF);
 
     private ToyotaExteriorModel model = new ToyotaExteriorModel();
@@ -29,20 +32,24 @@ public class ToyotaExteriorRenderer extends ExteriorRenderer<ToyotaPoliceBoxExte
     @Override
     public void renderExterior(ToyotaPoliceBoxExteriorTile tile, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn, float alpha) {
         matrixStackIn.push();
-        /*We want to shift the render up in this case
-        so that when we place the exterior two blocks up from the ground,
-        the base of the exterior will be rendered as standing on the ground
-        */
-        matrixStackIn.translate(0, -1.15, 0); // Translation must be negative as models are loaded in upside down.
-        matrixStackIn.scale(1.1f, 1.1f, 1.1f); //Scales the model down by 4
-        this.model.render(tile, 1.1F, matrixStackIn, bufferIn.getBuffer(TRenderTypes.getTardis(TEXTURE)), combinedLightIn, combinedOverlayIn, alpha);
+
+        ResourceLocation texture = TEXTURE;
+        if(tile.getVariant() != null)
+            texture = tile.getVariant().getTexture();
+        if(tile.getLightLevel() < 0.55F && tile.getVariant().getTexture() == MTextureVariants.NORMAL || tile.getWorld().getLight(tile.getPos()) < 8 && tile.getVariant().getTexture() == MTextureVariants.NORMAL){
+            texture = ON;
+        }
+
+        matrixStackIn.translate(0, -1.15, 0);
+        matrixStackIn.scale(1.1f, 1.1f, 1.1f);
+        this.model.render(tile, 1.1F, matrixStackIn, bufferIn.getBuffer(TRenderTypes.getTardis(texture)), combinedLightIn, combinedOverlayIn, alpha);
         matrixStackIn.pop();
 
 
 
         //Front
         matrixStackIn.push();
-        matrixStackIn.translate(-9F, 36F, -12.125F);
+        matrixStackIn.translate(-2F, 3F, -3.125F);
         TEXT.renderText(matrixStackIn, bufferIn, combinedLightIn, tile.getCustomName());
         matrixStackIn.pop();
 

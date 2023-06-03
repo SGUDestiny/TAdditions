@@ -10,7 +10,6 @@ import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.SoundCategory;
 import net.minecraftforge.common.capabilities.Capability;
@@ -33,10 +32,6 @@ public class AdvQuantiscopeTile extends TileEntity implements IItemHandlerModifi
 	private AdvWeldRecipe weldRecipe;
 	private int progress = 0;
 	private int maxProgress = 400;
-
-	public AdvQuantiscopeTile(TileEntityType<?> tileEntityTypeIn) {
-		super(tileEntityTypeIn);
-	}
 
 	public AdvQuantiscopeTile() {
 		super(ModTileEntitys.ADVQ.get());

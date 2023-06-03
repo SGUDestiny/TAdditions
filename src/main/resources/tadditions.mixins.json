@@ -3,12 +3,15 @@
   "package": "net.tadditions.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "ConsoleMixin",
+    "DimConMixin",
+    "EHMixin",
+    "ExteriorArgumentMixin",
     "InvisRenMixin",
     "SPMixin",
-    "EHMixin",
-    "DimConMixin",
-    "ConsoleMixin",
-    "MCAmbMixin"
+    "SubsysMixin",
+    "TARDISEngineMixin",
+    "WorldHelperMixin"
   ],
   "minVersion": "0.8"
 }

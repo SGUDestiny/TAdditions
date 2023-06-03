@@ -2,15 +2,9 @@ package net.tadditions.mod.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.ITileEntityProvider;
-import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.IBooleanFunction;
@@ -19,31 +13,18 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.Mod;
-import net.tadditions.mod.cap.QuantCapability;
 import net.tadditions.mod.items.ModItems;
 import net.tadditions.mod.network.MNetwork;
-import net.tadditions.mod.network.packets.FoodSpawnMessage;
 import net.tadditions.mod.network.packets.QuanSpawnMessage;
-import net.tadditions.mod.screens.MClientHelper;
-import net.tadditions.mod.screens.MConstants;
-import net.tadditions.mod.tileentity.AdvQuantiscopeTile;
-import net.tadditions.mod.tileentity.SolenoidConTileEntity;
-import net.tardis.mod.blocks.TileBlock;
-import net.tardis.mod.constants.TardisConstants;
-import net.tardis.mod.helper.TInventoryHelper;
-import net.tardis.mod.helper.WorldHelper;
-import net.tardis.mod.misc.GuiContext;
-import net.tardis.mod.tileentities.BrokenExteriorTile;
 
-import javax.annotation.Nullable;
 import java.util.stream.Stream;
 
-public class SolenoidConBlock extends TileBlock {
+public class SolenoidConBlock extends Block {
 
     public SolenoidConBlock(Properties properties) {
         super(properties);
     }
+
     private static final VoxelShape SHAPE = Stream.of(
             Block.makeCuboidShape(1, 0, 1, 15, 14, 15)
     ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, IBooleanFunction.OR)).get();
@@ -54,30 +35,12 @@ public class SolenoidConBlock extends TileBlock {
 
     @Override
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-
-        if(worldIn.isRemote)
-            return ActionResultType.CONSUME;
-
-        ItemStack held = player.getHeldItem(handIn);
-        TileEntity te = worldIn.getTileEntity(pos);
-
-        if(te instanceof SolenoidConTileEntity){
-            if(((SolenoidConTileEntity) te).onPlayerRightClick(held)) {
-                //Consume item
-                if(!player.isCreative())
-                    player.getHeldItem(handIn).shrink(1);
-            }
+        Block block = state.getBlock();
+        if(block == ModBlocks.filled_electromagnetic_solenoid_container.get()) {
+            MNetwork.sendToServer(new QuanSpawnMessage(ModItems.QUANTUM_EXOTIC_MATTER.get()));
+            worldIn.setBlockState(pos, ModBlocks.electromagnetic_solenoid_container.get().getDefaultState());
+            return ActionResultType.SUCCESS;
         }
-
-
-
-        return ActionResultType.SUCCESS;
-    }
-    @Override
-    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
-        SolenoidConTileEntity tileEntity = (SolenoidConTileEntity) worldIn.getTileEntity(pos);
-        if (tileEntity != null && state.getBlock() != newState.getBlock()) {
-            worldIn.removeTileEntity(pos);
-        }
+        else return ActionResultType.PASS;
     }
 }

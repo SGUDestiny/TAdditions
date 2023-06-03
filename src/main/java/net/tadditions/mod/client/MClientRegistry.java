@@ -15,6 +15,7 @@ import net.tadditions.mod.QolMod;
 import net.tadditions.mod.blocks.ModBlocks;
 import net.tadditions.mod.client.model.ToyotaInteriorDoor;
 import net.tadditions.mod.client.renderers.ToyotaExteriorRenderer;
+import net.tadditions.mod.client.renderers.WeaponHolderRenderer;
 import net.tadditions.mod.client.renderers.sky.TagreaSkyRenderer;
 import net.tadditions.mod.container.MContainers;
 import net.tadditions.mod.helper.IMDoorType;
@@ -55,14 +56,20 @@ public class MClientRegistry extends TClientRegistry {
         event.enqueueWork(() -> {
             //Block Render Layers
             RenderTypeLookup.setRenderLayer(ModBlocks.electromagnetic_solenoid_container.get(), RenderType.getCutout());
-
+            RenderTypeLookup.setRenderLayer(ModBlocks.filled_electromagnetic_solenoid_container.get(), RenderType.getCutout());
             RenderTypeLookup.setRenderLayer(ModBlocks.exterior_toyota_police_box.get(), RenderType.getTranslucent());
+            RenderTypeLookup.setRenderLayer(ModBlocks.sanguine_door.get(), RenderType.getCutout());
+            RenderTypeLookup.setRenderLayer(ModBlocks.sanguine_trapdoor.get(), RenderType.getCutout());
+            RenderTypeLookup.setRenderLayer(ModBlocks.ancient_keyholder.get(), RenderType.getCutout());
+            RenderTypeLookup.setRenderLayer(ModBlocks.ancient_door.get(), RenderType.getCutout());
+            RenderTypeLookup.setRenderLayer(ModBlocks.lihtbox.get(), RenderType.getCutout());
         });
     }
 
 
     private static void registerTileRenderers() {
         ClientRegistry.bindTileEntityRenderer(ModTileEntitys.EXTERIOR_TOYOTA_POLICE_BOX.get(), ToyotaExteriorRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(ModTileEntitys.WPH.get(), WeaponHolderRenderer::new);
     }
 
     private static void registerInteriorDoorRenderers() {

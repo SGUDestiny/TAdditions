@@ -2,12 +2,12 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "name": "tadditions:tagrea_dust",
+      "name": "tadditions:ash",
       "rolls": 1,
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "tadditions:tagrea_dust"
+          "name": "tadditions:ash"
         }
       ]
     }

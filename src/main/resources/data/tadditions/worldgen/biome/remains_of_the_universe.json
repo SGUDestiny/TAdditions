@@ -11,9 +11,19 @@
     "foliage_color": 7593531,
     "grass_color": 7600187,
     "water_color": 4159204,
-    "water_fog_color": 329011
+    "water_fog_color": 329011,
+    "additions_sound": {
+      "sound": "tadditions:verge_ambient1",
+      "tick_chance": 0.000125
+    },
+    "particle": {
+      "options": {
+        "type": "minecraft:white_ash"
+      },
+      "probability": 0.118093334
+    }
   },
-  "surface_builder": "tadditions:tagrea_surface",
+  "surface_builder": "tadditions:the_verge_of_reality_surface",
   "carvers": {
     "air": [
       "minecraft:cave",
@@ -27,29 +37,13 @@
     [],
     [],
     [],
-    [
-      "minecraft:ore_dirt",
-      "minecraft:ore_gravel",
-      "minecraft:ore_granite",
-      "minecraft:ore_diorite",
-      "minecraft:ore_andesite",
-      "minecraft:ore_coal",
-      "minecraft:ore_iron",
-      "minecraft:ore_gold",
-      "minecraft:ore_redstone",
-      "minecraft:ore_diamond",
-      "minecraft:ore_lapis",
-      "minecraft:disk_sand",
-      "minecraft:disk_clay",
-      "minecraft:disk_gravel",
-      "tardis:cinnabar_ore"
-    ],
+    [],
     [],
     [],
     []
   ],
   "starts": [
-    "tardis:moon_lander"
+    "tadditions:scorched"
   ],
   "spawners": {
     "monster": [

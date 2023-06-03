@@ -2,36 +2,46 @@ package net.tadditions.mixin;
 
 import com.google.common.collect.Maps;
 import net.minecraft.block.BlockState;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
 import net.minecraft.nbt.ListNBT;
-import net.minecraft.potion.Effects;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.concurrent.TickDelayedTask;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.GameType;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.common.util.LazyOptional;
-import net.tadditions.mod.QolMod;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.eventbus.api.Event;
 import net.tadditions.mod.helper.IConsoleHelp;
+import net.tadditions.mod.helper.MExteriorAnimationRegistry;
+import net.tadditions.mod.helper.MExteriorRegistry;
+import net.tadditions.mod.helper.MSoundSchemeRegistry;
+import net.tadditions.mod.items.ModItems;
+import net.tadditions.mod.tileentity.ToyotaPoliceBoxExteriorTile;
 import net.tadditions.mod.upgrades.FrameStabUpgrade;
 import net.tadditions.mod.world.MDimensions;
 import net.tardis.mod.ars.ConsoleRoom;
 import net.tardis.mod.cap.Capabilities;
 import net.tardis.mod.config.TConfig;
+import net.tardis.mod.constants.TardisConstants;
 import net.tardis.mod.entity.ControlEntity;
+import net.tardis.mod.entity.DoorEntity;
 import net.tardis.mod.entity.TardisEntity;
 import net.tardis.mod.exterior.AbstractExterior;
 import net.tardis.mod.flight.FlightEvent;
@@ -39,30 +49,58 @@ import net.tardis.mod.flight.TardisCollideInstigate;
 import net.tardis.mod.flight.TardisCollideRecieve;
 import net.tardis.mod.helper.TardisHelper;
 import net.tardis.mod.helper.WorldHelper;
+import net.tardis.mod.items.TItems;
 import net.tardis.mod.misc.*;
 import net.tardis.mod.network.Network;
 import net.tardis.mod.network.packets.ConsoleUpdateMessage;
 import net.tardis.mod.network.packets.console.DataTypes;
 import net.tardis.mod.network.packets.console.Fuel;
+import net.tardis.mod.network.packets.console.NavComData;
 import net.tardis.mod.registries.*;
 import net.tardis.mod.sounds.AbstractSoundScheme;
-import net.tardis.mod.subsystem.FlightSubsystem;
-import net.tardis.mod.subsystem.StabilizerSubsystem;
-import net.tardis.mod.subsystem.Subsystem;
-import net.tardis.mod.subsystem.SubsystemEntry;
+import net.tardis.mod.sounds.TSounds;
+import net.tardis.mod.subsystem.*;
 import net.tardis.mod.tileentities.ConsoleTile;
 import net.tardis.mod.tileentities.console.misc.*;
 import net.tardis.mod.tileentities.exteriors.ExteriorTile;
 import net.tardis.mod.upgrades.Upgrade;
 import net.tardis.mod.upgrades.UpgradeEntry;
+import net.tardis.mod.world.dimensions.TDimensions;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.Shadow;
 
+import javax.xml.ws.Holder;
 import java.util.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static net.tardis.mod.tileentities.ConsoleTile.rand;
 
 @Mixin(ConsoleTile.class)
-public class ConsoleMixin extends TileEntity implements IConsoleHelp {
+public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
+
+    @Shadow public abstract RegistryKey<World> getCurrentDimension();
+
+    @Shadow public abstract InteriorManager getInteriorManager();
+
+    @Shadow public abstract void setNextConsoleRoomToChange(ConsoleRoom room);
+
+    @Shadow public abstract void setStartChangingInterior(boolean startChangingInterior);
+
+    @Shadow public abstract void onPowerDown(boolean shutDown);
+
+    @Shadow public abstract LazyOptional<DoorEntity> getDoor();
+
+    @Shadow public abstract LazyOptional<ExteriorTile> getOrFindExteriorTile();
+
+    @Shadow public abstract ArtronUse getOrCreateArtronUse(ArtronUse.IArtronType type);
+
+    @Shadow public abstract List<Subsystem> getSubSystems();
+
+    @Shadow public abstract boolean isCrashing();
 
     public int flightTicks = 0;
     private int reachDestinationTick = 0;
@@ -95,7 +133,7 @@ public class ConsoleMixin extends TileEntity implements IConsoleHelp {
     protected TexVariant[] variants = {};
     private int variant = 0;
     private boolean antiGravs = false;
-    private boolean intGravs = false;
+    private int windowMode = 0;
     private UUID tardisEntityID = null;
     private TardisEntity tardisEntity = null;
     private SparkingLevel sparkLevel = SparkingLevel.NONE;
@@ -104,6 +142,7 @@ public class ConsoleMixin extends TileEntity implements IConsoleHelp {
     private HashMap<ArtronUse.IArtronType, ArtronUse> artronUses = Maps.newHashMap();
     private LazyOptional<ExteriorTile> exteriorHolder = LazyOptional.empty();
     private boolean dimData = false;
+    private boolean didVoidCrash = false;
     private UnlockManager unlockManager;
     protected HashMap<Class<?>, ControlOverride> controlOverrides = Maps.newHashMap();
     private boolean hasPoweredDown = false;
@@ -178,6 +217,254 @@ public class ConsoleMixin extends TileEntity implements IConsoleHelp {
         ((ConsoleTile) (Object) this).registerControlOverrides();
     }
 
+    @SuppressWarnings("unchecked")
+    public <T extends Subsystem> LazyOptional<T> getSubsystem(Class<T> clazz) {
+        for(Subsystem sys : this.getSubSystems()) {
+            if(sys.getClass() == clazz || sys.getClass().isInstance(clazz))
+                return LazyOptional.of(() -> (T)sys);
+        }
+        return LazyOptional.empty();
+    }
+
+    public void setupInteriorChangeProperties(ConsoleRoom roomToSpawn, boolean cancelProcess, boolean isInstantChange) {
+        int processingTicks = TConfig.SERVER.interiorChangeProcessTime.get() * 20;
+        //If we want "instant" change, minimum ticks should be no lower than 20 ticks (1 second).
+        //If the time is lower than this, the console will not be able to serialise things that quickly, and the deadlock kicking mechanic will loop forever.
+        this.getInteriorManager().setInteriorProcessingTime(cancelProcess ?  InteriorManager.resetInteriorChangeProcessTime :  (isInstantChange ? 60 : processingTicks)); //Set how much time to elapse before the console can fully finish its interior change
+        this.setNextConsoleRoomToChange(cancelProcess ? this.consoleRoom : roomToSpawn); //Set the next room to be the one inputted
+        this.setStartChangingInterior(cancelProcess ? false : true);
+        this.onPowerDown(!cancelProcess);
+        //Handle edge case of fuel where player somehow gets inside and cancels the interior change process
+        //We want to stop the Tardis from continuing to use fuel if the change process is already underway
+        if (cancelProcess) {
+            //Reset the interior change fuel usage
+            ArtronUse use = this.getOrCreateArtronUse(ArtronUse.ArtronType.INTERIOR_CHANGE);
+            use.setArtronUsePerTick(0);
+            use.setTicksToDrain(0);
+            this.getDoor().ifPresent(door -> {
+                door.setAdditionalLockLevel(0);
+                door.setLocked(false);
+            });
+            this.getOrFindExteriorTile().ifPresent(ext -> {
+                ext.setAdditionalLockLevel(0);
+                ext.setLocked(false);
+                ext.setInteriorRegenerating(false);
+            });
+        }
+        else {
+            //Setup the Artron Use before the player exits the doors, but don't let it start yet by not setting the ticks
+            int fuelUsage = TConfig.SERVER.interiorChangeArtronUse.get();
+            ArtronUse artronUse = this.getOrCreateArtronUse(ArtronUse.ArtronType.INTERIOR_CHANGE);
+            artronUse.setArtronUsePerTick((float)((float)fuelUsage/(float)processingTicks));
+        }
+        AxisAlignedBB radius = new AxisAlignedBB(this.getPos()).grow(30);
+        for (PlayerEntity player : this.getWorld().getEntitiesWithinAABB(PlayerEntity.class, radius)){
+            if (player != null) {
+                if (cancelProcess) {
+                    player.sendStatusMessage(TardisConstants.Translations.CANCEL_INTERIOR_CHANGE, false);
+                }
+                else {
+                    player.sendStatusMessage(new TranslationTextComponent(TardisConstants.Translations.START_INTERIOR_CHANGE, this.nextRoomToChange.getRegistryName().toString()), false);
+                    player.playSound(TSounds.TARDIS_SHUT_DOWN.get(), SoundCategory.PLAYERS, 0.6F, 1F);
+                }
+            }
+        }
+    }
+
+    public void tick() {
+
+        //Cycle through tickable objects
+        for(ITickable tick : this.tickers) {
+            tick.tick(((ConsoleTile) (Object) this));
+        }
+
+        ((ConsoleTile) (Object) this).prevFlightTicks = this.flightTicks;
+        if(((ConsoleTile) (Object) this).isInFlight()) {
+            fly();
+        }
+        this.getOrFindExteriorTile().ifPresent(ex -> {
+            World world = ex.getWorld();
+            if (WorldHelper.areDimensionTypesSame(world, TDimensions.DimensionTypes.TARDIS_TYPE)) {
+                TardisHelper.getConsoleInWorld(world).ifPresent(tile -> {
+                    if(tile.shouldStartChangingInterior()){
+                        tile.setStartChangingInterior(false);
+                    }
+                });
+            }
+        });
+
+        if(world.getGameTime() % 200 == 0) {
+            this.getOrFindExteriorTile().ifPresent(ext -> {
+                if (ext instanceof ToyotaPoliceBoxExteriorTile) {
+                    ((ToyotaPoliceBoxExteriorTile) ext).setWindowMode(windowMode);
+                }
+            });
+        }
+
+        if(((ConsoleTile) (Object) this).getExteriorManager().getExteriorAnimation() == MExteriorAnimationRegistry.FULLNEW_WHO.getId() && ((ConsoleTile) (Object) this).getSoundScheme() != MSoundSchemeRegistry.FULL.get()){
+            ((ConsoleTile) (Object) this).setSoundScheme(MSoundSchemeRegistry.FULL.get());
+        }
+        if(((ConsoleTile) (Object) this).getSoundScheme() == MSoundSchemeRegistry.FULL.get() && ((ConsoleTile) (Object) this).getExteriorManager().getExteriorAnimation() != MExteriorAnimationRegistry.FULLNEW_WHO.getId()){
+            ((ConsoleTile) (Object) this).getExteriorManager().setExteriorAnimation(MExteriorAnimationRegistry.FULLNEW_WHO.getId());
+        }
+
+        this.playAmbientNoises();
+
+        this.handleRefueling();
+
+        if(world.getGameTime() % 200 == 0) {
+            if(world.isRemote || controls.isEmpty())
+                ((ConsoleTile) (Object) this).getOrCreateControls();
+        }
+
+        if(timeUntilControlSpawn > 0) {
+            --timeUntilControlSpawn;
+            if(timeUntilControlSpawn == 0) {
+                ((ConsoleTile) (Object) this).getOrCreateControls();
+                if(this.onLoadAction != null)
+                    this.onLoadAction.run();
+            }
+        }
+
+        //Loop for things that need to be polled semi-constantly
+        if(!world.isRemote && world.getGameTime() % 40 == 0) {
+            ((ConsoleTile) (Object) this).updateArtronValues();
+
+            //Loop for sparking
+            SparkingLevel spark = SparkingLevel.NONE;
+            for(Subsystem s : this.subsystems) {
+                if(s.getSparkState().ordinal() > spark.ordinal())
+                    spark = s.getSparkState();
+            }
+
+            if(this.sparkLevel != spark) {
+                this.sparkLevel = spark;
+                ((ConsoleTile) (Object) this).updateClient();
+            }
+
+            //Force Field Drain
+            ((ConsoleTile) (Object) this).getSubsystem(ShieldGeneratorSubsystem.class).ifPresent(shield -> {
+                if(shield.canBeUsed() && shield.isActivated() && shield.isForceFieldActivated() && this.artron > 1.0F) {
+                    ArtronUse use = ((ConsoleTile) (Object) this).getOrCreateArtronUse(ArtronUse.ArtronType.FORCEFIELD);
+                    use.setArtronUsePerTick(0.05F);
+                    use.setTicksToDrain(42);
+                    shield.damage((ServerPlayerEntity)((ConsoleTile) (Object) this).getPilot(), 1);
+                }
+                else shield.setForceFieldActivated(false);
+            });
+
+            //Anti-gravs
+            if(((ConsoleTile) (Object) this).getAntiGrav()) {
+                ArtronUse use = ((ConsoleTile) (Object) this).getOrCreateArtronUse(ArtronUse.ArtronType.ANTIGRAVS);
+                use.setArtronUsePerTick(0.03F);
+                use.setTicksToDrain(42);
+            }
+        }
+
+        //Artron Drains
+        if(!world.isRemote) {
+            world.getServer().enqueue(new TickDelayedTask(0, () -> {
+                float oldArtron = this.artron;
+                for(ArtronUse use : this.artronUses.values()) {
+                    use.tick(((ConsoleTile) (Object) this));
+                }
+                if(oldArtron != this.artron && world.getGameTime() + 4 % 20 == 0) {
+                    if(this.artron <= 0.0 && !this.hasPoweredDown)
+                        ((ConsoleTile) (Object) this).onPowerDown(true);
+                    else if(artron > 0)
+                        this.hasPoweredDown = false;
+                }
+            }));
+        }
+
+        if(world.isRemote &&  world.getGameTime() % 5 == 0) {
+            if(this.sparkLevel != SparkingLevel.NONE) {
+
+                if(this.sparkLevel != SparkingLevel.NONE) {
+                    for(int i = 0; i < 30; ++i) {
+
+                        float angle = (float)Math.toRadians(rand.nextFloat() * 360.0F);
+
+                        world.addParticle(ParticleTypes.SMOKE, pos.getX() + 0.5 + Math.sin(angle), pos.getY() + 1, pos.getZ() + 0.5 + Math.cos(angle), 0, 0, 0);
+                    }
+                }
+                if(this.sparkLevel == SparkingLevel.SPARKS) {
+                    world.addParticle(ParticleTypes.LAVA, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, 0, 1, 0);
+                }
+            }
+        }
+
+        if(!world.isRemote && !((ConsoleTile) (Object) this).isInFlight()) {
+            ((ConsoleTile) (Object) this).getSubsystem(AntennaSubsystem.class).ifPresent(sys -> {
+                if(sys.canBeUsed()) {
+                    if(world.getGameTime() % 2880 == 0) {
+                        this.findNewMission();
+                    }
+                }
+            });
+        }
+
+        if(!world.isRemote && didVoidCrash){
+                handleDelay();
+                didVoidCrash = false;
+        }
+
+        //Nav Com
+        if(!world.isRemote && world.getGameTime() % 20 == 0) {
+            ((ConsoleTile) (Object) this).getSubsystem(NavComSubsystem.class).ifPresent(sys -> {
+                boolean oldVal = this.hasNavCom;
+                this.hasNavCom = sys.canBeUsed();
+                if(oldVal != this.hasNavCom)
+                    Network.sendToAllInWorld(new ConsoleUpdateMessage(DataTypes.NAV_COM, new NavComData(this.hasNavCom)), (ServerWorld)world);
+            });
+        }
+        //This is still needed because we want to unforce the 35 other chunks we loaded when we were trying to find the interior door during right clicking the exterior block
+        this.handleAutoLoadOrUnloadChunks();
+
+    }
+
+
+
+    public boolean canFly() {
+
+        if(this.isBeingTowed)
+            return true;
+
+        for(Subsystem s : this.subsystems) {
+            if((s.getItem().getItem() == TItems.DEMAT_CIRCUIT.get() || s.getItem().getItem() == ModItems.DEMAT_CIRCUITMK2.get()) && (s.getItem().getItem() == TItems.NAV_COM.get() || s.getItem().getItem() == ModItems.NAV_COMMK2.get()) && (s.getItem().getItem() == TItems.FLUID_LINK.get() || s.getItem().getItem() == ModItems.FLUID_LINKMK2.get())) {
+                return s.canBeUsed() && s.isActivated();
+            }
+        }
+        if (this.shouldStartChangingInterior && this.interiorManager.isInteriorStillRegenerating()) {
+            return false;
+        }
+        return this.artron > 0;
+    }
+
+    public void scaleDestination() {
+
+        //Demat if landing
+        if(((ConsoleTile) (Object) this).isInFlight() && this.landTime > 0) {
+            ExteriorTile ext = this.exterior.getExteriorTile(((ConsoleTile) (Object) this));
+            if(ext != null)
+                ext.demat(((ConsoleTile) (Object) this).getSoundScheme().getTakeoffTime());
+        }
+
+        double per = ((ConsoleTile) (Object) this).getPercentageJourney();
+        if(per < 0)
+            this.destination = ((ConsoleTile) (Object) this).getCurrentLocation();
+
+        //Reset dimension if less than half way there
+        if(per < 0.5) {
+            this.destinationDimension = this.dimension;
+        }
+        if(per > 0.5 && per < 0.9 && destinationDimension == MDimensions.THE_VERGE && !this.isCrashing() && !didVoidCrash){
+            VoidCrash();
+        }
+
+        BlockPos diff = this.destination.subtract(((ConsoleTile) (Object) this).getCurrentLocation());
+        this.destination = ((ConsoleTile) (Object) this).getCurrentLocation().add(new BlockPos(diff.getX() * per, diff.getY() * per, diff.getZ() * per)).toImmutable();
+    }
 
     public void read(BlockState state, CompoundNBT compound) {
         super.read(state, compound);
@@ -230,7 +517,7 @@ public class ConsoleMixin extends TileEntity implements IConsoleHelp {
         this.rechargeMod = compound.getFloat("recharge_modifier");
         this.variant = compound.getInt("texture_variant");
         this.antiGravs = compound.getBoolean("anti_gravs");
-        this.antiGravs = compound.getBoolean("int_gravs");
+        this.windowMode = compound.getInt("window_mode");
         this.hasForcedChunksToRemove = compound.getBoolean("has_forced_chunks");
         this.hasNavCom = compound.getBoolean("nav_com");
         this.dimData = compound.getBoolean("dimdata");
@@ -306,7 +593,7 @@ public class ConsoleMixin extends TileEntity implements IConsoleHelp {
         compound.putFloat("recharge_modifier", this.rechargeMod);
         compound.putInt("texture_variant", this.variant);
         compound.putBoolean("anti_gravs", this.antiGravs);
-        compound.putBoolean("int_gravs", this.intGravs);
+        compound.putInt("window_mode", this.windowMode);
         if (this.tardisEntityID != null)
             compound.putUniqueId("tardis_entity_id", this.tardisEntityID);
         compound.putInt("spark_level", this.sparkLevel.ordinal());
@@ -326,17 +613,9 @@ public class ConsoleMixin extends TileEntity implements IConsoleHelp {
         return super.write(compound);
     }
 
-    @Override
-    public boolean isDimOver() {
-        return this.dimData;
-    }
-
-    @Override
-    public void setDimOver(boolean DimOver) {
-        this.dimData = DimOver;
-        this.markDirty();
-    }
-
+    /**
+     * Fly loop, called every tick
+     */
     public void fly() {
         if (((ConsoleTile) (Object) this).isInFlight()) {
 
@@ -364,6 +643,17 @@ public class ConsoleMixin extends TileEntity implements IConsoleHelp {
                         }
                     }
                 });
+            }
+
+            if (!world.isRemote && ((ConsoleTile) (Object) this).getDestinationDimension() == MDimensions.THE_VERGE && ((ConsoleTile) (Object) this).getPercentageJourney() >= 0.9 && !((ConsoleTile) (Object) this).isLanding()) {
+                if (((ConsoleTile) (Object) this).getUpgrade(FrameStabUpgrade.class).isPresent()) {
+                    ((ConsoleTile) (Object) this).getUpgrade(FrameStabUpgrade.class).ifPresent(up -> {
+                        if (up.isActivated() && up.isUsable()) {
+                            up.damage(5, Upgrade.DamageType.ITEM, null);
+                            ((ConsoleTile) (Object) this).initLand();
+                        } else VoidCrash();
+                    });
+                } else VoidCrash();
             }
 
             if (!world.isRemote && this.flightTicks > this.landTime && this.landTime > 0) {
@@ -434,10 +724,6 @@ public class ConsoleMixin extends TileEntity implements IConsoleHelp {
                         }
                     }
 
-                    if(shouldVerCrash()){
-                        VerCrash();
-                    }
-
                     if (((ConsoleTile) (Object) this).canGiveNewEvent() && this.currentEvent == null)
                         ((ConsoleTile) (Object) this).setFlightEvent(FlightEventRegistry.getRandomEvent(rand).create(((ConsoleTile) (Object) this)));
 
@@ -469,26 +755,76 @@ public class ConsoleMixin extends TileEntity implements IConsoleHelp {
 
     }
 
-    public void VerCrash(){
-        if (this.shouldVerCrash()) {
-            ((ConsoleTile) (Object) this).getPilot().setGameType(GameType.SPECTATOR);
-            ((ConsoleTile) (Object) this).crash(new CrashType(100, 0, true));
-            ((ConsoleTile) (Object) this).getInteriorManager().setAlarmOn(false);
-            ((ConsoleTile) (Object) this).getSubSystems().forEach(sub -> {
-                sub.damage(null, 38);
-            });
-            ((ConsoleTile) (Object) this).getSubsystem(FlightSubsystem.class).ifPresent(fly -> {
-                fly.damage(null, 650);
-            });
-            ((ConsoleTile) (Object) this).getInteriorManager().setMonitorOverrides(new MonitorOverride(((ConsoleTile) (Object) this), 600, String.valueOf(new TranslationTextComponent("warning.spatial_rupture").getString())));
-            ((ConsoleTile) (Object) this).onPowerDown(true);
-            ((ConsoleTile) (Object) this).getInteriorManager().setAlarmOn(true);
-        } else ((ConsoleTile) (Object) this).getUpgrade(FrameStabUpgrade.class).ifPresent(up -> {
-            up.damage(20, Upgrade.DamageType.ITEM, null);
-        });
+    @Override
+    public boolean isDimOver() {
+        return this.dimData;
     }
 
-    public boolean shouldVerCrash(){
-        return ((ConsoleTile) (Object) this).getDestinationDimension() == MDimensions.TAGREA && !((ConsoleTile) (Object) this).getUpgrade(FrameStabUpgrade.class).isPresent();
+    @Override
+    public void setDimOver(boolean DimOver) {
+        this.dimData = DimOver;
+        this.markDirty();
     }
+
+    public void VoidCrash() {
+
+        ((ConsoleTile) (Object) this).crash(new CrashType(100, 0, true));
+        ((ConsoleTile) (Object) this).getSubSystems().forEach(sub -> {
+            sub.damage(null, 38);
+        });
+        ((ConsoleTile) (Object) this).getSubsystem(FlightSubsystem.class).ifPresent(fly -> {
+            fly.damage(null, 650);
+        });
+
+        List<String> list = new ArrayList<>();
+        list.add(new TranslationTextComponent("warning.spatial_rupture.line1").getString());
+        list.add(new TranslationTextComponent("warning.spatial_rupture.line2").getString());
+        ((ConsoleTile) (Object) this).getInteriorManager().setMonitorOverrides(new MonitorOverride(((ConsoleTile) (Object) this), 200, list));
+
+        didVoidCrash = true;
+    }
+
+    public void scheduleTaskWithDelay(Runnable task, long delayTicks) {
+        // Convert delayTicks to seconds
+        ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
+
+        long delaySeconds = TimeUnit.MILLISECONDS.toSeconds(delayTicks * 50L);
+
+        // Schedule the task with the executor
+        executor.schedule(task, delaySeconds, TimeUnit.SECONDS);
+    }
+
+    public void handleDelay() {
+        Runnable myTask = () -> {
+            ((ConsoleTile) (Object) this).getInteriorManager().setLight(0);
+            world.playSound(null, this.getPos(), TSounds.POWER_DOWN.get(), SoundCategory.BLOCKS, 20F, 1F);
+        };
+        long delayTicks = 20 * 20; // 20 seconds delay, assuming 20 ticks per second
+        scheduleTaskWithDelay(myTask, delayTicks);
+    }
+
+    @Shadow
+    protected void handleRefueling(){}
+
+    @Shadow
+    private void playAmbientNoises() {
+    }
+
+    @Shadow
+    private void handleAutoLoadOrUnloadChunks() {
+    }
+
+    @Shadow
+    private void findNewMission(){
+    }
+
+    public int getWindowMode(){
+        return this.windowMode;
+    }
+
+    public void setWindowMode(int windowMode){
+        this.windowMode = windowMode;
+    }
+
 }
+

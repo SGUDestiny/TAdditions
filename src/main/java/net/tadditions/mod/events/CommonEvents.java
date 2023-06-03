@@ -59,14 +59,6 @@ public class CommonEvents {
             event.addCapability(QUANT_CAP, new IQuant.Provider(new QuantCapability(event.getObject())));
     }
 
-    @SubscribeEvent
-    public static void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
-        PlayerEntity player = event.getPlayer();
-        if (player.world.isRemote()) {
-
-            }
-        }
-
     public static void getAllMappingEntries(){
         JsonObject obj = MissingMappingsLookup.getMissingMappings();
         for (Map.Entry<String, JsonElement> entry : obj.entrySet()) {

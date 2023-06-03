@@ -21,11 +21,22 @@ public class MSounds {
     public static final RegistryObject<SoundEvent> DISC3 =
             soundEventRegister("disc3");
 
-    public static final RegistryObject<SoundEvent> VERAMB1 =
-            soundEventRegister("verge_ambient1");
+    public static final RegistryObject<SoundEvent> DISC4 =
+            soundEventRegister("disc4");
 
-    public static final RegistryObject<SoundEvent> VERAMB2 =
-            soundEventRegister("verge_ambient2");
+
+    public static final RegistryObject<SoundEvent> VERAMB1 =
+            soundEventRegister("verge_ambient");
+
+    public static final RegistryObject<SoundEvent> FULLREMA =
+            soundEventRegister("remasound");
+
+    public static final RegistryObject<SoundEvent> MURASAMA =
+            soundEventRegister("murasama");
+
+    public static final RegistryObject<SoundEvent> POWERAXE =
+            soundEventRegister("poweraxe");
+
 
 
     public static RegistryObject<SoundEvent> soundEventRegister(String name) {

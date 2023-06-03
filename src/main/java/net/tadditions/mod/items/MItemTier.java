@@ -1,5 +1,6 @@
 package net.tadditions.mod.items;
 
+import net.minecraft.block.Blocks;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
@@ -10,7 +11,10 @@ import java.util.function.Supplier;
 
 public enum MItemTier implements IItemTier {
     MURASAMA(8, -1, 4f, 8f, 100,
-                     () -> Ingredient.fromItems(Items.REDSTONE));
+            () -> Ingredient.fromItems(Items.REDSTONE)),
+
+    POWERAXE(10, -1, 4f, 12f, 100,
+            () -> Ingredient.fromItems(Blocks.OBSIDIAN));
 
     private final int harvestLevel;
     private final int maxUses;

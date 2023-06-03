@@ -18,13 +18,16 @@ import net.tardis.mod.client.models.interiordoors.AbstractInteriorDoorModel;
 import net.tardis.mod.client.renderers.boti.BOTIRenderer;
 import net.tardis.mod.client.renderers.boti.PortalInfo;
 import net.tardis.mod.client.renderers.entity.DoorRenderer;
+import net.tardis.mod.client.renderers.exteriors.SteamExteriorRenderer;
 import net.tardis.mod.entity.DoorEntity;
 import net.tardis.mod.enums.EnumDoorState;
+import net.tardis.mod.helper.TardisHelper;
 import net.tardis.mod.helper.WorldHelper;
 import net.tardis.mod.misc.IDoorType;
+import net.tardis.mod.tileentities.ConsoleTile;
 
 public class ToyotaInteriorDoor extends AbstractInteriorDoorModel {
-	public ResourceLocation TEXTURE = new ResourceLocation(QolMod.MOD_ID, "textures/toyota_door.png");
+	public ResourceLocation TEXTURE = new ResourceLocation(QolMod.MOD_ID, "textures/exteriors/toyota_door.png");
 
 	private final ModelRenderer Interior_doors;
 	private final ModelRenderer Door_frame;
@@ -330,9 +333,9 @@ public class ToyotaInteriorDoor extends AbstractInteriorDoorModel {
 		door3.render(matrixStack, buffer, packedLight, packedOverlay);
 		Door_frame.render(matrixStack, buffer, packedLight, packedOverlay);
 		Door_frame_accent.render(matrixStack, buffer, packedLight, packedOverlay);
-			door_3_left_window_glass_glow.setBright(1);
-			door_3_right_window_glass_glow.setBright(1);
-			Door_frame_accent_glow.setBright(1);
+		Door_frame_accent_glow.setBright(1F);
+		door_3_right_window_glass_glow.setBright(1F);
+		door_3_left_window_glass_glow.setBright(1F);
 		matrixStack.pop();
 	}
 
@@ -346,20 +349,19 @@ public class ToyotaInteriorDoor extends AbstractInteriorDoorModel {
 				info.setWorldShell(data.getBotiWorld());
 
 				info.setTranslate(matrix -> {
-
-					matrix.scale(1.1f, 1.1f, 1.2f);
-					matrix.translate(0.025, 0, 0);
+					matrix.scale(1f, 1f, 1.3f);
+					matrix.translate(0, -1.4f, -0.4f);
 					DoorRenderer.applyTranslations(matrix, door.rotationYaw - 180, door.getHorizontalFacing());
 				});
 				info.setTranslatePortal(matrix -> {
-					matrix.rotate(Vector3f.ZN.rotationDegrees(180));
-					matrix.rotate(Vector3f.YP.rotationDegrees(WorldHelper.getAngleFromFacing(data.getBotiWorld().getPortalDirection())));
-					matrix.translate(-0.5, -1.75, -0.5);
+                    matrix.rotate(Vector3f.YP.rotationDegrees(WorldHelper.getAngleFromFacing(data.getBotiWorld().getPortalDirection())));
+                    matrix.rotate(Vector3f.ZN.rotationDegrees(180));
+					matrix.translate(-0.5f, -0.5f, 0.0);
 				});
 
 				info.setRenderPortal((matrix, impl) -> {
 					matrix.push();
-					matrix.translate(-0.05, -0.2, -0.5f);
+					matrix.translate(0,0,0);
 					matrix.scale(1.1F, 1.1F, 1.1F);
 					this.SOTO.render(matrix, impl.getBuffer(RenderType.getEntityCutout(this.getTexture())), packedLight, packedOverlay);
 					matrix.pop();
@@ -373,6 +375,12 @@ public class ToyotaInteriorDoor extends AbstractInteriorDoorModel {
 
 	@Override
 	public ResourceLocation getTexture() {
-		return this.TEXTURE;
+		ConsoleTile tile = TardisHelper.getConsoleInWorld(Minecraft.getInstance().world).orElse(null);
+		if (tile != null) {
+			int index = tile.getExteriorManager().getExteriorVariant();
+			if (tile.getExteriorType().getVariants() != null && index < tile.getExteriorType().getVariants().length)
+				return tile.getExteriorType().getVariants()[index].getInteriorDoorTexture();
+		}
+		return TEXTURE;
 	}
 }

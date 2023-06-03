@@ -67,7 +67,7 @@ public class AdvQuantiscopeBlock extends NotSolidTileBlock {
     public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
         AdvQuantiscopeTile tileEntity = (AdvQuantiscopeTile) worldIn.getTileEntity(pos);
         if (tileEntity != null && state.getBlock() != newState.getBlock()) {
-            TInventoryHelper.dropInventoryItems(worldIn, pos, (AdvQuantiscopeTile) tileEntity);
+            TInventoryHelper.dropInventoryItems(worldIn, pos, tileEntity);
             worldIn.removeTileEntity(pos);
         }
     }
