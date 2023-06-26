@@ -6,9 +6,9 @@
   "structures": {
     "stronghold":{"distance":32,"spread":3,"count":128},
     "structures": {
-      "tardis:moon_lander": {
-        "spacing": 15,
-        "separation": 10,
+      "tadditions:scorched": {
+        "spacing": 10,
+        "separation": 6,
         "salt": 0
       }
     }

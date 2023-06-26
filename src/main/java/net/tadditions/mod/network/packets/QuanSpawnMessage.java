@@ -34,8 +34,10 @@ public class QuanSpawnMessage {
     public static void handle(QuanSpawnMessage mes, Supplier<NetworkEvent.Context> con) {
         con.get().enqueueWork(() -> {
             ServerWorld world = con.get().getSender().getServerWorld();
-                if(mes.key instanceof Item) {
-                    int amount = 0;
+            ItemStack stack = new ItemStack(mes.key);
+                if(mes.key != null) {
+                    int amount = Math.min(stack.getMaxStackSize(), 1);
+                    System.out.print("ItemPain");
                         InventoryHelper.spawnItemStack(world,
                                 con.get().getSender().getPosX(),
                                 con.get().getSender().getPosY(),

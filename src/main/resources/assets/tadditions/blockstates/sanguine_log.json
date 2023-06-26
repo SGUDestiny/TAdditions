@@ -1,15 +1,15 @@
 {
   "variants": {
     "axis=x": {
-      "model": "tadditions:block/sangue_log_horizontal",
+      "model": "tadditions:block/sanguine_log_horizontal",
       "x": 90,
       "y": 90
     },
     "axis=y": {
-      "model": "tadditions:block/sangue_log"
+      "model": "tadditions:block/sanguine_log"
     },
     "axis=z": {
-      "model": "tadditions:block/sangue_log_horizontal",
+      "model": "tadditions:block/sanguine_log_horizontal",
       "x": 90
     }
   }

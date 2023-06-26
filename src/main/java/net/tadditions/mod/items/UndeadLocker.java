@@ -34,7 +34,7 @@ public class UndeadLocker extends Item {
 
 
     public UndeadLocker() {
-        super(new Properties().maxStackSize(1).group(TItemGroups.MAIN));
+        super(new Properties().maxStackSize(1).group(ModItemGroups.TA));
     }
 
 

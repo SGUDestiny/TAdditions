@@ -6,6 +6,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
+import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.stats.Stats;
 import net.minecraft.tileentity.TileEntity;
@@ -29,10 +30,11 @@ import javax.annotation.Nullable;
 import java.util.Random;
 
 public class RoundelContainer extends ContainerBlock implements IARS {
+    public static final BooleanProperty PROPERTY_OPEN = BooleanProperty.create("open");
 
     public RoundelContainer(Block.Properties properties) {
         super(properties.hardnessAndResistance(1,2));
-        this.setDefaultState(this.getDefaultState().with(TardisBlockProperties.LIGHT, 15));
+        this.setDefaultState(this.getDefaultState().with(TardisBlockProperties.LIGHT, 15).with(PROPERTY_OPEN, false));
     }
 
     public BlockRenderType getRenderType(BlockState state) {
@@ -47,6 +49,7 @@ public class RoundelContainer extends ContainerBlock implements IARS {
     @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(TardisBlockProperties.LIGHT);
+        builder.add(PROPERTY_OPEN);
     }
 
     @Override

@@ -8,6 +8,9 @@ import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.state.DirectionProperty;
+import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Vector3f;
 import net.minecraftforge.common.util.LazyOptional;
@@ -865,7 +868,16 @@ public class ToyotaExteriorModel extends ExteriorModel {
 			info.setWorldShell(exterior.getBotiWorld());
 			info.setTranslate(matrix -> {
                 matrix.rotate(Vector3f.YP.rotationDegrees(WorldHelper.getAngleFromFacing(exterior.getBotiWorld().getPortalDirection())));
-                matrix.translate(-0.47f, -0.53f, -1.15f);
+                matrix.translate(-0.47f, -0.54f, -1.15f);
+                if(exterior.getBlockState().get(BlockStateProperties.HORIZONTAL_FACING) == Direction.SOUTH){
+                   matrix.translate(-0.03f, 0f, 1.3f);
+                }
+                if(exterior.getBlockState().get(BlockStateProperties.HORIZONTAL_FACING) == Direction.WEST){
+                    matrix.translate(-0.77f, 0f, 0.64f);
+                }
+                if(exterior.getBlockState().get(BlockStateProperties.HORIZONTAL_FACING) == Direction.EAST){
+                    matrix.translate(0.83f, 0f, 0.55f);
+                }
 				ExteriorRenderer.applyTransforms(matrix, exterior);
 			});
 			info.setTranslatePortal(matrix -> {
@@ -895,11 +907,4 @@ public class ToyotaExteriorModel extends ExteriorModel {
 		}
 	}
 
-    public float emission(ExteriorTile tile){
-        float x;
-        if(tile.getWorld() != null){
-            x = -tile.getWorld().getLight(tile.getPos());
-        } else x = tile.getLightLevel();
-    return x;
-      }
 }

@@ -35,12 +35,12 @@ public class MStructures {
 
     }
     public static void setupStructures() {
-        TStructures.setupStructure(Structures.SCORCHEED.get(), new StructureSeparationSettings(15, 10, 1234567890), true);
+        TStructures.setupStructure(Structures.SCORCHEED.get(), new StructureSeparationSettings(5, 3, 1234567890), true);
     }
 
     public static class ConfiguredStructures {
 
-        public static StructureFeature<?, ?> CONFIGURED_SCORCHEED = Structures.SCORCHEED.get().withConfiguration(new ProbabilityConfig(35));
+        public static StructureFeature<?, ?> CONFIGURED_SCORCHEED = Structures.SCORCHEED.get().withConfiguration(new ProbabilityConfig(1F));
 
         public static void registerConfiguredStructures() {
             registerConfiguredStructure("scorched", Structures.SCORCHEED, CONFIGURED_SCORCHEED);
@@ -55,13 +55,11 @@ public class MStructures {
     }
 
     private static <T extends Structure<?>> RegistryObject<T> setupStructure(String name, Supplier<T> structure) {
-        return TStructures.Structures.STRUCTURES.register(name, structure);
+        return Structures.STRUCTURES.register(name, structure);
     }
 
     public static IStructurePieceType registerStructurePiece(IStructurePieceType type, String key) {
         return Registry.register(Registry.STRUCTURE_PIECE, new ResourceLocation(QolMod.MOD_ID, key), type);
     }
-
-
 
 }

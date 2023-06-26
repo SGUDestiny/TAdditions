@@ -84,11 +84,11 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> mars_rock = registerforblock("mars_rock", () -> setUpBlock(new Block(Prop.Blocks.BASIC_STONE.get())));
 
-    public static final RegistryObject<Block> advanced_quantiscope_iron = register("advanced_quantiscope", () -> setUpBlock(new AdvQuantiscopeBlock()), TItemGroups.MAINTENANCE);
+    public static final RegistryObject<Block> advanced_quantiscope_iron = register("advanced_quantiscope", () -> setUpBlock(new AdvQuantiscopeBlock()), ModItemGroups.TA);
 
-    public static final RegistryObject<Block> filled_electromagnetic_solenoid_container = register("filled_electromagnetic_solenoid_container", () -> setUpBlock(new SolenoidConBlock(Prop.Blocks.BASIC_TECH.get())), TItemGroups.MAINTENANCE);
+    public static final RegistryObject<Block> filled_electromagnetic_solenoid_container = register("filled_electromagnetic_solenoid_container", () -> setUpBlock(new SolenoidConBlock(Prop.Blocks.BASIC_TECH.get())), ModItemGroups.TA);
 
-    public static final RegistryObject<Block> electromagnetic_solenoid_container = register("electromagnetic_solenoid_container", () -> setUpBlock(new SolenoidConBlock(Prop.Blocks.BASIC_TECH.get())), TItemGroups.MAINTENANCE);
+    public static final RegistryObject<Block> electromagnetic_solenoid_container = register("electromagnetic_solenoid_container", () -> setUpBlock(new SolenoidConBlock(Prop.Blocks.BASIC_TECH.get())), ModItemGroups.TA);
 
     public static final RegistryObject<Block> roundelcon_alabaster = register("roundelcon/alabaster", () -> setUpBlock(new RoundelContainer(AbstractBlock.Properties.create(Material.IRON).setLightLevel((state) -> {
         return 15;
@@ -668,7 +668,7 @@ public class ModBlocks {
 //Blocks
     private static <T extends Block> RegistryObject<T> registerforblock(String id, Supplier<T> blockSupplier){
         RegistryObject<T> registryObject = BLOCKS.register(id, blockSupplier);
-        ModItems.ITEMS.register(id, () -> new BlockItem(registryObject.get(), new Item.Properties().group(TItemGroups.FUTURE)));
+        ModItems.ITEMS.register(id, () -> new BlockItem(registryObject.get(), new Item.Properties().group(ModItemGroups.TA)));
         return registryObject;
     }
 

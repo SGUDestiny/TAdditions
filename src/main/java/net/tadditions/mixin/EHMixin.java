@@ -17,7 +17,7 @@ public class EHMixin {
 
 
     private void generateTardisTraits() {
-        traits = new TardisTrait[5];
+        traits = new TardisTrait[6];
 
         int i = 0;
         //Make a copy of registered traits

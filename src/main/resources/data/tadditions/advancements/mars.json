@@ -2,7 +2,7 @@
   "parent": "tadditions:tadditions",
   "display": {
     "icon": {
-      "item": "tardis:regolith_sand"
+      "item": "tadditions:mars_dust"
     },
     "title": {
       "translate": "advancements.tadditions.title.mars"

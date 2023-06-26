@@ -12,4 +12,11 @@ public class ModItemGroups {
              return new ItemStack(ModBlocks.roundelcon_alabaster.get());
          }
      };
+
+    public static ItemGroup TA = new ItemGroup(QolMod.MOD_ID + ".temporal") {
+        @Override
+        public ItemStack createIcon() {
+            return new ItemStack(ModItems.ARTRON_CAPACITOR_TEMPORAL.get());
+        }
+    };
 }

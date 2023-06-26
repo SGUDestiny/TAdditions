@@ -18,6 +18,6 @@ public class FluidLinkRenderer extends GeoItemRenderer<SubsysItem> {
 
     @Override
     public RenderType getRenderType(SubsysItem animatable, float partialTicks, MatrixStack stack, @Nullable IRenderTypeBuffer renderTypeBuffer, @Nullable IVertexBuilder vertexBuilder, int packedLightIn, ResourceLocation textureLocation) {
-        return RenderType.getEntityCutoutNoCull(textureLocation);
+        return RenderType.getEntityTranslucent(textureLocation);
     }
 }

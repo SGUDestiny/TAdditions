@@ -53,6 +53,7 @@ public class QuantumExoticMatterItem extends Item {
         Block block = world.getBlockState(blockpos).getBlock();
         if(block instanceof SolenoidConBlock && block.matchesBlock(ModBlocks.electromagnetic_solenoid_container.get())){
             world.setBlockState(blockpos,ModBlocks.filled_electromagnetic_solenoid_container.get().getDefaultState());
+            context.getItem().shrink(1);
             return ActionResultType.SUCCESS;
         }
         else return ActionResultType.FAIL;

@@ -11,6 +11,7 @@ import net.minecraft.inventory.container.ChestContainer;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.state.BooleanProperty;
 import net.minecraft.tileentity.BarrelTileEntity;
 import net.minecraft.tileentity.ChestTileEntity;
 import net.minecraft.tileentity.LockableLootTileEntity;
@@ -23,8 +24,10 @@ import net.minecraft.util.math.vector.Vector3i;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.fml.common.Mod;
+import net.tadditions.mod.blocks.RoundelContainer;
 
 public class RoundelContainerTileEntity extends LockableLootTileEntity {
+
 
     private NonNullList<ItemStack> barrelContents = NonNullList.withSize(27, ItemStack.EMPTY);
     private int numPlayersUsing;
@@ -81,10 +84,20 @@ public class RoundelContainerTileEntity extends LockableLootTileEntity {
             }
 
             ++this.numPlayersUsing;
+            BlockState blockstate = this.getBlockState();
+            boolean flag = blockstate.get(RoundelContainer.PROPERTY_OPEN);
+            if (!flag) {
+                this.playSound(blockstate, SoundEvents.BLOCK_BARREL_OPEN);
+                this.setOpenProperty(blockstate, true);
+            }
 
             this.scheduleTick();
         }
 
+    }
+
+    private void setOpenProperty(BlockState state, boolean open) {
+        this.world.setBlockState(this.getPos(), state.with(RoundelContainer.PROPERTY_OPEN, Boolean.valueOf(open)), 3);
     }
 
     private void scheduleTick() {
@@ -98,6 +111,13 @@ public class RoundelContainerTileEntity extends LockableLootTileEntity {
         this.numPlayersUsing = ChestTileEntity.calculatePlayersUsing(this.world, this, i, j, k);
         if (this.numPlayersUsing > 0) {
             this.scheduleTick();
+        } else {
+            BlockState blockstate = this.getBlockState();
+            boolean flag = blockstate.get(BarrelBlock.PROPERTY_OPEN);
+            if (flag) {
+                this.playSound(blockstate, SoundEvents.BLOCK_BARREL_CLOSE);
+                this.setOpenProperty(blockstate, false);
+            }
         }
     }
 
@@ -112,4 +132,10 @@ public class RoundelContainerTileEntity extends LockableLootTileEntity {
         return new TranslationTextComponent("container.roundelcon");
     }
 
+    private void playSound(BlockState state, SoundEvent sound) {
+        double d0 = (double)this.pos.getX() + 0.5D;
+        double d1 = (double)this.pos.getY() + 0.5D;
+        double d2 = (double)this.pos.getZ() + 0.5D;
+        this.world.playSound((PlayerEntity)null, d0, d1, d2, sound, SoundCategory.BLOCKS, 0.5F, this.world.rand.nextFloat() * 0.1F + 0.9F);
+    }
 }

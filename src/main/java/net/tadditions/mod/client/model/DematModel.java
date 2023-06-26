@@ -15,7 +15,7 @@ public class DematModel extends AnimatedGeoModel<SubsysItem> {
     private static final ResourceLocation modelResource = new ResourceLocation(QolMod.MOD_ID, "geo/dematerialization_circuit.geo.json");
     private static final ResourceLocation textureResource = new ResourceLocation(QolMod.MOD_ID, "textures/itemanim/demat/demat_circuit_frame_1.png");
     private static final ResourceLocation animationResource = new ResourceLocation(QolMod.MOD_ID, "animations/dematerialization_circuit_animation.json");
-    private static final List<ResourceLocation> animo = Lists.newArrayList(new ResourceLocation(QolMod.MOD_ID, "textures/itemanim/demat/demat_circuit_frame_1.png"), new ResourceLocation(QolMod.MOD_ID, "textures/itemanim/demat/demat_circuit_frame_2.png"), new ResourceLocation(QolMod.MOD_ID, "textures/itemanim/demat/demat_circuit_frame_3.png"), new ResourceLocation(QolMod.MOD_ID, "textures/itemanim/demat/demat_circuit_frame_4.png"), new ResourceLocation(QolMod.MOD_ID, "textures/itemanim/demat/demat_circuit_frame_5.png"));
+    private static final List<ResourceLocation> animo = Lists.newArrayList(new ResourceLocation(QolMod.MOD_ID, "textures/itemanim/demat/demat_circuit_frame_1.png"), new ResourceLocation(QolMod.MOD_ID, "textures/itemanim/demat/demat_circuit_frame_2.png"), new ResourceLocation(QolMod.MOD_ID, "textures/itemanim/demat/demat_circuit_frame_3.png"), new ResourceLocation(QolMod.MOD_ID, "textures/itemanim/demat/demat_circuit_frame_4.png"));
     private int tickCount = 0;
     private int currentIndex = 0;
 
@@ -37,7 +37,7 @@ public class DematModel extends AnimatedGeoModel<SubsysItem> {
 
     public ResourceLocation animateTexture(List<ResourceLocation> list){
         tickCount++;
-        if (tickCount >= 20) {
+        if (tickCount >= 100) {
             tickCount = 0;
             currentIndex++;
             if (currentIndex >= list.size()) {

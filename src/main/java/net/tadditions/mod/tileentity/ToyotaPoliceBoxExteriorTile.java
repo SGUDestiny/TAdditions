@@ -13,7 +13,6 @@ import net.tardis.mod.tileentities.exteriors.ExteriorTile;
 
 public class ToyotaPoliceBoxExteriorTile extends ExteriorTile {
 
-	public int windowMode = 0;
 
 	public static final AxisAlignedBB RENDER_BOX = new AxisAlignedBB(-2, -2, -2, 2, 5, 2);
 
@@ -47,46 +46,6 @@ public class ToyotaPoliceBoxExteriorTile extends ExteriorTile {
 			}
 		}
 		return NORTH_BOX;
-	}
-
-	@Override
-	public float getLightLevel() {
-		if (windowMode == 1 && world != null) {
-			lightLevel = world.getLightFor(LightType.BLOCK, pos);
-			setLightLevel(lightLevel/15);
-			return this.lightLevel;
-		}
-		if(windowMode == 0 && world != null){
-			setLightLevel(lightLevel);
-		}
-		if(windowMode == 2 && world != null){
-			lightLevel = ((world.getDayTime() % 24000) / 24000.0f + 0.50f) % 1.0f;
-			setLightLevel(lightLevel);
-			return this.lightLevel;
-		}
-		return this.lightLevel;
-	}
-
-	@Override
-	public CompoundNBT write(CompoundNBT compound) {
-		compound.putInt("windowMode", windowMode);
-		super.write(compound);
-		return compound;
-	}
-
-
-	@Override
-	public void read(BlockState state, CompoundNBT compound) {
-		windowMode = compound.getInt("windowMode");
-		super.read(state, compound);
-	}
-
-	public void setWindowMode(int WindowMode){
-		this.windowMode = WindowMode;
-	}
-
-	public int getWindowMode(){
-		return windowMode;
 	}
 
 }

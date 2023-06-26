@@ -43,7 +43,7 @@ public class FluidLinkModel extends AnimatedGeoModel<SubsysItem> {
 
     public ResourceLocation animateTexture(List<ResourceLocation> list){
         tickCount++;
-        if (tickCount >= 10) {
+        if (tickCount >= 100) {
             tickCount = 0;
             currentIndex++;
             if (currentIndex >= list.size()) {

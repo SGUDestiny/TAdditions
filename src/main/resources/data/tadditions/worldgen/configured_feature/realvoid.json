@@ -4,7 +4,7 @@
       "config": {
         "feature": {
            "config": {
-             "probability": 0.78
+             "probability": 1
            },
            "type": "tadditions:realvoid"
          },
@@ -21,7 +21,7 @@
     },
     "decorator": {
       "config": {
-        "chance": 78
+        "chance": 29
       },
       "type": "minecraft:chance"
     }

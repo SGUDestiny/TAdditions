@@ -133,7 +133,6 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
     protected TexVariant[] variants = {};
     private int variant = 0;
     private boolean antiGravs = false;
-    private int windowMode = 0;
     private UUID tardisEntityID = null;
     private TardisEntity tardisEntity = null;
     private SparkingLevel sparkLevel = SparkingLevel.NONE;
@@ -292,14 +291,6 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
                 });
             }
         });
-
-        if(world.getGameTime() % 200 == 0) {
-            this.getOrFindExteriorTile().ifPresent(ext -> {
-                if (ext instanceof ToyotaPoliceBoxExteriorTile) {
-                    ((ToyotaPoliceBoxExteriorTile) ext).setWindowMode(windowMode);
-                }
-            });
-        }
 
         if(((ConsoleTile) (Object) this).getExteriorManager().getExteriorAnimation() == MExteriorAnimationRegistry.FULLNEW_WHO.getId() && ((ConsoleTile) (Object) this).getSoundScheme() != MSoundSchemeRegistry.FULL.get()){
             ((ConsoleTile) (Object) this).setSoundScheme(MSoundSchemeRegistry.FULL.get());
@@ -517,7 +508,6 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
         this.rechargeMod = compound.getFloat("recharge_modifier");
         this.variant = compound.getInt("texture_variant");
         this.antiGravs = compound.getBoolean("anti_gravs");
-        this.windowMode = compound.getInt("window_mode");
         this.hasForcedChunksToRemove = compound.getBoolean("has_forced_chunks");
         this.hasNavCom = compound.getBoolean("nav_com");
         this.dimData = compound.getBoolean("dimdata");
@@ -593,7 +583,6 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
         compound.putFloat("recharge_modifier", this.rechargeMod);
         compound.putInt("texture_variant", this.variant);
         compound.putBoolean("anti_gravs", this.antiGravs);
-        compound.putInt("window_mode", this.windowMode);
         if (this.tardisEntityID != null)
             compound.putUniqueId("tardis_entity_id", this.tardisEntityID);
         compound.putInt("spark_level", this.sparkLevel.ordinal());
@@ -796,8 +785,10 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
 
     public void handleDelay() {
         Runnable myTask = () -> {
+            ((ConsoleTile) (Object) this).getInteriorManager().setAlarmOn(false);
             ((ConsoleTile) (Object) this).getInteriorManager().setLight(0);
             world.playSound(null, this.getPos(), TSounds.POWER_DOWN.get(), SoundCategory.BLOCKS, 20F, 1F);
+            ((ConsoleTile) (Object) this).updateClient();
         };
         long delayTicks = 20 * 20; // 20 seconds delay, assuming 20 ticks per second
         scheduleTaskWithDelay(myTask, delayTicks);
@@ -818,13 +809,6 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
     private void findNewMission(){
     }
 
-    public int getWindowMode(){
-        return this.windowMode;
-    }
-
-    public void setWindowMode(int windowMode){
-        this.windowMode = windowMode;
-    }
 
 }
 

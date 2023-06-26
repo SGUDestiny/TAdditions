@@ -1,9 +1,9 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "tardis:block/tech_wall_01_dark",
-		"2": "tardis:block/tech_wall_01_dark",
-		"particle": "tardis:block/tech_wall_01_dark"
+		"0": "tardis:block/technology/tech_wall_01_dark",
+		"2": "tadditions:block/tech_wall_01_darker",
+		"particle": "tardis:block/technology/tech_wall_01_dark"
 	},
 	"elements": [
 		{

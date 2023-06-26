@@ -7,7 +7,7 @@
       "Name": "tadditions:dense_ash"
     },
     "underwater_material": {
-      "Name": "tadditions:ash"
+      "Name": "tadditions:dense_ash"
     }
   },
   "type": "tadditions:remains_surface"

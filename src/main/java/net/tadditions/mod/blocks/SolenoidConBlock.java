@@ -36,11 +36,13 @@ public class SolenoidConBlock extends Block {
     @Override
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         Block block = state.getBlock();
-        if(block == ModBlocks.filled_electromagnetic_solenoid_container.get()) {
-            MNetwork.sendToServer(new QuanSpawnMessage(ModItems.QUANTUM_EXOTIC_MATTER.get()));
-            worldIn.setBlockState(pos, ModBlocks.electromagnetic_solenoid_container.get().getDefaultState());
-            return ActionResultType.SUCCESS;
+        if(!worldIn.isRemote()) {
+            if (block == ModBlocks.filled_electromagnetic_solenoid_container.get()) {
+                worldIn.setBlockState(pos, ModBlocks.electromagnetic_solenoid_container.get().getDefaultState());
+                MNetwork.sendToServer(new QuanSpawnMessage(ModItems.QUANTUM_EXOTIC_MATTER.get()));
+                return ActionResultType.SUCCESS;
+            }
         }
-        else return ActionResultType.PASS;
+        return ActionResultType.PASS;
     }
 }

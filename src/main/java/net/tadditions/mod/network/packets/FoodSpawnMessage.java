@@ -41,9 +41,9 @@ public class FoodSpawnMessage {
                 ConsoleTile console = (ConsoleTile)world.getTileEntity(TardisHelper.TARDIS_POS);
                 //TODO: Set an actual value
                 ItemStack stack = new ItemStack(mes.key);
-                if(mes.key instanceof Item && mes.key.isIn(MItemTags.FOODMAKER)) {
+                if(mes.key != null && mes.key.isIn(MItemTags.FOODMAKER)) {
                     int tempAmount = mes.useMaxStack ? 16 : 1; //Use 16 if shift is held down in the gui, otherwise 1.
-                    int amount = stack.getMaxStackSize() > tempAmount ? tempAmount : stack.getMaxStackSize();
+                    int amount = Math.min(stack.getMaxStackSize(), tempAmount);
                     if(console.getArtron() >= amount) {
                         console.setArtron(console.getArtron() -(amount * MConfigs.COMMON.FoodCubeCost.get()));
                         InventoryHelper.spawnItemStack(world,

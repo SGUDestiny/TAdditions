@@ -24,16 +24,7 @@
     }
   },
   "surface_builder": "tadditions:the_verge_of_reality_surface",
-  "carvers": {
-    "air": [
-      {
-        "config": {
-          "probability": 1
-        },
-        "type": "tadditions:void_ravine"
-      }
-    ]
-  },
+  "carvers": {},
   "features": [
     [],
     [],
@@ -49,7 +40,7 @@
     []
   ],
   "starts": [
-    "tadditions:scorched_tree_1"
+    "tadditions:scorched"
   ],
   "spawners": {
     "monster": [],
@@ -66,6 +57,6 @@
   "temperature": 0.9,
   "downfall": 0.8,
   "category": "none",
-  "depth": 0.2,
-  "scale": 0.2
+  "depth": 0.1,
+  "scale": 0.1
 }

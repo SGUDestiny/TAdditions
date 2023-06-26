@@ -1,7 +1,7 @@
 {
   "surface_builder": "tadditions:the_verge_of_reality_surface",
-  "depth": 1.1,
-  "scale": 1.1,
+  "depth": 0.1,
+  "scale": 0.1,
   "temperature": 0.2,
   "downfall": 0.1,
   "precipitation": "none",

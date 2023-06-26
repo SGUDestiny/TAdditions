@@ -24,12 +24,7 @@
     }
   },
   "surface_builder": "tadditions:the_verge_of_reality_surface",
-  "carvers": {
-    "air": [
-      "minecraft:cave",
-      "minecraft:canyon"
-    ]
-  },
+  "carvers": {},
   "features": [
     [],
     [],

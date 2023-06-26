@@ -25,7 +25,7 @@ import java.util.List;
 public class UpgradeManualItem extends Item{
 
     public UpgradeManualItem() {
-        super(Prop.Items.ONE.get().group(TItemGroups.MAINTENANCE));
+        super(Prop.Items.ONE.get().group(ModItemGroups.TA));
     }
 
     @Override
