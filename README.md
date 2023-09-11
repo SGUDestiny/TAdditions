@@ -10,4 +10,5 @@ Development Team:<br>
 But most importantly, have fun!
 
 <a href="https://discord.gg/xdPBseQWKK"><img src="https://cdn.discordapp.com/attachments/927582814042488913/1092827526654595152/join-discord-png-10.png" width="150px"></img></a></br>
-<a href="https://www.curseforge.com/minecraft/mc-mods/t-additions"><img src="https://cdn.discordapp.com/attachments/927582814042488913/1092829755188981831/curseforge-icon.webp" width="60px"></img></a>
+<a href="https://www.curseforge.com/minecraft/mc-mods/t-additions"><img src="https://cdn.discordapp.com/attachments/927582814042488913/1092829755188981831/curseforge-icon.webp" width="60px"></img></a> 
+praise the webhook
