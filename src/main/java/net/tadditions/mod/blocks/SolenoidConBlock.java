@@ -1,6 +1,7 @@
 package net.tadditions.mod.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ActionResultType;
@@ -16,10 +17,14 @@ import net.minecraft.world.World;
 import net.tadditions.mod.items.ModItems;
 import net.tadditions.mod.network.MNetwork;
 import net.tadditions.mod.network.packets.QuanSpawnMessage;
+import net.tardis.mod.blocks.TileBlock;
+import software.bernie.geckolib3.core.IAnimatable;
+import software.bernie.geckolib3.core.manager.AnimationData;
+import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import java.util.stream.Stream;
 
-public class SolenoidConBlock extends Block {
+public class SolenoidConBlock extends TileBlock {
 
     public SolenoidConBlock(Properties properties) {
         super(properties);
@@ -31,6 +36,14 @@ public class SolenoidConBlock extends Block {
 
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         return SHAPE;
+    }
+
+    @Override
+    public BlockRenderType getRenderType(BlockState state) {
+        if(state.getBlock() == ModBlocks.filled_electromagnetic_solenoid_container.get()){
+            return BlockRenderType.ENTITYBLOCK_ANIMATED;
+        }
+        return super.getRenderType(state);
     }
 
     @Override

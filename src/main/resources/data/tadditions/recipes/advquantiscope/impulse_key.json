@@ -1,0 +1,20 @@
+{
+	"type": "tadditions:advquantiscope",
+	"ingredients":[
+		{"item":"minecraft:redstone_block"},
+		{"item":"tardis:xion_crystal"},
+		{"item":"minecraft:quartz"},
+		{"item":"tardis:xion_crystal"},
+		{"item":"tardis:circuits"},
+		{"item":"tadditions:artron_battery_temporal"},
+		{"item":"minecraft:redstone_block"},
+		{"item":"tardis:xion_crystal"},
+		{"item":"tardis:circuits"},
+		{"item":"tardis:xion_crystal"},
+		{"item":"minecraft:quartz"},
+		{"item":"minecraft:netherite_ingot"}
+	],
+	"result":{
+		"item":"tadditions:impulse_key"
+	}
+}

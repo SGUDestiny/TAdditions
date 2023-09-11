@@ -8,10 +8,10 @@
   "type": "create:mixing",
   "ingredients": [
     {
-      "item": "forge:dusts/cinnabar"
+      "tag": "forge:dusts/cinnabar"
     },
     {
-      "item": "forge:dusts/cinnabar"
+      "tag": "forge:dusts/cinnabar"
     },
     {
       "fluid": "minecraft:water",

@@ -1,10 +1,10 @@
 {
   "display": {
     "icon": {
-      "item": "tadditions:subsystem/dematerialisation_circuit_mk2"
+      "item": "tadditions:subsystem/dematerialisation_circuit_overcharged"
     },
-    "title": {"translate": "advancements.tadditions.title.onemk2"},
-    "description": {"translate": "advancements.tadditions.descs.onemk2"},
+    "title": {"translate": "advancements.tadditions.title.oneovercharged"},
+    "description": {"translate": "advancements.tadditions.descs.oneovercharged"},
     "frame": "task",
     "show_toast": true,
     "announce_to_chat": true,
@@ -17,7 +17,7 @@
       "conditions": {
         "items": [
           {
-            "item": "tadditions:subsystem/dematerialisation_circuit_mk2"
+            "item": "tadditions:subsystem/dematerialisation_circuit_overcharged"
           }
         ]
       }
@@ -27,7 +27,7 @@
       "conditions": {
         "items": [
           {
-            "item": "tadditions:subsystem/fluid_link_mk2"
+            "item": "tadditions:subsystem/fluid_link_overcharged"
           }
         ]
       }
@@ -37,62 +37,62 @@
       "conditions": {
         "items": [
           {
-            "item": "tadditions:subsystem/chameleon_circuit_mk2"
+            "item": "tadditions:subsystem/chameleon_circuit_overcharged"
+          }
+        ]
+      }
+    },
+    "4": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tadditions:subsystem/interstitial_antenna_overcharged"
+          }
+        ]
+      }
+    },
+    "5": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tadditions:subsystem/temporal_grace_overcharged"
+          }
+        ]
+      }
+    },
+    "6": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tadditions:subsystem/shield_generator_overcharged"
+          }
+        ]
+      }
+    },
+    "7": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tadditions:subsystem/stabilizer_overcharged"
+          }
+        ]
+      }
+    },
+    "8": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tadditions:subsystem/nav_com_overcharged"
           }
         ]
       }
     }
   },
-  "4": {
-    "trigger": "minecraft:inventory_changed",
-    "conditions": {
-      "items": [
-        {
-          "item": "tadditions:subsystem/interstitial_antenna_mk2"
-        }
-      ]
-    }
-  },
-  "5": {
-    "trigger": "minecraft:inventory_changed",
-    "conditions": {
-      "items": [
-        {
-          "item": "tadditions:subsystem/temporal_grace_mk2"
-        }
-      ]
-    }
-  },
-  "6": {
-    "trigger": "minecraft:inventory_changed",
-    "conditions": {
-      "items": [
-        {
-          "item": "tadditions:subsystem/shield_generator_mk2"
-        }
-      ]
-    }
-  },
-  "7": {
-    "trigger": "minecraft:inventory_changed",
-    "conditions": {
-      "items": [
-        {
-          "item": "tadditions:subsystem/stabilizer_mk2"
-        }
-      ]
-    }
-  },
-  "8": {
-  "trigger": "minecraft:inventory_changed",
-  "conditions": {
-    "items": [
-      {
-        "item": "tadditions:subsystem/nav_com_mk2"
-      }
-    ]
-  }
-},
 
   "rewards": {
     "experience": 10

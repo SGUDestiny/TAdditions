@@ -3,7 +3,6 @@ package net.tadditions.mod.screens.misc;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Slot;
 import net.tadditions.mod.container.AdvQuantiscopeContainer;
-import net.tadditions.mod.tileentity.AdvQuantiscopeTile;
 
 public abstract class AdvQuantiscopeSlotMapper {
 

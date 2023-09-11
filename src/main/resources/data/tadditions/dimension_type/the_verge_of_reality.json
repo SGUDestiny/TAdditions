@@ -3,7 +3,7 @@
   "ultrawarm": false,
   "natural": true,
   "ambient_light": 0.2,
-  "has_skylight": true,
+  "has_skylight": false,
   "has_ceiling": false,
   "infiniburn": "minecraft:infiniburn_overworld",
   "logical_height" : 256,

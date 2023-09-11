@@ -22,12 +22,13 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
 import net.tadditions.mod.items.ModItems;
 import net.tadditions.mod.tileentity.WeaponHolderBE;
+import net.tardis.mod.ars.IARS;
 import net.tardis.mod.blocks.template.NotSolidTileBlock;
 import net.tardis.mod.helper.TInventoryHelper;
 
 import java.util.stream.Stream;
 
-public class LightBox extends NotSolidTileBlock {
+public class LightBox extends NotSolidTileBlock implements IARS {
     public LightBox(Properties prop) {
         super(prop);
     }
@@ -41,7 +42,7 @@ public class LightBox extends NotSolidTileBlock {
 
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return this.getDefaultState().with(HORIZONTAL_FACING, context.getPlacementHorizontalFacing().getOpposite());
+        return this.getDefaultState().with(HORIZONTAL_FACING, context.getPlacementHorizontalFacing().rotateY().rotateY());
     }
 
     private static final VoxelShape SHAPE = Stream.of(Block.makeCuboidShape(0, 0, 0, 16, 32, 16)

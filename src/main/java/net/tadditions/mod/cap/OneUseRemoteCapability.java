@@ -1,5 +1,6 @@
 package net.tadditions.mod.cap;
 
+import net.minecraft.command.impl.LocateCommand;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -29,13 +30,10 @@ import java.util.Objects;
 public class OneUseRemoteCapability implements IOneRemote {
 
 
-    public static final float MAX_ARTRON = 25;
-
     private ConsoleTile tile;
     private ItemStack remote;
     private ResourceLocation tardis;
-    private float artron = 0;
-    private double dis = 0;
+    private double dis = 70;
     
     //Client variables
     private double timeLeft = 0;
@@ -70,52 +68,37 @@ public class OneUseRemoteCapability implements IOneRemote {
 
     @Override
     public void onClick(World world, PlayerEntity player, BlockPos pos) {
-        if (!world.isRemote){
+        if (!world.isRemote) {
             if (this.tardis != null) {
-	        	this.findTardis(world);
-	            if (tile != null && !tile.isRemoved()) {
-	            	if (player.getEntityWorld() != tile.getWorld()) {
-                        if(MConfigs.COMMON.OlimCallInOther.get() || WorldHelper.canTravelToDimension(player.getEntityWorld())){
-                            if(TardisHelper.isInATardis(player)) {
+                this.findTardis(world);
+                if (tile != null && !tile.isRemoved()) {
+                    if (player.getEntityWorld() != tile.getWorld()) {
+                        if (MConfigs.COMMON.OlimCallInOther.get() || WorldHelper.canTravelToDimension(player.getEntityWorld())) {
+                            if (TardisHelper.isInATardis(player)) {
                                 TardisHelper.getConsole(world.getServer(), world).ifPresent(tardise -> {
                                     dis = Math.sqrt(player.getDistanceSq(TardisHelper.TARDIS_POS.getX(), TardisHelper.TARDIS_POS.getY(), TardisHelper.TARDIS_POS.getZ()));
                                 });
                             }
-                            if (tile.canFly() && !tile.isLanding() && !TardisHelper.isInATardis(player)){
-	            			tile.setDestination(player.getEntityWorld().getDimensionKey(), pos.up());
-			                tile.getControl(ThrottleControl.class).ifPresent(throttle -> throttle.setAmount(1.0F));
-			                tile.getControl(HandbrakeControl.class).ifPresent(handbrake -> handbrake.setFree(true));
-			                tile.getSubsystem(StabilizerSubsystem.class).ifPresent(sys -> sys.setControlActivated(true));
-			                tile.setExteriorFacingDirection(player.getHorizontalFacing().getOpposite());
-			                tile.takeoff();
-                            tile.getWorld().getServer().enqueue(new TickDelayedTask(20, () -> {
-                                tile.setDestinationReachedTick(20);
-                            }));
-                            player.getEntityWorld().playSound(null, player.getPosition(), TSounds.REMOTE_ACCEPT.get(), SoundCategory.BLOCKS, 0.25F, 1F);
-                        }
-	            		else if (tile.canFly() && !tile.isLanding() && TardisHelper.isInATardis(player) && dis>30){
+                            if (tile.canFly() && !tile.isLanding() && dis > 60) {
                                 tile.setDestination(player.getEntityWorld().getDimensionKey(), pos.up());
                                 tile.getControl(ThrottleControl.class).ifPresent(throttle -> throttle.setAmount(1.0F));
                                 tile.getControl(HandbrakeControl.class).ifPresent(handbrake -> handbrake.setFree(true));
                                 tile.getSubsystem(StabilizerSubsystem.class).ifPresent(sys -> sys.setControlActivated(true));
                                 tile.setExteriorFacingDirection(player.getHorizontalFacing().getOpposite());
                                 tile.takeoff();
-                                tile.getWorld().getServer().enqueue(new TickDelayedTask(20, () -> {
-                                    tile.setDestinationReachedTick(20);
+                                tile.getWorld().getServer().enqueue(new TickDelayedTask(5, () -> {
+                                    tile.setDestinationReachedTick(1);
                                 }));
                                 player.getEntityWorld().playSound(null, player.getPosition(), TSounds.REMOTE_ACCEPT.get(), SoundCategory.BLOCKS, 0.25F, 1F);
+                            } else {
+                                player.getEntityWorld().playSound(null, player.getPosition(), TSounds.CANT_START.get(), SoundCategory.BLOCKS, 0.25F, 1F);
                             }
-                        else {
-	            		    player.getEntityWorld().playSound(null, player.getPosition(), TSounds.CANT_START.get(), SoundCategory.BLOCKS, 0.25F, 1F);	
-	            		}
-	                }
-	            }
+                        }
+                    }
+                }
             }
-            }
-
-            else {
-            	PlayerHelper.sendMessageToPlayer(player, TardisConstants.Translations.ITEM_NOT_ATTUNED, true);
-            }
+        } else {
+            PlayerHelper.sendMessageToPlayer(player, TardisConstants.Translations.ITEM_NOT_ATTUNED, true);
         }
     }
 

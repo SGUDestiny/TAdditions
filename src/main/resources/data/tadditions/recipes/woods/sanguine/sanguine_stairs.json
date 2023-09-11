@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_stairs",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "tadditions:sanguine_planks"
+    }
+  },
+  "result": {
+    "item": "tadditions:sanguine_stairs",
+    "count": 4
+  }
+}

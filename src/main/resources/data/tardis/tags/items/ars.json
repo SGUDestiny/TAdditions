@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "tadditions:lightbox",
     "tadditions:roundelcon/alabaster",
     "tadditions:roundelcon/oak_planks_full",
     "tadditions:roundelcon/oak_planks_offset",

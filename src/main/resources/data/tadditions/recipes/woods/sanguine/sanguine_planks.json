@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "tadditions:sanguine_log"
+    }
+  ],
+  "result": {
+    "item": "tadditions:sanguine_planks",
+    "count": 4
+  }
+}

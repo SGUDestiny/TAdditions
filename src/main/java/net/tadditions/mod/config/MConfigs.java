@@ -41,7 +41,7 @@ public class MConfigs {
 
             FoodCubeCost = builder.comment("Changes the cost of the Food Cube")
                     .translation("config.tadditions.FoodCubeCost")
-                    .define("FoodCubeCost", 3);
+                    .define("FoodCubeCost", 10);
 
             VectorErrorRarity = builder.comment("Changes the rarity of the Vector Calculation Error, 0-100")
                     .translation("config.tadditions.VectorErrorRarity")

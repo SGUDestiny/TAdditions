@@ -1,0 +1,8 @@
+{
+	"parent":"block/cube_bottom_top",
+	"textures":{
+		"side":"tardis:block/technology/airlock_bottom",
+		"top":"tardis:block/technology/transduction_barrier_on",
+		"bottom":"tardis:block/technology/tech_floor_plate"
+	}
+}

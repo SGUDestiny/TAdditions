@@ -13,7 +13,7 @@
       "item": "minecraft:iron_ingot"
     },
     "Q": {
-      "item": "tardis:quantiscope_brass"
+      "tag": "tadditions:quantiscope"
     },
     "C": {
       "item": "tardis:circuits"

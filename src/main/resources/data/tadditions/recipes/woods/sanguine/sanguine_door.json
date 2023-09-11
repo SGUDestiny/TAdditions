@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_fence_gate",
+  "pattern": [
+    "WW",
+    "WW",
+    "WW"
+  ],
+  "key": {
+    "W": {
+      "item": "tadditions:sanguine_planks"
+    }
+  },
+  "result": {
+    "item": "tadditions:sanguine_door"
+  }
+}

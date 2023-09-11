@@ -1,10 +1,7 @@
 package net.tadditions.mod.items;
 
 import net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer;
-import net.minecraft.item.Food;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.MusicDiscItem;
+import net.minecraft.item.*;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -13,6 +10,7 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.tadditions.mod.QolMod;
+import net.tadditions.mod.blocks.ModBlocks;
 import net.tadditions.mod.client.renderers.*;
 import net.tadditions.mod.sound.MSounds;
 import net.tardis.mod.constants.TardisConstants;
@@ -43,13 +41,13 @@ public class ModItems {
     public static final RegistryObject<Item> ARTRON_BATTERY_ULTRA = ITEMS.register("artron_battery_ultra", () -> createItem(new ArtronItemStackBatteryItem(3.5F, 0.4F, 6000F, false)));
     public static final RegistryObject<Item> ARTRON_BATTERY_ARTRON_SYPHON = ITEMS.register("artron_battery_speed", () -> createItem(new ArtronItemStackBatteryItem(6F, 0.1F, 750F, false)));
     public static final RegistryObject<Item> ARTRON_BATTERY_TEMPORAL_SYPHON = ITEMS.register("artron_battery_temporal", () -> createItem(new ArtronItemStackBatteryItem(7.5F, 0.17F, 11000F, false)));
-    public static final RegistryObject<Item> THERMAL_PROTECTION_UPGRADE = ITEMS.register("upgrades/thermal_protection", () -> createItem(new TardisPartItem(TardisConstants.Part.PartType.UPGRADE, false, false, TardisConstants.Translations.TEMPORAL_GRACE)));
+    public static final RegistryObject<Item> THERMAL_PROTECTION_UPGRADE = ITEMS.register("upgrades/thermal_protection", () -> createItem(new TardisPartItem(new Item.Properties().group(ModItemGroups.TA), TardisConstants.Part.PartType.UPGRADE, false, false, TardisConstants.Translations.TEMPORAL_GRACE)));
     public static final RegistryObject<Item> FOODCUBE = ITEMS.register("foodcube", () -> createItem(new Item((new Item.Properties()).group(ModItemGroups.TA).food(new Food.Builder().hunger(3).saturation(3F).build()))));
-    public static final RegistryObject<Item> EC2_UPGRADE = ITEMS.register("upgrades/ec2", () -> createItem(new TardisPartItem(TardisConstants.Part.PartType.UPGRADE, false, false, TardisConstants.Translations.TEMPORAL_GRACE)));
-    public static final RegistryObject<Item> NOBADOMEN_UPGRADE = ITEMS.register("upgrades/goodomen", () -> createItem(new TardisPartItem(TardisConstants.Part.PartType.UPGRADE, false, false, TardisConstants.Translations.TEMPORAL_GRACE)));
-    public static final RegistryObject<Item> ZR2_UPGRADE = ITEMS.register("upgrades/zr2", () -> createItem(new TardisPartItem(TardisConstants.Part.PartType.UPGRADE, false, false, TardisConstants.Translations.TEMPORAL_GRACE)));
-    public static final RegistryObject<Item> FRAME_UPGRADE = ITEMS.register("upgrades/frame_stabilizer", () -> createItem(new TardisPartItem(TardisConstants.Part.PartType.UPGRADE, false, false, new TranslationTextComponent("item." + QolMod.MOD_ID + ".subsystem.stabilizers"))));
-    public static final RegistryObject<Item> MURASAMA = ITEMS.register("murasama", () -> createItem(new Murasama(MItemTier.MURASAMA, 1,-2f, new Item.Properties().group(ModItemGroups.TA).isImmuneToFire())));
+    public static final RegistryObject<Item> EC2_UPGRADE = ITEMS.register("upgrades/ec2", () -> createItem(new TardisPartItem(new Item.Properties().group(ModItemGroups.TA), TardisConstants.Part.PartType.UPGRADE, false, false, TardisConstants.Translations.TEMPORAL_GRACE)));
+    public static final RegistryObject<Item> NOBADOMEN_UPGRADE = ITEMS.register("upgrades/goodomen", () -> createItem(new TardisPartItem(new Item.Properties().group(ModItemGroups.TA), TardisConstants.Part.PartType.UPGRADE, false, false, TardisConstants.Translations.TEMPORAL_GRACE)));
+    public static final RegistryObject<Item> ZR2_UPGRADE = ITEMS.register("upgrades/zr2", () -> createItem(new TardisPartItem(new Item.Properties().group(ModItemGroups.TA), TardisConstants.Part.PartType.UPGRADE, false, false, TardisConstants.Translations.TEMPORAL_GRACE)));
+    public static final RegistryObject<Item> FRAME_UPGRADE = ITEMS.register("upgrades/frame_stabilizer", () -> createItem(new TardisPartItem(new Item.Properties().group(ModItemGroups.TA), TardisConstants.Part.PartType.UPGRADE, false, false, new TranslationTextComponent("item." + QolMod.MOD_ID + ".subsystem.stabilizers"))));
+    public static final RegistryObject<Item> MURASAMA = ITEMS.register("murasama", () -> createItem(new Murasama(MItemTier.MURASAMA, 1,-2f, new Item.Properties().group(ModItemGroups.TA).isImmuneToFire().setISTER(() -> MurasamaRenderer::new))));
     public static final RegistryObject<Item> ONEUSEREMOTE = ITEMS.register("onetimeremote", () -> createItem(new OneUseRemoteItem(Prop.Items.ONE.get().group(ModItemGroups.TA))));
     public static final RegistryObject<Item> BOOS_UPGRADE = ITEMS.register("data_drive", () -> createItem(new VergeOpener(Prop.Items.ONE.get().group(ModItemGroups.TA))));
     public static final RegistryObject<Item> AEON_CRYSTAL = ITEMS.register("aeon_crystal", () -> createItem(new Item(Prop.Items.SIXTY_FOUR.get().group(ModItemGroups.TA))));
@@ -68,7 +66,7 @@ public class ModItems {
     public static final RegistryObject<Item> SHEILD_GENERATORMK2 = ITEMS.register("subsystem/shield_generator_overcharged", () -> createItem(new SubsysItem(Prop.Items.ONE.get().maxDamage(1250).group(ModItemGroups.TA).setISTER(() -> ShieldRenderer::new), TardisConstants.Part.PartType.SUBSYSTEM, false, true)));
     public static final RegistryObject<Item> STABILIZERSMK2 = ITEMS.register("subsystem/stabilizer_overcharged", () -> createItem(new SubsysItem(Prop.Items.ONE.get().maxDamage(1250).group(ModItemGroups.TA).setISTER(() -> StabilizerRenderer::new), TardisConstants.Part.PartType.SUBSYSTEM, false, true)));
     public static final RegistryObject<Item> NAV_COMMK2 = ITEMS.register("subsystem/nav_com_overcharged", () -> createItem(new SubsysItem(Prop.Items.ONE.get().maxDamage(1250).group(ModItemGroups.TA).setISTER(() -> NavComRenderer::new), TardisConstants.Part.PartType.SUBSYSTEM, false, true)));
-    public static final RegistryObject<Item> POWERAXE = ITEMS.register("power_axe", () -> createItem(new PowerAxe(MItemTier.POWERAXE, 1,-2.7f, new Item.Properties().group(ModItemGroups.TA).isImmuneToFire().addToolType(ToolType.AXE, 10))));
+    //public static final RegistryObject<Item> POWERAXE = ITEMS.register("power_axe", () -> createItem(new PowerAxe(MItemTier.POWERAXE, 1,-2.7f, new Item.Properties().group(ModItemGroups.TA).isImmuneToFire().addToolType(ToolType.AXE, 10))));
     //public static final RegistryObject<Item> THERMOCOUPLING = ITEMS.register("subsystem/thermocoupling", () -> createItem(new SubsysItem(Prop.Items.ONE.get().maxDamage(1000).group(ModItemGroups.TA).setISTER(() -> ThermocouplingRenderer::new), TardisConstants.Part.PartType.SUBSYSTEM, false, true)));
 
 
@@ -76,7 +74,11 @@ public class ModItems {
         ITEMS.register(eventBus);
     }
 
-    private static <T extends Item> T createItem(T item) {
+    public static <T extends Item> T createItem(T item) {
+        return item;
+    }
+
+    public static <T extends BlockItem> T createBlockItem(T item) {
         return item;
     }
 

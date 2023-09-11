@@ -24,7 +24,7 @@
   },"verge_ambient1": {
   "subtitle": "subtitle.tadditions.verge_ambient",
   "sounds": [
-    "tadditions:ambient/thevergeofrealityambience"
+    "tadditions:ambient/crynn_-_million_ways_to_show_the_awful"
   ]
   },"remasound": {
   "subtitle": "subtitle.tadditions.fullremat",
@@ -42,6 +42,18 @@
     "subtitle": "subtitle.tadditions.murasama",
     "sounds": [
       "tadditions:guillaume_david_warhammer_noosphere"
+    ]
+  },
+  "20_year": {
+    "subtitle": "subtitle.tadditions.the_remnants",
+    "sounds": [
+      "tadditions:ambient/crynn_-_20_year_war"
+    ]
+  },
+  "despite_it_all": {
+    "subtitle": "subtitle.tadditions.verge_visit",
+    "sounds":[
+      "tadditions:ambient/sentryturbo_-_despite_it_all"
     ]
   }
 }

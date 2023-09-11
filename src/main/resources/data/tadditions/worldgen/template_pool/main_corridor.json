@@ -1,0 +1,108 @@
+{
+  "name": "tadditions:main_corridor",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 80,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "tadditions:remnants/remnants_main_corridor_empty",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 10,
+      "element": {
+        "element_type": "minecraft:list_pool_element",
+        "projection": "rigid",
+        "elements": [
+          {
+            "element_type": "minecraft:single_pool_element",
+            "projection": "rigid",
+            "location": "tadditions:remnants/remnants_main_corridor_wither",
+            "processors": "minecraft:empty"
+          },
+          {
+            "element_type": "minecraft:single_pool_element",
+            "projection": "rigid",
+            "location": "tadditions:remnants/remnants_main_corridor_husk",
+            "processors": "minecraft:empty"
+          },
+          {
+            "element_type": "minecraft:single_pool_element",
+            "projection": "rigid",
+            "location": "tadditions:remnants/remnants_main_corridor_stray",
+            "processors": "minecraft:empty"
+          },
+          {
+            "element_type": "minecraft:single_pool_element",
+            "projection": "rigid",
+            "location": "tadditions:remnants/remnants_main_corridor_t_wither",
+            "processors": "minecraft:empty"
+          },
+          {
+            "element_type": "minecraft:single_pool_element",
+            "projection": "rigid",
+            "location": "tadditions:remnants/remnants_main_corridor_t_husk",
+            "processors": "minecraft:empty"
+          },
+          {
+            "element_type": "minecraft:single_pool_element",
+            "projection": "rigid",
+            "location": "tadditions:remnants/remnants_main_corridor_t_stray",
+            "processors": "minecraft:empty"
+          },
+          {
+            "element_type": "minecraft:single_pool_element",
+            "projection": "rigid",
+            "location": "tadditions:remnants/remnants_main_corridor_mirrored_t_wither",
+            "processors": "minecraft:empty"
+          },
+          {
+            "element_type": "minecraft:single_pool_element",
+            "projection": "rigid",
+            "location": "tadditions:remnants/remnants_main_corridor_mirrored_t_husk",
+            "processors": "minecraft:empty"
+          },
+          {
+            "element_type": "minecraft:single_pool_element",
+            "projection": "rigid",
+            "location": "tadditions:remnants/remnants_main_corridor_mirrored_t_stray",
+            "processors": "minecraft:empty"
+          }
+        ]
+      }
+    },
+    {
+      "weight": 8,
+      "element": {
+        "element_type": "minecraft:list_pool_element",
+        "projection": "rigid",
+        "elements": [
+          {
+            "element_type": "minecraft:single_pool_element",
+            "projection": "rigid",
+            "location": "tadditions:remnants/remnants_main_corridor_t_empty",
+            "processors": "minecraft:empty"
+          },
+          {
+            "element_type": "minecraft:single_pool_element",
+            "projection": "rigid",
+            "location": "tadditions:remnants/remnants_main_corridor_mirrored_t_empty",
+            "processors": "minecraft:empty"
+          }
+        ]
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "tadditions:remnants/remnants_main_corridor_end",
+        "processors": "minecraft:empty"
+      }
+    }
+  ]
+}

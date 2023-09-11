@@ -2,13 +2,13 @@
   "parent": "tadditions:advq",
   "display": {
     "icon": {
-      "item": "tardis:ash"
+      "item": "tadditions:ash"
     },
     "title": {
-      "translate": "advancements.tadditions.title.tagrea"
+      "translate": "advancements.tadditions.title.verge"
     },
     "description": {
-      "translate": "advancements.tadditions.desc.tagrea"
+      "translate": "advancements.tadditions.desc.verge"
     },
     "frame": "task",
     "show_toast": true,
@@ -22,6 +22,10 @@
         "to": "tadditions:the_verge_of_reality"
       }
     }
+  },
+  "rewards": {
+    "function": "tadditions:verge",
+    "experience": 50
   },
   "requirements": [
     [

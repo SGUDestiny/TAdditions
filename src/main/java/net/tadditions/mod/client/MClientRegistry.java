@@ -8,15 +8,12 @@ import net.minecraft.client.world.DimensionRenderInfo;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.tadditions.mod.QolMod;
 import net.tadditions.mod.blocks.ModBlocks;
 import net.tadditions.mod.client.model.ToyotaInteriorDoor;
-import net.tadditions.mod.client.renderers.ToyotaExteriorRenderer;
-import net.tadditions.mod.client.renderers.WeaponHolderRenderer;
-import net.tadditions.mod.client.renderers.sky.TagreaSkyRenderer;
+import net.tadditions.mod.client.renderers.*;
 import net.tadditions.mod.container.MContainers;
 import net.tadditions.mod.helper.IMDoorType;
 import net.tadditions.mod.screens.AdvQuantiscopeWeldScreen;
@@ -26,15 +23,8 @@ import net.tadditions.mod.tileentity.ModTileEntitys;
 import net.tadditions.mod.world.MDimensions;
 import net.tadditions.mod.world.MarsSkyProperty;
 import net.tadditions.mod.world.TagreaSkyProperty;
-import net.tardis.mod.blocks.TBlocks;
 import net.tardis.mod.client.TClientRegistry;
-import net.tardis.mod.client.models.interiordoors.*;
-import net.tardis.mod.client.renderers.exteriors.ModernPoliceBoxExteriorRenderer;
-import net.tardis.mod.entity.TEntities;
-import net.tardis.mod.misc.IDoorType;
-import net.tardis.mod.tileentities.TTiles;
-import net.tardis.mod.world.dimensions.MoonSkyProperty;
-import net.tardis.mod.world.dimensions.TDimensions;
+import software.bernie.geckolib3.renderers.geo.GeoBlockRenderer;
 
 import java.util.EnumMap;
 
@@ -62,7 +52,9 @@ public class MClientRegistry extends TClientRegistry {
             RenderTypeLookup.setRenderLayer(ModBlocks.sanguine_trapdoor.get(), RenderType.getCutout());
             RenderTypeLookup.setRenderLayer(ModBlocks.ancient_keyholder.get(), RenderType.getCutout());
             RenderTypeLookup.setRenderLayer(ModBlocks.ancient_door.get(), RenderType.getCutout());
-            RenderTypeLookup.setRenderLayer(ModBlocks.lihtbox.get(), RenderType.getCutout());
+            RenderTypeLookup.setRenderLayer(ModBlocks.lightbox.get(), RenderType.getCutout());
+            RenderTypeLookup.setRenderLayer(ModBlocks.zero_point_field_broken.get(), RenderType.getCutout());
+            RenderTypeLookup.setRenderLayer(ModBlocks.zero_point_field_normal.get(), RenderType.getCutout());
         });
     }
 
@@ -70,6 +62,9 @@ public class MClientRegistry extends TClientRegistry {
     private static void registerTileRenderers() {
         ClientRegistry.bindTileEntityRenderer(ModTileEntitys.EXTERIOR_TOYOTA_POLICE_BOX.get(), ToyotaExteriorRenderer::new);
         ClientRegistry.bindTileEntityRenderer(ModTileEntitys.WPH.get(), WeaponHolderRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(ModTileEntitys.ZPFChamber.get(), ZPFChamberRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(ModTileEntitys.ZPFCBroken.get(), ZPFChamberBrokenRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(ModTileEntitys.SolenoidFilled.get(), SolenoidFilledRenderer::new);
     }
 
     private static void registerInteriorDoorRenderers() {
@@ -79,6 +74,7 @@ public class MClientRegistry extends TClientRegistry {
     public static void registerScreens() {
         ScreenManager.registerFactory(MContainers.ADVQUANTISCOPE_WELD.get(), AdvQuantiscopeWeldScreen::new);
     }
+
 }
 
 

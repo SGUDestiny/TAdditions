@@ -1,0 +1,19 @@
+{
+	"type": "tadditions:advquantiscope",
+	"ingredients":[
+		{"item":"minecraft:netherite_ingot"},
+		{"item":"tadditions:artron_capacitor_temporal"},
+		{"item":"tadditions:artron_battery_temporal"},
+		{"item":"tadditions:filled_electromagnetic_solenoid_container"},
+		{"item":"tardis:circuits"},
+		{"item":"tardis:subsystem/dematerialisation_circuit"},
+		{"item":"minecraft:netherite_ingot"},
+		{"item":"minecraft:ender_eye"},
+		{"item":"minecraft:black_stained_glass"},
+		{"item":"tardis:xion_crystal"},
+		{"item":"tardis:circuits"}
+	],
+	"result":{
+		"item":"tadditions:subsystem/dematerialisation_circuit_overcharged"
+	}
+}

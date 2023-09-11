@@ -1,0 +1,20 @@
+{
+	"type": "tadditions:advquantiscope",
+	"ingredients":[
+		{"item":"minecraft:netherite_ingot"},
+		{"item":"tadditions:artron_capacitor_temporal"},
+		{"item":"tadditions:artron_battery_temporal"},
+		{"item":"tadditions:filled_electromagnetic_solenoid_container"},
+		{"item":"tardis:circuits"},
+		{"item": "tardis:subsystem/fluid_link"},
+		{"item":"tardis:artron_pylon"},
+		{"item":"minecraft:netherite_ingot"},
+		{"item":"minecraft:netherite_ingot"},
+		{"item":"tardis:mercury_bottle"},
+		{"item":"tardis:mercury_bottle"},
+		{"item":"tardis:circuits"}
+	],
+	"result":{
+		"item":"tadditions:subsystem/fluid_link_overcharged"
+	}
+}

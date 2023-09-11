@@ -1,10 +1,10 @@
 {
   "display": {
     "icon": {
-      "item": "tadditions:disc1"
+      "item": "tadditions:subsystem/stabilizer_overcharged"
     },
-    "title": {"translate": "advancements.tadditions.title.allmk2"},
-    "description": {"translate": "advancements.tadditions.descs.allmk2"},
+    "title": {"translate": "advancements.tadditions.title.allovercharged"},
+    "description": {"translate": "advancements.tadditions.descs.allovercharged"},
     "frame": "task",
     "show_toast": true,
     "announce_to_chat": true,
@@ -17,25 +17,25 @@
       "conditions": {
         "items": [
           {
-            "item": "tadditions:subsystem/dematerialisation_circuit_mk2"
+            "item": "tadditions:subsystem/dematerialisation_circuit_overcharged"
           },
           {
-            "item": "tadditions:subsystem/fluid_link_mk2"
+            "item": "tadditions:subsystem/fluid_link_overcharged"
           },
           {
-            "item": "tadditions:subsystem/chameleon_circuit_mk2"
+            "item": "tadditions:subsystem/chameleon_circuit_overcharged"
           },
           {
-            "item": "tadditions:subsystem/interstitial_antenna_mk2"
+            "item": "tadditions:subsystem/interstitial_antenna_overcharged"
           },
           {
-            "item": "tadditions:subsystem/temporal_grace_mk2"
+            "item": "tadditions:subsystem/temporal_grace_overcharged"
           },
           {
-            "item": "tadditions:subsystem/stabilizer_mk2"
+            "item": "tadditions:subsystem/stabilizer_overcharged"
           },
           {
-            "item": "tadditions:subsystem/nav_com_mk2"
+            "item": "tadditions:subsystem/nav_com_overcharged"
           }
         ]
       }

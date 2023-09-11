@@ -19,6 +19,7 @@ import software.bernie.geckolib3.util.GeckoLibUtil;
 
 import java.util.List;
 
+//basically TardisPartItem but with Geckolib
 public class SubsysItem extends TooltipProviderItem implements IAnimatable  {
     public AnimationFactory factory = GeckoLibUtil.createFactory(this);
     protected TardisConstants.Part.PartType type;

@@ -1,0 +1,20 @@
+{
+	"type": "tadditions:advquantiscope",
+	"ingredients":[
+		{"item":"minecraft:netherite_ingot"},
+		{"item":"tadditions:artron_capacitor_temporal"},
+		{"item":"tadditions:artron_battery_temporal"},
+		{"item":"tadditions:filled_electromagnetic_solenoid_container"},
+		{"item":"tardis:circuits"},
+		{"item": "tardis:subsystem/temporal_grace"},
+		{"item":"tardis:xion_crystal"},
+		{"item":"tardis:circuits"},
+		{"item":"minecraft:shield"},
+		{"item":"minecraft:blaze_rod"},
+		{"item":"minecraft:redstone_block"},
+		{"item": "minecraft:golden_apple"}
+	],
+	"result":{
+		"item":"tadditions:subsystem/temporal_grace_overcharged"
+	}
+}

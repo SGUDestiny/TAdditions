@@ -12,7 +12,7 @@
     "frame": "task",
     "announce_to_chat": false,
     "show_toast": true,
-    "background": "tardis:textures/block/roundel/white_concrete_full.png"
+    "background": "tadditions:textures/block/ancient_door_part_active.png"
   },
   "criteria": {
     "tadditions:upgrades_manual": {

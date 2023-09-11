@@ -1,0 +1,20 @@
+{
+	"type": "tadditions:advquantiscope",
+	"ingredients":[
+		{"item":"minecraft:netherite_ingot"},
+		{"item":"tadditions:artron_capacitor_temporal"},
+		{"item":"tadditions:artron_battery_temporal"},
+		{"item":"tadditions:filled_electromagnetic_solenoid_container"},
+		{"item":"tardis:circuits"},
+		{"item": "tardis:subsystem/nav_com"},
+		{"item":"minecraft:ender_eye"},
+		{"item":"minecraft:clock"},
+		{"item":"minecraft:compass"},
+		{"item":"tardis:circuits"},
+		{"item":"minecraft:ender_pearl"},
+		{"item":"minecraft:netherite_ingot"}
+	],
+	"result":{
+		"item":"tadditions:subsystem/nav_com_overcharged"
+	}
+}

@@ -13,6 +13,10 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.tadditions.mod.QolMod;
+import net.tadditions.mod.client.renderers.SolenoidFilledItemRenderer;
+import net.tadditions.mod.client.renderers.ZPFChamberBrokenItemRenderer;
+import net.tadditions.mod.client.renderers.ZPFChamberItemRenderer;
+import net.tadditions.mod.items.AnimatedBlockItem;
 import net.tadditions.mod.items.ModItemGroups;
 import net.tadditions.mod.items.ModItems;
 import net.tardis.mod.blocks.HoloLadderBlock;
@@ -24,6 +28,7 @@ import net.tardis.mod.itemgroups.TItemGroups;
 import net.tardis.mod.items.TItems;
 import net.tadditions.mod.blocks.RoundelContainer;
 import net.tardis.mod.properties.Prop;
+import software.bernie.geckolib3.renderers.geo.GeoItemRenderer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,9 +39,20 @@ public class ModBlocks {
 
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, QolMod.MOD_ID);
 
-    public static final RegistryObject<Block> lihtbox = registerforblock("lightbox", () -> setUpBlock(new LightBox(Prop.Blocks.BASIC_TECH.get().setLightLevel((state) -> {
-        return 1;
+    public static final RegistryObject<Block> barrier = registerforblock("verge_barrier", () -> setUpBlock(new VergeBarrierBlock(Prop.Blocks.BASIC_TECH.get())));
+    public static final RegistryObject<Block> lightbox = registerforblock("lightbox", () -> setUpBlock(new LightBox(Prop.Blocks.BASIC_TECH.get().setLightLevel((state) -> {
+        return 15;
     }))));
+
+    public static final RegistryObject<Block> zero_point_field_normal = registerforblockanimitem("zero_point_field_chamber", () -> setUpBlock(new ZeroPointFieldChamberBlock(Prop.Blocks.BASIC_TECH.get().notSolid().setLightLevel((state) -> {
+        return 3;
+    }))), new Item.Properties().group(ModItemGroups.TA).setISTER(() -> ZPFChamberItemRenderer::new));
+    public static final RegistryObject<Block> zero_point_field_broken = registerforblockanimitem("zero_point_field_chamber_broken", () -> setUpBlock(new ZeroPointFieldChamberBlock(Prop.Blocks.BASIC_TECH.get().notSolid().setLightLevel((state) -> {
+        return 0;
+    }))), new Item.Properties().group(ModItemGroups.TA).setISTER(() -> ZPFChamberBrokenItemRenderer::new));
+
+    public static final RegistryObject<Block> controlpanel_deco = registerforblock("decorative_control_panel", () -> setUpBlock(new Block(Prop.Blocks.BASIC_TECH.get().notSolid())));
+
     public static final RegistryObject<Block> weaponholder = registerforblock("katana_stand", () -> setUpBlock(new WeaponHolder(AbstractBlock.Properties.create(Material.WOOD).harvestTool(ToolType.AXE))));
 
     public static final RegistryObject<Block> broken_old_ladder = registerforblock("broken_old_ladders", () -> setUpBlock(new HoloLadderBlock(Prop.Blocks.BASIC_TECH.get().notSolid())));
@@ -86,7 +102,7 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> advanced_quantiscope_iron = register("advanced_quantiscope", () -> setUpBlock(new AdvQuantiscopeBlock()), ModItemGroups.TA);
 
-    public static final RegistryObject<Block> filled_electromagnetic_solenoid_container = register("filled_electromagnetic_solenoid_container", () -> setUpBlock(new SolenoidConBlock(Prop.Blocks.BASIC_TECH.get())), ModItemGroups.TA);
+    public static final RegistryObject<Block> filled_electromagnetic_solenoid_container = registerforblockanimitem("filled_electromagnetic_solenoid_container", () -> setUpBlock(new SolenoidConBlock(Prop.Blocks.BASIC_TECH.get())), new Item.Properties().group(ModItemGroups.TA).setISTER(() -> SolenoidFilledItemRenderer::new));
 
     public static final RegistryObject<Block> electromagnetic_solenoid_container = register("electromagnetic_solenoid_container", () -> setUpBlock(new SolenoidConBlock(Prop.Blocks.BASIC_TECH.get())), ModItemGroups.TA);
 
@@ -669,6 +685,12 @@ public class ModBlocks {
     private static <T extends Block> RegistryObject<T> registerforblock(String id, Supplier<T> blockSupplier){
         RegistryObject<T> registryObject = BLOCKS.register(id, blockSupplier);
         ModItems.ITEMS.register(id, () -> new BlockItem(registryObject.get(), new Item.Properties().group(ModItemGroups.TA)));
+        return registryObject;
+    }
+
+    private static <T extends Block> RegistryObject<T> registerforblockanimitem(String id, Supplier<T> blockSupplier, Item.Properties props){
+        RegistryObject<T> registryObject = BLOCKS.register(id, blockSupplier);
+        ModItems.ITEMS.register(id, () -> new AnimatedBlockItem(registryObject.get(), props));
         return registryObject;
     }
 

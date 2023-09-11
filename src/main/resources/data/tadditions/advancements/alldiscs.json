@@ -4,13 +4,13 @@
       "item": "tadditions:dusty_music_disc_hold_strong"
     },
     "title": {"translate": "advancements.tadditions.title.alldiscs"},
-    "description": {"translate": "advancements.tadditions.descs.alldiscs"},
-    "parent": "tadditions:onedisc",
+    "description": {"translate": "advancements.tadditions.desc.alldiscs"},
     "frame": "goal",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": true
   },
+  "parent": "tadditions:onedisc",
   "criteria": {
     "1": {
       "trigger": "minecraft:inventory_changed",

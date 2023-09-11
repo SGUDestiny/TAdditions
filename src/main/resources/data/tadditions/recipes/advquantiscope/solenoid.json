@@ -1,0 +1,20 @@
+{
+	"type": "tadditions:advquantiscope",
+	"ingredients":[
+		{"item":"tardis:artron_battery_high"},
+		{"item":"minecraft:iron_block"},
+		{"item":"tardis:xion_crystal"},
+		{"item":"tardis:circuits"},
+		{"item":"minecraft:comparator"},
+		{"item":"minecraft:redstone_block"},
+		{"item":"minecraft:netherite_ingot"},
+		{"item":"minecraft:diamond"},
+		{"item":"minecraft:glass"},
+		{"item":"minecraft:gold_ingot"},
+		{"item":"minecraft:hopper"},
+		{"item":"minecraft:netherite_ingot"}
+	],
+	"result":{
+		"item":"tadditions:electromagnetic_solenoid_container"
+	}
+}

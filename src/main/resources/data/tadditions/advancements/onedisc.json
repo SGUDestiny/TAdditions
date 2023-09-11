@@ -4,7 +4,7 @@
       "item": "tadditions:dusty_music_disc_hold_strong"
     },
     "title": {"translate": "advancements.tadditions.title.onedisc"},
-    "description": {"translate": "advancements.tadditions.descs.onedisc"},
+    "description": {"translate": "advancements.tadditions.desc.onedisc"},
     "frame": "task",
     "show_toast": true,
     "announce_to_chat": true,

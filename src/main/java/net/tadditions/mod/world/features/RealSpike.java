@@ -26,7 +26,7 @@ public class RealSpike extends Feature<ProbabilityConfig> {
         int length = 3 + rand.nextInt(4); // Length of the ravine
 
         // Adjust the starting position to the appropriate height
-        pos = iSeedReader.getHeight(Heightmap.Type.WORLD_SURFACE_WG, pos).up(depth/2);
+        pos = iSeedReader.getHeight(Heightmap.Type.WORLD_SURFACE_WG, pos).up((int) (depth/2.1));
 
         if (!iSeedReader.isRemote()) {
             // Determine the start and end positions of the ravine

@@ -62,11 +62,11 @@ public class QuantumExoticMatterItem extends Item {
     @Override
     public boolean onEntityItemUpdate(final ItemStack stack, final ItemEntity entity){
         World worldIn = entity.getEntityWorld();
-        this.tickFuse(stack, worldIn, entity);
+        this.tickDecay(stack, worldIn, entity);
         return super.onEntityItemUpdate(stack, entity);
     }
 
-    public void tickFuse(ItemStack stack, World worldIn, Entity entityIn){
+    public void tickDecay(ItemStack stack, World worldIn, Entity entityIn){
         if (!worldIn.isRemote) {
             stack.getCapability(MCapabilities.QUANT_CAPABILITY).ifPresent(cap -> {
                 cap.tick(worldIn, entityIn);
@@ -80,7 +80,7 @@ public class QuantumExoticMatterItem extends Item {
     @Override
     public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
         if (!worldIn.isRemote) {
-            this.tickFuse(stack, worldIn, entityIn);
+            this.tickDecay(stack, worldIn, entityIn);
         }
     }
 
@@ -96,14 +96,7 @@ public class QuantumExoticMatterItem extends Item {
     }
 
     @Override
-    public void addInformation(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        stack.getCapability(MCapabilities.QUANT_CAPABILITY).ifPresent(cap -> {
-        tooltip.add(new TranslationTextComponent("tooltip.quan.timer").appendSibling(new StringTextComponent(FORMAT.format(cap.getTimer())).mergeStyle(TextFormatting.LIGHT_PURPLE)));
-        });
-    }
-
-    @Override
-    public void readShareTag(ItemStack stack, @Nullable CompoundNBT nbt) {
+        public void readShareTag(ItemStack stack, @Nullable CompoundNBT nbt) {
         super.readShareTag(stack, nbt);
         if (nbt != null) {
             if (nbt.contains("cap_sync")) {
@@ -111,15 +104,8 @@ public class QuantumExoticMatterItem extends Item {
             }
         }
     }
-    public double getDurabilityForDisplay(final ItemStack stack) {
-        return Math.abs(1.0 - this.getFuse(stack) / (double)100);
-    }
 
-    public boolean showDurabilityBar(final ItemStack stack) {
-        return this.getFuse(stack) > 0 && this.getFuse(stack) < 100;
-    }
-
-    public int getFuse(final ItemStack stack) {
+    public int getTime(final ItemStack stack) {
       return stack.getOrCreateTag().getInt("time");
     }
 }

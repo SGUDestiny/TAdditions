@@ -1,0 +1,14 @@
+{
+  "type": "tardis:quantiscope",
+  "repair":false,
+  "ingredients":[
+    {"item":"minecraft:ender_eye"},
+    {"item":"tardis:upgrades/atrium"},
+    {"item":"tadditions:filled_electromagnetic_solenoid_container"},
+    {"item":"tardis:upgrades/time_link"},
+    {"item":"tardis:circuits"}
+  ],
+  "result":{
+    "item":"tadditions:upgrades/frame_stabilizer"
+  }
+}
