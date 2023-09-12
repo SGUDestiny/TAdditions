@@ -1,5 +1,5 @@
 {
-  "parent": "tadditions:advq",
+  "parent": "tadditions:tadditions",
   "display": {
     "icon": {
       "item": "tadditions:ash"
@@ -10,7 +10,7 @@
     "description": {
       "translate": "advancements.tadditions.desc.verge"
     },
-    "frame": "task",
+    "frame": "goal",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": true

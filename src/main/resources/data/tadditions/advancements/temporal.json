@@ -9,12 +9,12 @@
     "icon": {
       "item": "tadditions:artron_capacitor_temporal"
     },
-    "frame": "goal",
+    "frame": "challenge",
     "show_toast": true,
     "announce_to_chat": true,
     "background": "tardis:textures/block/roundel/white_concrete_full.png"
   },
-  "parent": "tadditions:cap",
+  "parent": "tadditions:advq",
   "criteria": {
     "tadditions:artron_capacitor_temporal": {
       "trigger": "minecraft:inventory_changed",

@@ -14,7 +14,7 @@
     "announce_to_chat": true,
     "background": "tardis:textures/block/roundel/white_concrete_full.png"
   },
-  "parent": "tadditions:cap",
+  "parent": "tadditions:advq",
   "criteria": {
     "tadditions:artron_capacitor_speed": {
       "trigger": "minecraft:inventory_changed",

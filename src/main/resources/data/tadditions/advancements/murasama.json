@@ -15,7 +15,7 @@
     "hidden": true,
     "background": "tardis:textures/block/roundel/white_concrete_full.png"
   },
-  "parent": "tadditions:advq",
+  "parent": "tadditions:the_verge_of_reality",
   "criteria": {
     "tadditions:murasama": {
       "trigger": "minecraft:inventory_changed",

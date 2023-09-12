@@ -5,12 +5,12 @@
     },
     "title": {"translate": "advancements.tadditions.title.oneovercharged"},
     "description": {"translate": "advancements.tadditions.descs.oneovercharged"},
-    "frame": "task",
+    "frame": "goal",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false
   },
-  "parent": "tadditions:tadditions",
+  "parent": "tadditions:advq",
   "criteria": {
     "1": {
       "trigger": "minecraft:inventory_changed",

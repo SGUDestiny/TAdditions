@@ -10,7 +10,7 @@
     "announce_to_chat": true,
     "hidden": true
   },
-  "parent": "tadditions:tadditions",
+  "parent": "tadditions:the_verge_of_reality",
   "criteria": {
     "1": {
       "trigger": "minecraft:inventory_changed",
