@@ -32,18 +32,24 @@ public class MStructures {
 
         public static final RegistryObject<Structure<ProbabilityConfig>> SCORCHEED = setupStructure("scorched", () -> (new SchorchedStructure(ProbabilityConfig.CODEC)));
         public static IStructurePieceType SCORCHEED_PIECE = registerStructurePiece(ScorchedStructurePieces.Piece::new, "scorched");
+        public static final RegistryObject<Structure<ProbabilityConfig>> SCORCHEEDCOMMON = setupStructure("scorched_common", () -> (new SchorchedStructure(ProbabilityConfig.CODEC)));
+        public static IStructurePieceType SCORCHEEDCOMMON_PIECE = registerStructurePiece(ScorchedStructurePieces.Piece::new, "scorched_common");
 
     }
     public static void setupStructures() {
         TStructures.setupStructure(Structures.SCORCHEED.get(), new StructureSeparationSettings(5, 3, 1234567890), true);
+        TStructures.setupStructure(Structures.SCORCHEEDCOMMON.get(), new StructureSeparationSettings(1, 0, 1234567891), true);
     }
 
     public static class ConfiguredStructures {
 
         public static StructureFeature<?, ?> CONFIGURED_SCORCHEED = Structures.SCORCHEED.get().withConfiguration(new ProbabilityConfig(1F));
+        public static StructureFeature<?, ?> CONFIGURED_SCORCHEEDCOMMON = Structures.SCORCHEEDCOMMON.get().withConfiguration(new ProbabilityConfig(1F));
 
         public static void registerConfiguredStructures() {
             registerConfiguredStructure("scorched", Structures.SCORCHEED, CONFIGURED_SCORCHEED);
+            registerConfiguredStructure("scorched_common", Structures.SCORCHEEDCOMMON, CONFIGURED_SCORCHEEDCOMMON);
+
         }
 
         private static <T extends Structure<?>> void registerConfiguredStructure(String registryName, Supplier<T> structure, StructureFeature<?, ?> configuredStructure) {

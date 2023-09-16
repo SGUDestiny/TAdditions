@@ -30,9 +30,7 @@
     [],
     [],
     [],
-    [
-      "tadditions:realvoid"
-    ],
+    [],
     [],
     [],
     [],
@@ -40,7 +38,7 @@
     []
   ],
   "starts": [
-    "tadditions:scorched"
+    "tadditions:scorched_common"
   ],
   "spawners": {
     "monster": [],

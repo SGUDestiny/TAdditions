@@ -17,7 +17,7 @@ public class MBiomes {
 
     public static RegistryKey<Biome> MOON_BIOME_KEY;
     public static RegistryKey<Biome> REMAINS_BIOME_KEY;
-    public static RegistryKey<Biome> PLANES_BIOME_KEY;
+    public static RegistryKey<Biome> WOODS_BIOME_KEY;
     public static RegistryKey<Biome> SPIKES_BIOME_KEY;
 
 
@@ -43,7 +43,7 @@ public class MBiomes {
     public static void registerBiomeKeys() {
     	MOON_BIOME_KEY = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, new ResourceLocation(QolMod.MOD_ID, "mars_field"));
         REMAINS_BIOME_KEY = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, new ResourceLocation(QolMod.MOD_ID, "remains_of_the_universe"));
-        PLANES_BIOME_KEY = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, new ResourceLocation(QolMod.MOD_ID, "tattered_planes"));
+        WOODS_BIOME_KEY = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, new ResourceLocation(QolMod.MOD_ID, "dead_woods"));
         SPIKES_BIOME_KEY = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, new ResourceLocation(QolMod.MOD_ID, "eternal_spikes"));
 
     }

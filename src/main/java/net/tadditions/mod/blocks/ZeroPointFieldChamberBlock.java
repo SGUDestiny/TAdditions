@@ -35,6 +35,14 @@ public class ZeroPointFieldChamberBlock extends TileBlock {
         return makeShape();
     }
 
+    public VoxelShape getRenderShape(BlockState state, IBlockReader worldIn, BlockPos pos) {
+        return makeShape();
+    }
+
+    public VoxelShape getCollisionShape(BlockState state, IBlockReader reader, BlockPos pos) {
+        return makeShape();
+    }
+
     @Override
     public BlockRenderType getRenderType(BlockState p_149645_1_) {
         return BlockRenderType.ENTITYBLOCK_ANIMATED;
@@ -63,4 +71,6 @@ public class ZeroPointFieldChamberBlock extends TileBlock {
             }
         }
     }
+
+
 }
