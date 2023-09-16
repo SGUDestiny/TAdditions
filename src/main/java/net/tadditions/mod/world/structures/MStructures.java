@@ -32,23 +32,39 @@ public class MStructures {
 
         public static final RegistryObject<Structure<ProbabilityConfig>> SCORCHEED = setupStructure("scorched", () -> (new SchorchedStructure(ProbabilityConfig.CODEC)));
         public static IStructurePieceType SCORCHEED_PIECE = registerStructurePiece(ScorchedStructurePieces.Piece::new, "scorched");
-        public static final RegistryObject<Structure<ProbabilityConfig>> SCORCHEEDCOMMON = setupStructure("scorched_common", () -> (new SchorchedStructure(ProbabilityConfig.CODEC)));
-        public static IStructurePieceType SCORCHEEDCOMMON_PIECE = registerStructurePiece(ScorchedStructurePieces.Piece::new, "scorched_common");
+        public static final RegistryObject<Structure<ProbabilityConfig>> SCORCHEEDCOMMON = setupStructure("scorched_common", () -> (new CommonSchorchedStructure(ProbabilityConfig.CODEC)));
+        public static IStructurePieceType SCHORCHEEDCOMMON_PIECE = registerStructurePiece(CommonScorchedStructurePieces.Piece::new, "scorched_common");
+        public static final RegistryObject<Structure<ProbabilityConfig>> MOON_TEMPLE = setupStructure("moon_temple", () -> (new MoonTempleStructure(ProbabilityConfig.CODEC)));
+        public static IStructurePieceType MOON_TEMPLE_PIECE = registerStructurePiece(MoonTemplePieces.Piece::new, "moon_temple");
+        public static final RegistryObject<Structure<ProbabilityConfig>> MARS_TEMPLE = setupStructure("mars_temple", () -> (new MarsTempleStructure(ProbabilityConfig.CODEC)));
+        public static IStructurePieceType MARS_TEMPLE_PIECE = registerStructurePiece(MarsTemplePieces.Piece::new, "mars_temple");
+        public static final RegistryObject<Structure<ProbabilityConfig>> VERGERUINS = setupStructure("verge_ruins", () -> (new VergeRuinsStructure(ProbabilityConfig.CODEC)));
+        public static IStructurePieceType VERGERUINS_PIECE = registerStructurePiece(VergeRuinsPieces.Piece::new, "verge_ruins");
 
     }
     public static void setupStructures() {
         TStructures.setupStructure(Structures.SCORCHEED.get(), new StructureSeparationSettings(5, 3, 1234567890), true);
         TStructures.setupStructure(Structures.SCORCHEEDCOMMON.get(), new StructureSeparationSettings(1, 0, 1234567891), true);
-    }
+        TStructures.setupStructure(Structures.MOON_TEMPLE.get(), new StructureSeparationSettings(20, 15, 1234567892), true);
+        TStructures.setupStructure(Structures.MARS_TEMPLE.get(), new StructureSeparationSettings(20, 15, 1234567893), true);
+        TStructures.setupStructure(Structures.VERGERUINS.get(), new StructureSeparationSettings(20, 15, 1234567894), true);
+   }
 
     public static class ConfiguredStructures {
 
         public static StructureFeature<?, ?> CONFIGURED_SCORCHEED = Structures.SCORCHEED.get().withConfiguration(new ProbabilityConfig(1F));
         public static StructureFeature<?, ?> CONFIGURED_SCORCHEEDCOMMON = Structures.SCORCHEEDCOMMON.get().withConfiguration(new ProbabilityConfig(1F));
+        public static StructureFeature<?, ?> CONFIGURED_MARSTEMPLE = Structures.MARS_TEMPLE.get().withConfiguration(new ProbabilityConfig(1F));
+        public static StructureFeature<?, ?> CONFIGURED_MOONTEMPLE = Structures.MOON_TEMPLE.get().withConfiguration(new ProbabilityConfig(1F));
+        public static StructureFeature<?, ?> CONFIGURED_VERGERUIN = Structures.VERGERUINS.get().withConfiguration(new ProbabilityConfig(1F));
+
 
         public static void registerConfiguredStructures() {
             registerConfiguredStructure("scorched", Structures.SCORCHEED, CONFIGURED_SCORCHEED);
             registerConfiguredStructure("scorched_common", Structures.SCORCHEEDCOMMON, CONFIGURED_SCORCHEEDCOMMON);
+            registerConfiguredStructure("mars_temple", Structures.MOON_TEMPLE, CONFIGURED_MARSTEMPLE);
+            registerConfiguredStructure("moon_temple", Structures.MARS_TEMPLE, CONFIGURED_MOONTEMPLE);
+            registerConfiguredStructure("verge_ruins", Structures.VERGERUINS, CONFIGURED_VERGERUIN);
 
         }
 

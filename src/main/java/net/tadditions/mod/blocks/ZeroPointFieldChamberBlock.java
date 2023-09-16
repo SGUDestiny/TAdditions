@@ -31,14 +31,17 @@ public class ZeroPointFieldChamberBlock extends TileBlock {
         return shape;
     }
 
+    @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         return makeShape();
     }
 
+    @Override
     public VoxelShape getRenderShape(BlockState state, IBlockReader worldIn, BlockPos pos) {
         return makeShape();
     }
 
+    @Override
     public VoxelShape getCollisionShape(BlockState state, IBlockReader reader, BlockPos pos) {
         return makeShape();
     }

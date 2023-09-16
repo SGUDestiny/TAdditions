@@ -38,7 +38,8 @@
     []
   ],
   "starts": [
-    "tadditions:scorched_common"
+    "tadditions:scorched_common",
+    "tadditions:verge_ruins"
   ],
   "spawners": {
     "monster": [],

@@ -51,7 +51,7 @@
     []
   ],
   "starts": [
-    "tardis:moon_lander"
+    "tadditions:mars_temple"
   ],
   "spawners": {
     "monster": [

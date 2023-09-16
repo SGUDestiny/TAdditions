@@ -774,24 +774,28 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
     }
 
     public void scheduleTaskWithDelay(Runnable task, long delayTicks) {
-        // Convert delayTicks to seconds
         ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
 
         long delaySeconds = TimeUnit.MILLISECONDS.toSeconds(delayTicks * 50L);
 
-        // Schedule the task with the executor
         executor.schedule(task, delaySeconds, TimeUnit.SECONDS);
     }
 
     public void handleDelay() {
-        Runnable myTask = () -> {
+        world.getServer().enqueue(new TickDelayedTask(400, () -> {
             ((ConsoleTile) (Object) this).getInteriorManager().setAlarmOn(false);
             ((ConsoleTile) (Object) this).getInteriorManager().setLight(0);
             world.playSound(null, this.getPos(), TSounds.POWER_DOWN.get(), SoundCategory.BLOCKS, 20F, 1F);
             ((ConsoleTile) (Object) this).updateClient();
-        };
-        long delayTicks = 20 * 20; // 20 seconds delay, assuming 20 ticks per second
-        scheduleTaskWithDelay(myTask, delayTicks);
+        }));
+        //Runnable myTask = () -> {
+        //    ((ConsoleTile) (Object) this).getInteriorManager().setAlarmOn(false);
+        //    ((ConsoleTile) (Object) this).getInteriorManager().setLight(0);
+        //    world.playSound(null, this.getPos(), TSounds.POWER_DOWN.get(), SoundCategory.BLOCKS, 20F, 1F);
+        //    ((ConsoleTile) (Object) this).updateClient();
+        //};
+        //long delayTicks = 400; // 20 seconds delay, assuming 20 ticks per second
+        //scheduleTaskWithDelay(myTask, delayTicks);
     }
 
     @Shadow

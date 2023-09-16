@@ -34,7 +34,8 @@
     }
   },
   "starts": [
-    "tadditions:scorched"
+    "tadditions:scorched",
+    "tadditions:verge_ruins"
   ],
   "spawners": {},
   "spawn_costs": {},
