@@ -14,9 +14,9 @@ import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.structure.StructureStart;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 
-public class VergeRuinsStructure extends Structure<ProbabilityConfig>{
+public class VergeScrapsStructure extends Structure<ProbabilityConfig>{
 
-    public VergeRuinsStructure(Codec<ProbabilityConfig> codec) {
+    public VergeScrapsStructure(Codec<ProbabilityConfig> codec) {
         super(codec);
     }
     
@@ -74,7 +74,7 @@ public class VergeRuinsStructure extends Structure<ProbabilityConfig>{
             int surfaceY = chunkGenerator.getHeight(x, z, Heightmap.Type.WORLD_SURFACE_WG);
             if (rand.nextFloat() <= config.probability) {
             	BlockPos blockpos = new BlockPos(x, surfaceY, z);
-                VergeRuinsPieces.start(templateManagerIn, blockpos, rotation, this.components, this.rand);
+                VergeScrapsPieces.start(templateManagerIn, blockpos, rotation, this.components, this.rand);
                 this.recalculateStructureSize();
             }
 		}

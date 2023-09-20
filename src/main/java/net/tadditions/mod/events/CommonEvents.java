@@ -2,6 +2,7 @@ package net.tadditions.mod.events;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.mojang.serialization.Codec;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.INBT;
@@ -14,7 +15,12 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biomes;
+import net.minecraft.world.gen.ChunkGenerator;
+import net.minecraft.world.gen.FlatChunkGenerator;
 import net.minecraft.world.gen.GenerationStage;
+import net.minecraft.world.gen.feature.structure.Structure;
+import net.minecraft.world.gen.settings.DimensionStructuresSettings;
+import net.minecraft.world.gen.settings.StructureSeparationSettings;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
@@ -22,11 +28,15 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
+import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.tadditions.mod.QolMod;
+import net.tadditions.mod.blocks.ModBlocks;
 import net.tadditions.mod.cap.*;
 import net.tadditions.mod.items.ModItems;
 import net.tadditions.mod.world.MDimensions;
@@ -37,7 +47,9 @@ import net.tardis.mod.cap.*;
 import net.tardis.mod.config.TConfig;
 import net.tardis.mod.constants.TardisConstants;
 import net.tardis.mod.events.MissingMappingsLookup;
+import net.tardis.mod.misc.IDontBreak;
 import net.tardis.mod.world.biomes.TBiomes;
+import net.tardis.mod.world.dimensions.TDimensions;
 import net.tardis.mod.world.feature.TFeatures;
 import net.tardis.mod.world.structures.TStructures;
 
@@ -103,6 +115,46 @@ public class CommonEvents {
             else {
                 if (biomeRegistryKey == TBiomes.MOON_BIOME_KEY) {
                     event.getGeneration().getStructures().add(() -> MStructures.ConfiguredStructures.CONFIGURED_MOONTEMPLE);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onBlockBreak(BlockEvent.BreakEvent event) {
+        if (event.getState().getBlock() instanceof IDontBreak) {
+            event.setCanceled(true);
+        }
+
+        if (event.getWorld() instanceof World) {
+            World world = (World) event.getWorld();
+            if (!world.isRemote()) {
+                if(world.getBlockState(event.getPos()) == ModBlocks.zero_point_field_normal.get().getDefaultState()) {
+                    world.setBlockState(event.getPos(), ModBlocks.zero_point_field_broken.get().getDefaultState());
+                    event.setCanceled(true);
+                }
+            }
+        }
+    }
+
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void addDimensionalSpacing(final WorldEvent.Load event) {
+        if (event.getWorld() instanceof ServerWorld) {
+            ServerWorld serverWorld = (ServerWorld) event.getWorld();
+
+            /* Prevent spawning our structure in Vanilla's superflat world as
+             * people seem to want their superflat worlds free of modded structures.
+             * Also, vanilla superflat is really tricky and buggy to work with as mentioned in TStructures#registerConfiguredStructure
+             * BiomeModificationEvent does not seem to fire for superflat biomes...you can't add structures to superflat without mixin it seems.
+             * */
+            if (serverWorld.getChunkProvider().getChunkGenerator() instanceof FlatChunkGenerator &&
+                    serverWorld.getDimensionKey().equals(World.OVERWORLD)) {
+                return;
+            }
+
+            if (serverWorld.getDimensionKey().equals(TDimensions.MOON_DIM)) {
+                Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(serverWorld.getChunkProvider().generator.func_235957_b_().func_236195_a_());
+                tempMap.put(MStructures.Structures.MOON_TEMPLE.get(), DimensionStructuresSettings.field_236191_b_.get(MStructures.Structures.MOON_TEMPLE.get()));
+                serverWorld.getChunkProvider().generator.func_235957_b_().field_236193_d_ = tempMap;
             }
         }
     }

@@ -9,7 +9,32 @@
       "tadditions:scorched": {
         "spacing": 10,
         "separation": 6,
-        "salt": 0
+        "salt": 42
+      },
+      "tadditions:scorched_common": {
+        "spacing": 1,
+        "separation": 0,
+        "salt": 32
+      },
+      "tadditions:verge_ruins": {
+        "spacing": 20,
+        "separation": 15,
+        "salt": 17
+      },
+      "tadditions:verge_torii": {
+        "spacing": 20,
+        "separation": 15,
+        "salt": 1
+      },
+      "tadditions:verge_scraps": {
+        "spacing": 20,
+        "separation": 15,
+        "salt": 14
+      },
+      "tadditions:remnants": {
+        "spacing": 20,
+        "separation": 19,
+        "salt": 12
       }
     }
   },

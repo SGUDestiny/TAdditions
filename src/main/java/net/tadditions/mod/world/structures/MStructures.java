@@ -40,7 +40,12 @@ public class MStructures {
         public static IStructurePieceType MARS_TEMPLE_PIECE = registerStructurePiece(MarsTemplePieces.Piece::new, "mars_temple");
         public static final RegistryObject<Structure<ProbabilityConfig>> VERGERUINS = setupStructure("verge_ruins", () -> (new VergeRuinsStructure(ProbabilityConfig.CODEC)));
         public static IStructurePieceType VERGERUINS_PIECE = registerStructurePiece(VergeRuinsPieces.Piece::new, "verge_ruins");
-
+        public static final RegistryObject<Structure<ProbabilityConfig>> VERGESCRAPS = setupStructure("verge_scraps", () -> (new VergeScrapsStructure(ProbabilityConfig.CODEC)));
+        public static IStructurePieceType VERGESCRAPS_PIECE = registerStructurePiece(VergeScrapsPieces.Piece::new, "verge_scraps");
+        public static final RegistryObject<Structure<ProbabilityConfig>> VERGETORII = setupStructure("verge_torii", () -> (new VergeToriiStructure(ProbabilityConfig.CODEC)));
+        public static IStructurePieceType VERGETORII_PIECE = registerStructurePiece(VergeToriiPieces.Piece::new, "verge_torii");
+        public static final RegistryObject<Structure<ProbabilityConfig>> REMNANTS = setupStructure("remnants", () -> (new RemnantStructure(ProbabilityConfig.CODEC)));
+        public static IStructurePieceType REMNANTS_PIECE = registerStructurePiece(RemnantPieces.Piece::new, "remnants");
     }
     public static void setupStructures() {
         TStructures.setupStructure(Structures.SCORCHEED.get(), new StructureSeparationSettings(5, 3, 1234567890), true);
@@ -48,7 +53,10 @@ public class MStructures {
         TStructures.setupStructure(Structures.MOON_TEMPLE.get(), new StructureSeparationSettings(20, 15, 1234567892), true);
         TStructures.setupStructure(Structures.MARS_TEMPLE.get(), new StructureSeparationSettings(20, 15, 1234567893), true);
         TStructures.setupStructure(Structures.VERGERUINS.get(), new StructureSeparationSettings(20, 15, 1234567894), true);
-   }
+        TStructures.setupStructure(Structures.VERGESCRAPS.get(), new StructureSeparationSettings(20, 15, 1234567895), true);
+        TStructures.setupStructure(Structures.VERGETORII.get(), new StructureSeparationSettings(20, 15, 1234567896), true);
+        TStructures.setupStructure(Structures.REMNANTS.get(), new StructureSeparationSettings(20, 19, 1234567897), true);
+    }
 
     public static class ConfiguredStructures {
 
@@ -57,6 +65,10 @@ public class MStructures {
         public static StructureFeature<?, ?> CONFIGURED_MARSTEMPLE = Structures.MARS_TEMPLE.get().withConfiguration(new ProbabilityConfig(1F));
         public static StructureFeature<?, ?> CONFIGURED_MOONTEMPLE = Structures.MOON_TEMPLE.get().withConfiguration(new ProbabilityConfig(1F));
         public static StructureFeature<?, ?> CONFIGURED_VERGERUIN = Structures.VERGERUINS.get().withConfiguration(new ProbabilityConfig(1F));
+        public static StructureFeature<?, ?> CONFIGURED_VERGETORII = Structures.VERGETORII.get().withConfiguration(new ProbabilityConfig(1F));
+        public static StructureFeature<?, ?> CONFIGURED_VERGESCRAPS = Structures.VERGESCRAPS.get().withConfiguration(new ProbabilityConfig(1F));
+        public static StructureFeature<?, ?> CONFIGURED_REMNANTS = Structures.REMNANTS.get().withConfiguration(new ProbabilityConfig(1F));
+
 
 
         public static void registerConfiguredStructures() {
@@ -65,6 +77,10 @@ public class MStructures {
             registerConfiguredStructure("mars_temple", Structures.MOON_TEMPLE, CONFIGURED_MARSTEMPLE);
             registerConfiguredStructure("moon_temple", Structures.MARS_TEMPLE, CONFIGURED_MOONTEMPLE);
             registerConfiguredStructure("verge_ruins", Structures.VERGERUINS, CONFIGURED_VERGERUIN);
+            registerConfiguredStructure("verge_scraps", Structures.VERGESCRAPS, CONFIGURED_VERGESCRAPS);
+            registerConfiguredStructure("verge_torii", Structures.VERGETORII, CONFIGURED_VERGETORII);
+            registerConfiguredStructure("remnants", Structures.REMNANTS, CONFIGURED_REMNANTS);
+
 
         }
 

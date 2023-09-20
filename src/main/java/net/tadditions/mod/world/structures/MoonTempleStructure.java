@@ -74,7 +74,7 @@ public class MoonTempleStructure extends Structure<ProbabilityConfig>{
             int surfaceY = chunkGenerator.getHeight(x, z, Heightmap.Type.WORLD_SURFACE_WG);
             if (rand.nextFloat() <= config.probability) {
             	BlockPos blockpos = new BlockPos(x, surfaceY, z);
-                ScorchedStructurePieces.start(templateManagerIn, blockpos, rotation, this.components, this.rand);
+                MoonTemplePieces.start(templateManagerIn, blockpos, rotation, this.components, this.rand);
                 this.recalculateStructureSize();
             }
 		}

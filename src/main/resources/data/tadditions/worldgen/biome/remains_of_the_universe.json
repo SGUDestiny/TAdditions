@@ -39,7 +39,10 @@
   ],
   "starts": [
     "tadditions:scorched",
-    "tadditions:verge_ruins"
+    "tadditions:verge_ruins",
+    "tadditions:verge_scraps",
+    "tadditions:verge_torii",
+    "tadditions:remnants"
   ],
   "spawners": {
     "monster": [

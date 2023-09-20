@@ -10,6 +10,11 @@
         "spacing": 15,
         "separation": 10,
         "salt": 0
+      },
+      "tadditions:mars_temple": {
+        "spacing": 20,
+        "separation": 15,
+        "salt": 0
       }
     }
   },
