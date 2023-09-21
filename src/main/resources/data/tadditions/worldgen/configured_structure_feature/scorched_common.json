@@ -1,6 +1,6 @@
 {
   "type": "tadditions:scorched_common",
   "config": {
-    "probability": 1.0
+    "probability": 0.3
   }
 }

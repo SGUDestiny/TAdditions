@@ -1,6 +1,6 @@
 {
   "type": "tadditions:verge_scraps",
   "config": {
-    "probability": 0.9
+    "probability": 0.3
   }
 }
