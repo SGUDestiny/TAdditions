@@ -7,34 +7,34 @@
     "stronghold":{"distance":32,"spread":3,"count":128},
     "structures": {
       "tadditions:scorched": {
-        "spacing": 10,
-        "separation": 6,
-        "salt": 42
+        "spacing": 16,
+        "separation": 8,
+        "salt": 42532
       },
       "tadditions:scorched_common": {
-        "spacing": 1,
-        "separation": 0,
-        "salt": 32
+        "spacing": 3,
+        "separation": 2,
+        "salt": 32532
       },
       "tadditions:verge_ruins": {
-        "spacing": 20,
-        "separation": 15,
-        "salt": 17
+        "spacing": 36,
+        "separation": 18,
+        "salt": 17515
       },
       "tadditions:verge_torii": {
-        "spacing": 20,
-        "separation": 15,
-        "salt": 1
+        "spacing": 90,
+        "separation": 50,
+        "salt": 16236
       },
       "tadditions:verge_scraps": {
         "spacing": 20,
-        "separation": 15,
-        "salt": 14
+        "separation": 14,
+        "salt": 14125
       },
       "tadditions:remnants": {
-        "spacing": 20,
-        "separation": 19,
-        "salt": 12
+        "spacing": 64,
+        "separation": 20,
+        "salt": 12275
       }
     }
   },
