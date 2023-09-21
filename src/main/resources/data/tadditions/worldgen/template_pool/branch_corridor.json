@@ -104,13 +104,13 @@
           {
             "element_type": "minecraft:single_pool_element",
             "projection": "rigid",
-            "location": "tadditions:remnants/remnants_branch_quantum_containment_facility_1_cell",
+            "location": "tadditions:remnants_branch_quantum_containment_facility_1_cell",
             "processors": "minecraft:empty"
           },
           {
             "element_type": "minecraft:single_pool_element",
             "projection": "rigid",
-            "location": "tadditions:remnants/remnants_branch_quantum_containment_facility_2_cell",
+            "location": "tadditions:remnants_branch_quantum_containment_facility_2_cell",
             "processors": "minecraft:empty"
           }
         ]
@@ -121,7 +121,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "projection": "rigid",
-        "location": "tadditions:remnants/remnants_branch_loot_room",
+        "location": "tadditions:remnants_branch_loot_room",
         "processors": "minecraft:empty"
       }
     }

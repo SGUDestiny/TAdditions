@@ -7,7 +7,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "projection": "rigid",
-        "location": "tadditions:remnants/remnants_main_corridor_empty",
+        "location": "tadditions:remnants_main_corridor_empty",
         "processors": "minecraft:empty"
       }
     },
@@ -20,55 +20,55 @@
           {
             "element_type": "minecraft:single_pool_element",
             "projection": "rigid",
-            "location": "tadditions:remnants/remnants_main_corridor_wither",
+            "location": "tadditions:remnants_main_corridor_wither",
             "processors": "minecraft:empty"
           },
           {
             "element_type": "minecraft:single_pool_element",
             "projection": "rigid",
-            "location": "tadditions:remnants/remnants_main_corridor_husk",
+            "location": "tadditions:remnants_main_corridor_husk",
             "processors": "minecraft:empty"
           },
           {
             "element_type": "minecraft:single_pool_element",
             "projection": "rigid",
-            "location": "tadditions:remnants/remnants_main_corridor_stray",
+            "location": "tadditions:remnants_main_corridor_stray",
             "processors": "minecraft:empty"
           },
           {
             "element_type": "minecraft:single_pool_element",
             "projection": "rigid",
-            "location": "tadditions:remnants/remnants_main_corridor_t_wither",
+            "location": "tadditions:remnants_main_corridor_t_wither",
             "processors": "minecraft:empty"
           },
           {
             "element_type": "minecraft:single_pool_element",
             "projection": "rigid",
-            "location": "tadditions:remnants/remnants_main_corridor_t_husk",
+            "location": "tadditions:remnants_main_corridor_t_husk",
             "processors": "minecraft:empty"
           },
           {
             "element_type": "minecraft:single_pool_element",
             "projection": "rigid",
-            "location": "tadditions:remnants/remnants_main_corridor_t_stray",
+            "location": "tadditions:remnants_main_corridor_t_stray",
             "processors": "minecraft:empty"
           },
           {
             "element_type": "minecraft:single_pool_element",
             "projection": "rigid",
-            "location": "tadditions:remnants/remnants_main_corridor_mirrored_t_wither",
+            "location": "tadditions:remnants_main_corridor_mirrored_t_wither",
             "processors": "minecraft:empty"
           },
           {
             "element_type": "minecraft:single_pool_element",
             "projection": "rigid",
-            "location": "tadditions:remnants/remnants_main_corridor_mirrored_t_husk",
+            "location": "tadditions:remnants_main_corridor_mirrored_t_husk",
             "processors": "minecraft:empty"
           },
           {
             "element_type": "minecraft:single_pool_element",
             "projection": "rigid",
-            "location": "tadditions:remnants/remnants_main_corridor_mirrored_t_stray",
+            "location": "tadditions:remnants_main_corridor_mirrored_t_stray",
             "processors": "minecraft:empty"
           }
         ]
@@ -83,13 +83,13 @@
           {
             "element_type": "minecraft:single_pool_element",
             "projection": "rigid",
-            "location": "tadditions:remnants/remnants_main_corridor_t_empty",
+            "location": "tadditions:remnants_main_corridor_t_empty",
             "processors": "minecraft:empty"
           },
           {
             "element_type": "minecraft:single_pool_element",
             "projection": "rigid",
-            "location": "tadditions:remnants/remnants_main_corridor_mirrored_t_empty",
+            "location": "tadditions:remnants_main_corridor_mirrored_t_empty",
             "processors": "minecraft:empty"
           }
         ]
@@ -100,7 +100,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "projection": "rigid",
-        "location": "tadditions:remnants/remnants_main_corridor_end",
+        "location": "tadditions:remnants_main_corridor_end",
         "processors": "minecraft:empty"
       }
     }
