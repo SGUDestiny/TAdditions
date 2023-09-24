@@ -1,0 +1,15 @@
+{
+  "name": "tadditions:remnant_beginning",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "tadditions:the_remnants_shaft_start",
+        "processors": "minecraft:empty"
+      }
+    }
+  ]
+}

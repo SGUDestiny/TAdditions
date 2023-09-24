@@ -52,10 +52,10 @@ public class MStructures {
         TStructures.setupStructure(Structures.SCORCHEEDCOMMON.get(), new StructureSeparationSettings(1, 0, 1234567891), true);
         TStructures.setupStructure(Structures.MOON_TEMPLE.get(), new StructureSeparationSettings(20, 15, 1234567892), true);
         TStructures.setupStructure(Structures.MARS_TEMPLE.get(), new StructureSeparationSettings(20, 15, 1234567893), true);
-        TStructures.setupStructure(Structures.VERGERUINS.get(), new StructureSeparationSettings(20, 15, 1234567894), true);
+        TStructures.setupStructure(Structures.VERGERUINS.get(), new StructureSeparationSettings(20, 15, 1234567894), false);
         TStructures.setupStructure(Structures.VERGESCRAPS.get(), new StructureSeparationSettings(20, 15, 1234567895), true);
         TStructures.setupStructure(Structures.VERGETORII.get(), new StructureSeparationSettings(20, 15, 1234567896), true);
-        TStructures.setupStructure(Structures.REMNANTS.get(), new StructureSeparationSettings(20, 19, 1234567897), true);
+        TStructures.setupStructure(Structures.REMNANTS.get(), new StructureSeparationSettings(20, 19, 1234567897), false);
     }
 
     public static class ConfiguredStructures {

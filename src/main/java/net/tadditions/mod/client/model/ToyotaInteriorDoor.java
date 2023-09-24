@@ -42,7 +42,7 @@ public class ToyotaInteriorDoor extends AbstractInteriorDoorModel {
 	private final ModelRenderer Door_3_right_window_frame_3_r1;
 	private final ModelRenderer Door_3_right_window_frame_2_r1;
 	private final ModelRenderer Door_3_right_window_frame_1_r1;
-	private final LightModelRenderer door_3_right_window_glass_glow;
+	private final ModelRenderer door_3_right_window_glass_glow;
 	private final ModelRenderer Door_left;
 	private final ModelRenderer door_3_left_window;
 	private final ModelRenderer door_3_left_window_frame;
@@ -53,9 +53,9 @@ public class ToyotaInteriorDoor extends AbstractInteriorDoorModel {
 	private final ModelRenderer door_3_left_window_frame_3_r1;
 	private final ModelRenderer door_3_left_window_frame_2_r1;
 	private final ModelRenderer door_3_left_window_frame_1_r1;
-	private final LightModelRenderer door_3_left_window_glass_glow;
+	private final ModelRenderer door_3_left_window_glass_glow;
 	private final ModelRenderer Door_frame_accent;
-	private final LightModelRenderer Door_frame_accent_glow;
+	private final ModelRenderer Door_frame_accent_glow;
 	private final ModelRenderer SOTO;
 
 
@@ -333,9 +333,9 @@ public class ToyotaInteriorDoor extends AbstractInteriorDoorModel {
 		door3.render(matrixStack, buffer, packedLight, packedOverlay);
 		Door_frame.render(matrixStack, buffer, packedLight, packedOverlay);
 		Door_frame_accent.render(matrixStack, buffer, packedLight, packedOverlay);
-		Door_frame_accent_glow.setBright(1F);
-		door_3_right_window_glass_glow.setBright(1F);
-		door_3_left_window_glass_glow.setBright(1F);
+		//Door_frame_accent_glow.setBright(1F);
+		//door_3_right_window_glass_glow.setBright(1F);
+		//door_3_left_window_glass_glow.setBright(1F);
 		matrixStack.pop();
 	}
 
@@ -350,13 +350,13 @@ public class ToyotaInteriorDoor extends AbstractInteriorDoorModel {
 
 				info.setTranslate(matrix -> {
 					matrix.scale(1f, 1f, 1.3f);
-					matrix.translate(0, -1.4f, -0.4f);
+				//	matrix.translate(0, -1.4f, -0.4f);
 					DoorRenderer.applyTranslations(matrix, door.rotationYaw - 180, door.getHorizontalFacing());
 				});
 				info.setTranslatePortal(matrix -> {
                     matrix.rotate(Vector3f.YP.rotationDegrees(WorldHelper.getAngleFromFacing(data.getBotiWorld().getPortalDirection())));
                     matrix.rotate(Vector3f.ZN.rotationDegrees(180));
-					matrix.translate(-0.5f, -0.5f, 0.0);
+				//	matrix.translate(-0.5f, -0.5f, 0.0);
 				});
 
 				info.setRenderPortal((matrix, impl) -> {
