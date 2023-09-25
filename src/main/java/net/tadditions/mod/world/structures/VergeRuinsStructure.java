@@ -73,7 +73,7 @@ public class VergeRuinsStructure extends Structure<ProbabilityConfig>{
             int z = (chunkZ << 4) + 7;
             int surfaceY = chunkGenerator.getHeight(x, z, Heightmap.Type.WORLD_SURFACE_WG);
             if (rand.nextFloat() <= config.probability) {
-            	BlockPos blockpos = new BlockPos(x, surfaceY-4, z);
+            	BlockPos blockpos = new BlockPos(x, surfaceY, z);
                 VergeRuinsPieces.start(templateManagerIn, blockpos, rotation, this.components, this.rand);
                 this.recalculateStructureSize();
             }

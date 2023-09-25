@@ -85,7 +85,7 @@ public class RemnantStructure extends Structure<ProbabilityConfig>{
             	BlockPos blockpos = new BlockPos(x, surfaceY-9, z);
                 JigsawManager.func_242837_a(
                         dynamicRegistryManager,
-                        new VillageConfig(() -> JigsawPatternRegistry.func_244094_a(new JigsawPattern(new ResourceLocation(QolMod.MOD_ID,"remnant_beginning"), new ResourceLocation("empty"), ImmutableList.of(Pair.of(JigsawPiece.func_242851_a("the_remnants_shaft_start", ProcessorLists.MOSSIFY_10_PERCENT), 1)), JigsawPattern.PlacementBehaviour.RIGID)),
+                        new VillageConfig(() -> dynamicRegistryManager.func_230521_a_(Registry.JIGSAW_POOL_KEY).get().getOptional(new ResourceLocation(QolMod.MOD_ID, "remnant_beginning")).get(),
                                 // How many pieces outward from center can a recursive jigsaw structure spawn.
                                 // Our structure is only 1 piece outward and isn't recursive so any value of 1 or more doesn't change anything.
                                 // However, I recommend you keep this a decent value like 10 so people can use datapacks to add additional pieces to your structure easily.
