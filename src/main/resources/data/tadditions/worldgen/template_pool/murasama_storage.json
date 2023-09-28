@@ -1,0 +1,15 @@
+{
+  "name": "tadditions:shaft_stub",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "tadditions:murasama_storage_cell",
+        "processors": "minecraft:empty"
+      }
+    }
+  ]
+}

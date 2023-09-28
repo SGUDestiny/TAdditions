@@ -878,7 +878,7 @@ public class ToyotaExteriorModel extends ExteriorModel {
                 //if(exterior.getBlockState().get(BlockStateProperties.HORIZONTAL_FACING) == Direction.EAST){
                 //    matrix.translate(0.83f, 0f, 0.55f);
                 //}
-				//ExteriorRenderer.applyTransforms(matrix, exterior);
+				ExteriorRenderer.applyTransforms(matrix, exterior);
 			});
 			info.setTranslatePortal(matrix -> {
 				matrix.translate(0, 0, 0);
