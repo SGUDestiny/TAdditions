@@ -17,13 +17,13 @@
         "salt": 32532
       },
       "tadditions:verge_ruins": {
-        "spacing": 36,
-        "separation": 18,
+        "spacing": 18,
+        "separation": 9,
         "salt": 17515
       },
       "tadditions:verge_torii": {
-        "spacing": 90,
-        "separation": 50,
+        "spacing": 65,
+        "separation": 37,
         "salt": 16236
       },
       "tadditions:verge_scraps": {
@@ -32,7 +32,7 @@
         "salt": 14125
       },
       "tadditions:remnants": {
-        "spacing": 64,
+        "spacing": 55,
         "separation": 20,
         "salt": 12275
       }

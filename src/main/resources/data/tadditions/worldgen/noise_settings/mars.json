@@ -7,14 +7,14 @@
     "stronghold":{"distance":32,"spread":3,"count":128},
     "structures": {
       "tardis:moon_lander": {
-        "spacing": 15,
+        "spacing": 17,
         "separation": 10,
-        "salt": 0
+        "salt": 351265
       },
       "tadditions:mars_temple": {
-        "spacing": 20,
-        "separation": 15,
-        "salt": 0
+        "spacing": 15,
+        "separation": 8,
+        "salt": 63463
       }
     }
   },
