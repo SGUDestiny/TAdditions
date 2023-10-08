@@ -26,17 +26,15 @@ public class ZeroPointFieldChamberBlock extends TileBlock {
         super(prop);
     }
 
-    public VoxelShape makeShape(){
-        VoxelShape shape = VoxelShapes.empty();
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(-0.9375, 0, 0.0625, 0.9375, 0.3125, 1.9375), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(-0.875, 0.3125, 0.125, 0.875, 4.6875, 1.875), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(-0.9375, 4.6875, 0.0625, 0.9375, 5, 1.9375), IBooleanFunction.OR);
-        return shape;
-    }
+    private VoxelShape SHAPE = Stream.of(
+            Block.makeCuboidShape(-0.9375,0,0.0625,0.9375,0.3125,1.9375),
+            Block.makeCuboidShape(-0.875,0.3125,0.125,0.875,4.6875,1.875),
+            Block.makeCuboidShape(-0.9375, 4.6875, 0.0625, 0.9375, 5, 1.9375)
+    ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, IBooleanFunction.OR)).get();
 
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        return makeShape();
+        return SHAPE;
     }
     public BlockRenderType getRenderType(BlockState p_149645_1_) {
         return BlockRenderType.ENTITYBLOCK_ANIMATED;
