@@ -64,7 +64,7 @@
     }
   },
   "default_block": {
-    "Name": "tadditions:ash"
+    "Name": "tadditions:dense_ash"
   },
   "default_fluid": {
     "Properties": {

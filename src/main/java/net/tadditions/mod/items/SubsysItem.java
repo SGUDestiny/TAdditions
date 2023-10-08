@@ -1,6 +1,7 @@
 package net.tadditions.mod.items;
 
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.*;
@@ -18,6 +19,8 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.util.GeckoLibUtil;
 
 import java.util.List;
+import java.util.Random;
+import java.util.function.Consumer;
 
 //basically TardisPartItem but with Geckolib
 public class SubsysItem extends TooltipProviderItem implements IAnimatable  {
@@ -93,6 +96,19 @@ public class SubsysItem extends TooltipProviderItem implements IAnimatable  {
     @Override
     public void registerControllers(AnimationData data) {
         data.addAnimationController(new AnimationController<>(this, "controller", 20, this::predicate));
+    }
+
+    @Override
+    public boolean isImmuneToFire() {
+        return true;
+    }
+
+    @Override
+    public <T extends LivingEntity> int damageItem(ItemStack stack, int amount, T entity, Consumer<T> onBroken) {
+        Random rand = new Random();
+        if(rand.nextBoolean() == false){
+            return amount;
+        } else return 0;
     }
 
     @Override

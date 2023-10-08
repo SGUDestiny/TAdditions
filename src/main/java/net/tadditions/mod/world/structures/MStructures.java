@@ -48,14 +48,14 @@ public class MStructures {
         public static IStructurePieceType REMNANTS_PIECE = registerStructurePiece(RemnantPieces.Piece::new, "remnants");
     }
     public static void setupStructures() {
-        TStructures.setupStructure(Structures.SCORCHEED.get(), new StructureSeparationSettings(5, 3, 1234567890), true);
-        TStructures.setupStructure(Structures.SCORCHEEDCOMMON.get(), new StructureSeparationSettings(1, 0, 1234567891), true);
-        TStructures.setupStructure(Structures.MOON_TEMPLE.get(), new StructureSeparationSettings(20, 15, 1234567892), true);
-        TStructures.setupStructure(Structures.MARS_TEMPLE.get(), new StructureSeparationSettings(20, 15, 1234567893), true);
-        TStructures.setupStructure(Structures.VERGERUINS.get(), new StructureSeparationSettings(20, 15, 1234567894), false);
-        TStructures.setupStructure(Structures.VERGESCRAPS.get(), new StructureSeparationSettings(20, 15, 1234567895), true);
-        TStructures.setupStructure(Structures.VERGETORII.get(), new StructureSeparationSettings(20, 15, 1234567896), true);
-        TStructures.setupStructure(Structures.REMNANTS.get(), new StructureSeparationSettings(20, 19, 1234567897), false);
+        TStructures.setupStructure(Structures.SCORCHEED.get(), new StructureSeparationSettings(5, 3, 46705573), true);
+        TStructures.setupStructure(Structures.SCORCHEEDCOMMON.get(), new StructureSeparationSettings(1, 0, 76941716), true);
+        TStructures.setupStructure(Structures.MOON_TEMPLE.get(), new StructureSeparationSettings(20, 15, 98164311), true);
+        TStructures.setupStructure(Structures.MARS_TEMPLE.get(), new StructureSeparationSettings(20, 15, 35945413), true);
+        TStructures.setupStructure(Structures.VERGERUINS.get(), new StructureSeparationSettings(20, 15, 25076368), false);
+        TStructures.setupStructure(Structures.VERGESCRAPS.get(), new StructureSeparationSettings(20, 15, 44307830), true);
+        TStructures.setupStructure(Structures.VERGETORII.get(), new StructureSeparationSettings(20, 15, 52085484), true);
+        TStructures.setupStructure(Structures.REMNANTS.get(), new StructureSeparationSettings(20, 19, 61116830), false);
     }
 
     public static class ConfiguredStructures {

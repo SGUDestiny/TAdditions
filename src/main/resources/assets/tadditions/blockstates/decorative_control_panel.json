@@ -1,7 +1,20 @@
 {
-	"variants":{
-		"":{
-			"model":"tadditions:block/control_panel"
-		}
-	}
+  "variants":{
+    "facing=north":{
+      "model": "tadditions:block/control_panel",
+      "y": 0
+    },
+    "facing=east":{
+      "model": "tadditions:block/control_panel",
+      "y": 90
+    },
+    "facing=south":{
+      "model": "tadditions:block/control_panel",
+      "y": 180
+    },
+    "facing=west":{
+      "model": "tadditions:block/control_panel",
+      "y": 270
+    }
+  }
 }
