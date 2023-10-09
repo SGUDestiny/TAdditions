@@ -81,6 +81,7 @@ public class RemnantPieces {
                 if (te instanceof WeaponHolderBE) {
                     WeaponHolderBE chest = (WeaponHolderBE) te;
                     chest.setWeapon(ModItems.MURASAMA.get().getDefaultInstance());
+                    System.out.print("DaddyFoomer");
                     worldIn.removeBlock(pos, false);
                 }
             }
@@ -88,6 +89,7 @@ public class RemnantPieces {
                 TileEntity te = worldIn.getTileEntity(pos.down().down());
                 if (te instanceof ChestTileEntity) {
                     ChestTileEntity chest = (ChestTileEntity) te;
+                    System.out.print("Babieboomer");
                     chest.setLootTable(TALootTables.REMNANTS, rand.nextLong());
                     worldIn.removeBlock(pos, false);
                 }
