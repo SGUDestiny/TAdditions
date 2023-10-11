@@ -34,13 +34,41 @@ public class ControlPanel extends NotSolidTileBlock {
         return this.getDefaultState().with(HORIZONTAL_FACING, context.getPlacementHorizontalFacing().rotateY().rotateY());
     }
 
-    private static final VoxelShape SHAPE = Stream.of(
+    private static final VoxelShape SHAPE_NORTH = Stream.of(
             Block.makeCuboidShape(1, 0, 1, 15, 3, 15),
             Block.makeCuboidShape(6, 0, 13, 10, 18, 17)
     ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, IBooleanFunction.OR)).get();
 
+    private static final VoxelShape SHAPE_EAST = Stream.of(
+            Block.makeCuboidShape(1, 0, 1, 15, 3, 15),
+            Block.makeCuboidShape(13, 0, 6, 17, 18, 10)
+    ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, IBooleanFunction.OR)).get();
+
+    private static final VoxelShape SHAPE_SOUTH = Stream.of(
+            Block.makeCuboidShape(1, 0, 1, 15, 3, 15),
+            Block.makeCuboidShape(6, 0, -1, 10, 18, 3)
+    ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, IBooleanFunction.OR)).get();
+
+    private static final VoxelShape SHAPE_WEST = Stream.of(
+            Block.makeCuboidShape(1, 0, 1, 15, 3, 15),
+            Block.makeCuboidShape(-1, 0, 6, 3, 18, 10)
+    ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, IBooleanFunction.OR)).get();
+
+
+
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        return SHAPE;
+        switch (state.get(BlockStateProperties.HORIZONTAL_FACING)) {
+            case SOUTH:
+                return SHAPE_SOUTH;
+            case WEST:
+                return SHAPE_WEST;
+            case EAST:
+                return SHAPE_EAST;
+            case NORTH:
+                return SHAPE_NORTH;
+        }
+
+        return SHAPE_NORTH;
     }
 
     @Override

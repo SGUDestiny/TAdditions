@@ -69,11 +69,13 @@ public class MarsTempleStructure extends Structure<ProbabilityConfig>{
 		@Override
 		public void func_230364_a_(DynamicRegistries dynamicRegistryManager, ChunkGenerator chunkGenerator, TemplateManager templateManagerIn, int chunkX, int chunkZ, Biome biomeIn, ProbabilityConfig config) {
             Rotation rotation = Rotation.randomRotation(this.rand);
-        	int x = (chunkX << 4) + 7;
+            int x = (chunkX << 4) + 7;
             int z = (chunkZ << 4) + 7;
-            int surfaceY = chunkGenerator.getHeight(x, z, Heightmap.Type.WORLD_SURFACE_WG);
+            int modX = rand.nextInt(11);
+            int modY = rand.nextInt(11);
+            int surfaceY = chunkGenerator.getHeight(x+modX, z+modY, Heightmap.Type.WORLD_SURFACE_WG);
             if (rand.nextFloat() <= config.probability) {
-            	BlockPos blockpos = new BlockPos(x, surfaceY, z);
+                BlockPos blockpos = new BlockPos(x+modX, surfaceY-1, z+modY);
                 MarsTemplePieces.start(templateManagerIn, blockpos, rotation, this.components, this.rand);
                 this.recalculateStructureSize();
             }

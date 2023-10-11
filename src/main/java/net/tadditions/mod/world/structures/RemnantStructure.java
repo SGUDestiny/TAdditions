@@ -29,7 +29,7 @@ public class RemnantStructure extends Structure<ProbabilityConfig>{
     public RemnantStructure(Codec<ProbabilityConfig> codec) {
         super(codec);
     }
-    
+
     //Required, sets the Structure Start settings
     @Override
     public IStartFactory<ProbabilityConfig> getStartFactory() {
@@ -80,9 +80,11 @@ public class RemnantStructure extends Structure<ProbabilityConfig>{
 		public void func_230364_a_(DynamicRegistries dynamicRegistryManager, ChunkGenerator chunkGenerator, TemplateManager templateManagerIn, int chunkX, int chunkZ, Biome biomeIn, ProbabilityConfig config) {
         	int x = (chunkX << 4) + 7;
             int z = (chunkZ << 4) + 7;
-            int surfaceY = chunkGenerator.getHeight(x, z, Heightmap.Type.WORLD_SURFACE_WG);
+            int modX = rand.nextInt(11);
+            int modY = rand.nextInt(11);
+            int surfaceY = chunkGenerator.getHeight(x+modX, z+modY, Heightmap.Type.WORLD_SURFACE_WG);
             if (rand.nextFloat() <= config.probability) {
-            	BlockPos blockpos = new BlockPos(x, surfaceY-9, z);
+            	BlockPos blockpos = new BlockPos(x+modX, surfaceY-9, z+modY);
                 JigsawManager.func_242837_a(
                         dynamicRegistryManager,
                         new VillageConfig(() -> dynamicRegistryManager.func_230521_a_(Registry.JIGSAW_POOL_KEY).get().getOptional(new ResourceLocation(QolMod.MOD_ID, "remnant_beginning")).get(),

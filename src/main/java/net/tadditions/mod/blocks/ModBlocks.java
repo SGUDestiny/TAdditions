@@ -44,6 +44,9 @@ public class ModBlocks {
         return 15;
     }))));
 
+
+    public static final RegistryObject<Block> zpfcupper = registerforblock("zpfcupper", () -> setUpBlock(new ZPFCUpperBlock(Prop.Blocks.BASIC_TECH.get())));
+
     public static final RegistryObject<Block> zero_point_field_normal = registerforblockanimitem("zero_point_field_chamber", () -> setUpBlock(new ZeroPointFieldChamberBlock(Prop.Blocks.BASIC_TECH.get().notSolid().setLightLevel((state) -> {
         return 3;
     }))), new Item.Properties().group(ModItemGroups.TA).setISTER(() -> ZPFChamberItemRenderer::new));

@@ -85,7 +85,7 @@ public class MarsTemplePieces {
         		TileEntity te = worldIn.getTileEntity(pos.down().down());
         		 if (te instanceof ChestTileEntity) {
         			 ChestTileEntity chest = (ChestTileEntity) te;
-                     chest.setLootTable(TALootTables.MOONTEMPLE, rand.nextLong());
+                     chest.setLootTable(TALootTables.MARSTEMPLE, rand.nextLong());
                      worldIn.removeBlock(pos, false);
         		}
         	}
