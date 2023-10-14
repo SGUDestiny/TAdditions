@@ -2,6 +2,7 @@ package net.tadditions.mod.tileentity;
 
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
+import net.tardis.mod.tileentities.MultiblockMasterTile;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -12,7 +13,7 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.util.GeckoLibUtil;
 
-public class ZPFChamberBrokenTile extends TileEntity implements IAnimatable {
+public class ZPFChamberBrokenTile extends MultiblockMasterTile implements IAnimatable {
     public AnimationFactory factory = GeckoLibUtil.createFactory(this);
 
     public ZPFChamberBrokenTile(){

@@ -9,19 +9,20 @@ import net.minecraft.util.ResourceLocation;
 import net.tadditions.mod.client.model.ZPFChamberItemModel;
 import net.tadditions.mod.client.model.ZPFChamberModel;
 import net.tadditions.mod.items.AnimatedBlockItem;
+import net.tadditions.mod.items.AnimatedMultiblockBlockItem;
 import net.tadditions.mod.tileentity.ZPFChamberTile;
 import software.bernie.geckolib3.renderers.geo.GeoBlockRenderer;
 import software.bernie.geckolib3.renderers.geo.GeoItemRenderer;
 
 import javax.annotation.Nullable;
 
-public class ZPFChamberItemRenderer extends GeoItemRenderer<AnimatedBlockItem> {
+public class ZPFChamberItemRenderer extends GeoItemRenderer<AnimatedMultiblockBlockItem> {
     public ZPFChamberItemRenderer() {
         super(new ZPFChamberItemModel());
     }
 
     @Override
-    public RenderType getRenderType(AnimatedBlockItem animatable, float partialTicks, MatrixStack stack, @Nullable IRenderTypeBuffer renderTypeBuffer, @Nullable IVertexBuilder vertexBuilder, int packedLightIn, ResourceLocation textureLocation) {
+    public RenderType getRenderType(AnimatedMultiblockBlockItem animatable, float partialTicks, MatrixStack stack, @Nullable IRenderTypeBuffer renderTypeBuffer, @Nullable IVertexBuilder vertexBuilder, int packedLightIn, ResourceLocation textureLocation) {
         return RenderType.getEntityTranslucent(textureLocation);
     }
 }
