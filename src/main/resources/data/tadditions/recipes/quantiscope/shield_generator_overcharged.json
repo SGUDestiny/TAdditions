@@ -1,0 +1,12 @@
+{
+	"type": "tardis:quantiscope",
+	"repair":true,
+	"repair_item":"tadditions:subsystem/shield_generator_overcharged",
+	"ingredients":[
+		{"item":"tardis:xion_crystal"},
+		{"item":"minecraft:netherite_scrap"},
+		{"item":"tardis:subsystem/shield_generator"},
+		{"item":"tardis:circuits"},
+		{"item":"minecraft:redstone_block"}
+	]
+}
