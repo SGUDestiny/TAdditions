@@ -1,11 +1,5 @@
 {
   "effects": {
-    "mood_sound": {
-      "sound": "minecraft:ambient.cave",
-      "tick_delay": 6000,
-      "block_search_extent": 8,
-      "offset": 2.0
-    },
     "sky_color": 9868950,
     "fog_color": 13158600,
     "foliage_color": 7593531,
@@ -14,7 +8,7 @@
     "water_fog_color": 329011,
     "additions_sound": {
       "sound": "tadditions:verge_ambient1",
-      "tick_chance": 0.000125
+      "tick_chance": 0.00005
     },
     "particle": {
       "options": {

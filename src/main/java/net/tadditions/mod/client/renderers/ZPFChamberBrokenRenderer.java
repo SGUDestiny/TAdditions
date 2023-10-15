@@ -5,6 +5,7 @@ import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.tadditions.mod.client.model.ZPFChamberBrokenModel;
 import net.tadditions.mod.client.model.ZPFChamberModel;
@@ -22,10 +23,15 @@ public class ZPFChamberBrokenRenderer extends GeoBlockRenderer<ZPFChamberBrokenT
 
     @Override
     public RenderType getRenderType(ZPFChamberBrokenTile animatable, float partialTicks, MatrixStack stack, @Nullable IRenderTypeBuffer renderTypeBuffer, @Nullable IVertexBuilder vertexBuilder, int packedLightIn, ResourceLocation textureLocation) {
-        stack.push();
-        stack.translate(0,0,16);
-        stack.pop();
         return RenderType.getEntityTranslucent(textureLocation);
     }
 
+
+    @Override
+    public void render(TileEntity tile, float partialTicks, MatrixStack stack, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
+        stack.push();
+        stack.translate(0,0,-16);
+        stack.pop();
+        super.render(tile, partialTicks, stack, bufferIn, combinedLightIn, combinedOverlayIn);
+    }
 }

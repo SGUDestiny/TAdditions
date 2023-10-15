@@ -1,0 +1,33 @@
+{
+  "display": {
+    "icon": {
+      "item": "tadditions:ancient_keyholder"
+    },
+    "title": {
+      "translate": "advancements.tadditions.title.remnants"
+    },
+    "description": {
+      "translate": "advancements.tadditions.desc.remnants"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "tadditions:the_verge_of_reality",
+  "criteria": {
+    "in_remnants": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "feature": "tadditions:remnants"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "in_remnants"
+    ]
+  ]
+}

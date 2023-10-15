@@ -24,7 +24,7 @@
     },
     "additions_sound": {
       "sound": "tadditions:verge_ambient1",
-      "tick_chance": 0.000125
+      "tick_chance": 0.00005
     },
     "particle": {
       "options": {
