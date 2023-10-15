@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "tadditions:ancient_keyholder"
+      "item": "tardis:tungsten_screen"
     },
     "title": {
       "translate": "advancements.tadditions.title.remnants"
@@ -24,6 +24,10 @@
         }
       }
     }
+  },
+  "rewards": {
+    "function": "tadditions:remnants",
+    "experience": 50
   },
   "requirements": [
     [
