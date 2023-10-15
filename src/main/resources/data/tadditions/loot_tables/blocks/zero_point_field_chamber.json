@@ -6,6 +6,10 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "name": "tadditions:exotic_matter"
+        },
+        {
+          "type": "minecraft:item",
           "name": "tadditions:zero_point_field_chamber",
           "conditions": [
             {

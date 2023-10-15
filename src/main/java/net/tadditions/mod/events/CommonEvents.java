@@ -26,6 +26,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.event.world.BlockEvent;
@@ -81,6 +82,16 @@ public class CommonEvents {
             event.addCapability(TAGREAOPENER_CAP, new IOpener.Provider(new TagreaOpenerCap(event.getObject())));
         if (event.getObject().getItem() == ModItems.QUANTUM_EXOTIC_MATTER.get())
             event.addCapability(QUANT_CAP, new IQuant.Provider(new QuantCapability(event.getObject())));
+    }
+
+    @SubscribeEvent
+    public static void stopHungerAtVerge(TickEvent.PlayerTickEvent event){
+        if(event.player.getEntityWorld().getGameTime() % 20 == 0) {
+            if (event.player.getEntityWorld().getDimensionKey() == MDimensions.THE_VERGE) {
+                if (event.player.getFoodStats().getFoodLevel() < 10)
+                    event.player.getFoodStats().setFoodLevel(10);
+            }
+        }
     }
 
     public static void getAllMappingEntries(){

@@ -71,8 +71,8 @@ public class CommonSchorchedStructure extends Structure<ProbabilityConfig>{
             Rotation rotation = Rotation.randomRotation(this.rand);
             int x = (chunkX << 4) + 7;
             int z = (chunkZ << 4) + 7;
-            int modX = rand.nextInt(11);
-            int modY = rand.nextInt(11);
+            int modX = rand.nextInt(32);
+            int modY = rand.nextInt(32);
             int surfaceY = chunkGenerator.getHeight(x+modX, z+modY, Heightmap.Type.WORLD_SURFACE_WG);
             if (rand.nextFloat() <= config.probability) {
                 BlockPos blockpos = new BlockPos(x+modX, surfaceY-1, z+modY);

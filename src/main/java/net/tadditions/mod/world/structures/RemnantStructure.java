@@ -80,8 +80,8 @@ public class RemnantStructure extends Structure<ProbabilityConfig>{
 		public void func_230364_a_(DynamicRegistries dynamicRegistryManager, ChunkGenerator chunkGenerator, TemplateManager templateManagerIn, int chunkX, int chunkZ, Biome biomeIn, ProbabilityConfig config) {
         	int x = (chunkX << 4) + 7;
             int z = (chunkZ << 4) + 7;
-            int modX = rand.nextInt(11);
-            int modY = rand.nextInt(11);
+            int modX = rand.nextInt(32);
+            int modY = rand.nextInt(32);
             int surfaceY = chunkGenerator.getHeight(x+modX, z+modY, Heightmap.Type.WORLD_SURFACE_WG);
             if (rand.nextFloat() <= config.probability) {
             	BlockPos blockpos = new BlockPos(x+modX, surfaceY-9, z+modY);
@@ -99,7 +99,7 @@ public class RemnantStructure extends Structure<ProbabilityConfig>{
                         blockpos, // Position of the structure. Y value is ignored if last parameter is set to true.
                         this.components, // The list that will be populated with the jigsaw pieces after this method.
                         this.rand,
-                        false, // Special boundary adjustments for villages. It's... hard to explain. Keep this false and make your pieces not be partially intersecting.
+                        true, // Special boundary adjustments for villages. It's... hard to explain. Keep this false and make your pieces not be partially intersecting.
                         // Either not intersecting or fully contained will make children pieces spawn just fine. It's easier that way.
                         false);  // Place at heightmap (top land). Set this to false for structure to be place at the passed in blockpos's Y value instead.
                 // Definitely keep this false when placing structures in the nether as otherwise, heightmap placing will put the structure on the Bedrock roof.

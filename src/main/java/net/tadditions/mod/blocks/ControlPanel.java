@@ -60,9 +60,9 @@ public class ControlPanel extends NotSolidTileBlock {
         switch (state.get(BlockStateProperties.HORIZONTAL_FACING)) {
             case SOUTH:
                 return SHAPE_SOUTH;
-            case WEST:
-                return SHAPE_WEST;
             case EAST:
+                return SHAPE_WEST;
+            case WEST:
                 return SHAPE_EAST;
             case NORTH:
                 return SHAPE_NORTH;
