@@ -23,6 +23,7 @@ import net.minecraft.world.gen.feature.structure.*;
 import net.minecraft.world.gen.feature.template.ProcessorLists;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 import net.tadditions.mod.QolMod;
+import org.spongepowered.asm.logging.Level;
 
 public class RemnantStructure extends Structure<ProbabilityConfig>{
 
@@ -85,6 +86,7 @@ public class RemnantStructure extends Structure<ProbabilityConfig>{
             int surfaceY = chunkGenerator.getHeight(x+modX, z+modY, Heightmap.Type.WORLD_SURFACE_WG);
             if (rand.nextFloat() <= config.probability) {
             	BlockPos blockpos = new BlockPos(x+modX, surfaceY-9, z+modY);
+                BlockPos centerPos = new BlockPos(x+modX, 0, z+modY);
                 JigsawManager.func_242837_a(
                         dynamicRegistryManager,
                         new VillageConfig(() -> dynamicRegistryManager.func_230521_a_(Registry.JIGSAW_POOL_KEY).get().getOptional(new ResourceLocation(QolMod.MOD_ID, "remnant_beginning")).get(),
@@ -122,12 +124,14 @@ public class RemnantStructure extends Structure<ProbabilityConfig>{
                 // This is so that our structure's start piece is now centered on the water check done in isFeatureChunk.
                 // Whatever the offset done to center the start piece, that offset is applied to all other pieces
                 // so the entire structure is shifted properly to the new spot.
-               // Vector3i structureCenter = this.pieces.get(0).getBoundingBox().getCenter();
-               // int xOffset = centerPos.getX() - structureCenter.getX();
-                //int zOffset = centerPos.getZ() - structureCenter.getZ();
-                //for(StructurePiece structurePiece : this.pieces){
-                //    structurePiece.move(xOffset, 0, zOffset);
-                //}\
+                Vector3i structureCenter = this.components.get(0).getBoundingBox().func_215126_f();
+                int xOffset = centerPos.getX() - structureCenter.getX();
+                int zOffset = centerPos.getZ() - structureCenter.getZ();
+                for(StructurePiece structurePiece : this.components){
+                    structurePiece.offset(xOffset, 0, zOffset);;
+                }
+
+                // Sets the bounds of the structure once you are finished.
                 this.recalculateStructureSize();
             }
 		}
