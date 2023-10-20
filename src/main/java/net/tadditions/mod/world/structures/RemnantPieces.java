@@ -76,24 +76,7 @@ public class RemnantPieces {
 
         @Override
         protected void handleDataMarker(String function, BlockPos pos, IServerWorld worldIn, Random rand, MutableBoundingBox sbb) {
-            if ("murasama".equals(function)) {
-                TileEntity te = worldIn.getTileEntity(pos.down());
-                if (te instanceof WeaponHolderBE) {
-                    WeaponHolderBE chest = (WeaponHolderBE) te;
-                    chest.setWeapon(ModItems.MURASAMA.get().getDefaultInstance());
-                    System.out.print("DaddyFoomer");
-                    worldIn.removeBlock(pos, false);
-                }
-            }
-            if ("branch_loot".equals(function)) {
-                TileEntity te = worldIn.getTileEntity(pos.down().down());
-                if (te instanceof ChestTileEntity) {
-                    ChestTileEntity chest = (ChestTileEntity) te;
-                    System.out.print("Babieboomer");
-                    chest.setLootTable(TALootTables.REMNANTS, rand.nextLong());
-                    worldIn.removeBlock(pos, false);
-                }
-            }
+
         }
 	}
 }

@@ -1,6 +1,6 @@
 {
   "name": "tadditions:main_corridor",
-  "fallback": "minecraft:empty",
+  "fallback": "tadditions:main_corridor_start",
   "elements": [
     {
       "weight": 50,

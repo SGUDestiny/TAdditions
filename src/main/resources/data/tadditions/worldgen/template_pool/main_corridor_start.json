@@ -1,0 +1,15 @@
+{
+  "name": "tadditions:main_corridor_starter",
+  "fallback": "tadditions:main_corridor",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "tadditions:remnants_main_corridor_empty",
+        "processors": "minecraft:empty"
+      }
+    }
+  ]
+}

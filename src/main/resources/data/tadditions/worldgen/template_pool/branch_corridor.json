@@ -85,12 +85,6 @@
             "projection": "rigid",
             "location": "tadditions:remnants_branch_corridor_t_empty",
             "processors": "minecraft:empty"
-          },
-          {
-            "element_type": "minecraft:single_pool_element",
-            "projection": "rigid",
-            "location": "tadditions:remnants_branch_corridor_mirrored_t_empty",
-            "processors": "minecraft:empty"
           }
         ]
       }
