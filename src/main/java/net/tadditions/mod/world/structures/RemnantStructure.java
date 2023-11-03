@@ -23,6 +23,8 @@ import net.minecraft.world.gen.feature.structure.*;
 import net.minecraft.world.gen.feature.template.ProcessorLists;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 import net.tadditions.mod.QolMod;
+import net.tadditions.mod.helper.FancyJigsawConfig;
+import net.tadditions.mod.helper.FancyJigsawManager;
 import org.spongepowered.asm.logging.Level;
 
 public class RemnantStructure extends Structure<ProbabilityConfig>{
@@ -87,21 +89,20 @@ public class RemnantStructure extends Structure<ProbabilityConfig>{
             if (rand.nextFloat() <= config.probability) {
             	BlockPos blockpos = new BlockPos(x+modX, surfaceY-9, z+modY);
                 BlockPos centerPos = new BlockPos(x+modX, 0, z+modY);
-                JigsawManager.func_242837_a(
+                FancyJigsawManager.assembleJigsawStructure(
                         dynamicRegistryManager,
-                        new VillageConfig(() -> dynamicRegistryManager.func_230521_a_(Registry.JIGSAW_POOL_KEY).get().getOptional(new ResourceLocation(QolMod.MOD_ID, "remnant_beginning")).get(),
+                        new FancyJigsawConfig(() -> dynamicRegistryManager.func_230521_a_(Registry.JIGSAW_POOL_KEY).get().getOptional(new ResourceLocation(QolMod.MOD_ID, "shaft_starter")).get(),
                                 // How many pieces outward from center can a recursive jigsaw structure spawn.
                                 // Our structure is only 1 piece outward and isn't recursive so any value of 1 or more doesn't change anything.
                                 // However, I recommend you keep this a decent value like 10 so people can use datapacks to add additional pieces to your structure easily.
                                 // But don't make it too large for recursive structures like villages or you'll crash server due to hundreds of pieces attempting to generate!
-                                30),
-                        AbstractVillagePiece::new,
+                                1230),
                         chunkGenerator,
                         templateManagerIn,
                         blockpos, // Position of the structure. Y value is ignored if last parameter is set to true.
                         this.components, // The list that will be populated with the jigsaw pieces after this method.
                         this.rand,
-                        false, // Special boundary adjustments for villages. It's... hard to explain. Keep this false and make your pieces not be partially intersecting.
+                        true, // Special boundary adjustments for villages. It's... hard to explain. Keep this false and make your pieces not be partially intersecting.
                         // Either not intersecting or fully contained will make children pieces spawn just fine. It's easier that way.
                         false);  // Place at heightmap (top land). Set this to false for structure to be place at the passed in blockpos's Y value instead.
                 // Definitely keep this false when placing structures in the nether as otherwise, heightmap placing will put the structure on the Bedrock roof.

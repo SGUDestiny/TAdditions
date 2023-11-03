@@ -3,7 +3,7 @@
   "fallback": "tadditions:main_corridor_start",
   "elements": [
     {
-      "weight": 50,
+      "weight": 60,
       "element": {
         "element_type": "minecraft:single_pool_element",
         "projection": "rigid",
@@ -96,7 +96,7 @@
       }
     },
     {
-      "weight": 12,
+      "weight": 2,
       "element": {
         "element_type": "minecraft:single_pool_element",
         "projection": "rigid",

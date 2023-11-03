@@ -7,7 +7,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "projection": "rigid",
-        "location": "tadditions:remnants_main_corridor_empty",
+        "location": "tadditions:remnants_main_corridor_t_empty",
         "processors": "minecraft:empty"
       }
     }
