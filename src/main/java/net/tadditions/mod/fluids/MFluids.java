@@ -24,8 +24,8 @@ public class MFluids {
             = DeferredRegister.create(ForgeRegistries.FLUIDS, QolMod.MOD_ID);
 
 
-    public static final RegistryObject<Fluid> MERCURY_FLUID = FLUIDS.register("blaze_juice", MercuryFluid.Source::new);
-    public static final RegistryObject<FlowingFluid> MERCURY_FLUID_FLOWING = FLUIDS.register("flowing_blaze_juice", MercuryFluid.Flowing::new);
+    public static final RegistryObject<Fluid> MERCURY_FLUID = FLUIDS.register("mercury", MercuryFluid.Source::new);
+    public static final RegistryObject<FlowingFluid> MERCURY_FLUID_FLOWING = FLUIDS.register("mercury_flowingaa", MercuryFluid.Flowing::new);
 
 
 
