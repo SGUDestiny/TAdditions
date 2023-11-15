@@ -56,57 +56,9 @@
       "tag":"tardis:plants"
     },
     {
-      "tag":"tardis:plants"
-    },
-    {
-      "tag":"tardis:plants"
-    },
-    {
-      "tag":"tardis:plants"
-    },
-    {
-      "tag":"tardis:plants"
-    },
-    {
-      "tag":"tardis:plants"
-    },
-    {
-      "tag":"tardis:plants"
-    },
-    {
-      "tag":"tardis:plants"
-    },
-    {
-      "tag":"tardis:plants"
-    },
-    {
-      "tag":"tardis:plants"
-    },
-    {
-      "tag":"tardis:plants"
-    },
-    {
-      "tag":"tardis:plants"
-    },
-    {
-      "tag":"tardis:plants"
-    },
-    {
-      "tag":"tardis:plants"
-    },
-    {
-      "tag":"tardis:plants"
-    },
-    {
-      "tag":"tardis:plants"
-    },
-    {
-      "tag":"tardis:plants"
-    },
-    {
       "fluid": "minecraft:water",
       "nbt": {},
-      "amount": 500
+      "amount": 250
     }
   ],
   "results": [

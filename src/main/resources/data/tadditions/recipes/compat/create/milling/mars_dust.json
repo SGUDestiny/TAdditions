@@ -5,7 +5,7 @@
       "modid": "create"
     }
   ],
-  "type": "create:splashing",
+  "type": "create:milling",
   "group": "minecraft:misc",
   "ingredients": [
     {
@@ -14,12 +14,20 @@
   ],
   "results": [
     {
-      "item": "minecraft:iron_nugget",
-      "chance": 0.75
+      "item": "minecraft:sand",
+      "count": 1,
+      "chance": 1
     },
     {
-      "item": "minecraft:sand",
-      "chance": 0.25
+      "item": "minecraft:iron_nugget",
+      "count": 1,
+      "chance": 1
+    },
+    {
+      "item": "minecraft:iron_nugget",
+      "count": 1,
+      "chance": 0.15
     }
-  ]
+  ],
+  "processingTime": 100
 }

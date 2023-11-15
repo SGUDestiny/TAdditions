@@ -11,12 +11,9 @@
       "tag": "forge:dusts/cinnabar"
     },
     {
-      "tag": "forge:dusts/cinnabar"
-    },
-    {
       "fluid": "minecraft:water",
       "nbt": {},
-      "amount": 500
+      "amount": 250
     }
   ],
   "results": [

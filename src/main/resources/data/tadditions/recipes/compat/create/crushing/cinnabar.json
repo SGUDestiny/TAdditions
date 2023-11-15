@@ -15,14 +15,19 @@
   "results": [
     {
       "item": "tardis:cinnabar",
-      "count": 1,
+      "count": 2,
       "chance": 1
     },
     {
       "item": "tardis:cinnabar",
       "count": 1,
-      "chance": 0.2
+      "chance": 0.25
+    },
+    {
+      "item": "minecraft:cobblestone",
+      "count": 1,
+      "chance": 0.12
     }
   ],
-  "processingTime": 150
+  "processingTime": 80
 }
