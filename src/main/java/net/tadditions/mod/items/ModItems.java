@@ -31,6 +31,7 @@ public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, QolMod.MOD_ID);
 
+    public static final RegistryObject<Item> FOODCUBE = ITEMS.register("foodcube", () -> createItem(new Item((new Item.Properties()).group(ModItemGroups.TA).food(new Food.Builder().hunger(3).saturation(3F).build()))));
     public static final RegistryObject<Item> IMPULSE_KEY = ITEMS.register("impulse_key", () -> createItem(new CoreKeyItem(Prop.Items.ONE.get().group(ModItemGroups.TA).isImmuneToFire().setISTER(() -> ImpulseKeyRenderer::new))));
     public static final RegistryObject<Item> UPGRADES_MANUAL = ITEMS.register("upgrades_manual", () -> createItem(new UpgradeManualItem()));
     public static final RegistryObject<Item> ULTRA_HIGH_CAPACITY_ARTRON_CAPACITOR = ITEMS.register("artron_capacitor_ultra",
@@ -43,7 +44,6 @@ public class ModItems {
     public static final RegistryObject<Item> ARTRON_BATTERY_ARTRON_SYPHON = ITEMS.register("artron_battery_speed", () -> createItem(new ArtronItemStackBatteryItem(6F, 0.1F, 750F, false)));
     public static final RegistryObject<Item> ARTRON_BATTERY_TEMPORAL_SYPHON = ITEMS.register("artron_battery_temporal", () -> createItem(new ArtronItemStackBatteryItem(7.5F, 0.17F, 11000F, false)));
     public static final RegistryObject<Item> THERMAL_PROTECTION_UPGRADE = ITEMS.register("upgrades/thermal_protection", () -> createItem(new TardisPartItem(new Item.Properties().group(ModItemGroups.TA), TardisConstants.Part.PartType.UPGRADE, false, false, TardisConstants.Translations.TEMPORAL_GRACE)));
-    public static final RegistryObject<Item> FOODCUBE = ITEMS.register("foodcube", () -> createItem(new Item((new Item.Properties()).group(ModItemGroups.TA).food(new Food.Builder().hunger(3).saturation(3F).build()))));
     public static final RegistryObject<Item> EC2_UPGRADE = ITEMS.register("upgrades/ec2", () -> createItem(new TardisPartItem(new Item.Properties().group(ModItemGroups.TA), TardisConstants.Part.PartType.UPGRADE, false, false, TardisConstants.Translations.TEMPORAL_GRACE)));
     public static final RegistryObject<Item> NOBADOMEN_UPGRADE = ITEMS.register("upgrades/goodomen", () -> createItem(new TardisPartItem(new Item.Properties().group(ModItemGroups.TA), TardisConstants.Part.PartType.UPGRADE, false, false, TardisConstants.Translations.TEMPORAL_GRACE)));
     public static final RegistryObject<Item> ZR2_UPGRADE = ITEMS.register("upgrades/zr2", () -> createItem(new TardisPartItem(new Item.Properties().group(ModItemGroups.TA), TardisConstants.Part.PartType.UPGRADE, false, false, TardisConstants.Translations.TEMPORAL_GRACE)));

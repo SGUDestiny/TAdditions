@@ -31,7 +31,7 @@ public class TimeStorm extends FlightEvent {
 
         if(complete) {
 
-            tile.setDestinationReachedTick(tile.getReachDestinationTick()-1000);
+            tile.setDestinationReachedTick((int) (tile.getReachDestinationTick()*0.98));
             tile.updateClient();
         }
 
