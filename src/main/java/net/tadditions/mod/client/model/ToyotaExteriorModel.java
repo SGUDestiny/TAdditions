@@ -862,49 +862,6 @@ public class ToyotaExteriorModel extends ExteriorModel {
 	@Override
 	public void renderBoti(ExteriorTile exterior, float scale, MatrixStack matrixStack, IVertexBuilder buffer,
 						   int packedLight, int packedOverlay, float alpha) {
-		if(exterior.getBotiWorld() != null && exterior.getMatterState() == EnumMatterState.SOLID && exterior.getOpen() != EnumDoorState.CLOSED) {
-			PortalInfo info = new PortalInfo();
-			info.setPosition(exterior.getPos());
-			info.setWorldShell(exterior.getBotiWorld());
-			info.setTranslate(matrix -> {
-                matrix.rotate(Vector3f.YP.rotationDegrees(WorldHelper.getAngleFromFacing(exterior.getBotiWorld().getPortalDirection())));
-                //matrix.translate(-0.47f, -0.54f, -1.15f);
-                //if(exterior.getBlockState().get(BlockStateProperties.HORIZONTAL_FACING) == Direction.SOUTH){
-                //   matrix.translate(-0.03f, 0f, 1.3f);
-                //}
-                //if(exterior.getBlockState().get(BlockStateProperties.HORIZONTAL_FACING) == Direction.WEST){
-                //    matrix.translate(-0.77f, 0f, 0.64f);
-                //}
-                //if(exterior.getBlockState().get(BlockStateProperties.HORIZONTAL_FACING) == Direction.EAST){
-                //    matrix.translate(0.83f, 0f, 0.55f);
-                //}
-				ExteriorRenderer.applyTransforms(matrix, exterior);
-			});
-			info.setTranslatePortal(matrix -> {
-				matrix.translate(0, 0, 0);
-				matrix.rotate(Vector3f.XP.rotationDegrees(180));
-				matrix.rotate(Vector3f.YP.rotationDegrees(180));
-                //matrix.translate(-0.55f, 0.2, 0f);
-			});
-
-			info.setRenderPortal((matrix, buf) -> {
-				matrix.push();
-				matrix.scale(1.1F, 1.1F, 1.1F);
-                matrix.translate(0.0f, 0, 0);
-                this.boti.render(matrix, buf.getBuffer(RenderType.getEntityCutout(ToyotaExteriorRenderer.TEXTURE)), packedLight, packedOverlay);
-				matrix.pop();
-			});
-
-			info.setRenderDoor((matrix, buf) -> {
-				matrix.push();
-                matrix.translate(0.03f, -1.68f, 0.55f);
-				matrix.scale(1.1F, 1.1F, 1.05F);
-				this.door1.render(matrix, buf.getBuffer(RenderType.getEntityCutout(ToyotaExteriorRenderer.TEXTURE)), packedLight, packedOverlay);
-				matrix.pop();
-			});
-
-            BOTIRenderer.addPortal(info);
-		}
 	}
 
 }

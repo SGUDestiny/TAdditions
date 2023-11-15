@@ -20,8 +20,6 @@ import net.tardis.mod.tileentities.exteriors.ModernPoliceBoxExteriorTile;
 public class ToyotaExteriorRenderer extends ExteriorRenderer<ToyotaPoliceBoxExteriorTile> {
     public static final ResourceLocation TEXTURE = new ResourceLocation(QolMod.MOD_ID,
             "textures/exteriors/toyota_exterior.png");
-    public static final ResourceLocation ON = new ResourceLocation(QolMod.MOD_ID,
-            "textures/exteriors/toyota_exterior_on.png");
     public static final WorldText TEXT = new WorldText(1.1F, 0.125F, 0.015F, 0xFFFFFF);
 
     private ToyotaExteriorModel model = new ToyotaExteriorModel();

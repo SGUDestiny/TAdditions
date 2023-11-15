@@ -16,6 +16,7 @@ import net.tadditions.mod.QolMod;
 import net.tadditions.mod.client.renderers.SolenoidFilledItemRenderer;
 import net.tadditions.mod.client.renderers.ZPFChamberBrokenItemRenderer;
 import net.tadditions.mod.client.renderers.ZPFChamberItemRenderer;
+import net.tadditions.mod.fluids.MFluids;
 import net.tadditions.mod.helper.TAMultiblockPatterns;
 import net.tadditions.mod.items.AnimatedBlockItem;
 import net.tadditions.mod.items.AnimatedMultiblockBlockItem;
@@ -46,6 +47,10 @@ public class ModBlocks {
     public static final RegistryObject<Block> lightbox = registerforblock("lightbox", () -> setUpBlock(new LightBox(Prop.Blocks.BASIC_TECH.get().setLightLevel((state) -> {
         return 15;
     }))));
+
+    public static final RegistryObject<FlowingFluidBlock> MERCURY_BLOCK = register("mercury",
+            () -> new FlowingFluidBlock(MFluids.MERCURY_FLUID_FLOWING, AbstractBlock.Properties.create(Material.WATER)
+                    .hardnessAndResistance(100f).noDrops()));
 
     public static final RegistryObject<Block> zero_point_field_normal = registerformultiblockanimitem("zero_point_field_chamber", () -> setUpBlock(new ZeroPointFieldChamberBlock(Prop.Blocks.BASIC_TECH.get().notSolid().setLightLevel((state) -> {
         return 3;

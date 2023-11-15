@@ -341,36 +341,6 @@ public class ToyotaInteriorDoor extends AbstractInteriorDoorModel {
 
 	@Override
 	public void renderBoti(DoorEntity door, MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay) {
-		if(Minecraft.getInstance().world != null && door.getOpenState() != EnumDoorState.CLOSED){
-			Minecraft.getInstance().world.getCapability(Capabilities.TARDIS_DATA).ifPresent(data -> {
-				matrixStack.push();
-				PortalInfo info = new PortalInfo();
-				info.setPosition(door.getPositionVec());
-				info.setWorldShell(data.getBotiWorld());
-
-				info.setTranslate(matrix -> {
-					matrix.scale(1f, 1f, 1.3f);
-				//	matrix.translate(0, -1.4f, -0.4f);
-					DoorRenderer.applyTranslations(matrix, door.rotationYaw - 180, door.getHorizontalFacing());
-				});
-				info.setTranslatePortal(matrix -> {
-                    matrix.rotate(Vector3f.YP.rotationDegrees(WorldHelper.getAngleFromFacing(data.getBotiWorld().getPortalDirection())));
-                    matrix.rotate(Vector3f.ZN.rotationDegrees(180));
-				//	matrix.translate(-0.5f, -0.5f, 0.0);
-				});
-
-				info.setRenderPortal((matrix, impl) -> {
-					matrix.push();
-					matrix.translate(0,0,0);
-					matrix.scale(1.1F, 1.1F, 1.1F);
-					this.SOTO.render(matrix, impl.getBuffer(RenderType.getEntityCutout(this.getTexture())), packedLight, packedOverlay);
-					matrix.pop();
-				});
-
-				BOTIRenderer.addPortal(info);
-				matrixStack.pop();
-			});
-		}
 	}
 
 	@Override

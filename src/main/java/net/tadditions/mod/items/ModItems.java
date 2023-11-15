@@ -67,7 +67,7 @@ public class ModItems {
     public static final RegistryObject<Item> STABILIZERSMK2 = ITEMS.register("subsystem/stabilizer_overcharged", () -> createItem(new SubsysItem(Prop.Items.ONE.get().maxDamage(1250).group(ModItemGroups.TA).setISTER(() -> StabilizerRenderer::new), TardisConstants.Part.PartType.SUBSYSTEM, false, true)));
     public static final RegistryObject<Item> NAV_COMMK2 = ITEMS.register("subsystem/nav_com_overcharged", () -> createItem(new SubsysItem(Prop.Items.ONE.get().maxDamage(1250).group(ModItemGroups.TA).setISTER(() -> NavComRenderer::new), TardisConstants.Part.PartType.SUBSYSTEM, false, true)));
 
-    public static final RegistryObject<BucketItem> MERCURY_BUCKET = ITEMS.register("mercury_bucket", () -> createItem(new BucketItem(MFluids.MERCURY_FLUID, (new Item.Properties().maxStackSize(1)))));
+    public static final RegistryObject<BucketItem> MERCURY_BUCKET = ITEMS.register("mercury_bucket", () -> createItem(new BucketItem(MFluids.MERCURY_FLUID, (new Item.Properties().maxStackSize(1).containerItem(Items.BUCKET).group(ItemGroup.MISC)))));
     //public static final RegistryObject<Item> POWERAXE = ITEMS.register("power_axe", () -> createItem(new PowerAxe(MItemTier.POWERAXE, 1,-2.7f, new Item.Properties().group(ModItemGroups.TA).isImmuneToFire().addToolType(ToolType.AXE, 10))));
     //public static final RegistryObject<Item> THERMOCOUPLING = ITEMS.register("subsystem/thermocoupling", () -> createItem(new SubsysItem(Prop.Items.ONE.get().maxDamage(1000).group(ModItemGroups.TA).setISTER(() -> ThermocouplingRenderer::new), TardisConstants.Part.PartType.SUBSYSTEM, false, true)));
 
