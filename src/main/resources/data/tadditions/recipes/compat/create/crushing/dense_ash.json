@@ -5,19 +5,18 @@
       "modid": "create"
     }
   ],
-  "type": "create:milling",
+  "type": "create:crushing",
   "group": "minecraft:misc",
   "ingredients": [
     {
-      "item": "tardis:cinnabar_ore"
+      "item": "tadditions:dense_ash"
     }
   ],
   "results": [
     {
-      "item": "tardis:cinnabar",
-      "count": 1,
-      "chance": 1
+      "item": "tadditions:ash",
+      "count": 1
     }
   ],
-  "processingTime": 150
+  "processingTime": 60
 }

@@ -5,29 +5,29 @@
       "modid": "create"
     }
   ],
-  "type": "create:crushing",
+  "type": "create:milling",
   "group": "minecraft:misc",
   "ingredients": [
     {
-      "item": "tardis:cinnabar_ore"
+      "item": "tadditions:mars_dust"
     }
   ],
   "results": [
     {
-      "item": "tardis:cinnabar",
-      "count": 2,
+      "item": "minecraft:sand",
+      "count": 1,
       "chance": 1
     },
     {
-      "item": "tardis:cinnabar",
+      "item": "minecraft:iron_nugget",
       "count": 1,
-      "chance": 0.25
+      "chance": 1
     },
     {
-      "item": "minecraft:cobblestone",
+      "item": "minecraft:iron_nugget",
       "count": 1,
-      "chance": 0.12
+      "chance": 0.15
     }
   ],
-  "processingTime": 80
+  "processingTime": 100
 }
