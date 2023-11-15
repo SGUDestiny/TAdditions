@@ -68,6 +68,7 @@ public class ModItems {
     //public static final RegistryObject<Item> POWERAXE = ITEMS.register("power_axe", () -> createItem(new PowerAxe(MItemTier.POWERAXE, 1,-2.7f, new Item.Properties().group(ModItemGroups.TA).isImmuneToFire().addToolType(ToolType.AXE, 10))));
     //public static final RegistryObject<Item> THERMOCOUPLING = ITEMS.register("subsystem/thermocoupling", () -> createItem(new SubsysItem(Prop.Items.ONE.get().maxDamage(1000).group(ModItemGroups.TA).setISTER(() -> ThermocouplingRenderer::new), TardisConstants.Part.PartType.SUBSYSTEM, false, true)));
 
+    public static final RegistryObject<Item> CREATIVECAPACITOR = ITEMS.register("artron_capacitor_creative", () -> createItem(new ArtronCapacitorItem(Float.MAX_VALUE, Float.MAX_VALUE)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

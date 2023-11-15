@@ -13,6 +13,7 @@ import net.minecraft.util.text.*;
 import net.minecraft.world.World;
 import net.tadditions.mod.cap.IOneRemote;
 import net.tadditions.mod.cap.MCapabilities;
+import net.tardis.mod.artron.IArtronItemStackBattery;
 import net.tardis.mod.constants.TardisConstants;
 import net.tardis.mod.helper.TextHelper;
 import net.tardis.mod.helper.WorldHelper;
@@ -22,8 +23,10 @@ import net.tardis.mod.tileentities.ConsoleTile;
 import javax.annotation.Nullable;
 import java.text.DecimalFormat;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 
-public class OneUseRemoteItem extends ConsoleBoundItem{
+public class OneUseRemoteItem extends ConsoleBoundItem implements IArtronItemStackBattery {
 
     public static final DecimalFormat FORMAT = new DecimalFormat("###");
     private static final IFormattableTextComponent USAGE = TextHelper.createDescriptionItemTooltip(new TranslationTextComponent("tooltip.stat_remote.use"));
@@ -51,6 +54,7 @@ public class OneUseRemoteItem extends ConsoleBoundItem{
         if (!context.getWorld().isRemote()) {
             context.getItem().getCapability(MCapabilities.ONE_REMOTE_CAPABILITY).ifPresent(cap -> {
                 cap.onClick(context.getWorld(), context.getPlayer(), context.getPos());
+                cap.discharge(context.getItem(), 10, true);
             });
             return ActionResultType.SUCCESS;
         } else if (!context.getWorld().isRemote()) {
@@ -77,7 +81,8 @@ public class OneUseRemoteItem extends ConsoleBoundItem{
                     tooltip.add(new TranslationTextComponent("tooltip.stat_remote.in_flight").appendSibling(new StringTextComponent(String.valueOf(cap.isInFlight())).mergeStyle(TextFormatting.LIGHT_PURPLE)));
                     tooltip.add(new TranslationTextComponent("tooltip.stat_remote.journey").appendSibling(new StringTextComponent(String.valueOf(FORMAT.format(cap.getJourney() * 100.0))).mergeStyle(TextFormatting.LIGHT_PURPLE)));
                     tooltip.add(new TranslationTextComponent("tooltip.stat_remote.fuel").appendSibling(new StringTextComponent(String.valueOf(FORMAT.format(cap.getFuel()))).mergeStyle(TextFormatting.LIGHT_PURPLE).appendSibling(TardisConstants.Suffix.ARTRON_UNITS)));
-            	}
+            	    tooltip.add(new TranslationTextComponent("tooltip.olim_charge").appendSibling(new StringTextComponent(String.valueOf(FORMAT.format(cap.getCharge())))).mergeStyle(TextFormatting.LIGHT_PURPLE).appendSibling(TardisConstants.Suffix.ARTRON_UNITS));
+                }
             }
             else {
                 tooltip.add(TardisConstants.Translations.TOOLTIP_NO_ATTUNED);
@@ -169,4 +174,30 @@ public class OneUseRemoteItem extends ConsoleBoundItem{
 		stack.getOrCreateTag().putString("tardis_name", name);
 	}
 
+    @Override
+    public float charge(ItemStack stack, float amount, boolean simulate) {
+        stack.getCapability(MCapabilities.ONE_REMOTE_CAPABILITY).ifPresent(cap -> cap.charge(stack, amount, simulate));
+        return amount;
+    }
+
+    @Override
+    public float discharge(ItemStack stack, float amount, boolean simulate) {
+        stack.getCapability(MCapabilities.ONE_REMOTE_CAPABILITY).ifPresent(cap -> cap.discharge(stack, amount, simulate));
+
+        return amount;
+    }
+
+    @Override
+    public float getMaxCharge(ItemStack stack) {
+        AtomicReference<Float> maxCharge = new AtomicReference<>();
+        stack.getCapability(MCapabilities.ONE_REMOTE_CAPABILITY).ifPresent(cap -> maxCharge.set(cap.getMaxCharge(stack)));
+        return maxCharge.get();
+    }
+
+    @Override
+    public float getCharge(ItemStack stack) {
+        AtomicReference<Float> charge = new AtomicReference<>();
+        stack.getCapability(MCapabilities.ONE_REMOTE_CAPABILITY).ifPresent(cap -> charge.set(cap.getCharge(stack)));
+        return charge.get();
+    }
 }

@@ -13,13 +13,17 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.common.util.LazyOptional;
+import net.tardis.mod.artron.IArtronItemStackBattery;
 import net.tardis.mod.misc.SpaceTimeCoord;
 
-public interface IOneRemote extends INBTSerializable<CompoundNBT> {
+public interface IOneRemote extends INBTSerializable<CompoundNBT>, IArtronItemStackBattery {
 
 	ResourceLocation getTardis();
 	void setTardis(ResourceLocation tardis);
     SpaceTimeCoord getExteriorLocation();
+
+    float getCharge();
+    void setCharge(float charge);
 
     void setExteriorLocation(SpaceTimeCoord coord);
 

@@ -12,6 +12,8 @@ import net.minecraft.util.concurrent.TickDelayedTask;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.tadditions.mod.config.MConfigs;
+import net.tardis.mod.artron.IArtronHolder;
+import net.tardis.mod.artron.IArtronItemStackBattery;
 import net.tardis.mod.constants.TardisConstants;
 import net.tardis.mod.controls.DimensionControl;
 import net.tardis.mod.controls.HandbrakeControl;
@@ -27,12 +29,16 @@ import net.tardis.mod.world.dimensions.TDimensions;
 
 import java.util.Objects;
 
-public class OneUseRemoteCapability implements IOneRemote {
+public class OneUseRemoteCapability implements IOneRemote, IArtronItemStackBattery {
 
 
     private ConsoleTile tile;
     private ItemStack remote;
+    private float charge;
     private ResourceLocation tardis;
+    private final float chargeRateMultiplier = 2.5F;
+    private final float dischargeRateMultiplier = 1;
+    private final float maxChargeCapacity = 500;
     private double dis = 70;
     
     //Client variables
@@ -48,6 +54,16 @@ public class OneUseRemoteCapability implements IOneRemote {
     @Override
     public SpaceTimeCoord getExteriorLocation() {
         return this.location;
+    }
+
+    @Override
+    public float getCharge() {
+        return charge;
+    }
+
+    @Override
+    public void setCharge(float charge) {
+        this.charge = charge;
     }
 
     @Override
@@ -72,27 +88,25 @@ public class OneUseRemoteCapability implements IOneRemote {
             if (this.tardis != null) {
                 this.findTardis(world);
                 if (tile != null && !tile.isRemoved()) {
-                    if (player.getEntityWorld() != tile.getWorld()) {
-                        if (MConfigs.COMMON.OlimCallInOther.get() || WorldHelper.canTravelToDimension(player.getEntityWorld())) {
-                            if (TardisHelper.isInATardis(player)) {
-                                TardisHelper.getConsole(world.getServer(), world).ifPresent(tardise -> {
-                                    dis = Math.sqrt(player.getDistanceSq(TardisHelper.TARDIS_POS.getX(), TardisHelper.TARDIS_POS.getY(), TardisHelper.TARDIS_POS.getZ()));
-                                });
-                            }
-                            if (tile.canFly() && !tile.isLanding() && dis > 60) {
-                                tile.setDestination(player.getEntityWorld().getDimensionKey(), pos.up());
-                                tile.getControl(ThrottleControl.class).ifPresent(throttle -> throttle.setAmount(1.0F));
-                                tile.getControl(HandbrakeControl.class).ifPresent(handbrake -> handbrake.setFree(true));
-                                tile.getSubsystem(StabilizerSubsystem.class).ifPresent(sys -> sys.setControlActivated(true));
-                                tile.setExteriorFacingDirection(player.getHorizontalFacing().getOpposite());
-                                tile.takeoff();
-                                tile.getWorld().getServer().enqueue(new TickDelayedTask(5, () -> {
-                                    tile.setDestinationReachedTick(1);
-                                }));
-                                player.getEntityWorld().playSound(null, player.getPosition(), TSounds.REMOTE_ACCEPT.get(), SoundCategory.BLOCKS, 0.25F, 1F);
-                            } else {
-                                player.getEntityWorld().playSound(null, player.getPosition(), TSounds.CANT_START.get(), SoundCategory.BLOCKS, 0.25F, 1F);
-                            }
+                    if (MConfigs.COMMON.OlimCallInOther.get() && player.getEntityWorld() != tile.getWorld() || WorldHelper.canTravelToDimension(player.getEntityWorld())) {
+                        if (TardisHelper.isInATardis(player)) {
+                            TardisHelper.getConsole(world.getServer(), world).ifPresent(tardise -> {
+                                dis = Math.sqrt(player.getDistanceSq(TardisHelper.TARDIS_POS.getX(), TardisHelper.TARDIS_POS.getY(), TardisHelper.TARDIS_POS.getZ()));
+                            });
+                        }
+                        if (tile.canFly() && !tile.isLanding() && dis > 60) {
+                            tile.setDestination(player.getEntityWorld().getDimensionKey(), pos.up());
+                            tile.getControl(ThrottleControl.class).ifPresent(throttle -> throttle.setAmount(1.0F));
+                            tile.getControl(HandbrakeControl.class).ifPresent(handbrake -> handbrake.setFree(true));
+                            tile.getSubsystem(StabilizerSubsystem.class).ifPresent(sys -> sys.setControlActivated(true));
+                            tile.setExteriorFacingDirection(player.getHorizontalFacing().getOpposite());
+                            tile.takeoff();
+                            tile.getWorld().getServer().enqueue(new TickDelayedTask(5, () -> {
+                                tile.setDestinationReachedTick(1);
+                            }));
+                            player.getEntityWorld().playSound(null, player.getPosition(), TSounds.REMOTE_ACCEPT.get(), SoundCategory.BLOCKS, 0.25F, 1F);
+                        } else {
+                            player.getEntityWorld().playSound(null, player.getPosition(), TSounds.CANT_START.get(), SoundCategory.BLOCKS, 0.25F, 1F);
                         }
                     }
                 }
@@ -112,6 +126,7 @@ public class OneUseRemoteCapability implements IOneRemote {
         tag.put("loc", this.location.serialize());
         tag.putBoolean("is_flying", this.isInFlight);
         tag.putFloat("fuel", this.fuel);
+        tag.putFloat("charge", this.charge);
         return tag;
     }
 
@@ -126,6 +141,7 @@ public class OneUseRemoteCapability implements IOneRemote {
         this.timeLeft = nbt.getFloat("time_left");
         this.isInFlight = nbt.getBoolean("is_flying");
         this.fuel = nbt.getFloat("fuel");
+        this.charge = nbt.getFloat("charge");
     }
 
     @Override
@@ -194,4 +210,56 @@ public class OneUseRemoteCapability implements IOneRemote {
 	public void setTardis(ResourceLocation tardis) {
 		this.tardis = tardis;
 	}
+
+    @Override
+    public float charge(ItemStack stack, float amount, boolean simulate) {
+        amount = this.getChargeRate(amount);
+        float maxCharge = this.getMaxCharge(stack);
+        if (this.getCharge() + amount >= maxCharge) {
+            float chargeToAdd = maxCharge - this.getCharge();
+            if (!simulate)
+                this.charge += chargeToAdd;
+            return chargeToAdd;
+        } else {
+            if (!simulate)
+               this.charge += amount;
+            return amount;
+        }
+    }
+
+
+    @Override
+    public float discharge(ItemStack stack, float amount, boolean simulate) {
+        float current = this.getCharge();
+        float takenAmount = this.getDischargeRate(amount);
+        float updatedCharge = current - takenAmount;
+        if (takenAmount <= current && updatedCharge > 0) {
+            if (!simulate)
+                this.charge = updatedCharge;
+            return takenAmount;
+        }
+        if (!simulate)
+            this.charge = 0;
+        return current;
+    }
+
+
+    @Override
+    public float getMaxCharge(ItemStack stack) {
+        return this.maxChargeCapacity;
+    }
+
+    @Override
+    public float getCharge(ItemStack stack) {
+        return this.getCharge();
+    }
+
+    public float getDischargeRate(float amount) {
+        return amount * this.dischargeRateMultiplier;
+    }
+
+    public float getChargeRate(float amount) {
+        return amount * this.chargeRateMultiplier;
+    }
+
 }
