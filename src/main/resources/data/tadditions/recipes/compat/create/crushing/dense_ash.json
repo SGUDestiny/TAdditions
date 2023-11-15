@@ -1,0 +1,22 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:crushing",
+  "group": "minecraft:misc",
+  "ingredients": [
+    {
+      "item": "tadditions:dense_ash"
+    }
+  ],
+  "results": [
+    {
+      "item": "tadditions:ash",
+      "count": 1
+    }
+  ],
+  "processingTime": 60
+}

@@ -1,0 +1,33 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:crushing",
+  "group": "minecraft:misc",
+  "ingredients": [
+    {
+      "item": "tadditions:mars_dust"
+    }
+  ],
+  "results": [
+    {
+      "item": "minecraft:sand",
+      "count": 1,
+      "chance": 1
+    },
+    {
+      "item": "minecraft:iron_nugget",
+      "count": 2,
+      "chance": 1
+    },
+    {
+      "item": "minecraft:iron_nugget",
+      "count": 1,
+      "chance": 0.30
+    }
+  ],
+  "processingTime": 30
+}
