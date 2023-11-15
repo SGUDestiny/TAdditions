@@ -8,6 +8,7 @@
     "EHMixin",
     "ExteriorArgumentMixin",
     "InvisRenMixin",
+    "NTMHelperMixin",
     "SPMixin",
     "SubsysMixin",
     "TARDISEngineMixin",
