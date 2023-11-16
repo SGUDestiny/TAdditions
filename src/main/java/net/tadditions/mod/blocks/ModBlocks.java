@@ -13,6 +13,7 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.tadditions.mod.QolMod;
+import net.tadditions.mod.client.renderers.DecorativeToyotaItemRenderer;
 import net.tadditions.mod.client.renderers.SolenoidFilledItemRenderer;
 import net.tadditions.mod.client.renderers.ZPFChamberBrokenItemRenderer;
 import net.tadditions.mod.client.renderers.ZPFChamberItemRenderer;
@@ -22,10 +23,7 @@ import net.tadditions.mod.items.AnimatedBlockItem;
 import net.tadditions.mod.items.AnimatedMultiblockBlockItem;
 import net.tadditions.mod.items.ModItemGroups;
 import net.tadditions.mod.items.ModItems;
-import net.tardis.mod.blocks.HoloLadderBlock;
-import net.tardis.mod.blocks.QuantiscopeBlock;
-import net.tardis.mod.blocks.RoundelBlock;
-import net.tardis.mod.blocks.WaypointBankBlock;
+import net.tardis.mod.blocks.*;
 import net.tardis.mod.blocks.exteriors.ExteriorBlock;
 import net.tardis.mod.blocks.multiblock.MultiblockPatterns;
 import net.tardis.mod.itemgroups.TItemGroups;
@@ -94,7 +92,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> scorched_fence_gate = registerforblock("scorched_fence_gate", () -> setUpBlock(new FenceGateBlock(Prop.Blocks.BASIC_WOOD.get())));
 
     public static final RegistryObject<Block> exterior_toyota_police_box = register("exterior_toyota_police_box", () -> setUpBlock(new ExteriorBlock()), false);
-    public static final RegistryObject<Block> decorative_toyota_police_box = registerforblock("decorative_toyota_police_box", () -> setUpBlock(new Block(AbstractBlock.Properties.create(Material.BARRIER).sound(SoundType.WOOD).hardnessAndResistance(-1.0F, 2.0F).variableOpacity().notSolid())));
+    public static final RegistryObject<Block> decorative_toyota_police_box = registerforblockanimitem("decorative_toyota_police_box", () -> setUpBlock(new FakeToyotaBlock(AbstractBlock.Properties.create(Material.BARRIER).sound(SoundType.WOOD).hardnessAndResistance(-1.0F, 2.0F).variableOpacity().notSolid())), new Item.Properties().group(ModItemGroups.TA).setISTER(() -> DecorativeToyotaItemRenderer::new));
 
 
     public static final RegistryObject<Block> ash = registerforblock("ash", () -> setUpBlock(new SandBlock(0, Prop.Blocks.BASIC_SAND.get())));
