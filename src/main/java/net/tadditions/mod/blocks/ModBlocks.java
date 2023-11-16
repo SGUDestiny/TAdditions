@@ -94,6 +94,8 @@ public class ModBlocks {
     public static final RegistryObject<Block> scorched_fence_gate = registerforblock("scorched_fence_gate", () -> setUpBlock(new FenceGateBlock(Prop.Blocks.BASIC_WOOD.get())));
 
     public static final RegistryObject<Block> exterior_toyota_police_box = register("exterior_toyota_police_box", () -> setUpBlock(new ExteriorBlock()), false);
+    public static final RegistryObject<Block> decorative_toyota_police_box = registerforblock("decorative_toyota_police_box", () -> setUpBlock(new Block(AbstractBlock.Properties.create(Material.BARRIER).sound(SoundType.WOOD).hardnessAndResistance(-1.0F, 2.0F).variableOpacity().notSolid())));
+
 
     public static final RegistryObject<Block> ash = registerforblock("ash", () -> setUpBlock(new SandBlock(0, Prop.Blocks.BASIC_SAND.get())));
 

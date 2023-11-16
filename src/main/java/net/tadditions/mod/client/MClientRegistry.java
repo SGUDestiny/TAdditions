@@ -24,6 +24,7 @@ import net.tadditions.mod.world.MDimensions;
 import net.tadditions.mod.world.MarsSkyProperty;
 import net.tadditions.mod.world.TagreaSkyProperty;
 import net.tardis.mod.client.TClientRegistry;
+import net.tardis.mod.config.TConfig;
 import software.bernie.geckolib3.renderers.geo.GeoBlockRenderer;
 
 import java.util.EnumMap;
@@ -48,6 +49,7 @@ public class MClientRegistry extends TClientRegistry {
             RenderTypeLookup.setRenderLayer(ModBlocks.electromagnetic_solenoid_container.get(), RenderType.getCutout());
             RenderTypeLookup.setRenderLayer(ModBlocks.filled_electromagnetic_solenoid_container.get(), RenderType.getCutout());
             RenderTypeLookup.setRenderLayer(ModBlocks.exterior_toyota_police_box.get(), RenderType.getTranslucent());
+            RenderTypeLookup.setRenderLayer(ModBlocks.decorative_toyota_police_box.get(), RenderType.getTranslucent());
             RenderTypeLookup.setRenderLayer(ModBlocks.sanguine_door.get(), RenderType.getCutout());
             RenderTypeLookup.setRenderLayer(ModBlocks.sanguine_trapdoor.get(), RenderType.getCutout());
             RenderTypeLookup.setRenderLayer(ModBlocks.ancient_keyholder.get(), RenderType.getCutout());
@@ -65,6 +67,7 @@ public class MClientRegistry extends TClientRegistry {
         ClientRegistry.bindTileEntityRenderer(ModTileEntitys.ZPFChamber.get(), ZPFChamberRenderer::new);
         ClientRegistry.bindTileEntityRenderer(ModTileEntitys.ZPFCBroken.get(), ZPFChamberBrokenRenderer::new);
         ClientRegistry.bindTileEntityRenderer(ModTileEntitys.SolenoidFilled.get(), SolenoidFilledRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(ModTileEntitys.DECORATIVE_TOYOTA_POLICE_BOX.get(), DecorativeToyotaExteriorRenderer::new);
     }
 
     private static void registerInteriorDoorRenderers() {

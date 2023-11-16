@@ -111,22 +111,8 @@ public class CommonEvents {
     public static void onBiomeLoad(BiomeLoadingEvent event) {
         RegistryKey<Biome> biomeRegistryKey = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, event.getName());
         Biome.Category biomeCategory = event.getCategory();
-        if (biomeCategory != Biome.Category.NETHER && biomeCategory != Biome.Category.THEEND && biomeRegistryKey != TBiomes.TARDIS_BIOME_KEY && biomeRegistryKey != TBiomes.VORTEX_BIOME_KEY) {
-            if (biomeRegistryKey != TBiomes.SPACE_BIOME_KEY && biomeRegistryKey != Biomes.THE_VOID && biomeRegistryKey != TBiomes.MOON_BIOME_KEY) {
-                //event.getGeneration().withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, TFeatures.ConfiguredFeatures.CONFIGURED_CINNABAR_ORE);
-//                Tardis.LOGGER.log(Level.DEBUG, "Added Cinnabar Ore to: " + event.getName());
-
-                //event.getGeneration().withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, TFeatures.ConfiguredFeatures.CONFIGURED_XION_CRYSTAL);
-//                Tardis.LOGGER.log(Level.DEBUG, "Added Xion Crystal to: " + event.getName());
-
-                //event.getGeneration().withFeature(GenerationStage.Decoration.RAW_GENERATION, TFeatures.ConfiguredFeatures.CONFIGURED_BROKEN_EXTERIOR);
-//                Tardis.LOGGER.log(Level.DEBUG, "Added Broken Tardis Exterior to: " + event.getName());
-                }
-            }
-            else {
-                if (biomeRegistryKey == TBiomes.MOON_BIOME_KEY) {
-                    event.getGeneration().getStructures().add(() -> MStructures.ConfiguredStructures.CONFIGURED_MOONTEMPLE);
-            }
+        if (biomeRegistryKey == TBiomes.MOON_BIOME_KEY) {
+            event.getGeneration().getStructures().add(() -> MStructures.ConfiguredStructures.CONFIGURED_MOONTEMPLE);
         }
     }
 

@@ -16,9 +16,12 @@ import net.minecraft.world.gen.feature.template.PlacementSettings;
 import net.minecraft.world.gen.feature.template.Template;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 import net.tadditions.mod.QolMod;
+import net.tadditions.mod.helper.MExteriorRegistry;
 import net.tadditions.mod.world.TALootTables;
 import net.tardis.mod.helper.Helper;
 import net.tardis.mod.loottables.TardisLootTables;
+import net.tardis.mod.schematics.ExteriorUnlockSchematic;
+import net.tardis.mod.schematics.Schematics;
 import net.tardis.mod.world.structures.TStructures;
 
 import java.util.List;
@@ -85,9 +88,12 @@ public class MoonTemplePieces {
                      worldIn.removeBlock(pos, false);
         		}
         	}
-        	if ("crashed_ship".equals(function)) {
-        		Helper.addLootToComputerBelow(worldIn, pos, TardisLootTables.CRASHED_SHIP);
-        	}
+            ExteriorUnlockSchematic schematic = Schematics.createExteriorSchematicWithTranslation(new ResourceLocation(QolMod.MOD_ID,"exteriors/toyota"), MExteriorRegistry.TOYOTA_POLICE_BOX.get());
+
+            if ("crashed_ship".equals(function)) {
+                Helper.addLootToComputerBelow(worldIn, pos, TardisLootTables.CRASHED_SHIP);
+                Helper.addSchematicToComputerBelow(worldIn, pos, schematic.getId());
+            }
         }
 	}
 }
