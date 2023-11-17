@@ -88,11 +88,9 @@ public class MoonTemplePieces {
                      worldIn.removeBlock(pos, false);
         		}
         	}
-            ExteriorUnlockSchematic schematic = Schematics.createExteriorSchematicWithTranslation(new ResourceLocation(QolMod.MOD_ID,"exteriors/toyota"), MExteriorRegistry.TOYOTA_POLICE_BOX.get());
-
             if ("crashed_ship".equals(function)) {
                 Helper.addLootToComputerBelow(worldIn, pos, TardisLootTables.CRASHED_SHIP);
-                Helper.addSchematicToComputerBelow(worldIn, pos, schematic.getId());
+                Helper.addSchematicToComputerBelow(worldIn, pos, Schematics.Exteriors.POLICE_BOX_MODERN.getId());
             }
         }
 	}

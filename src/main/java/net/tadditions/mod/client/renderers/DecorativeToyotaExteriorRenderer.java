@@ -14,6 +14,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Vector3f;
 import net.tadditions.mod.QolMod;
+import net.tadditions.mod.blocks.FakeToyotaBlock;
 import net.tadditions.mod.client.model.DecorativeToyotaExteriorModel;
 import net.tadditions.mod.client.model.ToyotaExteriorModel;
 import net.tadditions.mod.tileentity.ToyotaPoliceBoxDecoTile;
@@ -64,7 +65,7 @@ public class DecorativeToyotaExteriorRenderer extends TileEntityRenderer<ToyotaP
         matrixStack.translate(0.5, -0.5, 0.5);
         matrixStack.rotate(Vector3f.ZN.rotationDegrees(180));
 
-        if (tile.getBlockState() != null && tile.getBlockState().getBlock() instanceof ExteriorBlock) {
+        if (tile.getBlockState() != null && tile.getBlockState().getBlock() instanceof FakeToyotaBlock) {
             Direction face = tile.getBlockState().get(BlockStateProperties.HORIZONTAL_FACING);
             matrixStack.rotate(Vector3f.YP.rotationDegrees(face.getHorizontalAngle() - 180));
         }

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "name": "tadditions:old_ladders",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "tadditions:old_ladders"
+        }
+      ]
+    }
+  ]
+}

@@ -42,7 +42,7 @@ public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, QolMod.MOD_ID);
 
     public static final RegistryObject<Block> barrier = registerforblock("verge_barrier", () -> setUpBlock(new VergeBarrierBlock(Prop.Blocks.BASIC_TECH.get())));
-    public static final RegistryObject<Block> lightbox = registerforblock("lightbox", () -> setUpBlock(new LightBox(Prop.Blocks.BASIC_TECH.get().setLightLevel((state) -> {
+    public static final RegistryObject<Block> lightbox = registerforblock("lightbox", () -> setUpBlock(new LightBox(Prop.Blocks.BASIC_TECH.get().hardnessAndResistance(2F).setLightLevel((state) -> {
         return 15;
     }))));
 
@@ -55,7 +55,7 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> controlpanel_deco = registerforblock("decorative_control_panel", () -> setUpBlock(new ControlPanel(Prop.Blocks.BASIC_TECH.get().notSolid())));
 
-    public static final RegistryObject<Block> weaponholder = registerforblock("katana_stand", () -> setUpBlock(new WeaponHolder(AbstractBlock.Properties.create(Material.WOOD).harvestTool(ToolType.AXE))));
+    public static final RegistryObject<Block> weaponholder = registerforblock("katana_stand", () -> setUpBlock(new WeaponHolder(AbstractBlock.Properties.create(Material.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(2F))));
 
     public static final RegistryObject<Block> broken_old_ladder = registerforblock("broken_old_ladders", () -> setUpBlock(new HoloLadderBlock(Prop.Blocks.BASIC_TECH.get().notSolid())));
     public static final RegistryObject<Block> old_ladder = registerforblock("old_ladders", () -> setUpBlock(new HoloLadderBlock(Prop.Blocks.BASIC_TECH.get().notSolid())));
@@ -92,7 +92,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> scorched_fence_gate = registerforblock("scorched_fence_gate", () -> setUpBlock(new FenceGateBlock(Prop.Blocks.BASIC_WOOD.get())));
 
     public static final RegistryObject<Block> exterior_toyota_police_box = register("exterior_toyota_police_box", () -> setUpBlock(new ExteriorBlock()), false);
-    public static final RegistryObject<Block> decorative_toyota_police_box = registerforblockanimitem("decorative_toyota_police_box", () -> setUpBlock(new FakeToyotaBlock(AbstractBlock.Properties.create(Material.BARRIER).sound(SoundType.WOOD).hardnessAndResistance(-1.0F, 2.0F).variableOpacity().notSolid())), new Item.Properties().group(ModItemGroups.TA).setISTER(() -> DecorativeToyotaItemRenderer::new));
+    public static final RegistryObject<Block> decorative_toyota_police_box = registerforblockanimitem("decorative_toyota_police_box", () -> setUpBlock(new FakeToyotaBlock(AbstractBlock.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(1.0F, 2.0F).variableOpacity().notSolid())), new Item.Properties().group(ModItemGroups.TA).setISTER(() -> DecorativeToyotaItemRenderer::new));
 
 
     public static final RegistryObject<Block> ash = registerforblock("ash", () -> setUpBlock(new SandBlock(0, Prop.Blocks.BASIC_SAND.get())));

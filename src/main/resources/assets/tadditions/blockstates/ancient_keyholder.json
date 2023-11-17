@@ -9,10 +9,19 @@
     "active=false,locked=true,vanish=false": {
       "model": "tadditions:block/ancient_keyhold"
     },
+    "vanish=true,active=false,locked=true": {
+      "model": "tadditions:block/ancient_keyhold_vanished"
+    },
+    "vanish=false,active=true,locked=false": {
+      "model": "tadditions:block/ancient_keyhold_vanished"
+    },
     "vanish=true,active=false,locked=false": {
       "model": "tadditions:block/ancient_keyhold_vanished"
     },
     "vanish=true,active=true,locked=false": {
+      "model": "tadditions:block/ancient_keyhold_vanished"
+    },
+    "vanish=true,active=true,locked=true": {
       "model": "tadditions:block/ancient_keyhold_vanished"
     }
   }

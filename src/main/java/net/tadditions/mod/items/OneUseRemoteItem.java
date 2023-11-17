@@ -54,7 +54,6 @@ public class OneUseRemoteItem extends ConsoleBoundItem implements IArtronItemSta
         if (!context.getWorld().isRemote()) {
             context.getItem().getCapability(MCapabilities.ONE_REMOTE_CAPABILITY).ifPresent(cap -> {
                 cap.onClick(context.getWorld(), context.getPlayer(), context.getPos());
-                cap.discharge(context.getItem(), 10, true);
             });
             return ActionResultType.SUCCESS;
         } else if (!context.getWorld().isRemote()) {

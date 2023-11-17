@@ -40,7 +40,7 @@ public class DecorativeToyotaItemRenderer extends ItemStackTileEntityRenderer {
         ClientPlayerEntity player = Minecraft.getInstance().player;
 
         matrixStack.push();
-        matrixStack.translate(0.5, -0.5, 0.5);
+        matrixStack.scale(0.25f, 0.25f, 0.25f);
         matrixStack.rotate(Vector3f.ZN.rotationDegrees(180));
         this.model.render(matrixStack, buffer.getBuffer(TRenderTypes.getTardis(TEXTURE)), combinedLight, combinedOverlay, 1f, 1f, 1f, 1f);
         matrixStack.pop();

@@ -87,7 +87,7 @@ public class RemnantStructure extends Structure<ProbabilityConfig>{
             int modY = rand.nextInt(32);
             int surfaceY = chunkGenerator.getHeight(x+modX, z+modY, Heightmap.Type.WORLD_SURFACE_WG);
             if (rand.nextFloat() <= config.probability) {
-            	BlockPos blockpos = new BlockPos(x+modX, surfaceY-9, z+modY);
+            	BlockPos blockpos = new BlockPos(x+modX, surfaceY-40, z+modY);
                 BlockPos centerPos = new BlockPos(x+modX, 0, z+modY);
                 FancyJigsawManager.assembleJigsawStructure(
                         dynamicRegistryManager,
@@ -96,7 +96,7 @@ public class RemnantStructure extends Structure<ProbabilityConfig>{
                                 // Our structure is only 1 piece outward and isn't recursive so any value of 1 or more doesn't change anything.
                                 // However, I recommend you keep this a decent value like 10 so people can use datapacks to add additional pieces to your structure easily.
                                 // But don't make it too large for recursive structures like villages or you'll crash server due to hundreds of pieces attempting to generate!
-                                1230),
+                                4),
                         chunkGenerator,
                         templateManagerIn,
                         blockpos, // Position of the structure. Y value is ignored if last parameter is set to true.

@@ -1,6 +1,8 @@
 package net.tadditions.mod.world.structures;
 
 import com.mojang.serialization.Codec;
+import net.minecraft.block.ChestBlock;
+import net.minecraft.tileentity.ChestTileEntity;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableBoundingBox;

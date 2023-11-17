@@ -1,0 +1,7 @@
+{
+  "display_name": "Armazenamento",
+  "pages": [
+    "tadditions:storage/storage_intro",
+    "tadditions:storage/roundel_containers"
+  ]
+}

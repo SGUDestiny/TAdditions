@@ -1,0 +1,10 @@
+{
+  "display_name": "Atualizações",
+  "pages": [
+    "tadditions:upgrades/upgrades_intro",
+    "tadditions:upgrades/electrolytic_converters_2",
+    "tadditions:upgrades/good_omen",
+    "tadditions:upgrades/thermal_protection",
+    "tadditions:upgrades/zero_room_2"
+  ]
+}

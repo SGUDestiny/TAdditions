@@ -15,13 +15,9 @@
   "subtitle": "subtitle.tadditions.disc3",
   "sounds": [
     "tadditions:disc/hold_strong"
-  ]
-  },"disc4": {
-  "subtitle": "subtitle.tadditions.disc4",
-  "sounds": [
-    "tadditions:disc/raw_unfiltered_calamity"
-  ]
-  },"verge_ambient1": {
+    ]
+  },
+  "verge_ambient1": {
   "subtitle": "subtitle.tadditions.verge_ambient",
   "sounds": [
     "tadditions:ambient/crynn_-_million_ways_to_show_the_awful"
@@ -39,7 +35,7 @@
     ]
   },
   "poweraxe": {
-    "subtitle": "subtitle.tadditions.murasama",
+    "subtitle": "subtitle.tadditions.poweraxe",
     "sounds": [
       "tadditions:guillaume_david_warhammer_noosphere"
     ]

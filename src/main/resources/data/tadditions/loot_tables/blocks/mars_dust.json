@@ -2,12 +2,12 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "name": "tadditions:mars_rock",
+      "name": "tadditions:mars_dust",
       "rolls": 1,
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "tadditions:mars_rock"
+          "name": "tadditions:mars_dust"
         }
       ]
     }

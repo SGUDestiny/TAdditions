@@ -100,10 +100,17 @@ public class OneUseRemoteCapability implements IOneRemote, IArtronItemStackBatte
                             tile.getControl(HandbrakeControl.class).ifPresent(handbrake -> handbrake.setFree(true));
                             tile.getSubsystem(StabilizerSubsystem.class).ifPresent(sys -> sys.setControlActivated(true));
                             tile.setExteriorFacingDirection(player.getHorizontalFacing().getOpposite());
+                            if(tile.getArtron() == 0 && this.getCharge() >= 10){
+                                this.setCharge(this.getCharge()-5);
+                                tile.setArtron(5);
+                            }
                             tile.takeoff();
-                            tile.getWorld().getServer().enqueue(new TickDelayedTask(5, () -> {
-                                tile.setDestinationReachedTick(1);
-                            }));
+                            if(this.getCharge() >= 5){
+                                tile.getWorld().getServer().enqueue(new TickDelayedTask(5, () -> {
+                                    tile.setDestinationReachedTick(1);
+                                    this.discharge(this.remote.getStack(), 5);
+                                }));
+                            }
                             player.getEntityWorld().playSound(null, player.getPosition(), TSounds.REMOTE_ACCEPT.get(), SoundCategory.BLOCKS, 0.25F, 1F);
                         } else {
                             player.getEntityWorld().playSound(null, player.getPosition(), TSounds.CANT_START.get(), SoundCategory.BLOCKS, 0.25F, 1F);
