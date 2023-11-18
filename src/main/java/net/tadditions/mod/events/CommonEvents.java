@@ -3,6 +3,7 @@ package net.tadditions.mod.events;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.mojang.serialization.Codec;
+import net.minecraft.advancements.AdvancementList;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.INBT;
@@ -27,6 +28,7 @@ import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.player.AdvancementEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.event.world.BlockEvent;
@@ -40,6 +42,7 @@ import net.tadditions.mod.QolMod;
 import net.tadditions.mod.blocks.ModBlocks;
 import net.tadditions.mod.cap.*;
 import net.tadditions.mod.items.ModItems;
+import net.tadditions.mod.sound.MSounds;
 import net.tadditions.mod.world.MDimensions;
 import net.tadditions.mod.world.biomes.MBiomes;
 import net.tadditions.mod.world.structures.MStructures;
@@ -74,6 +77,17 @@ public class CommonEvents {
     public static void attachWorldCaps(AttachCapabilitiesEvent<World> event) {
 
     }
+
+    @SubscribeEvent
+    public static void onAdvancement(AdvancementEvent event){
+        if(event.getAdvancement().getId().equals(new ResourceLocation(QolMod.MOD_ID, "remnants"))){
+            event.getPlayer().playSound(MSounds.YEAR_20.get(), 0.3F, 1F);
+        }
+        if(event.getAdvancement().getId().equals(new ResourceLocation(QolMod.MOD_ID, "the_verge_of_reality"))){
+            event.getPlayer().playSound(MSounds.DESPITEITALL.get(), 0.3F, 1F);
+        }
+    }
+
     @SubscribeEvent
     public static void attachItemStackCap(AttachCapabilitiesEvent<ItemStack> event) {
         if (event.getObject().getItem() == ModItems.ONEUSEREMOTE.get())
