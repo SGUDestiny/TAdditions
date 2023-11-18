@@ -16,6 +16,7 @@ public class SpaceDimCapMixin {
 
     @Shadow private RegistryKey<World> world;
 
+
     @Inject(method = "hasAir", at = @At("HEAD"), cancellable = true)
     private void onHasAir(CallbackInfoReturnable<Boolean> callbackInfo) {
         if (this.world == MDimensions.MARS) {
