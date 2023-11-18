@@ -80,11 +80,14 @@ public class CommonEvents {
 
     @SubscribeEvent
     public static void onAdvancement(AdvancementEvent event){
-        if(event.getAdvancement().getId().equals(new ResourceLocation(QolMod.MOD_ID, "remnants"))){
+        if(event.getAdvancement().getId().equals(new ResourceLocation(QolMod.MOD_ID, "advancements/remnants"))){
             event.getPlayer().playSound(MSounds.YEAR_20.get(), 0.3F, 1F);
         }
-        if(event.getAdvancement().getId().equals(new ResourceLocation(QolMod.MOD_ID, "the_verge_of_reality"))){
+        if(event.getAdvancement().getId().equals(new ResourceLocation(QolMod.MOD_ID, "advancements/the_verge_of_reality"))){
             event.getPlayer().playSound(MSounds.DESPITEITALL.get(), 0.3F, 1F);
+        }
+        if(event.getAdvancement().getId().equals(new ResourceLocation(QolMod.MOD_ID, "advancements/murasama"))){
+            event.getPlayer().playSound(MSounds.MURASAMA.get(), 0.3F, 1F);
         }
     }
 
