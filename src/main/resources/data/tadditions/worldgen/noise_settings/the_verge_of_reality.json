@@ -22,7 +22,7 @@
         "salt": 17515
       },
       "tadditions:verge_torii": {
-        "spacing": 65,
+        "spacing": 50,
         "separation": 37,
         "salt": 16236
       },
@@ -32,7 +32,7 @@
         "salt": 14125
       },
       "tadditions:remnants": {
-        "spacing": 35,
+        "spacing": 28,
         "separation": 10,
         "salt": 12275
       }
