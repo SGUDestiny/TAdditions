@@ -6,8 +6,8 @@
     "tadditions:upgrades",
     "tadditions:flight_events",
     "tadditions:storage",
-    "tadditions:artifacts"
-
-
+    "tadditions:artifacts",
+    "tadditions:subsystems",
+    "tadditions:realms"
   ]
 }

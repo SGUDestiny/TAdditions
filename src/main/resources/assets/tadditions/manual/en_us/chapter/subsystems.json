@@ -1,0 +1,7 @@
+{
+  "display_name": "Sub-Systems",
+  "pages": [
+    "tadditions:subsystems/subsystems_intro",
+    "tadditions:subsystems/subsystems_overcharged"
+  ]
+}

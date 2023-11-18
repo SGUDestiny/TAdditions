@@ -3,6 +3,10 @@
   "pages": [
     "tadditions:machinery/machinery_intro",
     "tadditions:machinery/food_machine",
-    "tadditions:machinery/advanced_quantiscope"
+    "tadditions:machinery/advanced_quantiscope",
+    "tadditions:machinery/electromagnetic_solenoid_container",
+    "tadditions:machinery/data_drive",
+    "tadditions:machinery/olim_remote",
+    "tadditions:machinery/impulse_key"
   ]
 }
