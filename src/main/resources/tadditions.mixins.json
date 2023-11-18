@@ -10,7 +10,6 @@
     "InvisRenMixin",
     "NTMHelperMixin",
     "SonicMixin",
-    "SpaceDimCapMixin",
     "SPMixin",
     "SubsysMixin",
     "TARDISEngineMixin",
