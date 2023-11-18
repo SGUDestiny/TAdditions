@@ -638,7 +638,7 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
                 if (((ConsoleTile) (Object) this).getUpgrade(FrameStabUpgrade.class).isPresent()) {
                     ((ConsoleTile) (Object) this).getUpgrade(FrameStabUpgrade.class).ifPresent(up -> {
                         if (up.isActivated() && up.isUsable()) {
-                            up.damage(5, Upgrade.DamageType.ITEM, null);
+                            up.damage(10, Upgrade.DamageType.ITEM, null);
                             ((ConsoleTile) (Object) this).initLand();
                         } else VoidCrash();
                     });
@@ -761,6 +761,7 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
         ((ConsoleTile) (Object) this).getSubSystems().forEach(sub -> {
             sub.damage(null, 38);
         });
+
         ((ConsoleTile) (Object) this).getSubsystem(FlightSubsystem.class).ifPresent(fly -> {
             fly.damage(null, 650);
         });
@@ -771,14 +772,6 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
         ((ConsoleTile) (Object) this).getInteriorManager().setMonitorOverrides(new MonitorOverride(((ConsoleTile) (Object) this), 200, list));
 
         didVoidCrash = true;
-    }
-
-    public void scheduleTaskWithDelay(Runnable task, long delayTicks) {
-        ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
-
-        long delaySeconds = TimeUnit.MILLISECONDS.toSeconds(delayTicks * 50L);
-
-        executor.schedule(task, delaySeconds, TimeUnit.SECONDS);
     }
 
     public void handleDelay() {

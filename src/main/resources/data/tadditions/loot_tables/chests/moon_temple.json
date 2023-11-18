@@ -25,7 +25,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "tadditions:regolith_sand",
+          "name": "tardis:regolith_sand",
           "functions": [
             {
               "function": "minecraft:set_count",
