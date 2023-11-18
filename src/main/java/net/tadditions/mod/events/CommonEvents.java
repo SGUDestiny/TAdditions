@@ -4,7 +4,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.mojang.serialization.Codec;
 import net.minecraft.advancements.AdvancementList;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.INBT;
 import net.minecraft.util.Direction;
@@ -23,11 +25,13 @@ import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.settings.DimensionStructuresSettings;
 import net.minecraft.world.gen.settings.StructureSeparationSettings;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.AdvancementEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
@@ -50,7 +54,10 @@ import net.tardis.mod.Tardis;
 import net.tardis.mod.cap.*;
 import net.tardis.mod.config.TConfig;
 import net.tardis.mod.constants.TardisConstants;
+import net.tardis.mod.damagesources.TDamageSources;
+import net.tardis.mod.events.LivingEvents;
 import net.tardis.mod.events.MissingMappingsLookup;
+import net.tardis.mod.items.ISpaceHelmet;
 import net.tardis.mod.misc.IDontBreak;
 import net.tardis.mod.world.biomes.TBiomes;
 import net.tardis.mod.world.dimensions.TDimensions;
@@ -107,6 +114,27 @@ public class CommonEvents {
             if (event.player.getEntityWorld().getDimensionKey() == MDimensions.THE_VERGE) {
                 if (event.player.getFoodStats().getFoodLevel() < 10)
                     event.player.getFoodStats().setFoodLevel(10);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onLivingTick(LivingEvent.LivingUpdateEvent event){
+        LivingEntity entity = event.getEntityLiving();
+        if (entity instanceof PlayerEntity) {
+
+            //Oxygen
+            if (entity.getEntityWorld().getDimensionKey() == MDimensions.MARS) {
+                if (entity.ticksExisted % 20 == 0) {
+
+                    ItemStack helm = event.getEntityLiving().getItemStackFromSlot(EquipmentSlotType.HEAD);
+                    if (helm.getItem() instanceof ISpaceHelmet)
+                        if (!((ISpaceHelmet) helm.getItem()).shouldSufficate(entity))
+                            return;
+
+                    if (!MinecraftForge.EVENT_BUS.post(new LivingEvents.SpaceAir(entity)))
+                        entity.attackEntityFrom(TDamageSources.SPACE, 2);
+                }
             }
         }
     }
