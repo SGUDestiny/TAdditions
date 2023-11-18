@@ -3,7 +3,7 @@
   "group": "logs",
   "ingredients": [
     {
-      "tag": "tadditions:scorched_log"
+      "item": "tadditions:scorched_log"
     }
   ],
   "result": {
