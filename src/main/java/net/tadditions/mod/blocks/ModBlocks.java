@@ -633,7 +633,7 @@ public class ModBlocks {
         return 15;
     }))));
     
-    public static final RegistryObject<Block> foodmaker = register("foodmaker", () -> setUpBlock(new FoodMaker()), TItemGroups.MAINTENANCE);
+    public static final RegistryObject<Block> foodmaker = register("foodmaker", () -> setUpBlock(new FoodMaker()), ModItemGroups.TA);
 
 
     private static <T extends Block> T setUpBlock(T block) {
