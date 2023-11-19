@@ -54,7 +54,7 @@ public class ModBlocks {
     }))), new Item.Properties().group(ModItemGroups.TA).setISTER(() -> ZPFChamberBrokenItemRenderer::new), TAMultiblockPatterns.ZPFC);
 
     public static final RegistryObject<Block> controlpanel_deco = registerforblock("decorative_control_panel", () -> setUpBlock(new ControlPanel(Prop.Blocks.BASIC_TECH.get().notSolid())));
-    public static final RegistryObject<Block> replaceable_zpfc = register("replaceable_zpfc", () -> setUpBlock(new TileBlock(Prop.Blocks.BASIC_TECH.get().notSolid())), true);
+    public static final RegistryObject<Block> replaceable_zpfc = register("replaceable_zpfc", () -> setUpBlock(new TileBlock(Prop.Blocks.BASIC_TECH.get().notSolid())), false);
 
 
     public static final RegistryObject<Block> weaponholder = registerforblock("katana_stand", () -> setUpBlock(new WeaponHolder(AbstractBlock.Properties.create(Material.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(2F))));
