@@ -29,3 +29,9 @@ mandatory = true
 versionRange = "[1.5.4,)"
 ordering = "BEFORE"
 side = "BOTH"
+[[dependencies.${mod_id}]]
+modId = "geckolib3"
+mandatory = true
+versionRange = "[3.0.106]"
+ordering = "BEFORE"
+side = "BOTH"

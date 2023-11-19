@@ -100,10 +100,6 @@ public class OneUseRemoteCapability implements IOneRemote, IArtronItemStackBatte
                             tile.getControl(HandbrakeControl.class).ifPresent(handbrake -> handbrake.setFree(true));
                             tile.getSubsystem(StabilizerSubsystem.class).ifPresent(sys -> sys.setControlActivated(true));
                             tile.setExteriorFacingDirection(player.getHorizontalFacing().getOpposite());
-                            if(tile.getArtron() == 0 && this.getCharge() >= 10){
-                                this.setCharge(this.getCharge()-5);
-                                tile.setArtron(5);
-                            }
                             tile.takeoff();
                             if(this.getCharge() >= 5){
                                 tile.getWorld().getServer().enqueue(new TickDelayedTask(5, () -> {

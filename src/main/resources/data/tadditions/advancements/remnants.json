@@ -26,6 +26,7 @@
     }
   },
   "rewards": {
+    "function": "tadditions:remnants",
     "experience": 50
   },
   "requirements": [

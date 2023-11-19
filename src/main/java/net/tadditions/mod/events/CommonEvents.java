@@ -4,6 +4,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.mojang.serialization.Codec;
 import net.minecraft.advancements.AdvancementList;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -83,19 +84,6 @@ public class CommonEvents {
     @SubscribeEvent
     public static void attachWorldCaps(AttachCapabilitiesEvent<World> event) {
 
-    }
-
-    @SubscribeEvent
-    public static void onAdvancement(AdvancementEvent event){
-        if(event.getAdvancement().getId().equals(new ResourceLocation(QolMod.MOD_ID, "advancements/remnants"))){
-            event.getPlayer().playSound(MSounds.YEAR_20.get(), 0.3F, 1F);
-        }
-        if(event.getAdvancement().getId().equals(new ResourceLocation(QolMod.MOD_ID, "advancements/the_verge_of_reality"))){
-            event.getPlayer().playSound(MSounds.DESPITEITALL.get(), 0.3F, 1F);
-        }
-        if(event.getAdvancement().getId().equals(new ResourceLocation(QolMod.MOD_ID, "advancements/murasama"))){
-            event.getPlayer().playSound(MSounds.MURASAMA.get(), 0.3F, 1F);
-        }
     }
 
     @SubscribeEvent

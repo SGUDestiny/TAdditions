@@ -54,6 +54,8 @@ public class ModBlocks {
     }))), new Item.Properties().group(ModItemGroups.TA).setISTER(() -> ZPFChamberBrokenItemRenderer::new), TAMultiblockPatterns.ZPFC);
 
     public static final RegistryObject<Block> controlpanel_deco = registerforblock("decorative_control_panel", () -> setUpBlock(new ControlPanel(Prop.Blocks.BASIC_TECH.get().notSolid())));
+    public static final RegistryObject<Block> replaceable_zpfc = register("replaceable_zpfc", () -> setUpBlock(new TileBlock(Prop.Blocks.BASIC_TECH.get().notSolid())), true);
+
 
     public static final RegistryObject<Block> weaponholder = registerforblock("katana_stand", () -> setUpBlock(new WeaponHolder(AbstractBlock.Properties.create(Material.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(2F))));
 
@@ -92,7 +94,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> scorched_fence_gate = registerforblock("scorched_fence_gate", () -> setUpBlock(new FenceGateBlock(Prop.Blocks.BASIC_WOOD.get())));
 
     public static final RegistryObject<Block> exterior_toyota_police_box = register("exterior_toyota_police_box", () -> setUpBlock(new ExteriorBlock()), false);
-    public static final RegistryObject<Block> decorative_toyota_police_box = registerforblockanimitem("decorative_toyota_police_box", () -> setUpBlock(new FakeToyotaBlock(AbstractBlock.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(1.0F, 2.0F).variableOpacity().notSolid())), new Item.Properties().group(ModItemGroups.TA).setISTER(() -> DecorativeToyotaItemRenderer::new));
+    public static final RegistryObject<Block> decorative_toyota_police_box = register("decorative_toyota_police_box", () -> setUpBlock(new FakeToyotaBlock(AbstractBlock.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(1.0F, 2.0F).variableOpacity().notSolid())), false);
 
 
     public static final RegistryObject<Block> ash = registerforblock("ash", () -> setUpBlock(new SandBlock(0, Prop.Blocks.BASIC_SAND.get())));
@@ -713,7 +715,7 @@ public class ModBlocks {
      * @param hasItem
      * @return
      */
-    private static <T extends Block> RegistryObject<T> register(String id, Supplier<T> blockSupplier, boolean hasItem){
+    private static <T extends Block> RegistryObject<T>  register(String id, Supplier<T> blockSupplier, boolean hasItem){
         RegistryObject<T> registryObject = BLOCKS.register(id, blockSupplier);
         if (hasItem)
             TItems.ITEMS.register(id, () -> new BlockItem(registryObject.get(), new Item.Properties().group(TItemGroups.FUTURE)));

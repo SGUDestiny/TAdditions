@@ -21,30 +21,17 @@ public class MSounds {
     public static final RegistryObject<SoundEvent> DISC3 =
             soundEventRegister("disc3");
 
-    public static final RegistryObject<SoundEvent> DISC4 =
-            soundEventRegister("disc4");
-
-
-    public static final RegistryObject<SoundEvent> VERAMB1 =
-            soundEventRegister("verge_ambient");
-
     public static final RegistryObject<SoundEvent> FULLREMA =
             soundEventRegister("remasound");
 
     public static final RegistryObject<SoundEvent> MURASAMA =
             soundEventRegister("murasama");
 
-    public static final RegistryObject<SoundEvent> POWERAXE =
-            soundEventRegister("poweraxe");
-
     public static final RegistryObject<SoundEvent> DESPITEITALL =
             soundEventRegister("despite_it_all");
 
     public static final RegistryObject<SoundEvent> YEAR_20 =
             soundEventRegister("20_year");
-
-    public static final RegistryObject<SoundEvent> WAYS_TO_SHOW =
-            soundEventRegister("ways_to_show_the_awful");
 
 
 

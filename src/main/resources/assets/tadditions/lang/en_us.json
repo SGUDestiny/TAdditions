@@ -310,5 +310,7 @@
   "subtitle.tadditions.disc4": "Music Disc Plays",
   "text.verge.barrier.line1": "WARNING: Temporal Interference Detected",
   "text.verge.barrier.line2": "Re-Routing Landing...",
-  "tooltip.olim_charge": "\u00a7fRemote Charge: \u00a7r"
+  "tooltip.olim_charge": "\u00a7fRemote Charge: \u00a7r",
+  "block.tadditions.replaceable_zpfc": "",
+  "tadditions:triedmaketoyota": "Tried to obtain the Toyota Police Box Exterior"
 }

@@ -3,7 +3,7 @@
   "pools": [
     {
       "name": "tadditions:verge_barrier",
-      "rolls": 1,
+      "rolls": 0,
       "entries": [
         {
           "type": "minecraft:item",

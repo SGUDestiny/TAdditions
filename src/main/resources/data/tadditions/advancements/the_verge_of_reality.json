@@ -24,6 +24,7 @@
     }
   },
   "rewards": {
+    "function": "tadditions:verge",
     "experience": 50
   },
   "requirements": [

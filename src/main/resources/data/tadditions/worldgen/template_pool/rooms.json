@@ -1,5 +1,5 @@
 {
-  "name": "tadditions:remnants_out",
+  "name": "tadditions:rooms",
   "fallback": "minecraft:empty",
   "elements": [
     {
@@ -7,7 +7,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "projection": "rigid",
-        "location": "tadditions:loot_corridor",
+        "location": "tadditions:loot_room",
         "processors": "minecraft:empty"
       }
     },
@@ -16,7 +16,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "projection": "rigid",
-        "location": "tadditions:tardis_corridor",
+        "location": "tadditions:tardis_room",
         "processors": "minecraft:empty"
       }
     },
