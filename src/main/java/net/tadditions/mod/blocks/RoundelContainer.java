@@ -81,6 +81,22 @@ public class RoundelContainer extends ContainerBlock implements IARS {
         }
     }
 
+    @Override
+    public boolean canConnectRedstone(BlockState state, IBlockReader world, BlockPos pos, @Nullable Direction side) {
+        return true;
+    }
+
+    public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
+        if (!worldIn.isRemote) {
+            if (worldIn.isBlockPowered(pos)) {
+                    worldIn.getPendingBlockTicks().scheduleTick(pos, this, 4);
+                    worldIn.setBlockState(pos, state.with(TardisBlockProperties.LIGHT, worldIn.getRedstonePowerFromNeighbors(pos)), 2);
+            }
+        }
+    }
+
+
+
     public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
         if (!state.matchesBlock(newState.getBlock())) {
             TileEntity tileentity = worldIn.getTileEntity(pos);

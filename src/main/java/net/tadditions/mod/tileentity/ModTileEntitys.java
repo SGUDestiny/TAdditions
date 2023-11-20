@@ -25,6 +25,8 @@ public class ModTileEntitys {
     public static final RegistryObject<TileEntityType<ToyotaPoliceBoxDecoTile>> DECORATIVE_TOYOTA_POLICE_BOX = TILES.register("decorative_toyota_police_box", () ->  registerTiles(ToyotaPoliceBoxDecoTile::new, ModBlocks.decorative_toyota_police_box.get()));
     public static final RegistryObject<TileEntityType<ReplaceZPFCTile>> REPLACE_ZPFC = TILES.register("replace_zpfc", () ->  registerTiles(ReplaceZPFCTile::new, ModBlocks.replaceable_zpfc.get()));
 
+    public static final RegistryObject<TileEntityType<FlightEventDetectorTile>> FLIGHT_EVENT_DETECTOR = TILES.register("flight_event_detector", () ->  registerTiles(FlightEventDetectorTile::new, ModBlocks.flight_event_detector.get()));
+
 
     public static final RegistryObject<TileEntityType<WeaponHolderBE>> WPH = TILES.register("wph", () -> registerTiles(WeaponHolderBE::new, ModBlocks.weaponholder.get()));
 

@@ -41,6 +41,9 @@ public class ModBlocks {
 
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, QolMod.MOD_ID);
 
+    public static final RegistryObject<Block> flight_event_detector = registerforblock("flight_event_detector", () -> setUpBlock(new FlightEventDetectorBlock(Prop.Blocks.BASIC_TECH.get().notSolid())));
+
+
     public static final RegistryObject<Block> barrier = registerforblock("verge_barrier", () -> setUpBlock(new VergeBarrierBlock(Prop.Blocks.BASIC_TECH.get())));
     public static final RegistryObject<Block> lightbox = registerforblock("lightbox", () -> setUpBlock(new LightBox(Prop.Blocks.BASIC_TECH.get().hardnessAndResistance(2F).setLightLevel((state) -> {
         return 15;
