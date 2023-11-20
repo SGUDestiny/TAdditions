@@ -1,0 +1,9 @@
+{
+  "type": "tardis:spectrometer",
+  "processing_ticks": 200,
+  "download_ticks": 200,
+  "ingredient": {
+    "item": "tadditions:decorative_toyota_police_box"
+  },
+  "result": "tadditions:toyota"
+}

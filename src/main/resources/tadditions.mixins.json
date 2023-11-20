@@ -9,7 +9,6 @@
     "ExteriorArgumentMixin",
     "InvisRenMixin",
     "NTMHelperMixin",
-    "SonicMixin",
     "SPMixin",
     "SubsysMixin",
     "TARDISEngineMixin",
