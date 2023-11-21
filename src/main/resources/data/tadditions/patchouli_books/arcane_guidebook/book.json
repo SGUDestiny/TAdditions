@@ -1,0 +1,8 @@
+{
+  "name": "guide.tadditions.name",
+  "subtitle": "guide.tadditions.subtitle",
+  "landing_text": "guide.tadditions.landing_text",
+  "book_texture": "patchouli:textures/gui/book_red.png",
+  "creative_tab": "temporal",
+  "model": "tadditions:upgrades_manual"
+}
