@@ -12,6 +12,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -23,6 +24,7 @@ import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.tadditions.mod.blocks.ModBlocks;
 import net.tadditions.mod.cap.*;
+import net.tadditions.mod.compat.create.CreateMod;
 import net.tadditions.mod.config.MConfigs;
 import net.tadditions.mod.container.MContainers;
 import net.tadditions.mod.events.CommonEvents;
@@ -79,8 +81,6 @@ public class QolMod
         MSounds.SOUND_EVENT.register(eventBus);
 
 
-
-
         eventBus.addListener(this::setup);
 
         eventBus.addListener(this::enqueueIMC);
@@ -109,6 +109,11 @@ public class QolMod
                     AxeItem.BLOCK_STRIPPING_MAP = new ImmutableMap.Builder<Block, Block>().putAll(AxeItem.BLOCK_STRIPPING_MAP)
                             .put(ModBlocks.scorched_log.get(), ModBlocks.sanguine_log.get()).build();
                 });
+
+        if(ModList.get().isLoaded("create")){
+            CreateMod.create();
+        }
+
         CommonEvents.getAllMappingEntries();
         CraftingHelper.register(TrueConCondition.Serializer.INSTANCE);
         CapabilityManager.INSTANCE.register(IOneRemote.class, new IOneRemote.Storage(), () -> new OneUseRemoteCapability(null));

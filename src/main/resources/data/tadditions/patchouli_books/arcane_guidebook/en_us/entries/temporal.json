@@ -1,0 +1,22 @@
+{
+  "name": "guide.tadditions.artron_temporal",
+  "icon": "tadditions:artron_capacitor_temporal",
+  "category": "arcane_guidebook:artron",
+  "advancement": "tadditions:temporal",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tadditions:artron_capacitor_temporal"
+      },
+      "text": "Temporal Artron Capacitor! The best Artron Capacitor!"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tadditions:artron_battery_temporal"
+      },
+      "text": "Temporal Artron Battery! The best Artron Battery!"
+    }
+  ]
+}
