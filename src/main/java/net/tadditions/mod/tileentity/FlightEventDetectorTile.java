@@ -42,8 +42,6 @@ public class FlightEventDetectorTile extends TileEntity implements ITickableTile
 		return false;
 	}
 
-	RedstoneLampBlock
-
 	private void altMode(){
 		ConsoleTile tile = TardisHelper.getConsoleInWorld(getWorld()).orElse(null);
 		BlockState state = world.getBlockState(getPos());

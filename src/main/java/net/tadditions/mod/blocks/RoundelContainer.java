@@ -91,7 +91,7 @@ public class RoundelContainer extends ContainerBlock implements IARS {
             if (worldIn.isBlockPowered(pos)) {
                     worldIn.getPendingBlockTicks().scheduleTick(pos, this, 4);
                     worldIn.setBlockState(pos, state.with(TardisBlockProperties.LIGHT, worldIn.getRedstonePowerFromNeighbors(pos)), 2);
-            }
+            } else worldIn.setBlockState(pos, state.with(TardisBlockProperties.LIGHT, 15));
         }
     }
 
