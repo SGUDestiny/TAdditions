@@ -637,6 +637,11 @@ public class ModBlocks {
     public static final RegistryObject<Block> roundel_tech_wall_lamp = register("roundelcon/tech_wall_lamp", () -> setUpBlock(new RoundelContainer(Block.Properties.create(Material.ROCK).setLightLevel((state) -> {
         return 15;
     }))));
+
+    public static final RegistryObject<Block> three_point_lamp = register("roundelcon/three_point_lamp", () -> setUpBlock(new RoundelContainer(Block.Properties.create(Material.ROCK, MaterialColor.SAND))));
+    public static final RegistryObject<Block> tungsten_blue_runner_light = register("roundelcon/tungsten_blue_runner_light", () -> setUpBlock(new RoundelContainer(Block.Properties.create(Material.ROCK).setLightLevel((state) -> {
+        return 15;
+    }))));
     
     public static final RegistryObject<Block> foodmaker = register("foodmaker", () -> setUpBlock(new FoodMaker()), ModItemGroups.TA);
 
