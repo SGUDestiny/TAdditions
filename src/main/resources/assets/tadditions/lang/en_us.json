@@ -315,7 +315,6 @@
   "block.tadditions.replaceable_zpfc": "",
   "tadditions:triedmaketoyota": "Tried to obtain the Toyota Police Box Exterior",
   "guide.tadditions.name": "\u00a74Arcane Guidebook",
-  "guide.tadditions.subtitle": "A mysterious book that documents itself on your temporal adventures",
-  "guide.tadditions.landing_text": "What a mysterious book, oh my",
-  "guide.tadditions.artron_temporal": "Temporal Artron Systems"
+  "guide.tadditions.subtitle": "A mysterious book",
+  "guide.tadditions.landing_text": "What a mysterious book, oh my"
 }

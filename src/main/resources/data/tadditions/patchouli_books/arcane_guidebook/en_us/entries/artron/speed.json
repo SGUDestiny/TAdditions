@@ -1,0 +1,25 @@
+{
+  "name": "High Refuel Speed Artron Systems",
+  "icon": "tadditions:artron_capacitor_speed",
+  "category": "tadditions:artron",
+  "advancement": "tadditions:refuel",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tadditions:artron_capacitor_speed"
+      },
+      "title": "Artron Capacitor \n(\u00A76Speed\u00A7r)",
+      "text": "High Refuel Speed Artron Capacitor! The fastest Artron Capacitor!"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tadditions:artron_battery_speed"
+      },
+      "title": "Artron Battery \n(\u00A76Speed\u00A7r)",
+      "text": "High Refuel Speed Artron Battery! The fastest Artron Battery!"
+    }
+  ]
+}

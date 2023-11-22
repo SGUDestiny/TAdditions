@@ -1,0 +1,24 @@
+{
+  "name": "Basic Artron Systems",
+  "icon": "tardis:artron_capacitor",
+  "category": "tadditions:artron",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:artron_capacitor"
+      },
+      "title": "Artron Capacitor \n(\u00A79Basic\u00A7r)",
+      "text": "Basic Artron Capacitor!"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:artron_battery"
+      },
+      "title": "Artron Battery \n(\u00A79Basic\u00A7r)",
+      "text": "Basic Artron Battery!"
+    }
+  ]
+}

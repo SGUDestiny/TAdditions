@@ -1,0 +1,24 @@
+{
+  "name": "High Artron Systems",
+  "icon": "tardis:artron_capacitor_high",
+  "category": "tadditions:artron",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:artron_capacitor_high"
+      },
+      "title": "Artron Capacitor \n(\u00A7eHigh\u00A7r)",
+      "text": "High Capacity Artron Capacitor"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:artron_battery_high"
+      },
+      "title": "Artron Battery \n(\u00A7eHigh\u00A7r)",
+      "text": "High Capacity Artron Battery"
+    }
+  ]
+}

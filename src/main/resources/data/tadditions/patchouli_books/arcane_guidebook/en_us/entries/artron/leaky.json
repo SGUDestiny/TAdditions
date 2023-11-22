@@ -1,0 +1,16 @@
+{
+  "name": "Leaky Artron Systems",
+  "icon": "tardis:leaky_capacitor",
+  "category": "tadditions:artron",
+  "sortnum": 10,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:leaky_capacitor"
+      },
+      "title": "Leaky Artron Capacitor",
+      "text": "Leaky Artron Capacitor! The worst Artron Capacitor!"
+    }
+  ]
+}

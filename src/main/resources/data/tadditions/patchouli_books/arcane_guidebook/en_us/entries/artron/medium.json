@@ -1,0 +1,24 @@
+{
+  "name": "Medium Artron Systems",
+  "icon": "tardis:artron_capacitor_mid",
+  "category": "tadditions:artron",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:artron_capacitor_mid"
+      },
+      "title": "Artron Capacitor \n(\u00A7aMedium\u00A7r)",
+      "text": "Medium Artron Capacitor"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:artron_battery_medium"
+      },
+      "title": "Artron Battery \n(\u00A7aMedium\u00A7r)",
+      "text": "Medium Artron Battery"
+    }
+  ]
+}
