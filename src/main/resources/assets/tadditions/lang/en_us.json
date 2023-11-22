@@ -237,7 +237,7 @@
   "block.tadditions.roundelcon.yellow_terracotta_full": "Yellow Terracotta Full Roundel Container",
   "block.tadditions.roundelcon.yellow_terracotta_offset": "Yellow Terracotta Offset Roundel Container",
   "block.tadditions.roundelcon.three_point_lamp": "Three Point Lamp Container",
-  "block.tadditions.roundelcon.tungsten_blue_runner_lights": "Tungsten Blue Runner Lights Container",
+  "block.tadditions.roundelcon.tungsten_blue_runner_light": "Tungsten Blue Runner Lights Container",
   "flight_events.tadditions.alternating_time_wind": "WARNING: Alternating Time Winds Approaching!",
   "flight_events.tadditions.time_storm": "WARNING: Time Storm Detected!",
   "flight_events.tadditions.vector": "WARNING: Vector Calculation Error Detected!",
