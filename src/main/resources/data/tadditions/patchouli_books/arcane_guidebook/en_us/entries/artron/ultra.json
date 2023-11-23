@@ -1,5 +1,5 @@
 {
-  "name": "Ultra-High Capacity Artron Systems",
+  "name": "Ultra Artron Systems",
   "icon": "tadditions:artron_capacitor_ultra",
   "category": "tadditions:artron",
   "advancement": "tadditions:cap",
@@ -10,7 +10,7 @@
       "item": {
         "item": "tadditions:artron_capacitor_ultra"
       },
-      "title": "Artron Capacitor \n(\u00A75Ultra\u00A7r)",
+      "title": "Artron Capacitor",
       "text": "Ultra High Capacity Artron Capacitor! The high-cap Artron Capacitor!"
     },
     {
@@ -18,7 +18,7 @@
       "item": {
         "item": "tadditions:artron_battery_ultra"
       },
-      "title": "Artron Battery \n(\u00A75Ultra\u00A7r)",
+      "title": "Artron Battery",
       "text": "Ultra High Capacity Artron Battery! The high-cap Artron Battery!"
     }
   ]
