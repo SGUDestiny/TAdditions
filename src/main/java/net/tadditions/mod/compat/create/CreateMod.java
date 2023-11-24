@@ -9,7 +9,6 @@ import net.tadditions.mod.QolMod;
 public class CreateMod {
 
     public static void create() {
-        MinecraftForge.EVENT_BUS.register(new QolMod());
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         QolMod.LOGGER.info("Create Mod Detected! Enabling Compatibility Features!");
 
