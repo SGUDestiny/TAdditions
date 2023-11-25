@@ -102,23 +102,14 @@ public class ArcaneGuidebookItem extends Item implements IAnimatable, ISyncable 
 
     @Override
     public void onAnimationSync(int id, int state) {
+        final AnimationController<?> controller = GeckoLibUtil.getControllerForID(this.factory, id, this.controllerName);
+        controller.markNeedsReload();
         if (state == 0) {
-            AnimationBuilder builder = new AnimationBuilder();
-            AnimationController<?> controller = GeckoLibUtil.getControllerForID(this.factory, id, this.controllerName);
-            if(controller.getCurrentAnimation() != null){
-                if (controller.getAnimationState() == AnimationState.Stopped || controller.getCurrentAnimation().loop.isRepeatingAfterEnd()) {
-                    controller.markNeedsReload();
-                    controller.setAnimation(builder.addAnimation("close", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME).addAnimation("idle", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME));
-                }
-            }
-        }
-        if(state == 1) {
-            AnimationBuilder builder = new AnimationBuilder();
-            AnimationController<?> controller = GeckoLibUtil.getControllerForID(this.factory, id, this.controllerName);
-            if (controller.getAnimationState() == AnimationState.Stopped) {
-                controller.markNeedsReload();
-                controller.setAnimation(builder.addAnimation("open", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME).addAnimation("loop", ILoopType.EDefaultLoopTypes.LOOP));
-            }
+            controller.clearAnimationCache();
+            controller.setAnimation(new AnimationBuilder().clearAnimations().addAnimation("close", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME).clearAnimations().addAnimation("idle", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME));
+        } else if (state == 1) {
+            controller.clearAnimationCache();
+            controller.setAnimation(new AnimationBuilder().clearAnimations().addAnimation("open", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME).clearAnimations().addAnimation("loop", ILoopType.EDefaultLoopTypes.LOOP));
         }
     }
 }

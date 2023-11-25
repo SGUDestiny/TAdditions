@@ -110,9 +110,9 @@ public class QolMod
                             .put(ModBlocks.scorched_log.get(), ModBlocks.sanguine_log.get()).build();
                 });
 
-        if(ModList.get().isLoaded("create")){
-            CreateMod.create();
-        }
+//        if(ModList.get().isLoaded("create")){
+//            CreateMod.create();
+//        }
 
         CommonEvents.getAllMappingEntries();
         CraftingHelper.register(TrueConCondition.Serializer.INSTANCE);
