@@ -15,6 +15,7 @@ import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
 import software.bernie.geckolib3.core.builder.ILoopType;
+import software.bernie.geckolib3.core.builder.RawAnimation;
 import software.bernie.geckolib3.core.controller.AnimationController;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
@@ -63,9 +64,7 @@ public class ArcaneGuidebookItem extends Item implements IAnimatable, ISyncable 
         return new ActionResult<>(ActionResultType.SUCCESS, stack);
     }
 
-    private <P extends Item & IAnimatable> PlayState predicate(AnimationEvent<P> event) {
-        return PlayState.CONTINUE;
-    }
+
 
     @Override
     public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
@@ -92,7 +91,17 @@ public class ArcaneGuidebookItem extends Item implements IAnimatable, ISyncable 
 
     @Override
     public void registerControllers(AnimationData data) {
+        data.addAnimationController(new AnimationController<>(this, "controllerloop", 3, this::predicateIdle));
         data.addAnimationController(new AnimationController<>(this, "controller", 20, this::predicate));
+    }
+
+    private <P extends Item & IAnimatable> PlayState predicate(AnimationEvent<P> event) {
+        return PlayState.CONTINUE;
+    }
+
+    public <P extends Item & IAnimatable> PlayState predicateIdle(AnimationEvent<P> event) {
+        event.getController().setAnimation(new AnimationBuilder().addAnimation("close", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME).addAnimation("idle", ILoopType.EDefaultLoopTypes.LOOP));
+        return PlayState.CONTINUE;
     }
 
     @Override
@@ -104,12 +113,14 @@ public class ArcaneGuidebookItem extends Item implements IAnimatable, ISyncable 
     public void onAnimationSync(int id, int state) {
         final AnimationController<?> controller = GeckoLibUtil.getControllerForID(this.factory, id, this.controllerName);
         controller.markNeedsReload();
+        AnimationBuilder builder = new AnimationBuilder();
         if (state == 0) {
-            controller.clearAnimationCache();
-            controller.setAnimation(new AnimationBuilder().clearAnimations().addAnimation("close", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME).clearAnimations().addAnimation("idle", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME));
+            builder.addAnimation("close", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME).addAnimation("idle", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME);
+
         } else if (state == 1) {
             controller.clearAnimationCache();
-            controller.setAnimation(new AnimationBuilder().clearAnimations().addAnimation("open", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME).clearAnimations().addAnimation("loop", ILoopType.EDefaultLoopTypes.LOOP));
+            builder.addAnimation("open", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME).clearAnimations().addAnimation("loop", ILoopType.EDefaultLoopTypes.LOOP);
         }
+        controller.setAnimation(builder);
     }
 }
