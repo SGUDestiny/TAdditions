@@ -416,7 +416,7 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
 
 
 
-    public boolean canFly() {
+    /*public boolean canFly() {
 
         if(this.isBeingTowed)
             return true;
@@ -430,7 +430,7 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
             return false;
         }
         return this.artron > 0;
-    }
+    }*/
 
     public void scaleDestination() {
 
