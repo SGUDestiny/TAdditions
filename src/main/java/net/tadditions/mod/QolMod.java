@@ -27,6 +27,7 @@ import net.tadditions.mod.cap.*;
 import net.tadditions.mod.compat.create.CreateMod;
 import net.tadditions.mod.config.MConfigs;
 import net.tadditions.mod.container.MContainers;
+import net.tadditions.mod.enchantments.TAEnchants;
 import net.tadditions.mod.events.CommonEvents;
 import net.tadditions.mod.flightevents.MFlightEvent;
 import net.tadditions.mod.fluids.MFluids;
@@ -71,6 +72,7 @@ public class QolMod
         MProtocolRegistry.PROTOCOLS.register(eventBus);
         TARecipeSerialisers.RECIPE_SERIALISERS.register(eventBus);
         MBiomes.BIOMES.register(eventBus);
+        TAEnchants.register(eventBus);
         MFluids.register(eventBus);
         MFeatures.FEATURES.register(eventBus);
         MStructures.Structures.STRUCTURES.register(eventBus);

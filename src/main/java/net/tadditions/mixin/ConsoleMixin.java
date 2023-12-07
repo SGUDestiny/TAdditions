@@ -2,6 +2,7 @@ package net.tadditions.mixin;
 
 import com.google.common.collect.Maps;
 import net.minecraft.block.BlockState;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -28,6 +29,7 @@ import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.Event;
+import net.tadditions.mod.enchantments.TAEnchants;
 import net.tadditions.mod.helper.IConsoleHelp;
 import net.tadditions.mod.helper.MExteriorAnimationRegistry;
 import net.tadditions.mod.helper.MExteriorRegistry;
@@ -49,6 +51,7 @@ import net.tardis.mod.flight.TardisCollideInstigate;
 import net.tardis.mod.flight.TardisCollideRecieve;
 import net.tardis.mod.helper.TardisHelper;
 import net.tardis.mod.helper.WorldHelper;
+import net.tardis.mod.items.ArtronCapacitorItem;
 import net.tardis.mod.items.TItems;
 import net.tardis.mod.misc.*;
 import net.tardis.mod.network.Network;
@@ -63,6 +66,7 @@ import net.tardis.mod.subsystem.*;
 import net.tardis.mod.tileentities.ConsoleTile;
 import net.tardis.mod.tileentities.console.misc.*;
 import net.tardis.mod.tileentities.exteriors.ExteriorTile;
+import net.tardis.mod.tileentities.inventory.PanelInventory;
 import net.tardis.mod.upgrades.Upgrade;
 import net.tardis.mod.upgrades.UpgradeEntry;
 import net.tardis.mod.world.dimensions.TDimensions;
@@ -319,7 +323,7 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
 
         //Loop for things that need to be polled semi-constantly
         if(!world.isRemote && world.getGameTime() % 40 == 0) {
-            ((ConsoleTile) (Object) this).updateArtronValues();
+            this.updateArtronValues();
 
             //Loop for sparking
             SparkingLevel spark = SparkingLevel.NONE;
@@ -742,6 +746,50 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
         }
 
 
+    }
+
+    public void updateArtronValues() {
+
+        this.world.getCapability(Capabilities.TARDIS_DATA).ifPresent(cap -> {
+
+            float newMax = 0;
+            float rate = 0;
+
+            int numCap = 0;
+
+            PanelInventory inv = cap.getEngineInventoryForSide(Direction.WEST);
+            for(int i = 0; i < inv.getSlots(); ++i) {
+                ItemStack stack = inv.getStackInSlot(i);
+                if(stack.getItem() instanceof ArtronCapacitorItem) {
+
+                    int enchantLevelR = EnchantmentHelper.getEnchantmentLevel(TAEnchants.SUBSPACE_LINK.get(), stack);
+                    int enchantLevelS = EnchantmentHelper.getEnchantmentLevel(TAEnchants.SUBSPACE_POCKET.get(), stack);
+
+                    int r = 1;
+                    int s = 1;
+
+                    if(enchantLevelR > 0){
+                        r = enchantLevelR;
+                    }
+                    if(enchantLevelS > 0){
+                        s = enchantLevelS;
+                    }
+
+                    ArtronCapacitorItem item = (ArtronCapacitorItem)stack.getItem();
+                    newMax += item.getMaxStorage()*(1.25 * s);
+                    rate += item.getRechargeModifier()*(1.25*r);
+                    ++numCap;
+                }
+            }
+
+            this.max_artron = newMax;
+
+            this.rechargeMod = (rate / (float)numCap);
+
+            if(artron > this.max_artron)
+                this.artron = this.max_artron;
+
+        });
     }
 
     @Override
