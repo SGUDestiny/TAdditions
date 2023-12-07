@@ -1,0 +1,6 @@
+{
+  "name": "Flight Events",
+  "description": "This is a category all about In-Flight Mishaps and events!",
+  "icon": "tardis:vortex_detector",
+  "secret": true
+}

@@ -1,0 +1,11 @@
+{
+  "name": "Moon",
+  "icon": "tardis:regolith_sand",
+  "category": "tadditions:realms",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The Moon is the moon of the planets Humans come from, known as Earth, created by a collision in the Early Solar System. Couple of structures can be found here, but most importantly - a temple, that can also be found on Mars. The temple contains some valuable loot, including a data crystal required to craft a data drive. Who knows what kind of data it contains..."
+    }
+  ]
+}

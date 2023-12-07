@@ -1,0 +1,13 @@
+{
+  "name": "Vortex Travel",
+  "icon": "tardis:dematerialisation_circuit",
+  "category": "tadditions:tardis_functions",
+  "advancement": "tadditions:patchouli/demat",
+  "secret": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Vortex is known as a dangerous and unstable part of the fabric of our reality, requiring much energy to traverse, as well as protection, which is viable only due to the sheer effectiveness of Vortex Travel, and to some extent, simplicity."
+    }
+  ]
+}

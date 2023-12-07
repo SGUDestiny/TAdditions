@@ -52,20 +52,20 @@ public class ArtronCapMixin extends Item {
         int enchantLevelR = EnchantmentHelper.getEnchantmentLevel(TAEnchants.SUBSPACE_LINK.get(), stack);
         int enchantLevelS = EnchantmentHelper.getEnchantmentLevel(TAEnchants.SUBSPACE_POCKET.get(), stack);
 
-        float r = 1;
-        float s = 1;
+        float r = 0;
+        float s = 0;
 
         if(enchantLevelR > 0){
-            r = (float) (enchantLevelR*1.25);
+            r = (float) (enchantLevelR*128);
         }
         if(enchantLevelS > 0){
-            s = (float) (enchantLevelS*1.25);
+            s = (float) (enchantLevelS*128);
         }
         if (Screen.hasShiftDown()) {
             tooltip.clear();
             tooltip.add(0, this.getDisplayName(stack));
-            tooltip.add(new TranslationTextComponent("tooltip.artron_capacitor.max_charge").appendSibling(new StringTextComponent(String.valueOf(this.storage * s)).mergeStyle(TextFormatting.LIGHT_PURPLE).appendSibling(TardisConstants.Suffix.ARTRON_UNITS)));
-            tooltip.add(new TranslationTextComponent("tooltip.artron_capacitor.recharge_multiplier").appendSibling(new StringTextComponent(String.valueOf(this.rechargeModifier * r)).mergeStyle(TextFormatting.LIGHT_PURPLE)));
+            tooltip.add(new TranslationTextComponent("tooltip.artron_capacitor.max_charge").appendSibling(new StringTextComponent(String.valueOf(this.storage + s)).mergeStyle(TextFormatting.LIGHT_PURPLE).appendSibling(TardisConstants.Suffix.ARTRON_UNITS)));
+            tooltip.add(new TranslationTextComponent("tooltip.artron_capacitor.recharge_multiplier").appendSibling(new StringTextComponent(String.valueOf(this.rechargeModifier + r)).mergeStyle(TextFormatting.LIGHT_PURPLE)));
         }
         if (Screen.hasControlDown()) {
             tooltip.clear();

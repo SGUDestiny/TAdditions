@@ -1,0 +1,20 @@
+{
+  "name": "Timeship Navigation",
+  "icon": "tardis:nav_com",
+  "category": "tadditions:tardis_functions",
+  "advancement": "tadditions:patchouli/nav_com",
+  "secret": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "While most timeships can travel in 4 spatial dimensions and 1 temporal dimension, some, abandoned and old models, have lost their ability to traverse the temporal dimension at will."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:nav_com"
+      },
+      "text": "Usually, timeships require a Navigational Computer to store 3 spatial coordinates to travel in, and 1 extra for the extra spatial dimension."
+    }
+  ]
+}

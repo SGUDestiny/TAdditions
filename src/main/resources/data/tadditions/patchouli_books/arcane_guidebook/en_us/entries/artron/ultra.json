@@ -3,6 +3,7 @@
   "icon": "tadditions:artron_capacitor_ultra",
   "category": "tadditions:artron",
   "advancement": "tadditions:cap",
+  "secret": true,
   "sortnum": 3,
   "pages": [
     {

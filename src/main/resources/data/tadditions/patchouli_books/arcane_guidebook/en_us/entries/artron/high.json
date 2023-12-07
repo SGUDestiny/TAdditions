@@ -2,6 +2,7 @@
   "name": "High Artron Systems",
   "icon": "tardis:artron_capacitor_high",
   "category": "tadditions:artron",
+  "advancement": "tadditions:patchouli/fluid_link",
   "sortnum": 2,
   "pages": [
     {

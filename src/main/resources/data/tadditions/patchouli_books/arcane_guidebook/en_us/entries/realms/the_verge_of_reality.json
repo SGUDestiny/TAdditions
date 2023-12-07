@@ -3,6 +3,7 @@
   "icon": "tadditions:ash",
   "category": "tadditions:realms",
   "advancement": "tadditions:the_verge_of_reality",
+  "secret": true,
   "pages": [
     {
       "type": "patchouli:text",

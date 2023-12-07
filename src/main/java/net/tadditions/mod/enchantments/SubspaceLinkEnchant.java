@@ -33,7 +33,7 @@ public class SubspaceLinkEnchant extends Enchantment {
 
     @Override
     public int getMaxLevel() {
-        return 8;
+        return 10;
     }
 
 

@@ -1,0 +1,19 @@
+{
+  "criteria": {
+    "tadditions:fluid_link": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tardis:subsystem/fluid_link"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "tadditions:fluid_link"
+    ]
+  ]
+}

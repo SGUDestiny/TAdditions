@@ -765,19 +765,19 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
                     int enchantLevelR = EnchantmentHelper.getEnchantmentLevel(TAEnchants.SUBSPACE_LINK.get(), stack);
                     int enchantLevelS = EnchantmentHelper.getEnchantmentLevel(TAEnchants.SUBSPACE_POCKET.get(), stack);
 
-                    int r = 1;
-                    int s = 1;
+                    int r = 0;
+                    int s = 0;
 
                     if(enchantLevelR > 0){
-                        r = enchantLevelR;
+                        r = enchantLevelR*128;
                     }
                     if(enchantLevelS > 0){
-                        s = enchantLevelS;
+                        s = enchantLevelS*128;
                     }
 
                     ArtronCapacitorItem item = (ArtronCapacitorItem)stack.getItem();
-                    newMax += item.getMaxStorage()*(1.25 * s);
-                    rate += item.getRechargeModifier()*(1.25*r);
+                    newMax += item.getMaxStorage()*s;
+                    rate += item.getRechargeModifier()*r;
                     ++numCap;
                 }
             }

@@ -2,6 +2,7 @@
   "name": "Medium Artron Systems",
   "icon": "tardis:artron_capacitor_mid",
   "category": "tadditions:artron",
+  "advancement": "tadditions:patchouli/fluid_link",
   "sortnum": 1,
   "pages": [
     {

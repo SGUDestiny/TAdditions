@@ -2,6 +2,7 @@
   "name": "Basic Artron Systems",
   "icon": "tardis:artron_capacitor",
   "category": "tadditions:artron",
+  "advancement": "tadditions:patchouli/fluid_link",
   "sortnum": 0,
   "pages": [
     {

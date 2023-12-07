@@ -16,7 +16,7 @@ public class TAEnchants {
     public static final DeferredRegister<Enchantment> ENCHANT = DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, QolMod.MOD_ID);
 
     public static final RegistryObject<Enchantment> SUBSPACE_POCKET = ENCHANT.register("subspace_pocket",() -> new SubspaceCapEnchant(Enchantment.Rarity.RARE, EquipmentSlotType.values()));
-    public static final RegistryObject<Enchantment> SUBSPACE_LINK = ENCHANT.register("subspace_link",() -> new SubspaceCapEnchant(Enchantment.Rarity.RARE, EquipmentSlotType.values()));
+    public static final RegistryObject<Enchantment> SUBSPACE_LINK = ENCHANT.register("subspace_link",() -> new SubspaceLinkEnchant(Enchantment.Rarity.RARE, EquipmentSlotType.values()));
 
 
     public static void register(IEventBus eventBus) {

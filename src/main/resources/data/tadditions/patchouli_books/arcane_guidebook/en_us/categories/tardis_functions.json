@@ -1,6 +1,6 @@
 {
-  "name": "Artron Systems",
+  "name": "Timeship Basics",
   "description": "This is a category all about Artron Systems!",
-  "icon": "tardis:artron_capacitor_high",
+  "icon": "tardis:broken_exterior",
   "secret": true
 }

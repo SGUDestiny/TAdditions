@@ -3,6 +3,7 @@
   "icon": "tadditions:artron_capacitor_speed",
   "category": "tadditions:artron",
   "advancement": "tadditions:refuel",
+  "secret": true,
   "sortnum": 3,
   "pages": [
     {

@@ -2,6 +2,7 @@
   "name": "Leaky Artron Systems",
   "icon": "tardis:leaky_capacitor",
   "category": "tadditions:artron",
+  "advancement": "tadditions:patchouli/fluid_link",
   "sortnum": 10,
   "pages": [
     {

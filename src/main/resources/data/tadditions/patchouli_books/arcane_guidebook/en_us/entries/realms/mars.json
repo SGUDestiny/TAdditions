@@ -2,7 +2,6 @@
   "name": "Mars",
   "icon": "tadditions:mars_dust",
   "category": "tadditions:realms",
-  "advancement": "tadditions:mars",
   "pages": [
     {
       "type": "patchouli:text",

@@ -1,0 +1,19 @@
+{
+  "criteria": {
+    "tadditions:demat": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tardis:subsystem/dematerialisation_circuit"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "tadditions:demat"
+    ]
+  ]
+}

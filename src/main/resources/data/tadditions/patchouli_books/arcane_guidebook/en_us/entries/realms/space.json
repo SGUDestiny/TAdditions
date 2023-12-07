@@ -1,0 +1,11 @@
+{
+  "name": "Moon",
+  "icon": "tardis:regolith_sand",
+  "category": "tadditions:realms",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Space is vast and dangerous, full of nothing, aside from celestial objects and structures built by biological, or not so much, creatures"
+    }
+  ]
+}
