@@ -8,6 +8,12 @@
     {
       "type": "patchouli:text",
       "text": "An abandoned timeship, also known as TARDIS, Time And Relative Dimension In Space, has opened it's doors, and now you are free to use and explore it's insides..."
+    },
+    {
+      "type": "patchouli:image",
+      "border": true,
+      "title": "An abandoned timeship",
+      "images": ["tadditions:textures/patchouli/broken-tardis-3.png"]
     }
   ]
 }

@@ -1,0 +1,13 @@
+{
+  "name": "Placeholder",
+  "icon": "tardis:subsystem/fluid_link",
+  "category": "tadditions:flight_event",
+  "advancement": "tadditions:patchouli/stab",
+  "secret": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Placeholder Event"
+    }
+  ]
+}

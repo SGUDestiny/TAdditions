@@ -1,13 +1,20 @@
 {
   "name": "Vortex Travel",
-  "icon": "tardis:dematerialisation_circuit",
+  "icon": "tardis:subsystem/dematerialisation_circuit",
   "category": "tadditions:tardis_functions",
   "advancement": "tadditions:patchouli/demat",
   "secret": true,
   "pages": [
     {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:subsystem/dematerialisation_circuit"
+      },
+      "text": "The Time Vortex (also known as the Vortex), is a dimensional plane where time and space meet through non-Eudcliean means. The Time Vortex exists outside of time and the universe as we know it, and can be traversed to access any point in space or time. Other universes are known to have their own Time Vortices."
+    },
+    {
       "type": "patchouli:text",
-      "text": "Vortex is known as a dangerous and unstable part of the fabric of our reality, requiring much energy to traverse, as well as protection, which is viable only due to the sheer effectiveness of Vortex Travel, and to some extent, simplicity."
+      "text": "Traversal through the Vortex requires paramount engineering and precaution, as all laws can shift. Everything you know about your universe... may not apply the same in the Vortex."
     }
   ]
 }

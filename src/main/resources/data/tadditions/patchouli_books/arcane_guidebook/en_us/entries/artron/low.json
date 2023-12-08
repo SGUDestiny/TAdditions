@@ -11,7 +11,7 @@
         "item": "tardis:artron_capacitor"
       },
       "title": "Artron Capacitor",
-      "text": "Basic Artron Capacitor!"
+      "text": "The most rudimentary artron capacitor. Stores up to 64 AU per capacitor for a total of 640 AU, and a recharge rate of 0.5. Can be made from scratch or repaired from a leaky capacitor. Ideally best used when in great numbers. Most capacitors will require a Quantiscope to craft. Can be upgraded into a medium capacitor."
     },
     {
       "type": "patchouli:spotlight",
@@ -19,7 +19,7 @@
         "item": "tardis:artron_battery"
       },
       "title": "Artron Battery",
-      "text": "Basic Artron Battery!"
+      "text": "The most rudimentary artron battery. Can be charged in a TARDIS engine, or in an arton collector. Used to power vortex manipulators. Can hold up to 250 AU per battery, with a charge rate of 0.5 and a discharge rate of 0.65. Most batteries will require a Quantiscope to be crafted. Can be upgraded into the medium battery."
     }
   ]
 }

@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Artron Capacitors exist as ways to extend the inner capacity of Timeships to store Artron Energy"
+      "text": "Artron Capacitors exist as ways to extend the inner capacity of Timeships to store Artron Energy. Need to be placed in the Artron Capacitors section of the Tardis Engine. An artron capacitor's recharge rate dictates how quickly it generates artron when a timeship is set to refuel."
     }
   ]
 }

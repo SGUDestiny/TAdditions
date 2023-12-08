@@ -1,13 +1,13 @@
 {
   "name": "Artron Timeship Power",
-  "icon": "tardis:fluid_link",
+  "icon": "tardis:subsystem/fluid_link",
   "category": "tadditions:tardis_functions",
   "advancement": "tadditions:patchouli/fluid_link",
   "secret": true,
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Artron Power is some of the most efficient ways to do work, used by Time Ships to travel through Time and Space"
+      "text": "Artron Power is some of the most efficient ways to do work, used by Time Ships to travel through time and space"
     }
   ]
 }

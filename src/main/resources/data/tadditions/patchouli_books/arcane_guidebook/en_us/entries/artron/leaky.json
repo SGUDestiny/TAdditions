@@ -11,7 +11,7 @@
         "item": "tardis:leaky_capacitor"
       },
       "title": "Leaky Artron Capacitor",
-      "text": "Leaky Artron Capacitor! The worst Artron Capacitor!"
+      "text": "A damaged capacitor, either worn down by time, or damaged in flight. Any capacitor when damaged will revert to a leaky capacitor, regardless of their tier. Stores up to 32 AU per capacitor, for a total of 320 AU, and a recharge rate of 0.2. Can be repaired into a basic capacitor."
     }
   ]
 }

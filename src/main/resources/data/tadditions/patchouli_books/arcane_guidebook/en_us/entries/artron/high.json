@@ -11,7 +11,7 @@
         "item": "tardis:artron_capacitor_high"
       },
       "title": "Artron Capacitor",
-      "text": "High Capacity Artron Capacitor"
+      "text": "Upgraded form of the medium capacitor. Stores up to 256 AU per capacitor, for a total of 2,560 AU, and a recharge rate of 1.5. Almost required for frequent flying. Can be upgraded into one of two penultimate capacitors."
     },
     {
       "type": "patchouli:spotlight",
@@ -19,7 +19,7 @@
         "item": "tardis:artron_battery_high"
       },
       "title": "Artron Battery",
-      "text": "High Capacity Artron Battery"
+      "text": "Upgraded form of the medium battery. Can hold up to 1,500 AU per battery, with a charge rate of 2.0, and a discharge rate of 0.25. Can be upgraded into one of two penultimate batteries."
     }
   ]
 }

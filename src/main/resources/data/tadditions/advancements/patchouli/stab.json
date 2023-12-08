@@ -1,0 +1,19 @@
+{
+  "criteria": {
+    "tadditions:stab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tardis:subsystem/stabilizer"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "tadditions:stab"
+    ]
+  ]
+}
