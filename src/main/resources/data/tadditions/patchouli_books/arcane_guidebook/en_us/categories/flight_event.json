@@ -1,6 +1,6 @@
 {
   "name": "Flight Events",
-  "description": "This is a category all about In-Flight Mishaps and events!",
+  "description": "Once in flight, if you do not have any stabilizers, you will need to respond to and deal with various hazards. Learn about them here. If not, you may risk damage to your TARDIS' subsystems and components",
   "icon": "tardis:vortex_detector",
   "secret": true
 }

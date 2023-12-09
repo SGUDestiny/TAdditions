@@ -1,0 +1,18 @@
+
+{
+  "name": "Time Ram",
+  "icon": "minecraft:crying_obsidian",
+  "category": "tadditions:flight_event",
+  "advancement": "tadditions:patchouli/stab",
+  "secret": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Not a naturally occurring circumstance. A time ram only occurs when two TARDISes are on a collision course. If handled improperly, the consequences may be disasterous. One pilot will be in charge of instigating, while the other must prepare to receive. The instigator must adjust their speed using the throttle, randomize their coordinates, and communicate with the other pilot using the TARDIS communicator."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The receiver must adjust their dimensional control setting, randomize their coordinates, and report back using their TARDIS communicator. If done properly, the instigator's TARDIS will materialize within the receiver's TARDIS, after which they may take off and leave whenever they see fit."
+    }
+  ]
+}

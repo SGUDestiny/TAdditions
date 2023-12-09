@@ -1,0 +1,6 @@
+{
+  "name": "TARDIS Subsystems",
+  "description": "Mysterious Timeship found underground, alone and abandoned.",
+  "icon": "tardis:broken_exterior",
+  "secret": true
+}

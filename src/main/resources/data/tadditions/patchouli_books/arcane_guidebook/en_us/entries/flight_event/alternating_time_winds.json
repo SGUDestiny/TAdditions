@@ -1,0 +1,13 @@
+{
+  "name": "Alternating Time Winds",
+  "icon": "minecraft:wool",
+  "category": "tadditions:flight_event",
+  "advancement": "tadditions:patchouli/stab",
+  "secret": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Turbulence with a twist! Respond by adjusting your speed using the throttle, and randomize your coordinates."
+    }
+  ]
+}

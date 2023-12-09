@@ -1,0 +1,13 @@
+{
+  "name": "Artron Pocket",
+  "icon": "tardis:artron_capacitor",
+  "category": "tadditions:flight_event",
+  "advancement": "tadditions:patchouli/stab",
+  "secret": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Sometimes during your flights you may come across pockets of artron energy. These pockets are harmless, but may provide an extra boost to your fuel. Respond by changing your exterior facing, and activating the refueler protocols."
+    }
+  ]
+}

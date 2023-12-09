@@ -1,0 +1,13 @@
+{
+  "name": "Shield Generator",
+  "icon": "tardis:artron_capacitor",
+  "category": "tadditions:tardis_subsystems",
+  "advancement": "tadditions:patchouli/fluid_link",
+  "secret": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The shield generator allows for the forcefields to function. These forcefields stop the vacuum of space or the vortex from sucking players out when the doors are opened in these locations. Alternatively, it will take damage in place of other subsystems when they take damage.\n"
+    }
+  ]
+}

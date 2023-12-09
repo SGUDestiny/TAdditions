@@ -1,0 +1,13 @@
+{
+  "name": "Chameleon Circuit",
+  "icon": "tardis:subsystems/chameleon_circuit",
+  "category": "tadditions:tardis_subsystems",
+  "advancement": "tadditions:patchouli/fluid_link",
+  "secret": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The chameleon circuit allows the TARDIS to change its exterior disguise, and will take damage each time it's used. Once your TARDIS is disguised ideally, the chameleon circuit can be disabled with no consequence, saving durability of the subsystem."
+    }
+  ]
+}

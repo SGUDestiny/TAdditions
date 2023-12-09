@@ -1,0 +1,16 @@
+{
+  "name": "Navigational Computer",
+  "icon": "tardis:subsystem/nav_com",
+  "category": "tadditions:tardis_subsystems",
+  "advancement": "tadditions:patchouli/nav_com",
+  "secret": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:subsystem/nav_com"
+      },
+      "text": "The Nav Com is required for precise navigation. Without it, coordinates are fully randomized, and your destination is out of your control. The Nav Com is also required for interdimensional travel. Information on the monitor will largely be \"UNKNOWN\" if missing."
+    }
+  ]
+}

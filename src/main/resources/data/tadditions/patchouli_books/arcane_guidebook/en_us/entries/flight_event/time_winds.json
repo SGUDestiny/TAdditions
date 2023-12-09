@@ -1,0 +1,13 @@
+{
+  "name": "Time Winds",
+  "icon": "minecraft:string",
+  "category": "tadditions:flight_event",
+  "advancement": "tadditions:patchouli/stab",
+  "secret": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Turbulence in the Time Vortex. Who knew? Respond by adjusting your flight speed using the throttle."
+    }
+  ]
+}

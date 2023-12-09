@@ -1,0 +1,13 @@
+{
+  "name": "Obtaining a TARDIS",
+  "icon": "tardis:artron_capacitor",
+  "category": "tadditions:tardis_functions",
+  "advancement": "tadditions:patchouli/fluid_link",
+  "secret": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "BLAH BLAH BLAH"
+    }
+  ]
+}

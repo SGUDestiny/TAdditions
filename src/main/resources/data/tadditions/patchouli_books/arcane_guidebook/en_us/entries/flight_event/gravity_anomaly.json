@@ -1,0 +1,13 @@
+{
+  "name": "Gravitational Anomaly",
+  "icon": "minecraft:eye_of_ender",
+  "category": "tadditions:flight_event",
+  "advancement": "tadditions:patchouli/stab",
+  "secret": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Crossing into a new dimension is not an easy task. In the moment of entering a new dimension, you'll need to steer your TARDIS correctly. Respond by adjusting your speed using the throttle, change the exterior facing, and hit the stabilizers. Otherwise you will not make it into your desired dimension."
+    }
+  ]
+}
