@@ -1,7 +1,7 @@
 {
   "name": "Stabilizer",
   "icon": "tardis:subsystem/stabilizer",
-  "category": "tadditions:subsystems",
+  "category": "tadditions:tardis_subsystems",
   "advancement": "tadditions:patchouli/stab",
   "secret": true,
   "pages": [

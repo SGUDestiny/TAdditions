@@ -1,13 +1,25 @@
 {
   "name": "The Monitor",
-  "icon": "tardis:artron_capacitor",
+  "icon": "tardis:steampunk_monitor",
   "category": "tadditions:tardis_functions",
   "advancement": "tadditions:patchouli/fluid_link",
   "secret": true,
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "BLAH BLAH BLAH"
+      "text": "Monitors of various styles can be placed in a TARDIS interior, accessing a multitude of controls and protocols otherwise not found on the TARDIS control console. Some consoles may come equipped with a built in monitor. From the monitor, you can set and use waypoints, change your TARDIS' interior, console unit, and exterior shell."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "In the security submenu, you can access the toggle for your TARDIS' alarm, scan for life signals in the interior, and turn on the shields, given you have a shield generator."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "In the interior properties submenu, you may customize the flight sounds of your TARDIS, any colored variants of the console unit (if applicable), and customize the ambient humming of your TARDIS, as well as adjust the light levels."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "In the exterior properties submenu, you may access landing codes, used for landing in tranduction barriers. Alternatively, you may activate anti-gravity, given you have a shield generator. Lastly, you can customize the materialization and dematerialization style of your TARDIS."
     }
   ]
 }

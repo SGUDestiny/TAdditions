@@ -1,13 +1,45 @@
 {
   "name": "Timeship Maintenance",
-  "icon": "tardis:artron_capacitor",
+  "icon": "tardis:circuits",
   "category": "tadditions:tardis_functions",
   "advancement": "tadditions:patchouli/fluid_link",
   "secret": true,
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "BLAH BLAH BLAH"
+      "text": "In the event that many flight events are failed, you may notice sparks and smoke being given off by the console unit. This is a tale-tell sign that one or more components are badly damaged, and should be repaired as soon as possible."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "All components can be repaired using a Quantiscope, or can alternatively be enchanted using Unbreaking and Mending enchants to minimize repairs, or even be repaired through the us of EXP farms"
+    },
+    {
+      "type": "patchouli:text",
+      "text": " Should you want to change the location of your TARDIS' interior door, you can simply punch and break it, before picking it up and placing it elsewhere of your choosing. You can place it between two blocks by shift-clicking. New doors can also be crafted, allowing for multiple interior doors."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Through the use of schematics, players can unlock new consoles, exterior shells and interior rooms for their TARDIS. They can be created in a Neutronic Spectrometer using materials, or must be scanned in ship computers, located in space, buried underground, or in Dalek ships.\n"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Through the use of an ARS egg placed within a TARDIS, its pilot can use artron units in order to generate from a selection of TARDIS-related blocks."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Through the use of an ARS tablet, the pilot may create an extended layout of their TARDIS, using various rooms and connector hallways to create an extensive base, by clicking on a corridor block. These can (usually) be found 30 blocks north of the console unit."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "TARDISes have a certain level of sentience and awareness, and come with their own selection of personality traits. These can be pieced together by shift-clicking the telepathic circuits. For some time, your TARDIS will telepathically tell you how it's feeling based on its environment and circumstance."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "More on TARDIS sentience, they have their own loyalty and mood levels that differ from pilot to pilot. Should you treat your TARDIS poorly-- it may be disobedient, and land elsewhere from where you wanted it to land. Alternatively, it may purposely land in dangerous situations to get you hurt or killed."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Should you treat your TARDIS well, it will in turn treat you well. It will have increased accuracy, allow you to customize it, create ARS rooms, and will attempt to save its liked pilots if their HP falls below a certain threshold. This can be stopped using the handbrake."
     }
   ]
 }

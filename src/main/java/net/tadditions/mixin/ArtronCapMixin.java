@@ -56,7 +56,7 @@ public class ArtronCapMixin extends Item {
         float s = 0;
 
         if(enchantLevelR > 0){
-            r = (float) (enchantLevelR*128);
+            r = (float) (enchantLevelR);
         }
         if(enchantLevelS > 0){
             s = (float) (enchantLevelS*128);

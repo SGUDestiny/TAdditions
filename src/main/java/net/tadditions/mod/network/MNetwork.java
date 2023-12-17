@@ -19,7 +19,6 @@ public class MNetwork {
         NETWORK_CHANNEL.registerMessage(nextId(), FoodSpawnMessage.class, FoodSpawnMessage::encode, FoodSpawnMessage::decode, FoodSpawnMessage::handle);
         NETWORK_CHANNEL.registerMessage(nextId(), AdvQuantiscopeTabMessage.class, AdvQuantiscopeTabMessage::encode, AdvQuantiscopeTabMessage::decode, AdvQuantiscopeTabMessage::handle);
         NETWORK_CHANNEL.registerMessage(nextId(), QuanSpawnMessage.class, QuanSpawnMessage::encode, QuanSpawnMessage::decode, QuanSpawnMessage::handle);
-
     }
 
     /**

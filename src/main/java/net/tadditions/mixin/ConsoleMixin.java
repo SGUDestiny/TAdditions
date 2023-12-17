@@ -769,7 +769,7 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
                     int s = 0;
 
                     if(enchantLevelR > 0){
-                        r = enchantLevelR*128;
+                        r = enchantLevelR;
                     }
                     if(enchantLevelS > 0){
                         s = enchantLevelS*128;

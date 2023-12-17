@@ -1,12 +1,15 @@
 {
   "name": "Temporal Grace",
-  "icon": "tardis:artron_capacitor",
+  "icon": "tardis:subsystem/temporal_grace",
   "category": "tadditions:tardis_subsystems",
   "advancement": "tadditions:patchouli/fluid_link",
   "secret": true,
   "pages": [
     {
-      "type": "patchouli:text",
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:subsystem/temporal_grace"
+      },
       "text": "When a TARDIS is an a state of temporal grace, it stops all living creatures inside the interior from taking damage, the subsystem itself taking the damage instead. When activated, the temporal grace will also save items that into the void of the TARDIS dimension, dropping them by the interior doors."
     }
   ]

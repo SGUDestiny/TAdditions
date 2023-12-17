@@ -1,6 +1,6 @@
 {
   "name": "TARDIS Engine",
-  "icon": "tardis:artron_capacitor",
+  "icon": "tardis:tardis_engine",
   "category": "tadditions:tardis_functions",
   "advancement": "tadditions:patchouli/fluid_link",
   "secret": true,

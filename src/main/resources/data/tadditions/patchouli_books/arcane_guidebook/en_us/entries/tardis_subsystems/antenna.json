@@ -1,12 +1,15 @@
 {
   "name": "Interstitial Antenna",
-  "icon": "tardis:subsystems/interstitial_antenna",
+  "icon": "tardis:subsystem/interstitial_antenna",
   "category": "tadditions:tardis_subsystems",
   "advancement": "tadditions:patchouli/fluid_link",
   "secret": true,
   "pages": [
     {
-      "type": "patchouli:text",
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:subsystem/interstitial_antenna"
+      },
       "text": "The interstitial antenna allows your TARDIS to receive signals from other players, and distress signals in space. It will take damage for as long as it's active, and extra damage once a signal is detected."
     }
   ]

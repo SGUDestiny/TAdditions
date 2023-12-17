@@ -1,6 +1,6 @@
 {
   "name": "Frame Stabilizer",
-  "icon": "tardis:upgrade_blank",
+  "icon": "tardis:upgrades/key_fob",
   "category": "tadditions:tardis_upgrades",
   "advancement": "tadditions:patchouli/fluid_link",
   "secret": true,

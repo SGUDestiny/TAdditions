@@ -1,12 +1,15 @@
 {
   "name": "Dematerialization Circuit",
-  "icon": "tardis:subsystems/dematerialisation_circuit",
+  "icon": "tardis:subsystem/dematerialisation_circuit",
   "category": "tadditions:tardis_subsystems",
   "advancement": "tadditions:patchouli/fluid_link",
   "secret": true,
   "pages": [
     {
-      "type": "patchouli:text",
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:subsystem/dematerialisation_circuit"
+      },
       "text": "The demateralization circuit is required for TARDIS flight, and is the component that allows the timeship to take off and land. It will take steady damage over time in flight."
     }
   ]

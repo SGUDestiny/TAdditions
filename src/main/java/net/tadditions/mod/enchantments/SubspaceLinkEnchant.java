@@ -7,13 +7,13 @@ import net.minecraft.item.ItemStack;
 import net.tardis.mod.items.ArtronCapacitorItem;
 
 public class SubspaceLinkEnchant extends Enchantment {
-    protected SubspaceLinkEnchant(Rarity rarityIn, EquipmentSlotType[] slots) {
-        super(rarityIn, EnchantmentType.create("artron", item -> item instanceof ArtronCapacitorItem), slots);
+    protected SubspaceLinkEnchant(Rarity rarityIn, EnchantmentType type, EquipmentSlotType[] slots) {
+        super(rarityIn, type, slots);
     }
 
     @Override
     public boolean canApply(ItemStack stack) {
-        return stack.getItem() instanceof ArtronCapacitorItem;
+        return type.canEnchantItem(stack.getItem());
     }
 
     @Override

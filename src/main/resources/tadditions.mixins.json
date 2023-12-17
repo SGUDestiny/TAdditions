@@ -3,6 +3,7 @@
   "package": "net.tadditions.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "ArtronBatMixin",
     "ArtronCapMixin",
     "ConsoleMixin",
     "DimConMixin",

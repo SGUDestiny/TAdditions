@@ -1,6 +1,6 @@
 {
   "name": "Gravitational Anomaly",
-  "icon": "minecraft:eye_of_ender",
+  "icon": "minecraft:ender_eye",
   "category": "tadditions:flight_event",
   "advancement": "tadditions:patchouli/stab",
   "secret": true,
