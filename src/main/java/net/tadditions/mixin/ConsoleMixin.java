@@ -19,6 +19,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.concurrent.TickDelayedTask;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.DimensionType;
@@ -29,6 +30,7 @@ import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.Event;
+import net.minecraftforge.items.ItemStackHandler;
 import net.tadditions.mod.enchantments.TAEnchants;
 import net.tadditions.mod.helper.IConsoleHelp;
 import net.tadditions.mod.helper.MExteriorAnimationRegistry;
@@ -42,6 +44,7 @@ import net.tardis.mod.ars.ConsoleRoom;
 import net.tardis.mod.cap.Capabilities;
 import net.tardis.mod.config.TConfig;
 import net.tardis.mod.constants.TardisConstants;
+import net.tardis.mod.controls.ThrottleControl;
 import net.tardis.mod.entity.ControlEntity;
 import net.tardis.mod.entity.DoorEntity;
 import net.tardis.mod.entity.TardisEntity;
@@ -643,7 +646,7 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
                     ((ConsoleTile) (Object) this).getUpgrade(FrameStabUpgrade.class).ifPresent(up -> {
                         if (up.isActivated() && up.isUsable()) {
                             up.damage(10, Upgrade.DamageType.ITEM, null);
-                            ((ConsoleTile) (Object) this).initLand();
+                            ((ConsoleTile) (Object) this).setDestinationReachedTick(0);
                         } else VoidCrash();
                     });
                 } else VoidCrash();
@@ -748,6 +751,25 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
 
     }
 
+    /**
+     * Calculate flight speed for the Tardis
+     * @return Speed in blocks a tick B/T
+     */
+    public float calcSpeed() {
+        ObjectWrapper<Float> throttle = new ObjectWrapper<>(0.0F);
+        ObjectWrapper<Float> speedmod = new ObjectWrapper<>(1.0F);
+        ((ConsoleTile) (Object) this).getWorld().getCapability(Capabilities.TARDIS_DATA).ifPresent(tard -> {
+            ItemStackHandler handler = tard.getEngineInventoryForSide(Direction.NORTH).getHandler();
+            for(int i = 0; i<handler.getSlots(); i++){
+                if(handler.getStackInSlot(i).getItem().getRegistryName().toString().contains("overcharged")){
+                    speedmod.setValue(speedmod.getValue()+0.125F);
+                }
+            }
+        });
+        ((ConsoleTile) (Object) this).getControl(ThrottleControl.class).ifPresent(throt -> throttle.setValue(throt.getAmount()));
+        return ConsoleTile.TARDIS_MAX_SPEED * MathHelper.clamp(throttle.getValue(), 0.1F, 1.0F)*speedmod.getValue();
+    }
+
     public void updateArtronValues() {
 
         this.world.getCapability(Capabilities.TARDIS_DATA).ifPresent(cap -> {
@@ -776,8 +798,8 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
                     }
 
                     ArtronCapacitorItem item = (ArtronCapacitorItem)stack.getItem();
-                    newMax += item.getMaxStorage()*s;
-                    rate += item.getRechargeModifier()*r;
+                    newMax += item.getMaxStorage()+s;
+                    rate += item.getRechargeModifier()+r;
                     ++numCap;
                 }
             }

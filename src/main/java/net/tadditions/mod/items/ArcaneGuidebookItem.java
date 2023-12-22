@@ -1,11 +1,18 @@
 package net.tadditions.mod.items;
 
+import com.google.common.collect.ImmutableMultimap;
+import com.google.common.collect.Multimap;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.attributes.Attribute;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.SwordItem;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -35,10 +42,15 @@ public class ArcaneGuidebookItem extends Item implements IAnimatable, ISyncable 
     public AnimationFactory factory = GeckoLibUtil.createFactory(this);
     public String controllerName = "controller";
     public boolean open = false;
+    Multimap<Attribute, AttributeModifier> map;
 
     public ArcaneGuidebookItem(Properties props) {
         super(props);
         GeckoLibNetwork.registerSyncable(this);
+        ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
+        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", 6, AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.ATTACK_KNOCKBACK, new AttributeModifier("Weapon modifier", 6, AttributeModifier.Operation.ADDITION));
+        this.map = builder.build();
     }
 
     public static boolean isOpen() {

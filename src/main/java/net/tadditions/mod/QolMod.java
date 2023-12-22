@@ -24,6 +24,7 @@ import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.tadditions.mod.blocks.ModBlocks;
 import net.tadditions.mod.cap.*;
+import net.tadditions.mod.compat.create.CreateItems;
 import net.tadditions.mod.compat.create.CreateMod;
 import net.tadditions.mod.config.MConfigs;
 import net.tadditions.mod.container.MContainers;
@@ -90,6 +91,9 @@ public class QolMod
         eventBus.addListener(this::processIMC);
 
         eventBus.addListener(this::doClientStuff);
+        if(ModList.get().isLoaded("create")) {
+            CreateItems.register(eventBus);
+        }
 
 
         MNetwork.init();
@@ -112,9 +116,7 @@ public class QolMod
                             .put(ModBlocks.scorched_log.get(), ModBlocks.sanguine_log.get()).build();
                 });
 
-        if(ModList.get().isLoaded("create")){
-            CreateMod.create();
-        }
+
 
         CommonEvents.getAllMappingEntries();
         CraftingHelper.register(TrueConCondition.Serializer.INSTANCE);

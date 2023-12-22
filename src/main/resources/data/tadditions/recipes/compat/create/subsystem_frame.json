@@ -1,0 +1,69 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "create:precision_mechanism"
+  },
+  "transitionalItem": {
+    "item": "tadditions:incomplete_subsystem_frame"
+  },
+  "sequence": [
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete_subsystem_frame"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete_subsystem_frame"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete_subsystem_frame"
+        },
+        {
+          "tag": "forge:ingots/iron"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete_subsystem_frame"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete_subsystem_frame"
+        },
+        {
+          "item": "tardis:circuits"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete_subsystem_frame"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "item": "tadditions:subsystem_frame",
+      "chance": 100.0
+    }
+  ],
+  "loops": 4
+}
