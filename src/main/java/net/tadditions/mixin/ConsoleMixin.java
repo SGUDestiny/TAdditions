@@ -764,6 +764,12 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
                 if(handler.getStackInSlot(i).getItem().getRegistryName().toString().contains("overcharged")){
                     speedmod.setValue(speedmod.getValue()+0.125F);
                 }
+                if(EnchantmentHelper.getEnchantmentLevel(TAEnchants.BLESSING_OF_FLOW.get(), handler.getStackInSlot(i)) > 0){
+                    speedmod.setValue(speedmod.getValue()+0.25F);
+                };
+                if(EnchantmentHelper.getEnchantmentLevel(TAEnchants.CURSE_OF_WINDS.get(), handler.getStackInSlot(i)) > 0){
+                    speedmod.setValue(speedmod.getValue()-0.25F);
+                };
             }
         });
         ((ConsoleTile) (Object) this).getControl(ThrottleControl.class).ifPresent(throt -> throttle.setValue(throt.getAmount()));

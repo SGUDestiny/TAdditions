@@ -313,5 +313,7 @@
   "guide.tadditions.subtitle": "A mysterious notebook",
   "guide.tadditions.landing_text": "You don't remember ever getting this book. The back of your mind tells you that it's always been there. Just... out of your sight. Until now. What secrets does it behold? It seems rather empty right now.",
   "enchantment.tadditions.subspace_pocket": "Subspace Pocket",
-  "enchantment.tadditions.subspace_link": "Subspace Link"
+  "enchantment.tadditions.subspace_link": "Subspace Link",
+  "enchantment.tadditions.blessing_of_temporal_flow": "Blessing of Temporal Flow",
+  "enchantment.tadditions.curse_of_temporal_winds": "Curse of Temporal Winds"
 }
