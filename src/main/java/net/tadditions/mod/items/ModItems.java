@@ -55,9 +55,6 @@ public class ModItems {
     public static final RegistryObject<Item> UNDEADLOCKER = ITEMS.register("undeadlocker", () -> createItem(new UndeadLocker()));
     public static final RegistryObject<Item> data_crystal = ITEMS.register("data_crystal", () -> createItem(new Item(Prop.Items.SIXTY_FOUR.get().group(ModItemGroups.TA))));
     public static final RegistryObject<Item> QUANTUM_EXOTIC_MATTER= ITEMS.register("exotic_matter", () -> createItem(new QuantumExoticMatterItem(Prop.Items.SIXTY_FOUR.get().group(ModItemGroups.TA))));
-    public static final RegistryObject<Item> MUSICDISK1 = ITEMS.register("dusty_music_disc_fallen_flame", () -> createItem(new MusicDiscItem(1, () -> MSounds.DISC1.get(), new Item.Properties().maxStackSize(1).group(ItemGroup.MISC))));
-    public static final RegistryObject<Item> MUSICDISK2 = ITEMS.register("dusty_music_disc_madmans_lullaby", () -> createItem(new MusicDiscItem(1, () -> MSounds.DISC2.get(), new Item.Properties().maxStackSize(1).group(ItemGroup.MISC))));
-    public static final RegistryObject<Item> MUSICDISK3 = ITEMS.register("dusty_music_disc_hold_strong", () -> createItem(new MusicDiscItem(1, () -> MSounds.DISC3.get(), new Item.Properties().maxStackSize(1).group(ItemGroup.MISC))));
     public static final RegistryObject<Item> DEMAT_CIRCUITMK2 = ITEMS.register("subsystem/dematerialisation_circuit_overcharged", () -> createItem(new SubsysItem(Prop.Items.ONE.get().maxDamage(5000).group(ModItemGroups.TA).setISTER(() -> DematRenderer::new), TardisConstants.Part.PartType.SUBSYSTEM, false, true)));
     public static final RegistryObject<Item> FLUID_LINKMK2 = ITEMS.register("subsystem/fluid_link_overcharged", () -> createItem(new SubsysItem(Prop.Items.ONE.get().maxDamage(1250).group(ModItemGroups.TA).setISTER(() -> FluidLinkRenderer::new), TardisConstants.Part.PartType.SUBSYSTEM, false, true)));
     public static final RegistryObject<Item> CHAMELEON_CIRCUITMK2 = ITEMS.register("subsystem/chameleon_circuit_overcharged", () -> createItem(new SubsysItem(Prop.Items.ONE.get().maxDamage(1250).group(ModItemGroups.TA).setISTER(() -> ChameleonRenderer::new), TardisConstants.Part.PartType.SUBSYSTEM, false, true)));
@@ -69,7 +66,6 @@ public class ModItems {
 
     public static final RegistryObject<BucketItem> MERCURY_BUCKET = ITEMS.register("mercury_bucket", () -> createItem(new BucketItem(() -> MFluids.MERCURY_FLUID.get(), (new Item.Properties().maxStackSize(1).containerItem(Items.BUCKET).group(ItemGroup.MISC)))));
     //public static final RegistryObject<Item> POWERAXE = ITEMS.register("power_axe", () -> createItem(new PowerAxe(MItemTier.POWERAXE, 1,-2.7f, new Item.Properties().group(ModItemGroups.TA).isImmuneToFire().addToolType(ToolType.AXE, 10))));
-    //public static final RegistryObject<Item> THERMOCOUPLING = ITEMS.register("subsystem/thermocoupling", () -> createItem(new SubsysItem(Prop.Items.ONE.get().maxDamage(1000).group(ModItemGroups.TA).setISTER(() -> ThermocouplingRenderer::new), TardisConstants.Part.PartType.SUBSYSTEM, false, true)));
 
     public static final RegistryObject<Item> CREATIVE_CAPACITOR = ITEMS.register("artron_capacitor_creative", () -> createItem(new ArtronCapacitorItem(Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY)));
 

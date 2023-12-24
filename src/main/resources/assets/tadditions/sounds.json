@@ -1,22 +1,4 @@
 {
-  "disc1": {
-    "subtitle": "subtitle.tadditions.disc1",
-    "sounds": [
-      "tadditions:disc/fallen_flame"
-    ]
-  },
-  "disc2": {
-    "subtitle": "subtitle.tadditions.disc2",
-    "sounds": [
-      "tadditions:disc/a_madmans_lullaby"
-    ]
-  },
-  "disc3": {
-  "subtitle": "subtitle.tadditions.disc3",
-  "sounds": [
-    "tadditions:disc/hold_strong"
-    ]
-  },
   "verge_ambient1": {
   "subtitle": "subtitle.tadditions.verge_ambient",
   "sounds": [
@@ -27,29 +9,5 @@
   "sounds": [
     "tadditions:tardis_land_long"
   ]
-  },
-  "murasama": {
-    "subtitle": "subtitle.tadditions.murasama",
-    "sounds": [
-      "tadditions:tyrus_spadra_totikfr_alternative_mix"
-    ]
-  },
-  "poweraxe": {
-    "subtitle": "subtitle.tadditions.poweraxe",
-    "sounds": [
-      "tadditions:guillaume_david_warhammer_noosphere"
-    ]
-  },
-  "20_year": {
-    "subtitle": "subtitle.tadditions.the_remnants",
-    "sounds": [
-      "tadditions:ambient/crynn_-_20_year_war"
-    ]
-  },
-  "despite_it_all": {
-    "subtitle": "subtitle.tadditions.verge_visit",
-    "sounds":[
-      "tadditions:ambient/sentryturbo_-_despite_it_all"
-    ]
   }
 }

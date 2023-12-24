@@ -29,7 +29,6 @@
     }
   },
   "rewards": {
-    "function": "tadditions:murasama",
     "experience": 50
   },
   "requirements": [
