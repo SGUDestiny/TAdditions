@@ -315,5 +315,8 @@
   "enchantment.tadditions.subspace_pocket": "Subspace Pocket",
   "enchantment.tadditions.subspace_link": "Subspace Link",
   "enchantment.tadditions.blessing_of_temporal_flow": "Blessing of Temporal Flow",
-  "enchantment.tadditions.curse_of_temporal_winds": "Curse of Temporal Winds"
+  "enchantment.tadditions.curse_of_temporal_winds": "Curse of Temporal Winds",
+  "tadditions.dislikes_company": "The Timeship doesn't like it's company",
+  "tadditions.likes_company": "The Timeship likes it's company"
+
 }
