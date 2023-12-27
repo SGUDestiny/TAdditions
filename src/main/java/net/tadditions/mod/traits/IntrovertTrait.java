@@ -39,6 +39,7 @@ public class IntrovertTrait extends TardisTrait {
 								else if (Arrays.stream(intile.getEmotionHandler().getTraits()).anyMatch(trait -> trait.equals(MTraits.EXTROVERT.get().create()))) {
 									tile.getEmotionHandler().addMood(-2);
 								}
+                                else tile.getEmotionHandler().addMood(-1);
 
 							}
 						}

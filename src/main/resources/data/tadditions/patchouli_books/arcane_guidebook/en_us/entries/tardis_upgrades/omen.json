@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": " Removes \"Bad Omen\" status effect from players. Does not take damage. Requires temporal grace to function."
+      "text": "Removes \"Bad Omen\" status effect from players. Does not take damage. Requires temporal grace to function."
     }
   ]
 }

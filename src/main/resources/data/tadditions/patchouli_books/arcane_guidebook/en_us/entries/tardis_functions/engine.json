@@ -7,7 +7,27 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "BLAH BLAH BLAH"
+      "text": "Each TARDIS comes with an engine block. Each side of the engine contains a different panel, usage, and interface."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The blue panel of the TARDIS engine showcases where subsystems can be installed. When installing subsystems, the player must complete a simple minigame of matching wires. Should the player mess up, they will be kicked out of the interface, and take light damage."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The yellow panel of the TARDIS engine contains two halves. The left side allows you to charge artron batteries, by leeching from the TARDIS itself. The right side allows the player to attune items, ranging from sonic screwdrivers, to stattenheim remotes. Certain items require attunement to work properly, and must be left in the panel during flight to fully attune."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The green panel allows upgrades to be installed, through the same minigame encountered when installing subsystems"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The red panel is the artron bank, where artron capacitors are installed using the same minigame as the green and blue panels."
+    },
+    {
+      "type": "patchouli:text",
+      "text": " In the upgrades and subsystem panels, each slot has a switch above or below each slot. These indicate whether or not the respective upgrade or subsystem is active."
     }
   ]
 }
