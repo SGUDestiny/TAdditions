@@ -43,79 +43,43 @@ public class SetTraitsCommand extends TCommand {
         CommandSource source = context.getSource();
         if (TardisHelper.getConsole(context.getSource().getServer(), world).isPresent()) {
             Optional<ConsoleTile> console = TardisHelper.getConsoleInWorld(world);
-            console.ifPresent(tile -> {
-                tile.getWorld().getCapability(Capabilities.TARDIS_DATA).ifPresent(data -> {
+            console.ifPresent(tile -> tile.getWorld().getCapability(Capabilities.TARDIS_DATA).ifPresent(data -> {
 
+                ((IEmotionHelp) tile.getEmotionHandler()).setTraits(traites);
 
-                    ((IEmotionHelp) tile.getEmotionHandler()).setTraits((TardisTrait[]) traites.toArray());
+                StringBuilder traits = new StringBuilder();
 
-                    StringBuilder traits = new StringBuilder();
-
-                    // for each loop
-                    TardisTrait[] tardisTraits = tile.getEmotionHandler().getTraits();
-                    for (TardisTrait trait : tardisTraits)
-                    {
-                        if (trait == null)
-                            continue;
-                        traits.append(trait.getType().getRegistryName().toString()).append("\n");
-                    }
-                    TextComponent tardisIdentifier = TextHelper.getTardisDimObject(world, data);
-                    source.sendFeedback(new TranslationTextComponent("command.tardis.traits.set", tardisIdentifier, traits.toString()), true);
-                });
-            });
-            return Command.SINGLE_SUCCESS;
+                // for each loop
+                TardisTrait[] tardisTraits = tile.getEmotionHandler().getTraits();
+                for (TardisTrait trait : tardisTraits) {
+                    if (trait == null)
+                        continue;
+                    traits.append(trait.getType().getRegistryName().toString()).append("\n");
+                }
+                TextComponent tardisIdentifier = TextHelper.getTardisDimObject(world, data);
+                source.sendFeedback(new TranslationTextComponent("command.tardis.traits.set", tardisIdentifier), true);
+            }));
         }
         else {
             context.getSource().sendErrorMessage(new TranslationTextComponent(TardisConstants.Translations.NO_TARDIS_FOUND, world.getDimensionKey().getLocation().toString()));
             return 0;
         }
-
-    }
-
-    private static int regenerateTardisTraits(CommandContext<CommandSource> context, ServerPlayerEntity player) {
-        return regenerateTardisTraits(context, player.getServerWorld());
-    }
-
-    private static int regenerateTardisTraits(CommandContext<CommandSource> context, ServerWorld world){
-        CommandSource source = context.getSource();
-        if (TardisHelper.getConsole(context.getSource().getServer(), world).isPresent()) {
-            Optional<ConsoleTile> console = TardisHelper.getConsoleInWorld(world);
-            console.ifPresent(tile -> {
-                tile.getWorld().getCapability(Capabilities.TARDIS_DATA).ifPresent(data -> {
-
-                    tile.getEmotionHandler().regenerateTraits();
-
-                    StringBuilder traits = new StringBuilder();
-
-                    TardisTrait[] tardisTraits = tile.getEmotionHandler().getTraits();
-                    for (TardisTrait trait : tardisTraits){
-                        if (trait != null)
-                            traits.append(trait.getType().getRegistryName().toString()).append("\n");
-                    }
-                    TextComponent tardisIdentifier = TextHelper.getTardisDimObject(world, data);
-                    source.sendFeedback(new TranslationTextComponent("command.tardis.traits.regenerate", tardisIdentifier, traits.toString()), true);
-                });
-            });
-            return Command.SINGLE_SUCCESS;
+        return Command.SINGLE_SUCCESS;
         }
-        else {
-            context.getSource().sendErrorMessage(new TranslationTextComponent(TardisConstants.Translations.NO_TARDIS_FOUND, world.getDimensionKey().getLocation().toString()));
-            return 0;
-        }
-    }
-
 
     public static ArgumentBuilder<CommandSource, ?> register(CommandDispatcher<CommandSource> dispatcher){
         return Commands.literal("set_trait").requires(context -> context.hasPermissionLevel(2))
-                .then(Commands.literal("set")
-                        .then(Commands.argument("tardis", DimensionArgument.getDimension()).suggests((context, suggestionBuilder) -> ISuggestionProvider.suggest(Collections.emptyList(), CommandHelper.addTardisKeysWithNameTooltip(suggestionBuilder, context.getSource().getServer())))
-                                .then(Commands.argument("trait1", TardisTraitArgument.getTraitArgument())).suggests((context, suggestionBuilder) -> ISuggestionProvider.suggest(Collections.emptyList(), addTraits(suggestionBuilder, context.getSource().getServer())))
-                                .then(Commands.argument("trait2", TardisTraitArgument.getTraitArgument())).suggests((context, suggestionBuilder) -> ISuggestionProvider.suggest(Collections.emptyList(), addTraits(suggestionBuilder, context.getSource().getServer())))
-                                .then(Commands.argument("trait3", TardisTraitArgument.getTraitArgument())).suggests((context, suggestionBuilder) -> ISuggestionProvider.suggest(Collections.emptyList(), addTraits(suggestionBuilder, context.getSource().getServer())))
-                                .then(Commands.argument("trait4", TardisTraitArgument.getTraitArgument())).suggests((context, suggestionBuilder) -> ISuggestionProvider.suggest(Collections.emptyList(), addTraits(suggestionBuilder, context.getSource().getServer())))
-                                .executes(context -> setTardisTraits(context, DimensionArgument.getDimensionArgument(context, "tardis"), Lists.newArrayList(TardisTraitArgument.getTrait(context, "trait1").create(), TardisTraitArgument.getTrait(context, "trait2").create(), TardisTraitArgument.getTrait(context, "trait3").create(), TardisTraitArgument.getTrait(context, "trait4").create())))
-                        ) //End parameters
-                ); //End Set command
+                .then(Commands.argument("tardis", DimensionArgument.getDimension()).suggests((context, suggestionBuilder) -> ISuggestionProvider.suggest(Collections.emptyList(), CommandHelper.addTardisKeysWithNameTooltip(suggestionBuilder, context.getSource().getServer())))
+                        .then(Commands.argument("trait1", TardisTraitArgument.getTraitArgument())
+                                .then(Commands.argument("trait2", TardisTraitArgument.getTraitArgument())
+                                        .then(Commands.argument("trait3", TardisTraitArgument.getTraitArgument())
+                                                .then(Commands.argument("trait4", TardisTraitArgument.getTraitArgument())
+                                                        .executes(context -> setTardisTraits(context, DimensionArgument.getDimensionArgument(context, "tardis"), Lists.newArrayList(TardisTraitArgument.getTrait(context, "trait1").create(), TardisTraitArgument.getTrait(context, "trait2").create(), TardisTraitArgument.getTrait(context, "trait3").create(), TardisTraitArgument.getTrait(context, "trait4").create())))
+                                                )
+                                        )
+                                )
+                        )
+                );
     }
 
     public static SuggestionsBuilder addTraits(SuggestionsBuilder builder, MinecraftServer server) {

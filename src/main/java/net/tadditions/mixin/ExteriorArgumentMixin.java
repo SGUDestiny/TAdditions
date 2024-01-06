@@ -36,9 +36,9 @@ public class ExteriorArgumentMixin {
         AbstractExterior room = ExteriorRegistry.EXTERIOR_REGISTRY.get().getValue(resourcelocation);
         if (room == null)
             throw INVALID_EXTERIOR_EXCEPTION.create(resourcelocation);
-        else if(room == MExteriorRegistry.TOYOTA_POLICE_BOX.get()){
-            throw MINVALID_EXTERIOR_EXCEPTION.create(resourcelocation);
-        }
+        //else if(room == MExteriorRegistry.TOYOTA_POLICE_BOX.get()){
+           // throw MINVALID_EXTERIOR_EXCEPTION.create(resourcelocation);
+        //}
         else return room;
     }
 

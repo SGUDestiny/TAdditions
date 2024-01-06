@@ -27,7 +27,7 @@ public class IntrovertTrait extends TardisTrait {
 				World world = ext.getWorld();
 				AxisAlignedBB area = new AxisAlignedBB(ext.getPos()).grow(16);
 				for (BlockPos blockPos : BlockPos.getAllInBoxMutable((int) area.minX, (int) area.minY, (int) area.minZ, (int) area.maxX, (int) area.maxY, (int) area.maxZ)) {
-					if (world.getBlockState(blockPos).getBlock() instanceof ExteriorBlock) {
+					if (world != null &&world.getBlockState(blockPos).getBlock() instanceof ExteriorBlock) {
 						if (tile.getWorld().getGameTime() % 200 == 0) {
 							ExteriorTile extile = (ExteriorTile) world.getTileEntity(blockPos);
 							ConsoleTile intile = TardisHelper.getConsole(world.getServer(), extile.getInteriorDimensionKey()).orElse(null);

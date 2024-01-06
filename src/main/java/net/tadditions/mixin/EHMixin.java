@@ -1,6 +1,7 @@
 package net.tadditions.mixin;
 
 import com.google.common.collect.Lists;
+import net.tadditions.mod.helper.IEmotionHelp;
 import net.tardis.mod.registries.TraitRegistry;
 import net.tardis.mod.tileentities.ConsoleTile;
 import net.tardis.mod.tileentities.console.misc.EmotionHandler;
@@ -8,10 +9,11 @@ import net.tardis.mod.traits.TardisTrait;
 import net.tardis.mod.traits.TardisTraitType;
 import org.spongepowered.asm.mixin.Mixin;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Mixin(EmotionHandler.class)
-public class EHMixin {
+public class EHMixin implements IEmotionHelp {
     private boolean hasGeneratedTraits = false;
     private TardisTrait[] traits = new TardisTrait[6];
 
@@ -54,8 +56,8 @@ public class EHMixin {
         return false;
     }
 
-    public void setTraits(TardisTrait[] traits){
-        this.traits = traits;
+    @Override
+    public void setTraits(ArrayList<TardisTrait> traits) {
+        this.traits = traits.toArray(new TardisTrait[0]);
     }
-
 }

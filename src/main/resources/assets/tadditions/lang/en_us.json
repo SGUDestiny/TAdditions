@@ -317,6 +317,6 @@
   "enchantment.tadditions.blessing_of_temporal_flow": "Blessing of Temporal Flow",
   "enchantment.tadditions.curse_of_temporal_winds": "Curse of Temporal Winds",
   "tadditions.dislikes_company": "The Timeship doesn't like it's company",
-  "tadditions.likes_company": "The Timeship likes it's company"
-
+  "tadditions.likes_company": "The Timeship likes it's company",
+  "command.tardis.traits.set": "Set the Traits of the TARDIS Successfully"
 }

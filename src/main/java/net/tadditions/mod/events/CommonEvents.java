@@ -96,7 +96,7 @@ public class CommonEvents {
         MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
         if (server != null && server.isServerRunning() && event.phase == TickEvent.Phase.START) {
             for (World world : server.getWorlds()) {
-                if (world.getCapability(Capabilities.TARDIS_DATA).isPresent() && world.getGameTime() % 100 == 0) {
+                if (world.getCapability(Capabilities.TARDIS_DATA).isPresent() && world.getGameTime() % 40 == 0) {
                     ConsoleTile tile = TardisHelper.getConsole(server, world).orElse(null);
                     if (tile.getInteriorManager().isAlarmOn()) {
                         tile.getOrFindExteriorTile().ifPresent(ext -> ext.getWorld().playSound(null, ext.getPos(), TSounds.SINGLE_CLOISTER.get(), SoundCategory.BLOCKS, 5F, 0.5F));
