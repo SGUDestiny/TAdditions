@@ -24,6 +24,7 @@ import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.tadditions.mod.blocks.ModBlocks;
 import net.tadditions.mod.cap.*;
+import net.tadditions.mod.commands.TACommands;
 import net.tadditions.mod.compat.create.CreateItems;
 import net.tadditions.mod.compat.create.CreateMod;
 import net.tadditions.mod.config.MConfigs;
@@ -111,6 +112,7 @@ public class QolMod
                     MTraits.registerRarities();
                     MStructures.setupStructures();
                     MStructures.ConfiguredStructures.registerConfiguredStructures();
+                    TACommands.registerCustomArgumentTypes();
                     MFeatures.registerConfiguredFeatures();
                     AxeItem.BLOCK_STRIPPING_MAP = new ImmutableMap.Builder<Block, Block>().putAll(AxeItem.BLOCK_STRIPPING_MAP)
                             .put(ModBlocks.scorched_log.get(), ModBlocks.sanguine_log.get()).build();

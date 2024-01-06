@@ -26,7 +26,6 @@ public class MTraits extends TraitRegistry {
     public static final RegistryObject<TardisTraitType> EXTROVERT = TRAITS.register("extrovert", () -> setupTrait(ExtrovertTrait::new, test -> test.getTraitClass() == IntrovertTrait.class));
 
 
-
     public static TardisTraitType setupTrait(Function<TardisTraitType, TardisTrait> supplier, Predicate<TardisTraitType> test){
         TardisTraitType type = new TardisTraitType(supplier, test);
         return type;

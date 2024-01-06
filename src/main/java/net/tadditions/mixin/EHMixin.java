@@ -54,4 +54,8 @@ public class EHMixin {
         return false;
     }
 
+    public void setTraits(TardisTrait[] traits){
+        this.traits = traits;
+    }
+
 }

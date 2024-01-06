@@ -6,8 +6,10 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -18,6 +20,7 @@ import net.minecraft.world.gen.settings.StructureSeparationSettings;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
@@ -26,17 +29,27 @@ import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.server.ServerLifecycleHooks;
 import net.tadditions.mod.QolMod;
 import net.tadditions.mod.blocks.ModBlocks;
 import net.tadditions.mod.cap.*;
+import net.tadditions.mod.commands.TACommands;
 import net.tadditions.mod.items.ModItems;
 import net.tadditions.mod.world.MDimensions;
 import net.tadditions.mod.world.structures.MStructures;
+import net.tardis.mixin.ServerWorldMixin;
+import net.tardis.mod.cap.Capabilities;
+import net.tardis.mod.cap.ITardisWorldData;
+import net.tardis.mod.commands.TardisCommand;
 import net.tardis.mod.damagesources.TDamageSources;
 import net.tardis.mod.events.LivingEvents;
 import net.tardis.mod.events.MissingMappingsLookup;
+import net.tardis.mod.helper.TardisHelper;
 import net.tardis.mod.items.ISpaceHelmet;
 import net.tardis.mod.misc.IDontBreak;
+import net.tardis.mod.sounds.TSounds;
+import net.tardis.mod.tileentities.ConsoleTile;
+import net.tardis.mod.tileentities.console.misc.AlarmType;
 import net.tardis.mod.world.biomes.TBiomes;
 import net.tardis.mod.world.dimensions.TDimensions;
 
@@ -76,6 +89,26 @@ public class CommonEvents {
                     event.player.getFoodStats().setFoodLevel(10);
             }
         }
+    }
+
+    @SubscribeEvent
+    public static void onServerTick(TickEvent.ServerTickEvent event) {
+        MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
+        if (server != null && server.isServerRunning() && event.phase == TickEvent.Phase.START) {
+            for (World world : server.getWorlds()) {
+                if (world.getCapability(Capabilities.TARDIS_DATA).isPresent() && world.getGameTime() % 100 == 0) {
+                    ConsoleTile tile = TardisHelper.getConsole(server, world).orElse(null);
+                    if (tile.getInteriorManager().isAlarmOn()) {
+                        tile.getOrFindExteriorTile().ifPresent(ext -> ext.getWorld().playSound(null, ext.getPos(), TSounds.SINGLE_CLOISTER.get(), SoundCategory.BLOCKS, 5F, 0.5F));
+                    }
+                }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void registerCommands(RegisterCommandsEvent event) {
+        TACommands.register(event.getDispatcher());
     }
 
     @SubscribeEvent

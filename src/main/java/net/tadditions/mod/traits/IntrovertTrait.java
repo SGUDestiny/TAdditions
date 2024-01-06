@@ -28,18 +28,15 @@ public class IntrovertTrait extends TardisTrait {
 				AxisAlignedBB area = new AxisAlignedBB(ext.getPos()).grow(16);
 				for (BlockPos blockPos : BlockPos.getAllInBoxMutable((int) area.minX, (int) area.minY, (int) area.minZ, (int) area.maxX, (int) area.maxY, (int) area.maxZ)) {
 					if (world.getBlockState(blockPos).getBlock() instanceof ExteriorBlock) {
-						if (tile.getWorld().getGameTime() % 200 * this.getModifier() == 0) {
+						if (tile.getWorld().getGameTime() % 200 == 0) {
 							ExteriorTile extile = (ExteriorTile) world.getTileEntity(blockPos);
 							ConsoleTile intile = TardisHelper.getConsole(world.getServer(), extile.getInteriorDimensionKey()).orElse(null);
 							if (intile != null) {
-								if (Arrays.stream(intile.getEmotionHandler().getTraits()).anyMatch(trait -> trait.equals(MTraits.INTROVERT.get().create()))) {
-									intile.getEmotionHandler().addMood(1);
-									tile.getEmotionHandler().addMood(1);
-								}
-								else if (Arrays.stream(intile.getEmotionHandler().getTraits()).anyMatch(trait -> trait.equals(MTraits.EXTROVERT.get().create()))) {
+								if(Arrays.stream(intile.getEmotionHandler().getTraits()).anyMatch(trait -> trait.equals(MTraits.INTROVERT))) {
+									tile.getEmotionHandler().addMood(+2);
+								} else if(Arrays.stream(intile.getEmotionHandler().getTraits()).anyMatch(trait -> trait.equals(MTraits.EXTROVERT))){
 									tile.getEmotionHandler().addMood(-2);
-								}
-                                else tile.getEmotionHandler().addMood(-1);
+								} else tile.getEmotionHandler().addMood(-1);
 
 							}
 						}

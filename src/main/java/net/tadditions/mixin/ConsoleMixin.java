@@ -773,7 +773,7 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
             }
         });
         ((ConsoleTile) (Object) this).getControl(ThrottleControl.class).ifPresent(throt -> throttle.setValue(throt.getAmount()));
-        return ConsoleTile.TARDIS_MAX_SPEED * MathHelper.clamp(throttle.getValue(), 0.1F, 1.0F)*speedmod.getValue();
+        return ConsoleTile.TARDIS_MAX_SPEED * MathHelper.clamp(throttle.getValue(), 0.1F, 1.0F)*MathHelper.clamp(speedmod.getValue(), 0f, 4f);
     }
 
     public void updateArtronValues() {
