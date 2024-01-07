@@ -19,6 +19,7 @@ import net.tadditions.mod.client.renderers.ToyotaExteriorRenderer;
 import net.tadditions.mod.helper.IMDoorType;
 import net.tardis.mod.client.models.LightModelRenderer;
 import net.tardis.mod.client.models.exteriors.ExteriorModel;
+import net.tardis.mod.client.models.exteriors.ModernPoliceBoxExteriorModel;
 import net.tardis.mod.client.renderers.boti.BOTIRenderer;
 import net.tardis.mod.client.renderers.boti.PortalInfo;
 import net.tardis.mod.client.renderers.exteriors.ExteriorRenderer;
@@ -37,10 +38,10 @@ public class ToyotaExteriorModel extends ExteriorModel {
 	private final ModelRenderer base;
 	private final ModelRenderer boti;
 	private final ModelRenderer lamp;
-	private final ModelRenderer lampglow;
+	private final LightModelRenderer lampglow;
 	private final ModelRenderer door1;
 	private final ModelRenderer door1right;
-	private final ModelRenderer door1rightsign;
+	private final LightModelRenderer door1rightsign;
 	private final ModelRenderer door1rightwindow;
 	private final ModelRenderer door1rightwindowframe;
 	private final ModelRenderer door1rightwindowframe7_r1;
@@ -50,7 +51,7 @@ public class ToyotaExteriorModel extends ExteriorModel {
 	private final ModelRenderer door1rightwindowframe3_r1;
 	private final ModelRenderer door1rightwindowframe2_r1;
 	private final ModelRenderer door1rightwindowframe1_r1;
-	private final ModelRenderer door1rightwindowglass;
+	private final LightModelRenderer door1rightwindowglass;
 	private final ModelRenderer door1left;
 	private final ModelRenderer door1leftwindow;
 	private final ModelRenderer door1leftwindowframe;
@@ -61,7 +62,7 @@ public class ToyotaExteriorModel extends ExteriorModel {
 	private final ModelRenderer door1leftwindowframe3_r1;
 	private final ModelRenderer door1leftwindowframe2_r1;
 	private final ModelRenderer door1leftwindowframe1_r1;
-	private final ModelRenderer door1leftwindowglass;
+	private final LightModelRenderer door1leftwindowglass;
 	private final ModelRenderer door2;
 	private final ModelRenderer door2right;
 	private final ModelRenderer door2rightwindow;
@@ -73,7 +74,7 @@ public class ToyotaExteriorModel extends ExteriorModel {
 	private final ModelRenderer door2rightwindowframe3_r1;
 	private final ModelRenderer door2rightwindowframe2_r1;
 	private final ModelRenderer door2rightwindowframe1_r1;
-	private final ModelRenderer door2rightwindowglass;
+	private final LightModelRenderer door2rightwindowglass;
 	private final ModelRenderer door2left;
 	private final ModelRenderer door2leftwindow;
 	private final ModelRenderer door2leftwindowframe;
@@ -84,7 +85,7 @@ public class ToyotaExteriorModel extends ExteriorModel {
 	private final ModelRenderer door2leftwindowframe3_r1;
 	private final ModelRenderer door2leftwindowframe2_r1;
 	private final ModelRenderer door2leftwindowframe1_r1;
-	private final ModelRenderer door2leftwindowglass;
+	private final LightModelRenderer door2leftwindowglass;
 	private final ModelRenderer door3;
 	private final ModelRenderer door3right;
 	private final ModelRenderer door3rightwindow;
@@ -96,7 +97,7 @@ public class ToyotaExteriorModel extends ExteriorModel {
 	private final ModelRenderer door3rightwindowframe3_r1;
 	private final ModelRenderer door3rightwindowframe2_r1;
 	private final ModelRenderer door3rightwindowframe1_r1;
-	private final ModelRenderer door3rightwindowglass;
+	private final LightModelRenderer door3rightwindowglass;
 	private final ModelRenderer door3left;
 	private final ModelRenderer door3leftwindow;
 	private final ModelRenderer door3leftwindowframe;
@@ -107,7 +108,7 @@ public class ToyotaExteriorModel extends ExteriorModel {
 	private final ModelRenderer door3leftwindowframe3_r1;
 	private final ModelRenderer door3leftwindowframe2_r1;
 	private final ModelRenderer door3leftwindowframe1_r1;
-	private final ModelRenderer door3leftwindowglass;
+	private final LightModelRenderer door3leftwindowglass;
 	private final ModelRenderer door4;
 	private final ModelRenderer door4right;
 	private final ModelRenderer door4rightwindow;
@@ -119,7 +120,7 @@ public class ToyotaExteriorModel extends ExteriorModel {
 	private final ModelRenderer door4rightwindowframe3_r1;
 	private final ModelRenderer door4rightwindowframe2_r1;
 	private final ModelRenderer door4rightwindowframe1_r1;
-	private final ModelRenderer door4rightwindowglass;
+	private final LightModelRenderer door4rightwindowglass;
 	private final ModelRenderer door4left;
 	private final ModelRenderer door4leftwindow;
 	private final ModelRenderer door4leftwindowframe;
@@ -130,7 +131,7 @@ public class ToyotaExteriorModel extends ExteriorModel {
 	private final ModelRenderer door4leftwindowframe3_r1;
 	private final ModelRenderer door4leftwindowframe2_r1;
 	private final ModelRenderer door4leftwindowframe1_r1;
-	private final ModelRenderer door4leftwindowglass;
+	private final LightModelRenderer door4leftwindowglass;
 
 	public ToyotaExteriorModel() {
 		textureWidth = 256;
@@ -827,16 +828,16 @@ public class ToyotaExteriorModel extends ExteriorModel {
 		door3.render(matrixStack, buffer, packedLight, packedOverlay,1,1,1, alpha);
 		door4.render(matrixStack, buffer, packedLight, packedOverlay,1,1,1, alpha);
 
-       // lampglow.setBright(exterior.getLightLevel());
-       // door1leftwindowglass.setBright(exterior.getLightLevel());
-       // door1rightwindowglass.setBright(exterior.getLightLevel());
-       // door2leftwindowglass.setBright(exterior.getLightLevel());
-       // door2rightwindowglass.setBright(exterior.getLightLevel());
-       // door3leftwindowglass.setBright(exterior.getLightLevel());
-       // door3rightwindowglass.setBright(exterior.getLightLevel());
-       // door4leftwindowglass.setBright(exterior.getLightLevel());
-       // door4rightwindowglass.setBright(exterior.getLightLevel());
-       // door1rightsign.setBright(exterior.getLightLevel());
+        lampglow.setBright(exterior.getLightLevel());
+        door1leftwindowglass.setBright(exterior.getLightLevel());
+        door1rightwindowglass.setBright(exterior.getLightLevel());
+        door2leftwindowglass.setBright(exterior.getLightLevel());
+        door2rightwindowglass.setBright(exterior.getLightLevel());
+        door3leftwindowglass.setBright(exterior.getLightLevel());
+        door3rightwindowglass.setBright(exterior.getLightLevel());
+        door4leftwindowglass.setBright(exterior.getLightLevel());
+        door4rightwindowglass.setBright(exterior.getLightLevel());
+        door1rightsign.setBright(exterior.getLightLevel());
 	}
 
 	@Override
@@ -859,9 +860,52 @@ public class ToyotaExteriorModel extends ExteriorModel {
 		modelRenderer.rotateAngleZ = z;
 	}
 
-	@Override
-	public void renderBoti(ExteriorTile exterior, float scale, MatrixStack matrixStack, IVertexBuilder buffer,
-						   int packedLight, int packedOverlay, float alpha) {
-	}
+    @Override
+    public void renderBoti(ExteriorTile exterior, float scale, MatrixStack matrixStack, IVertexBuilder buffer,
+                           int packedLight, int packedOverlay, float alpha) {
+        if(exterior.getBotiWorld() != null && exterior.getMatterState() == EnumMatterState.SOLID && exterior.getOpen() != EnumDoorState.CLOSED) {
+            PortalInfo info = new PortalInfo();
+            info.setPosition(exterior.getPos());
+            info.setWorldShell(exterior.getBotiWorld());
+            info.setTranslate(matrix -> {
+                matrix.rotate(Vector3f.YP.rotationDegrees(WorldHelper.getAngleFromFacing(exterior.getBotiWorld().getPortalDirection())));
+                matrix.translate(-0.47f, -0.54f, -1.15f);
+                if(exterior.getBlockState().get(BlockStateProperties.HORIZONTAL_FACING) == Direction.SOUTH){
+                   matrix.translate(-0.04f, 0.01f, 1.3f);
+                }
+                if(exterior.getBlockState().get(BlockStateProperties.HORIZONTAL_FACING) == Direction.WEST){
+                    matrix.translate(-0.69f, 0f, 0.64f);
+                }
+                if(exterior.getBlockState().get(BlockStateProperties.HORIZONTAL_FACING) == Direction.EAST){
+                    matrix.translate(0.72f, 0f, 0.64f);
+                }
+                ExteriorRenderer.applyTransforms(matrix, exterior);
+            });
+            info.setTranslatePortal(matrix -> {
+                matrix.translate(0, 0, 0);
+                matrix.rotate(Vector3f.XP.rotationDegrees(180));
+                matrix.rotate(Vector3f.YP.rotationDegrees(180));
+                matrix.translate(-0.55f, 0.2, 0f);
+            });
+
+            info.setRenderPortal((matrix, buf) -> {
+                matrix.push();
+                matrix.scale(1.1F, 1.1F, 1.1F);
+                matrix.translate(0.0f, 0, 0);
+                this.boti.render(matrix, buf.getBuffer(RenderType.getEntityCutout(ToyotaExteriorRenderer.TEXTURE)), packedLight, packedOverlay);
+                matrix.pop();
+            });
+
+            info.setRenderDoor((matrix, buf) -> {
+                matrix.push();
+                matrix.translate(0.04f, -1.68f, 0.55f);
+                matrix.scale(1.1F, 1.1F, 1.05F);
+                this.door1.render(matrix, buf.getBuffer(RenderType.getEntityCutout(ToyotaExteriorRenderer.TEXTURE)), packedLight, packedOverlay);
+                matrix.pop();
+            });
+
+            BOTIRenderer.addPortal(info);
+        }
+    }
 
 }

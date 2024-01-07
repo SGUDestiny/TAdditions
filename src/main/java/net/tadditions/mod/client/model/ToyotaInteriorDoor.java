@@ -15,6 +15,7 @@ import net.tadditions.mod.QolMod;
 import net.tardis.mod.cap.Capabilities;
 import net.tardis.mod.client.models.LightModelRenderer;
 import net.tardis.mod.client.models.interiordoors.AbstractInteriorDoorModel;
+import net.tardis.mod.client.models.interiordoors.ModernPoliceBoxInteriorModel;
 import net.tardis.mod.client.renderers.boti.BOTIRenderer;
 import net.tardis.mod.client.renderers.boti.PortalInfo;
 import net.tardis.mod.client.renderers.entity.DoorRenderer;
@@ -42,7 +43,7 @@ public class ToyotaInteriorDoor extends AbstractInteriorDoorModel {
 	private final ModelRenderer Door_3_right_window_frame_3_r1;
 	private final ModelRenderer Door_3_right_window_frame_2_r1;
 	private final ModelRenderer Door_3_right_window_frame_1_r1;
-	private final ModelRenderer door_3_right_window_glass_glow;
+	private final LightModelRenderer door_3_right_window_glass_glow;
 	private final ModelRenderer Door_left;
 	private final ModelRenderer door_3_left_window;
 	private final ModelRenderer door_3_left_window_frame;
@@ -53,9 +54,9 @@ public class ToyotaInteriorDoor extends AbstractInteriorDoorModel {
 	private final ModelRenderer door_3_left_window_frame_3_r1;
 	private final ModelRenderer door_3_left_window_frame_2_r1;
 	private final ModelRenderer door_3_left_window_frame_1_r1;
-	private final ModelRenderer door_3_left_window_glass_glow;
+	private final LightModelRenderer door_3_left_window_glass_glow;
 	private final ModelRenderer Door_frame_accent;
-	private final ModelRenderer Door_frame_accent_glow;
+	private final LightModelRenderer Door_frame_accent_glow;
 	private final ModelRenderer SOTO;
 
 
@@ -333,14 +334,47 @@ public class ToyotaInteriorDoor extends AbstractInteriorDoorModel {
 		door3.render(matrixStack, buffer, packedLight, packedOverlay);
 		Door_frame.render(matrixStack, buffer, packedLight, packedOverlay);
 		Door_frame_accent.render(matrixStack, buffer, packedLight, packedOverlay);
-		//Door_frame_accent_glow.setBright(1F);
-		//door_3_right_window_glass_glow.setBright(1F);
-		//door_3_left_window_glass_glow.setBright(1F);
+		Door_frame_accent_glow.setBright(1F);
+		door_3_right_window_glass_glow.setBright(1F);
+		door_3_left_window_glass_glow.setBright(1F);
 		matrixStack.pop();
 	}
 
+
 	@Override
-	public void renderBoti(DoorEntity door, MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay) {
+	public void renderBoti(DoorEntity door, MatrixStack matrixStack, IVertexBuilder buffer, int packedLight,
+						   int packedOverlay) {
+		if(Minecraft.getInstance().world != null && door.getOpenState() != EnumDoorState.CLOSED){
+			Minecraft.getInstance().world.getCapability(Capabilities.TARDIS_DATA).ifPresent(data -> {
+				matrixStack.push();
+				PortalInfo info = new PortalInfo();
+				info.setPosition(door.getPositionVec());
+				info.setWorldShell(data.getBotiWorld());
+
+				info.setTranslate(matrix -> {
+
+					matrix.scale(1.1f, 1.1f, 1.2f);
+					matrix.translate(0.025, 0, 0);
+					DoorRenderer.applyTranslations(matrix, door.rotationYaw - 180, door.getHorizontalFacing());
+				});
+				info.setTranslatePortal(matrix -> {
+					matrix.rotate(Vector3f.ZN.rotationDegrees(180));
+					matrix.rotate(Vector3f.YP.rotationDegrees(WorldHelper.getAngleFromFacing(data.getBotiWorld().getPortalDirection())));
+					matrix.translate(-0.5, -1.75, -0.5);
+				});
+
+				info.setRenderPortal((matrix, impl) -> {
+					matrix.push();
+					matrix.translate(-0.05, -0.2, -0.5f);
+					matrix.scale(1.1F, 1.1F, 1.1F);
+					this.SOTO.render(matrix, impl.getBuffer(RenderType.getEntityCutout(this.getTexture())), packedLight, packedOverlay);
+					matrix.pop();
+				});
+
+				BOTIRenderer.addPortal(info);
+				matrixStack.pop();
+			});
+		}
 	}
 
 	@Override

@@ -45,27 +45,27 @@ public class ToyotaExteriorRenderer extends ExteriorRenderer<ToyotaPoliceBoxExte
 
         //Front
         matrixStackIn.push();
-        matrixStackIn.translate(-2F, 3F, -3.125F);
+        matrixStackIn.translate(-0.79, -2.2, -12.275 / 16.0F);
         TEXT.renderText(matrixStackIn, bufferIn, combinedLightIn, tile.getCustomName());
         matrixStackIn.pop();
 
         //Left text
         matrixStackIn.push();
-        matrixStackIn.translate(-9F, 36F, -12.125F);
+        matrixStackIn.translate(-0.87, -2.2, 7.42 / 16.0F);
         matrixStackIn.rotate(Vector3f.YP.rotationDegrees(90));
         TEXT.renderText(matrixStackIn, bufferIn, combinedLightIn, tile.getCustomName());
         matrixStackIn.pop();
 
         //Right text
         matrixStackIn.push();
-        matrixStackIn.translate(-9F, 36F, -12.125F);
+        matrixStackIn.translate(0.87, -2.2, -7.42 / 16.0F);
         matrixStackIn.rotate(Vector3f.YN.rotationDegrees(90));
         TEXT.renderText(matrixStackIn, bufferIn, combinedLightIn, tile.getCustomName());
         matrixStackIn.pop();
 
         //BACK text
         matrixStackIn.push();
-        matrixStackIn.translate(-9F, 36F, -12.125F);
+        matrixStackIn.translate(0.79, -2.2, 12.275 / 16.0F);
         matrixStackIn.rotate(Vector3f.YP.rotationDegrees(180));
         TEXT.renderText(matrixStackIn, bufferIn, combinedLightIn, tile.getCustomName());
         matrixStackIn.pop();

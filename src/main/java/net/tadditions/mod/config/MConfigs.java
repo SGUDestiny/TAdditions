@@ -34,6 +34,7 @@ public class MConfigs {
         public ForgeConfigSpec.ConfigValue<Integer> AlternatingWindRarity;
         public ForgeConfigSpec.ConfigValue<Integer> VectorErrorRarity;
         public ForgeConfigSpec.ConfigValue<Integer> StormRarity;
+        public ForgeConfigSpec.ConfigValue<Integer> ScoopRarity;
 
         public ForgeConfigSpec.ConfigValue<Boolean> OlimCallInOther;
 
@@ -54,6 +55,10 @@ public class MConfigs {
             StormRarity  = builder.comment("Changes the rarity of the Time Storm, 0-100")
                     .translation("config.tadditions.StormRarity")
                     .defineInRange("StormRarity", 2, 0, 100);
+
+            ScoopRarity = builder.comment("Changes the rarity of the Star Scooping, 0-100")
+                    .translation("config.tadditions.ScoopRarity")
+                    .defineInRange("ScoopRarity", 4, 0, 100);
 
             OlimCallInOther = builder.comment("Changes if calling a TARDIS into another TARDIS is allowed")
                     .translation("config.tadditions.OlimCallInOther")
