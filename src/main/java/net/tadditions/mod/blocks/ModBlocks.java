@@ -20,7 +20,6 @@ import net.tadditions.mod.client.renderers.ZPFChamberItemRenderer;
 import net.tadditions.mod.fluids.MFluids;
 import net.tadditions.mod.helper.TAMultiblockPatterns;
 import net.tadditions.mod.items.AnimatedBlockItem;
-import net.tadditions.mod.items.AnimatedMultiblockBlockItem;
 import net.tadditions.mod.items.ModItemGroups;
 import net.tadditions.mod.items.ModItems;
 import net.tardis.mod.blocks.*;
@@ -49,16 +48,14 @@ public class ModBlocks {
         return 15;
     }))));
 
-    public static final RegistryObject<Block> zero_point_field_normal = registerformultiblockanimitem("zero_point_field_chamber", () -> setUpBlock(new ZeroPointFieldChamberBlock(Prop.Blocks.BASIC_TECH.get().notSolid().setLightLevel((state) -> {
+    public static final RegistryObject<Block> zero_point_field_normal = registerforblockanimitem("zero_point_field_chamber", () -> setUpBlock(new ZeroPointFieldChamberBlock(Prop.Blocks.BASIC_TECH.get().notSolid().setLightLevel((state) -> {
         return 3;
-    }))), new Item.Properties().group(ModItemGroups.TA).setISTER(() -> ZPFChamberItemRenderer::new), TAMultiblockPatterns.ZPFC);
-    public static final RegistryObject<Block> zero_point_field_broken = registerformultiblockanimitem("zero_point_field_chamber_broken", () -> setUpBlock(new ZeroPointFieldChamberBlock(Prop.Blocks.BASIC_TECH.get().notSolid().setLightLevel((state) -> {
+    }))), new Item.Properties().group(ModItemGroups.TA).setISTER(() -> ZPFChamberItemRenderer::new));
+    public static final RegistryObject<Block> zero_point_field_broken = registerforblockanimitem("zero_point_field_chamber_broken", () -> setUpBlock(new ZeroPointFieldChamberBlock(Prop.Blocks.BASIC_TECH.get().notSolid().setLightLevel((state) -> {
         return 0;
-    }))), new Item.Properties().group(ModItemGroups.TA).setISTER(() -> ZPFChamberBrokenItemRenderer::new), TAMultiblockPatterns.ZPFC);
+    }))), new Item.Properties().group(ModItemGroups.TA).setISTER(() -> ZPFChamberBrokenItemRenderer::new));
 
     public static final RegistryObject<Block> controlpanel_deco = registerforblock("decorative_control_panel", () -> setUpBlock(new ControlPanel(Prop.Blocks.BASIC_TECH.get().notSolid())));
-    public static final RegistryObject<Block> replaceable_zpfc = register("replaceable_zpfc", () -> setUpBlock(new ReplaceableZPFCBlock(Prop.Blocks.BASIC_TECH.get().notSolid())), false);
-
 
     public static final RegistryObject<Block> weaponholder = registerforblock("katana_stand", () -> setUpBlock(new WeaponHolder(AbstractBlock.Properties.create(Material.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(2F))));
 
@@ -705,12 +702,6 @@ public class ModBlocks {
     private static <T extends Block> RegistryObject<T> registerforblockanimitem(String id, Supplier<T> blockSupplier, Item.Properties props){
         RegistryObject<T> registryObject = BLOCKS.register(id, blockSupplier);
         ModItems.ITEMS.register(id, () -> new AnimatedBlockItem(registryObject.get(), props));
-        return registryObject;
-    }
-
-    private static <T extends Block> RegistryObject<T> registerformultiblockanimitem(String id, Supplier<T> blockSupplier, Item.Properties props, MultiblockPatterns.MultiblockPattern pattern){
-        RegistryObject<T> registryObject = BLOCKS.register(id, blockSupplier);
-        ModItems.ITEMS.register(id, () -> new AnimatedMultiblockBlockItem(registryObject.get(), pattern, props));
         return registryObject;
     }
 

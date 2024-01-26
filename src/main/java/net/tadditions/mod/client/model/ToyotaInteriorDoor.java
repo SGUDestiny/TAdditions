@@ -43,7 +43,7 @@ public class ToyotaInteriorDoor extends AbstractInteriorDoorModel {
 	private final ModelRenderer Door_3_right_window_frame_3_r1;
 	private final ModelRenderer Door_3_right_window_frame_2_r1;
 	private final ModelRenderer Door_3_right_window_frame_1_r1;
-	private final LightModelRenderer door_3_right_window_glass_glow;
+	private final ModelRenderer door_3_right_window_glass_glow;
 	private final ModelRenderer Door_left;
 	private final ModelRenderer door_3_left_window;
 	private final ModelRenderer door_3_left_window_frame;
@@ -54,9 +54,9 @@ public class ToyotaInteriorDoor extends AbstractInteriorDoorModel {
 	private final ModelRenderer door_3_left_window_frame_3_r1;
 	private final ModelRenderer door_3_left_window_frame_2_r1;
 	private final ModelRenderer door_3_left_window_frame_1_r1;
-	private final LightModelRenderer door_3_left_window_glass_glow;
+	private final ModelRenderer door_3_left_window_glass_glow;
 	private final ModelRenderer Door_frame_accent;
-	private final LightModelRenderer Door_frame_accent_glow;
+	private final ModelRenderer Door_frame_accent_glow;
 	private final ModelRenderer SOTO;
 
 
@@ -274,8 +274,7 @@ public class ToyotaInteriorDoor extends AbstractInteriorDoorModel {
 
 		SOTO = new ModelRenderer(this);
 		SOTO.setRotationPoint(0.0F, 0.0F, 0.0F);
-		Interior_doors.addChild(SOTO);
-		SOTO.setTextureOffset(70, 70).addBox(-9.0F, -33.0F, -2.0F, 18.0F, 33.0F, 2.0F, 0.0F, false);
+		SOTO.setTextureOffset(200, 181).addBox(-9.0F, -9.0F, -2.0F, 18.0F, 33.0F, 2.0F, 0.0F, false);
 	}
 
 		@Override
@@ -334,9 +333,9 @@ public class ToyotaInteriorDoor extends AbstractInteriorDoorModel {
 		door3.render(matrixStack, buffer, packedLight, packedOverlay);
 		Door_frame.render(matrixStack, buffer, packedLight, packedOverlay);
 		Door_frame_accent.render(matrixStack, buffer, packedLight, packedOverlay);
-		Door_frame_accent_glow.setBright(1F);
-		door_3_right_window_glass_glow.setBright(1F);
-		door_3_left_window_glass_glow.setBright(1F);
+		//Door_frame_accent_glow.setBright(1F);
+		//door_3_right_window_glass_glow.setBright(1F);
+		//door_3_left_window_glass_glow.setBright(1F);
 		matrixStack.pop();
 	}
 

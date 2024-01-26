@@ -10,13 +10,29 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.shapes.IBooleanFunction;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.tardis.mod.blocks.MultiblockBlock;
+import net.tardis.mod.blocks.TileBlock;
 
-public class ZeroPointFieldChamberBlock extends MultiblockBlock {
+import java.util.stream.Stream;
+
+public class ZeroPointFieldChamberBlock extends TileBlock {
 
     public ZeroPointFieldChamberBlock(Properties prop) {
         super(prop);
+    }
+
+    private static final VoxelShape SHAPE = Stream.of(
+            Block.makeCuboidShape(0, 0, 0, 16, 48, 16)
+    ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, IBooleanFunction.OR)).get();
+
+    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+        return SHAPE;
     }
 
     public BlockRenderType getRenderType(BlockState p_149645_1_) {

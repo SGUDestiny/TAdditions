@@ -3,7 +3,7 @@
   "pools": [
     {
       "name": "tadditions:decorative_toyota_police_box",
-      "rolls": 1,
+      "rolls": 0,
       "entries": [
         {
           "type": "minecraft:item",

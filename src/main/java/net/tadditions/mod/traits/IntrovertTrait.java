@@ -32,9 +32,9 @@ public class IntrovertTrait extends TardisTrait {
 							ExteriorTile extile = (ExteriorTile) world.getTileEntity(blockPos);
 							ConsoleTile intile = TardisHelper.getConsole(world.getServer(), extile.getInteriorDimensionKey()).orElse(null);
 							if (intile != null) {
-								if(Arrays.stream(intile.getEmotionHandler().getTraits()).anyMatch(trait -> trait.equals(MTraits.INTROVERT))) {
+								if(Arrays.stream(intile.getEmotionHandler().getTraits()).anyMatch(trait -> trait.getType().equals(MTraits.INTROVERT))) {
 									tile.getEmotionHandler().addMood(+2);
-								} else if(Arrays.stream(intile.getEmotionHandler().getTraits()).anyMatch(trait -> trait.equals(MTraits.EXTROVERT))){
+								} else if(Arrays.stream(intile.getEmotionHandler().getTraits()).anyMatch(trait -> trait.getType().equals(MTraits.EXTROVERT))){
 									tile.getEmotionHandler().addMood(-2);
 								} else tile.getEmotionHandler().addMood(-1);
 
