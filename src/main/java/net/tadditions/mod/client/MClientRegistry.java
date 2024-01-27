@@ -12,6 +12,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.tadditions.mod.QolMod;
 import net.tadditions.mod.blocks.ModBlocks;
+import net.tadditions.mod.client.model.FourteenthInteriorDoors;
 import net.tadditions.mod.client.model.ToyotaInteriorDoor;
 import net.tadditions.mod.client.renderers.*;
 import net.tadditions.mod.container.MContainers;
@@ -24,6 +25,7 @@ import net.tadditions.mod.world.MDimensions;
 import net.tadditions.mod.world.MarsSkyProperty;
 import net.tadditions.mod.world.TagreaSkyProperty;
 import net.tardis.mod.client.TClientRegistry;
+import net.tardis.mod.client.models.interiordoors.FortuneInteriorModel;
 import net.tardis.mod.config.TConfig;
 import software.bernie.geckolib3.renderers.geo.GeoBlockRenderer;
 
@@ -49,6 +51,7 @@ public class MClientRegistry extends TClientRegistry {
             RenderTypeLookup.setRenderLayer(ModBlocks.electromagnetic_solenoid_container.get(), RenderType.getCutout());
             RenderTypeLookup.setRenderLayer(ModBlocks.filled_electromagnetic_solenoid_container.get(), RenderType.getCutout());
             RenderTypeLookup.setRenderLayer(ModBlocks.exterior_toyota_police_box.get(), RenderType.getTranslucent());
+            RenderTypeLookup.setRenderLayer(ModBlocks.exterior_fourteenth_police_box.get(), RenderType.getTranslucent());
             RenderTypeLookup.setRenderLayer(ModBlocks.decorative_toyota_police_box.get(), RenderType.getTranslucent());
             RenderTypeLookup.setRenderLayer(ModBlocks.sanguine_door.get(), RenderType.getCutout());
             RenderTypeLookup.setRenderLayer(ModBlocks.sanguine_trapdoor.get(), RenderType.getCutout());
@@ -63,15 +66,18 @@ public class MClientRegistry extends TClientRegistry {
 
     private static void registerTileRenderers() {
         ClientRegistry.bindTileEntityRenderer(ModTileEntitys.EXTERIOR_TOYOTA_POLICE_BOX.get(), ToyotaExteriorRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(ModTileEntitys.EXTERIOR_FOURTEENTH_POLICE_BOX.get(), FourteenthExteriorRender::new);
         ClientRegistry.bindTileEntityRenderer(ModTileEntitys.WPH.get(), WeaponHolderRenderer::new);
         ClientRegistry.bindTileEntityRenderer(ModTileEntitys.ZPFChamber.get(), ZPFChamberRenderer::new);
         ClientRegistry.bindTileEntityRenderer(ModTileEntitys.ZPFCBroken.get(), ZPFChamberBrokenRenderer::new);
         ClientRegistry.bindTileEntityRenderer(ModTileEntitys.SolenoidFilled.get(), SolenoidFilledRenderer::new);
         ClientRegistry.bindTileEntityRenderer(ModTileEntitys.DECORATIVE_TOYOTA_POLICE_BOX.get(), DecorativeToyotaExteriorRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(ModTileEntitys.DECORATIVE_FOURTEENTH_POLICE_BOX.get(), DecorativeFourteenthExteriorRenderer::new);
     }
 
     private static void registerInteriorDoorRenderers() {
         IMDoorType.EnumDoorType.TOYOTA.setInteriorDoorModel(new ToyotaInteriorDoor());
+        IMDoorType.EnumDoorType.FOURTEENTH.setInteriorDoorModel(new FourteenthInteriorDoors());
     }
 
     public static void registerScreens() {
