@@ -3,7 +3,7 @@
   "fallback": "minecraft:empty",
   "elements": [
     {
-      "weight": 25,
+      "weight": 20,
       "element": {
         "element_type": "minecraft:single_pool_element",
         "projection": "rigid",
@@ -12,7 +12,7 @@
       }
     },
     {
-      "weight": 25,
+      "weight": 20,
       "element": {
         "element_type": "minecraft:single_pool_element",
         "projection": "rigid",
@@ -21,7 +21,16 @@
       }
     },
     {
-      "weight": 25,
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "tadditions:tardis_room2",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 20,
       "element": {
         "element_type": "minecraft:single_pool_element",
         "projection": "rigid",
@@ -30,7 +39,7 @@
       }
     },
     {
-      "weight": 25,
+      "weight": 20,
       "element": {
         "element_type": "minecraft:single_pool_element",
         "projection": "rigid",

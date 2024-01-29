@@ -5,8 +5,10 @@ import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
@@ -19,6 +21,7 @@ import net.minecraft.world.World;
 import net.tardis.mod.blocks.MultiblockBlock;
 import net.tardis.mod.blocks.TileBlock;
 
+import javax.annotation.Nullable;
 import java.util.stream.Stream;
 
 public class ZeroPointFieldChamberBlock extends TileBlock {
@@ -44,6 +47,7 @@ public class ZeroPointFieldChamberBlock extends TileBlock {
         if(!world.isRemote() && !player.isCreative()) {
             if (state.getBlock().getDefaultState() == ModBlocks.zero_point_field_normal.get().getDefaultState()) {
                 world.setBlockState(pos, ModBlocks.zero_point_field_broken.get().getDefaultState());
+                spawnDrops(state, world, pos);
             }
             if (state.getBlock().getDefaultState() == ModBlocks.zero_point_field_broken.get().getDefaultState()) {
                 super.onBlockHarvested(world, pos, state, player);
