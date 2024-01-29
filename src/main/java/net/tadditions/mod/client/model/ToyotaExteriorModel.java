@@ -868,16 +868,17 @@ public class ToyotaExteriorModel extends ExteriorModel {
             info.setPosition(exterior.getPos());
             info.setWorldShell(exterior.getBotiWorld());
             info.setTranslate(matrix -> {
-                matrix.rotate(Vector3f.YP.rotationDegrees(WorldHelper.getAngleFromFacing(exterior.getBotiWorld().getPortalDirection())));
-                matrix.translate(-0.47f, -0.54f, -1.15f);
+                if(exterior.getBlockState().get(BlockStateProperties.HORIZONTAL_FACING) == Direction.NORTH){
+                    matrix.translate(-0.458, -0.5, -1.09);
+                }
                 if(exterior.getBlockState().get(BlockStateProperties.HORIZONTAL_FACING) == Direction.SOUTH){
-                   matrix.translate(-0.04f, 0.01f, 1.3f);
+                    matrix.translate(-0.544, -0.5, 0.09);
                 }
                 if(exterior.getBlockState().get(BlockStateProperties.HORIZONTAL_FACING) == Direction.WEST){
-                    matrix.translate(-0.69f, 0f, 0.64f);
+                    matrix.translate(-1.09, -0.5, -0.545);
                 }
                 if(exterior.getBlockState().get(BlockStateProperties.HORIZONTAL_FACING) == Direction.EAST){
-                    matrix.translate(0.72f, 0f, 0.64f);
+                    matrix.translate(0.09, -0.5, -0.456);
                 }
                 ExteriorRenderer.applyTransforms(matrix, exterior);
             });
@@ -885,7 +886,8 @@ public class ToyotaExteriorModel extends ExteriorModel {
                 matrix.translate(0, 0, 0);
                 matrix.rotate(Vector3f.XP.rotationDegrees(180));
                 matrix.rotate(Vector3f.YP.rotationDegrees(180));
-                matrix.translate(-0.55f, 0.2, 0f);
+                matrix.rotate(Vector3f.YP.rotationDegrees(WorldHelper.getAngleFromFacing(exterior.getBotiWorld().getPortalDirection())));
+                matrix.translate(-0.55f, -0.1, 0f);
             });
 
             info.setRenderPortal((matrix, buf) -> {
@@ -898,7 +900,7 @@ public class ToyotaExteriorModel extends ExteriorModel {
 
             info.setRenderDoor((matrix, buf) -> {
                 matrix.push();
-                matrix.translate(0.04f, -1.68f, 0.55f);
+                matrix.translate(0.045f, -1.648f, 0.55f);
                 matrix.scale(1.1F, 1.1F, 1.05F);
                 this.door1.render(matrix, buf.getBuffer(RenderType.getEntityCutout(ToyotaExteriorRenderer.TEXTURE)), packedLight, packedOverlay);
                 matrix.pop();

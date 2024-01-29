@@ -285,11 +285,8 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
             }
         });
 
-        if(((ConsoleTile) (Object) this).getExteriorManager().getExteriorAnimation() == MExteriorAnimationRegistry.FULLNEW_WHO.getId() && ((ConsoleTile) (Object) this).getSoundScheme() != MSoundSchemeRegistry.FULL.get()){
+        if(((ConsoleTile) (Object) this).getExteriorManager().getExteriorAnimation().equals(MExteriorAnimationRegistry.FULLNEW_WHO.getId()) && ((ConsoleTile) (Object) this).getSoundScheme() != MSoundSchemeRegistry.FULL.get()){
             ((ConsoleTile) (Object) this).setSoundScheme(MSoundSchemeRegistry.FULL.get());
-        }
-        if(((ConsoleTile) (Object) this).getSoundScheme() == MSoundSchemeRegistry.FULL.get() && ((ConsoleTile) (Object) this).getExteriorManager().getExteriorAnimation() != MExteriorAnimationRegistry.FULLNEW_WHO.getId()){
-            ((ConsoleTile) (Object) this).getExteriorManager().setExteriorAnimation(MExteriorAnimationRegistry.FULLNEW_WHO.getId());
         }
 
         this.playAmbientNoises();
