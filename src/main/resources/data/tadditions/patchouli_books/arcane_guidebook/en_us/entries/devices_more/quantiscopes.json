@@ -1,0 +1,11 @@
+{
+  "name": "Quantiscopes",
+  "icon": "tardis:quantiscope_iron",
+  "category": "tadditions:devices_more",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "There are two kinds of Quantiscopes, the basic one is useful for basic recipes and components, as well as configurating a Sonic Screwdriver, while the advanced one can only do recipes, but allows much, much more complexity"
+    }
+  ]
+}

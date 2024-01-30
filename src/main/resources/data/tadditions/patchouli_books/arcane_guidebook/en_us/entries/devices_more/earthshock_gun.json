@@ -1,0 +1,11 @@
+{
+  "name": "Earthshock Gun",
+  "icon": "tardis:earthshock_gun",
+  "category": "tadditions:devices_more",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "An Earthshock gun is a rare find, it uses Artron Energy to launch high-energy beams, the only weapon that is actually useful against Daleks"
+    }
+  ]
+}

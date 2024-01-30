@@ -1,0 +1,11 @@
+{
+  "name": "Miscellaneous",
+  "icon": "tardis:timeship_backdoor",
+  "category": "tadditions:tardis_behaviour",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Many things can be related to timeship's emotional state, but here are a few things we are certain of: $(br) - Unstabilized Flight doubles the mood obtained for flying $(br) - If left alone for a day, the mood will be tanked, as it will feel abandoned $(br) - 1% chance of leaving if not loyal and is unhappy unless the handbreak is on."
+    }
+  ]
+}

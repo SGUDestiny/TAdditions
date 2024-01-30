@@ -1,0 +1,81 @@
+{
+  "name": "Traits",
+  "icon": "tardis:antidepressant",
+  "category": "tadditions:tardis_behaviour",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Traits of a timeship are related to their personality and cannot be directly found out, other than experimentation. However, there is not that much traits, and a TARDIS can have up to 4 traits"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Zoophobia is not that common in Timeships, as they often seem to enjoy any kind of company, especially after being left for an extreme amount of time, to rot...",
+      "title": "Zoophobia"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "A quite common characteristic for timeships, they enjoy being around tamed animals",
+      "title": "Pet Enthusiast"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The introverted timeships feel extremely uncomfortable when in close proximity(16 blocks) of another TARDIS",
+      "title": "Introverted"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The extroverted timeships are very sociable and enjoy being in close proximity(16 blocks) of another TARDIS",
+      "title": "Extroverted"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Some timeships seem to be afraid of water, and hate it to an extreme, although it only affects them being in water, not near it",
+      "title": "Hydrophobic"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "An annoyingly common trait, Timeships with it show utter discontent with seeing the sky",
+      "title": "Agoraphobia"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "A relatively uncommon, yet understandable trait, some Timeships hate being in enclosed spaces after being stuck in caves for millenia",
+      "title": "Claustraphobic"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "An Arachnophobic Timeship shows extreme fear and discontent when there is a spider very close to it's outer shell(8 blocks)",
+      "title": "Arachnophobia"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "While a Timeship can't exactly be 'Cold Blooded', they surely can dislike a specific kind of biome, for this one, it's cold ones they don't like",
+      "title": "Cold Blooded"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Timeships are considered pyromaniacs when they exhibit specific positive emotions around lava or fire...",
+      "title": "Pyromaniac"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Some specific Timeships enjoy taking a bath in water, they also prioritize landing in water when possible...",
+      "title": "Wet"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Timeships that exhibit this trait seem to have taken to the ways of old-timey monks, disliking any violance unless it's safe defense",
+      "title": "Peaceful"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Some very odd Timeships enjoy the sight of blood, and when it's pilot actually kills a sapient creature, it will become more loyal and happy, telling you it's happy...",
+      "title": "Murderous"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The Jealous kinds of Timeships seem to have favourite pilots, and are extremely jealous about them, loosing loyalty and mood if they betray them by flying a different TARDIS, but becoming very happy when they are the only one",
+      "title": "Jealous"
+    }
+  ]
+}

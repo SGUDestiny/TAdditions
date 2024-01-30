@@ -1,0 +1,11 @@
+{
+  "name": "Timeship Backdoor",
+  "icon": "tardis:timeship_backdoor",
+  "category": "tadditions:devices_more",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "A Timeship Backdoor is used to turn a normal door into a one-time way to enter the linked TARDIS in case of it going off, or loosing it to some unfortunate Vortex mishaps"
+    }
+  ]
+}

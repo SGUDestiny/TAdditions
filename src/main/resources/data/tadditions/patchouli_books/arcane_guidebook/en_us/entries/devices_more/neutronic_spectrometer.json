@@ -1,0 +1,11 @@
+{
+  "name": "Neutronic Spectrometer",
+  "icon": "tardis:neutronic_spectrometer",
+  "category": "tadditions:devices_more",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The Neutronic Spectrometer is used to scan and analyze specific blocks and items and construct timeship shells, console units and interiors based on the scanned object"
+    }
+  ]
+}

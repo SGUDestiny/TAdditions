@@ -1,0 +1,16 @@
+{
+  "name": "Remotes",
+  "icon": "tadditions:onetimeremote",
+  "category": "tadditions:devices_more",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The base remote is very simple, it sends a signal to the linked Timeship to fly to the set target, while turning on it's stabilizers. Nothing more"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The Olim Remote is an extremely more advanced Remote, included with it's own Artron Energy banks, that are later used as a simplified pathway for a Timeship to get to the destination in less than a second!",
+      "title": "Olim Remote"
+    }
+  ]
+}
