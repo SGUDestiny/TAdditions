@@ -26,20 +26,20 @@ public class IntrovertTrait extends TardisTrait {
 				ExteriorTile ext = tile.getExteriorType().getExteriorTile(tile);
 				World world = ext.getWorld();
 				AxisAlignedBB area = new AxisAlignedBB(ext.getPos()).grow(16);
-				for (BlockPos blockPos : BlockPos.getAllInBoxMutable((int) area.minX, (int) area.minY, (int) area.minZ, (int) area.maxX, (int) area.maxY, (int) area.maxZ)) {
-					if (world != null &&world.getBlockState(blockPos).getBlock() instanceof ExteriorBlock) {
-						if (tile.getWorld().getGameTime() % 200 == 0) {
-							ExteriorTile extile = (ExteriorTile) world.getTileEntity(blockPos);
-							ConsoleTile intile = TardisHelper.getConsole(world.getServer(), extile.getInteriorDimensionKey()).orElse(null);
-							if (intile != null) {
-								if(Arrays.stream(intile.getEmotionHandler().getTraits()).anyMatch(trait -> trait.getType().equals(MTraits.INTROVERT))) {
-									tile.getEmotionHandler().addMood(+2);
-								} else if(Arrays.stream(intile.getEmotionHandler().getTraits()).anyMatch(trait -> trait.getType().equals(MTraits.EXTROVERT))){
-									tile.getEmotionHandler().addMood(-2);
-								} else tile.getEmotionHandler().addMood(-1);
-
+				if (tile.getWorld().getGameTime() % 200 == 0) {
+					int exteriors = 0;
+					for (BlockPos blockPos : BlockPos.getAllInBoxMutable((int) area.minX, (int) area.minY, (int) area.minZ, (int) area.maxX, (int) area.maxY, (int) area.maxZ)) {
+						if (world != null &&world.getBlockState(blockPos).getBlock() instanceof ExteriorBlock && !ext.getPos().equals(blockPos.toImmutable())) {
+							if (tile.getWorld().getGameTime() % 200 == 0) {
+								tile.getEmotionHandler().addMood(-1);
+								exteriors ++;
 							}
 						}
+					}
+					if (exteriors == 0){
+						tile.getEmotionHandler().addMood(+2);
+					}else{
+						this.warnPlayer(tile, new TranslationTextComponent("tadditions.dislikes_company"));
 					}
 				}
 			}
