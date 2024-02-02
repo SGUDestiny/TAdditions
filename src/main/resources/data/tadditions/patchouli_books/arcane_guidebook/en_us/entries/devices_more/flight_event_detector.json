@@ -1,0 +1,16 @@
+{
+  "name": "Flight Event Detector",
+  "icon": "tadditions:flight_event_detector",
+  "category": "tadditions:devices_more",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "A Flight Event detector, well, detects any kind of events and outputs a redstone signal of different strength depending on some of it's modes."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Modes",
+      "text": "There are two modes for the detector: Active - outputs the signal depending on how much time is left until the event hits and there is no way to succeed; Passive - Outputs the maximum signal when an event is found"
+    }
+  ]
+}

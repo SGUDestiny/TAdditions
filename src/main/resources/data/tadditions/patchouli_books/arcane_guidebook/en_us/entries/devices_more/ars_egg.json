@@ -1,0 +1,11 @@
+{
+  "name": "ARS Egg",
+  "icon": "tardis:ars_egg",
+  "category": "tadditions:devices_more",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "An ARS Egg serves as an interface with the Architectural Reconfiguration System and get all kinds of decorative and not so much blocks for your Timeship"
+    }
+  ]
+}

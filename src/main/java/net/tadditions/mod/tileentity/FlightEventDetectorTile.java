@@ -26,30 +26,34 @@ public class FlightEventDetectorTile extends TileEntity implements ITickableTile
 		if(!world.isRemote) {
 			ConsoleTile tile = TardisHelper.getConsoleInWorld(getWorld()).orElse(null);
 			boolean shouldBeOn = this.shouldBeOn();
-			if(shouldBeOn){
-				if(this.getMode()){
-					altMode();
-				} else mainMode(tile);
+			if(tile != null) {
+				if (shouldBeOn) {
+					if (this.getMode()) {
+						altMode();
+					} else mainMode(tile);
+				}
 			}
 		}
 	}
 	
 	private boolean shouldBeOn() {
 		ConsoleTile tile = TardisHelper.getConsoleInWorld(getWorld()).orElse(null);
-		if(tile != null) {
+		if(tile != null && tile.getFlightEvent() != null) {
 			return !tile.getFlightEvent().isComplete();
 		}
 		return false;
 	}
 
-	private void altMode(){
+	private void altMode() {
 		ConsoleTile tile = TardisHelper.getConsoleInWorld(getWorld()).orElse(null);
 		BlockState state = world.getBlockState(getPos());
-		int timeleft = tile.getFlightEvent().getMissedTime() - tile.flightTicks;
-		int power = timeleft/15;
-		if(power>15)
-			power = 15;
-		world.setBlockState(getPos(), state.with(FlightEventDetectorBlock.POWER, power));
+		if (tile != null && tile.getFlightEvent() != null) {
+			int timeleft = tile.getFlightEvent().getMissedTime() - tile.flightTicks;
+			int power = timeleft / 15;
+			if (power > 15)
+				power = 15;
+			world.setBlockState(getPos(), state.with(FlightEventDetectorBlock.POWER, power));
+		}
 	}
 
 	private void mainMode(ConsoleTile tile){

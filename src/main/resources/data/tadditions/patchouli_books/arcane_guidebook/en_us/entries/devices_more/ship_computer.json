@@ -1,0 +1,11 @@
+{
+  "name": "Ship Computer",
+  "icon": "tardis:ship_computer",
+  "category": "tadditions:devices_more",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Ship Computers can be found in crashed ships, abandoned ships and Dalek Ships, they hold important items and in rare cases, blueprints"
+    }
+  ]
+}

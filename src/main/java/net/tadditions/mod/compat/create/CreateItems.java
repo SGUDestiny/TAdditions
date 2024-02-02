@@ -17,8 +17,8 @@ public class CreateItems {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, QolMod.MOD_ID);
 
-    public static final RegistryObject<Item> INCOMPLETE_SUBSYSTEM_FRAME = ITEMS.register("incomplete_subsystem_frame", () -> createItem(new SequencedAssemblyItem((new Item.Properties()).group(ModItemGroups.TA))));
-    public static final RegistryObject<Item> SUBSYSTEM_FRAME = ITEMS.register("subsystem_frame", () -> createItem(new Item((new Item.Properties()).group(ModItemGroups.TA))));
+    //public static final RegistryObject<Item> INCOMPLETE_SUBSYSTEM_FRAME = ITEMS.register("incomplete_subsystem_frame", () -> createItem(new SequencedAssemblyItem((new Item.Properties()).group(ModItemGroups.TA))));
+    //public static final RegistryObject<Item> SUBSYSTEM_FRAME = ITEMS.register("subsystem_frame", () -> createItem(new Item((new Item.Properties()).group(ModItemGroups.TA))));
 
 
     public static void register(IEventBus eventBus) {

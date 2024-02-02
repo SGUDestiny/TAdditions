@@ -1,0 +1,11 @@
+{
+  "name": "Solenoid Container",
+  "icon": "tadditions:electromagnetic_solenoid_container",
+  "category": "tadditions:devices_more",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "A solenoid container has one and only purpose - holding unstable substances inside of it, for example, the Exotic Matter, while inside it, is stable and will not decay"
+    }
+  ]
+}

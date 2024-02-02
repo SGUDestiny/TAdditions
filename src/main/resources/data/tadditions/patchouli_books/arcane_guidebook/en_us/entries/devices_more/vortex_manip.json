@@ -1,0 +1,11 @@
+{
+  "name": "Vortex Manipulator",
+  "icon": "tardis:vm",
+  "category": "tadditions:devices_more",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "A vortex manipulator is an alternative way of fast travel, way less safe than a Timeship, but is useable almost anywhere and anywhen, given it's supplied with artron energy. Be careful in bad weather while wearing one around your arm, a lightning can cause it to do a random teleport"
+    }
+  ]
+}

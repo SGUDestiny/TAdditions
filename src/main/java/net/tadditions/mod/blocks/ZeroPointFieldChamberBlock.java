@@ -47,7 +47,6 @@ public class ZeroPointFieldChamberBlock extends TileBlock {
         if(!world.isRemote() && !player.isCreative()) {
             if (state.getBlock().getDefaultState() == ModBlocks.zero_point_field_normal.get().getDefaultState()) {
                 world.setBlockState(pos, ModBlocks.zero_point_field_broken.get().getDefaultState());
-                spawnDrops(state, world, pos);
             }
             if (state.getBlock().getDefaultState() == ModBlocks.zero_point_field_broken.get().getDefaultState()) {
                 super.onBlockHarvested(world, pos, state, player);
