@@ -8,6 +8,7 @@
     "ConsoleMixin",
     "DimConMixin",
     "EHMixin",
+    "EngineSlotMixin",
     "ExteriorArgumentMixin",
     "InvisRenMixin",
     "NTMHelperMixin",
