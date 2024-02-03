@@ -1,0 +1,11 @@
+{
+  "name": "Aeon Crystal",
+  "icon": "tadditions:aeon_crystal",
+  "category": "tadditions:material",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Aeon Crystals are in a way, related to xion crystals, they are a way more pure form of solidified Artron Energy, with way higher density of it as well"
+    }
+  ]
+}

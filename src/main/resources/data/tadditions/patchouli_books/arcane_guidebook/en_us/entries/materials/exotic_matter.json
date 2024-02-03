@@ -1,0 +1,11 @@
+{
+  "name": "Exotic Matter",
+  "icon": "tadditions:exotic_matter",
+  "category": "tadditions:material",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Exotic Matter is on it's own very enigmatic, and it's not quite understood how it even survived to be gathered, what is known though, it's extremely unstable and without special gear would disappear enigmatically within an unknown time period"
+    }
+  ]
+}

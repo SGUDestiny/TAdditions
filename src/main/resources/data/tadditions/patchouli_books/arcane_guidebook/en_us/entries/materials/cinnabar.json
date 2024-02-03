@@ -1,0 +1,11 @@
+{
+  "name": "Cinnabar",
+  "icon": "tardis:cinnabar",
+  "category": "tadditions:materials",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Cinnabar is the most common source of Mercury in the world, commonly found near the surface in it's ore form in stone, and is very easily converted into liquid mercury"
+    }
+  ]
+}

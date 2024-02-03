@@ -1,0 +1,11 @@
+{
+  "name": "Circuit Paste",
+  "icon": "tardis:circuit_paste",
+  "category": "tadditions:material",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Circuit paste is made of any organic material in the Alembic, and is optimal for making Circuits, either the expensive manual way, or the efficient way, in a Quantiscope"
+    }
+  ]
+}

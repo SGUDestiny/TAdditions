@@ -1,0 +1,11 @@
+{
+  "name": "Xion Crystal",
+  "icon": "tardis:xion_crystal",
+  "category": "tadditions:material",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Xion Crystals are commonly found deep underground, and are, in themselfs, solidified artron energy, not in high amounts or pureness, though"
+    }
+  ]
+}
