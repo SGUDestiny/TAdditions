@@ -1,7 +1,7 @@
 {
   "name": "Aeon Crystal",
   "icon": "tadditions:aeon_crystal",
-  "category": "tadditions:material",
+  "category": "tadditions:materials",
   "pages": [
     {
       "type": "patchouli:text",

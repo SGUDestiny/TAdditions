@@ -1,7 +1,7 @@
 {
   "name": "Circuit Paste",
   "icon": "tardis:circuit_paste",
-  "category": "tadditions:material",
+  "category": "tadditions:materials",
   "pages": [
     {
       "type": "patchouli:text",

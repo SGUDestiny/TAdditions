@@ -1,7 +1,7 @@
 {
   "name": "Xion Crystal",
   "icon": "tardis:xion_crystal",
-  "category": "tadditions:material",
+  "category": "tadditions:materials",
   "pages": [
     {
       "type": "patchouli:text",
