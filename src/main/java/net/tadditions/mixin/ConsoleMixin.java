@@ -28,6 +28,7 @@ import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.ItemStackHandler;
 import net.tadditions.mod.enchantments.TAEnchants;
+import net.tadditions.mod.flightevents.TimeStorm;
 import net.tadditions.mod.helper.IConsoleHelp;
 import net.tadditions.mod.helper.MExteriorAnimationRegistry;
 import net.tadditions.mod.helper.MSoundSchemeRegistry;
@@ -170,6 +171,9 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
      */
     private Runnable onLoadAction;
 
+    private boolean timeStormCompleted = false;
+    private int timeStormCountdown = 0;
+
     public ConsoleMixin(TileEntityType<?> type) {
         super(type);
         this.emotionHandler = new EmotionHandler(((ConsoleTile) (Object) this));
@@ -264,6 +268,8 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
     }
 
     public void tick() {
+        if(timeStormCompleted == true)
+            TimeStormCountdown();
 
         //Cycle through tickable objects
         for(ITickable tick : this.tickers) {
@@ -671,6 +677,9 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
                 //If this has an event and it's time, complete it
                 if (!this.isBeingTowed && currentEvent != null && this.currentEvent.getMissedTime() < this.flightTicks) {
                     currentEvent.onComplete(((ConsoleTile) (Object) this));
+                    if(currentEvent instanceof TimeStorm){
+                        timeStormCompleted = true;
+                    }
 
                     //Search for collisions
                     this.currentEvent = null;
@@ -755,6 +764,9 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
                 };
             }
         });
+        if(timeStormCompleted == true)
+            speedmod.setValue(speedmod.getValue()*4);
+
         ((ConsoleTile) (Object) this).getControl(ThrottleControl.class).ifPresent(throt -> throttle.setValue(throt.getAmount()));
         return ConsoleTile.TARDIS_MAX_SPEED * MathHelper.clamp(throttle.getValue(), 0.1F, 1.0F)*MathHelper.clamp(speedmod.getValue(), 0f, 4f);
     }
@@ -848,6 +860,16 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
         //};
         //long delayTicks = 400; // 20 seconds delay, assuming 20 ticks per second
         //scheduleTaskWithDelay(myTask, delayTicks);
+    }
+
+    public void TimeStormCountdown(){
+        if(timeStormCountdown<200){
+            timeStormCountdown++;
+        }
+        else{
+            timeStormCountdown = 0;
+            timeStormCompleted = false;
+        }
     }
 
     @Shadow

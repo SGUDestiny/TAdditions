@@ -22,7 +22,7 @@ public class IntrovertTrait extends TardisTrait {
 	@Override
 	public void tick(ConsoleTile tile) {
 		if (!tile.getWorld().isRemote()) {
-			if (!tile.isInFlight() && !tile.isLanding()) {
+			if (!tile.getWorld().isRemote() && tile.getExteriorType().getExteriorTile(tile) != null) {
 				ExteriorTile ext = tile.getExteriorType().getExteriorTile(tile);
 				World world = ext.getWorld();
 				AxisAlignedBB area = new AxisAlignedBB(ext.getPos()).grow(16);
