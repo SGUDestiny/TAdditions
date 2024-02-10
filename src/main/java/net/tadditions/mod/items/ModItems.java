@@ -1,29 +1,18 @@
 package net.tadditions.mod.items;
 
-import net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer;
 import net.minecraft.item.*;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraftforge.common.ToolType;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.event.lifecycle.IModBusEvent;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.tadditions.mod.QolMod;
-import net.tadditions.mod.blocks.ModBlocks;
 import net.tadditions.mod.client.renderers.*;
 import net.tadditions.mod.fluids.MFluids;
-import net.tadditions.mod.sound.MSounds;
 import net.tardis.mod.constants.TardisConstants;
-import net.tardis.mod.itemgroups.TItemGroups;
 import net.tardis.mod.items.ArtronCapacitorItem;
 import net.tardis.mod.items.ArtronItemStackBatteryItem;
 import net.tardis.mod.items.TardisPartItem;
 import net.tardis.mod.properties.Prop;
-import software.bernie.example.client.renderer.item.PistolRender;
-
-import java.util.concurrent.Callable;
-import java.util.function.Supplier;
 
 
 public class ModItems {
@@ -50,7 +39,7 @@ public class ModItems {
     public static final RegistryObject<Item> FRAME_UPGRADE = ITEMS.register("upgrades/frame_stabilizer", () -> createItem(new TardisPartItem(Prop.Items.ONE.get().group(ModItemGroups.TA).maxDamage(1000), TardisConstants.Part.PartType.UPGRADE, false, true, TardisConstants.Translations.DEMAT_CIRCUIT)));
     public static final RegistryObject<Item> MURASAMA = ITEMS.register("murasama", () -> createItem(new Murasama(MItemTier.MURASAMA, 1,-2f, new Item.Properties().group(ModItemGroups.TA).isImmuneToFire().setISTER(() -> MurasamaRenderer::new))));
     public static final RegistryObject<Item> ONEUSEREMOTE = ITEMS.register("onetimeremote", () -> createItem(new OneUseRemoteItem(Prop.Items.ONE.get().group(ModItemGroups.TA))));
-    public static final RegistryObject<Item> BOOS_UPGRADE = ITEMS.register("data_drive", () -> createItem(new VergeOpener(Prop.Items.ONE.get().group(ModItemGroups.TA))));
+    public static final RegistryObject<Item> BOOS_UPGRADE = ITEMS.register("data_drive", () -> createItem(new DataDriveItem(Prop.Items.ONE.get().group(ModItemGroups.TA))));
     public static final RegistryObject<Item> AEON_CRYSTAL = ITEMS.register("aeon_crystal", () -> createItem(new Item(Prop.Items.SIXTY_FOUR.get().group(ModItemGroups.TA))));
     public static final RegistryObject<Item> UNDEADLOCKER = ITEMS.register("undeadlocker", () -> createItem(new UndeadLocker()));
     public static final RegistryObject<Item> data_crystal = ITEMS.register("data_crystal", () -> createItem(new Item(Prop.Items.SIXTY_FOUR.get().group(ModItemGroups.TA))));

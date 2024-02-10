@@ -1,7 +1,12 @@
 package net.tadditions.mod.config;
 
+import com.google.common.collect.Lists;
+import net.minecraft.world.DimensionType;
 import net.minecraftforge.common.ForgeConfigSpec;
 import org.apache.commons.lang3.tuple.Pair;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MConfigs {
     public static final MConfigs.Common COMMON;
@@ -20,11 +25,16 @@ public class MConfigs {
 
     public static class Server {
         public ForgeConfigSpec.ConfigValue<Boolean> StattenheimRecipe;
+        public ForgeConfigSpec.ConfigValue<List<? extends String>> BlockedDimensions;
 
         public Server(ForgeConfigSpec.Builder builder) {
             StattenheimRecipe = builder.comment("Changes if the craft of a Stattenheim Remote is available")
                     .translation("config.tadditions.StattenheimRecipe")
                     .define("StattenheimRecipe", true);
+
+            BlockedDimensions = builder.comment("Lists dimensions not initially available but are capable of being unlocked")
+                    .translation("config.tadditions.BlockedDimensions")
+                    .define("BlockedDimensions", Lists.newArrayList("tadditions:the_verge_of_reality", "minecraft:the_end"));
         }
     }
 

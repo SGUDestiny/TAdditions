@@ -37,10 +37,7 @@ import net.tadditions.mod.commands.TACommands;
 import net.tadditions.mod.items.ModItems;
 import net.tadditions.mod.world.MDimensions;
 import net.tadditions.mod.world.structures.MStructures;
-import net.tardis.mixin.ServerWorldMixin;
 import net.tardis.mod.cap.Capabilities;
-import net.tardis.mod.cap.ITardisWorldData;
-import net.tardis.mod.commands.TardisCommand;
 import net.tardis.mod.damagesources.TDamageSources;
 import net.tardis.mod.events.LivingEvents;
 import net.tardis.mod.events.MissingMappingsLookup;
@@ -49,7 +46,6 @@ import net.tardis.mod.items.ISpaceHelmet;
 import net.tardis.mod.misc.IDontBreak;
 import net.tardis.mod.sounds.TSounds;
 import net.tardis.mod.tileentities.ConsoleTile;
-import net.tardis.mod.tileentities.console.misc.AlarmType;
 import net.tardis.mod.world.biomes.TBiomes;
 import net.tardis.mod.world.dimensions.TDimensions;
 
@@ -76,7 +72,7 @@ public class CommonEvents {
         if (event.getObject().getItem() == ModItems.ONEUSEREMOTE.get())
             event.addCapability(ONEUSEREMOTE_CAP, new IOneRemote.Provider(new OneUseRemoteCapability(event.getObject())));
         if (event.getObject().getItem() == ModItems.BOOS_UPGRADE.get())
-            event.addCapability(TAGREAOPENER_CAP, new IOpener.Provider(new TagreaOpenerCap(event.getObject())));
+            event.addCapability(TAGREAOPENER_CAP, new IOpener.Provider(new DataDriveCap(event.getObject())));
         if (event.getObject().getItem() == ModItems.QUANTUM_EXOTIC_MATTER.get())
             event.addCapability(QUANT_CAP, new IQuant.Provider(new QuantCapability(event.getObject())));
     }

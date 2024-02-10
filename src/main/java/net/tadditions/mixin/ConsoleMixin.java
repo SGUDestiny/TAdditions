@@ -1,5 +1,6 @@
 package net.tadditions.mixin;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -9,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
 import net.minecraft.nbt.ListNBT;
+import net.minecraft.nbt.StringNBT;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
@@ -20,16 +22,21 @@ import net.minecraft.util.concurrent.TickDelayedTask;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.registry.DynamicRegistries;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.ItemStackHandler;
+import net.tadditions.mod.config.MConfigs;
 import net.tadditions.mod.enchantments.TAEnchants;
 import net.tadditions.mod.helper.IConsoleHelp;
 import net.tadditions.mod.helper.MExteriorAnimationRegistry;
+import net.tadditions.mod.helper.MHelper;
 import net.tadditions.mod.helper.MSoundSchemeRegistry;
 import net.tadditions.mod.upgrades.FrameStabUpgrade;
 import net.tadditions.mod.world.MDimensions;
@@ -133,7 +140,7 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
     private int landTime = 0;
     private HashMap<ArtronUse.IArtronType, ArtronUse> artronUses = Maps.newHashMap();
     private LazyOptional<ExteriorTile> exteriorHolder = LazyOptional.empty();
-    private boolean dimData = false;
+    private List<DimensionType> blocked = MHelper.blockedDimensions();
     private boolean didVoidCrash = false;
     private UnlockManager unlockManager;
     protected HashMap<Class<?>, ControlOverride> controlOverrides = Maps.newHashMap();
@@ -500,8 +507,14 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
         this.antiGravs = compound.getBoolean("anti_gravs");
         this.hasForcedChunksToRemove = compound.getBoolean("has_forced_chunks");
         this.hasNavCom = compound.getBoolean("nav_com");
-        this.dimData = compound.getBoolean("dimdata");
         this.shouldStartChangingInterior = compound.getBoolean("start_changing_interior");
+
+        ListNBT dimBlockedList = compound.getList("blocked", Constants.NBT.TAG_STRING);
+        for (INBT base : dimBlockedList) {
+            StringNBT nbt = (StringNBT) base;
+            Optional<DimensionType> type = DynamicRegistries.func_239770_b_().getRegistry(Registry.DIMENSION_TYPE_KEY).getOptional(ResourceLocation.tryCreate(nbt.getString()));
+            type.ifPresent(dimensionType -> this.blocked.add(dimensionType));
+        }
 
         ListNBT artronUsesList = compound.getList("artron_uses", Constants.NBT.TAG_COMPOUND);
         for (INBT base : artronUsesList) {
@@ -580,7 +593,6 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
         compound.putInt("landing_time", this.landTime);
         compound.putString("sound_scheme", this.scheme.getRegistryName().toString());
         compound.putBoolean("nav_com", this.hasNavCom);
-        compound.putBoolean("dimdata", this.dimData);
         compound.putBoolean("has_forced_chunks", this.hasForcedChunksToRemove);
         compound.putBoolean("start_changing_interior", this.shouldStartChangingInterior);
         ListNBT artronUseList = new ListNBT();
@@ -588,6 +600,12 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
             CompoundNBT nbt = entry.getValue().serialiseNBT();
             artronUseList.add(nbt);
         }
+        ListNBT dimBlockedList = new ListNBT();
+        this.blocked.forEach(dim -> {
+            StringNBT nbt = StringNBT.valueOf(dim.toString());
+            dimBlockedList.add(nbt);
+        });
+        compound.put("blocked", dimBlockedList);
         compound.put("artron_uses", artronUseList);
         return super.write(compound);
     }
@@ -804,14 +822,18 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
     }
 
     @Override
-    public boolean isDimOver() {
-        return this.dimData;
+    public List<DimensionType> getBlocked() {
+        return this.blocked;
     }
 
     @Override
-    public void setDimOver(boolean DimOver) {
-        this.dimData = DimOver;
-        this.markDirty();
+    public void removeBlocked(DimensionType type){
+        this.blocked.remove(type);
+    }
+
+    @Override
+    public void addBlocked(DimensionType type){
+        this.blocked.add(type);
     }
 
     public void VoidCrash() {

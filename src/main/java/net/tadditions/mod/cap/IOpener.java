@@ -4,6 +4,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
 import net.minecraft.util.Direction;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
@@ -13,9 +15,9 @@ import net.minecraftforge.common.util.LazyOptional;
 public interface IOpener extends INBTSerializable<CompoundNBT> {
 
 
-    boolean isDimdata();
+    ResourceLocation getDimdata();
 
-    void setDimdata(boolean dimdata1);
+    void setDimdata(ResourceLocation type);
 
     void tick(World worldIn, Entity entityIn);
 

@@ -1,21 +1,18 @@
 package net.tadditions.mod.items;
 
-import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.tadditions.mod.cap.MCapabilities;
+import net.tadditions.mod.world.MDimensions;
 
 import javax.annotation.Nullable;
-import java.util.List;
 
-public class VergeOpener extends Item {
+public class DataDriveItem extends Item {
 
-    public VergeOpener(Properties builderIn) {
+    public DataDriveItem(Properties builderIn) {
         super(builderIn);
     }
 
@@ -30,13 +27,6 @@ public class VergeOpener extends Item {
             stack.readShareTag(stack.getOrCreateTag());
         }
 
-    }
-
-    @Override
-    public void onCreated(ItemStack stack, World worldIn, PlayerEntity playerIn) {
-        this.asItem().getDefaultInstance().getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
-            cap.setDimdata(true);
-        });
     }
 
     @Nullable
@@ -58,6 +48,14 @@ public class VergeOpener extends Item {
                 stack.getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(handler -> handler.deserializeNBT(nbt.getCompound("data")));
             }
         }
+    }
+
+    @Override
+    public void onCreated(ItemStack stack, World worldIn, PlayerEntity playerIn) {
+        stack.getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
+            cap.setDimdata(MDimensions.THE_VERGE.getRegistryName());
+        });
+        super.onCreated(stack, worldIn, playerIn);
     }
 
     @Override

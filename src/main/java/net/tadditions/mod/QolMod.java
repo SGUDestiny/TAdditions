@@ -4,15 +4,12 @@ import com.google.common.collect.ImmutableMap;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraft.enchantment.BindingCurseEnchantment;
 import net.minecraft.item.AxeItem;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.crafting.CraftingHelper;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -27,7 +24,6 @@ import net.tadditions.mod.blocks.ModBlocks;
 import net.tadditions.mod.cap.*;
 import net.tadditions.mod.commands.TACommands;
 import net.tadditions.mod.compat.create.CreateItems;
-import net.tadditions.mod.compat.create.CreateMod;
 import net.tadditions.mod.config.MConfigs;
 import net.tadditions.mod.container.MContainers;
 import net.tadditions.mod.enchantments.TAEnchants;
@@ -124,7 +120,7 @@ public class QolMod
         CommonEvents.getAllMappingEntries();
         CraftingHelper.register(TrueConCondition.Serializer.INSTANCE);
         CapabilityManager.INSTANCE.register(IOneRemote.class, new IOneRemote.Storage(), () -> new OneUseRemoteCapability(null));
-        CapabilityManager.INSTANCE.register(IOpener.class, new IOpener.Storage(), () -> new TagreaOpenerCap(null));
+        CapabilityManager.INSTANCE.register(IOpener.class, new IOpener.Storage(), () -> new DataDriveCap(null));
         CapabilityManager.INSTANCE.register(IQuant.class, new IQuant.Storage(), () -> new QuantCapability(null));
     }
 

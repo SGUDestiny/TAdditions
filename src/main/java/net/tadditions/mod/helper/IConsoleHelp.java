@@ -1,9 +1,14 @@
 package net.tadditions.mod.helper;
 
+import net.minecraft.world.DimensionType;
+
+import java.util.List;
+
 public interface IConsoleHelp {
 
-   boolean isDimOver();
+   List<DimensionType> getBlocked();
 
-   void setDimOver(boolean DimOver);
+   void removeBlocked(DimensionType type);
+   void addBlocked(DimensionType type);
 
 }
