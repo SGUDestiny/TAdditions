@@ -5,6 +5,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.DynamicRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.DimensionType;
+import net.minecraft.world.World;
 import net.tadditions.mod.QolMod;
 import net.tadditions.mod.config.MConfigs;
 
@@ -25,10 +26,10 @@ public class MHelper {
         return new ResourceLocation(QolMod.MOD_ID, string);
     }
 
-    public static List<DimensionType> blockedDimensions(){
-        List<DimensionType> types = new ArrayList<>();
+    public static List<World> blockedDimensions(){
+        List<World> types = new ArrayList<>();
         MConfigs.SERVER.BlockedDimensions.get().forEach(dim -> {
-            Optional<DimensionType> type = DynamicRegistries.func_239770_b_().getRegistry(Registry.DIMENSION_TYPE_KEY).getOptional(ResourceLocation.tryCreate(dim));
+            Optional<World> type = DynamicRegistries.func_239770_b_().getRegistry(Registry.WORLD_KEY).getOptional(ResourceLocation.tryCreate(dim));
             type.ifPresent(types::add);
         });
         return types;

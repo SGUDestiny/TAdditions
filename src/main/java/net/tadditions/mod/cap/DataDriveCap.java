@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 
 public class DataDriveCap implements IOpener {
 
-    private ResourceLocation dimdata;
+    private ResourceLocation dimdata = World.OVERWORLD.getLocation();
     private ItemStack remote;
 
     public DataDriveCap(ItemStack stack) {
@@ -32,7 +32,7 @@ public class DataDriveCap implements IOpener {
 
     @Override
     public ResourceLocation getDimdata() {
-        return null;
+        return dimdata;
     }
 
     @Override

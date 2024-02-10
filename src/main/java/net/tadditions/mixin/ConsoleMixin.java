@@ -141,7 +141,7 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
     private int landTime = 0;
     private HashMap<ArtronUse.IArtronType, ArtronUse> artronUses = Maps.newHashMap();
     private LazyOptional<ExteriorTile> exteriorHolder = LazyOptional.empty();
-    private List<DimensionType> blocked = MHelper.blockedDimensions();
+    private List<World> blocked = MHelper.blockedDimensions();
     private boolean didVoidCrash = false;
     private UnlockManager unlockManager;
     protected HashMap<Class<?>, ControlOverride> controlOverrides = Maps.newHashMap();
@@ -518,7 +518,7 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
         ListNBT dimBlockedList = compound.getList("blocked", Constants.NBT.TAG_STRING);
         for (INBT base : dimBlockedList) {
             StringNBT nbt = (StringNBT) base;
-            Optional<DimensionType> type = DynamicRegistries.func_239770_b_().getRegistry(Registry.DIMENSION_TYPE_KEY).getOptional(ResourceLocation.tryCreate(nbt.getString()));
+            Optional<World> type = DynamicRegistries.func_239770_b_().getRegistry(Registry.WORLD_KEY).getOptional(ResourceLocation.tryCreate(nbt.getString()));
             type.ifPresent(dimensionType -> this.blocked.add(dimensionType));
         }
 
@@ -834,17 +834,17 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
     }
 
     @Override
-    public List<DimensionType> getBlocked() {
+    public List<World> getBlocked() {
         return this.blocked;
     }
 
     @Override
-    public void removeBlocked(DimensionType type){
+    public void removeBlocked(World type){
         this.blocked.remove(type);
     }
 
     @Override
-    public void addBlocked(DimensionType type){
+    public void addBlocked(World type){
         this.blocked.add(type);
     }
 

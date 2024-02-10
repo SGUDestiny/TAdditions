@@ -1,14 +1,14 @@
 package net.tadditions.mod.helper;
 
-import net.minecraft.world.DimensionType;
+import net.minecraft.world.World;
 
 import java.util.List;
 
 public interface IConsoleHelp {
 
-   List<DimensionType> getBlocked();
+   List<World> getBlocked();
 
-   void removeBlocked(DimensionType type);
-   void addBlocked(DimensionType type);
+   void removeBlocked(World type);
+   void addBlocked(World type);
 
 }
