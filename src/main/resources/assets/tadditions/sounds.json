@@ -1,13 +1,48 @@
 {
-  "verge_ambient1": {
+  "disc1": {
+    "subtitle": "subtitle.tadditions.disc1",
+    "sounds": [
+      "tadditions:fallen_flame"
+    ]
+  },
+  "disc2": {
+    "subtitle": "subtitle.tadditions.disc2",
+    "sounds": [
+      "tadditions:a_madmans_lullaby"
+    ]
+  },
+  "disc3": {
+    "subtitle": "subtitle.tadditions.disc3",
+    "sounds": [
+      "tadditions:hold_strong"
+    ]
+},"verge_ambient1": {
   "subtitle": "subtitle.tadditions.verge_ambient",
   "sounds": [
     "tadditions:ambient/crynn_-_million_ways_to_show_the_awful"
   ]
-  },"remasound": {
+},"remasound": {
   "subtitle": "subtitle.tadditions.fullremat",
   "sounds": [
     "tadditions:tardis_land_long"
   ]
+},
+  "murasama": {
+    "subtitle": "subtitle.tadditions.murasama",
+    "sounds": [
+      "tadditions:tyrus_spadra_totikfr_alternative_mix"
+    ]
+  },
+  "20_year": {
+    "subtitle": "subtitle.tadditions.the_remnants",
+    "sounds": [
+      "tadditions:ambient/crynn_-_20_year_war"
+    ]
+  },
+  "despite_it_all": {
+    "subtitle": "subtitle.tadditions.verge_visit",
+    "sounds":[
+      "tadditions:ambient/sentryturbo_-_despite_it_all"
+    ]
   }
 }
