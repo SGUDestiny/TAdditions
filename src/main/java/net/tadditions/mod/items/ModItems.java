@@ -8,6 +8,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.tadditions.mod.QolMod;
 import net.tadditions.mod.client.renderers.*;
 import net.tadditions.mod.fluids.MFluids;
+import net.tadditions.mod.sound.MSounds;
 import net.tardis.mod.constants.TardisConstants;
 import net.tardis.mod.items.ArtronCapacitorItem;
 import net.tardis.mod.items.ArtronItemStackBatteryItem;
@@ -52,6 +53,10 @@ public class ModItems {
     public static final RegistryObject<Item> SHEILD_GENERATORMK2 = ITEMS.register("subsystem/shield_generator_overcharged", () -> createItem(new SubsysItem(Prop.Items.ONE.get().maxDamage(1250).group(ModItemGroups.TA).setISTER(() -> ShieldRenderer::new), TardisConstants.Part.PartType.SUBSYSTEM, false, true)));
     public static final RegistryObject<Item> STABILIZERSMK2 = ITEMS.register("subsystem/stabilizer_overcharged", () -> createItem(new SubsysItem(Prop.Items.ONE.get().maxDamage(1250).group(ModItemGroups.TA).setISTER(() -> StabilizerRenderer::new), TardisConstants.Part.PartType.SUBSYSTEM, false, true)));
     public static final RegistryObject<Item> NAV_COMMK2 = ITEMS.register("subsystem/nav_com_overcharged", () -> createItem(new SubsysItem(Prop.Items.ONE.get().maxDamage(1250).group(ModItemGroups.TA).setISTER(() -> NavComRenderer::new), TardisConstants.Part.PartType.SUBSYSTEM, false, true)));
+    public static final RegistryObject<Item> MUSICDISK1 = ITEMS.register("dusty_music_disc_fallen_flame", () -> createItem(new MusicDiscItem(1, () -> MSounds.DISC1.get(), new Item.Properties().maxStackSize(1).group(ItemGroup.MISC))));
+    public static final RegistryObject<Item> MUSICDISK2 = ITEMS.register("dusty_music_disc_madmans_lullaby", () -> createItem(new MusicDiscItem(1, () -> MSounds.DISC2.get(), new Item.Properties().maxStackSize(1).group(ItemGroup.MISC))));
+    public static final RegistryObject<Item> MUSICDISK3 = ITEMS.register("dusty_music_disc_hold_strong", () -> createItem(new MusicDiscItem(1, () -> MSounds.DISC3.get(), new Item.Properties().maxStackSize(1).group(ItemGroup.MISC))));
+
 
     public static final RegistryObject<BucketItem> MERCURY_BUCKET = ITEMS.register("mercury_bucket", () -> createItem(new BucketItem(() -> MFluids.MERCURY_FLUID.get(), (new Item.Properties().maxStackSize(1).containerItem(Items.BUCKET).group(ItemGroup.MISC)))));
     //public static final RegistryObject<Item> POWERAXE = ITEMS.register("power_axe", () -> createItem(new PowerAxe(MItemTier.POWERAXE, 1,-2.7f, new Item.Properties().group(ModItemGroups.TA).isImmuneToFire().addToolType(ToolType.AXE, 10))));
