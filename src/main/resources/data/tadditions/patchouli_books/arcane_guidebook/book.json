@@ -4,5 +4,5 @@
   "landing_text": "guide.tadditions.landing_text",
   "dont_generate_book": true,
   "custom_book_item": "tadditions:arcane_guidebook",
-  "show_progress":false
+  "show_progress": true
 }

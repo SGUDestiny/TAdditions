@@ -1,0 +1,16 @@
+{
+  "name": "Dusty Music Discs",
+  "icon": "tadditions:dusty_music_disc_fallen_flame",
+  "category": "tadditions:artifacts",
+  "advancement": "tadditions:onedisc",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tadditions:dusty_music_disc_fallen_flame"
+      },
+      "title": "Dusty Music Discs",
+      "text": "WIP"
+    }
+  ]
+}

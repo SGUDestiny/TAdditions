@@ -1,0 +1,19 @@
+{
+  "criteria": {
+    "tadditions:exotic_matter": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tadditions:exotic_matter"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "tadditions:exotic_matter"
+    ]
+  ]
+}
