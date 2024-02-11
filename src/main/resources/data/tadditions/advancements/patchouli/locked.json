@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "tadditions:locked": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "tadditions:locked"
+    ]
+  ]
+}

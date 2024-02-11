@@ -1,0 +1,8 @@
+{
+  "name": "Locked",
+  "icon": "minecraft:barrier",
+  "category": "tadditions:questionmarks",
+  "advancement": "tadditions:patchouli/locked",
+  "pages": [
+  ]
+}
