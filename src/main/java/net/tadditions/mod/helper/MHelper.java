@@ -26,11 +26,13 @@ public class MHelper {
         return new ResourceLocation(QolMod.MOD_ID, string);
     }
 
-    public static List<World> blockedDimensions(){
-        List<World> types = new ArrayList<>();
+    public static List<String> blockedDimensions(){
+        List<String> types = new ArrayList<>();
         MConfigs.SERVER.BlockedDimensions.get().forEach(dim -> {
-            Optional<World> type = DynamicRegistries.func_239770_b_().getRegistry(Registry.WORLD_KEY).getOptional(ResourceLocation.tryCreate(dim));
-            type.ifPresent(types::add);
+            Optional<DimensionType> type = DynamicRegistries.func_239770_b_().getRegistry(Registry.DIMENSION_TYPE_KEY).getOptional(ResourceLocation.tryCreate(dim));
+            if(type.isPresent()){
+                types.add(dim);
+            }
         });
         return types;
     }

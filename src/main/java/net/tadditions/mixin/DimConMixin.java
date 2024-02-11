@@ -119,14 +119,13 @@ public abstract class DimConMixin extends BaseControl {
                 if (WorldHelper.canTravelToDimension(world))
                 dimList.add(world);
                 ((IConsoleHelp) console).getBlocked().forEach(blocked -> {
-                    Optional<World> key = DynamicRegistries.func_239770_b_().getRegistry(Registry.WORLD_KEY).getOptional(ResourceLocation.tryCreate(blocked.toString()));
+                    Optional<World> key = DynamicRegistries.func_239770_b_().getRegistry(Registry.WORLD_KEY).getOptional(ResourceLocation.tryCreate(blocked));
                     if (key.isPresent()) {
                         Optional<RegistryKey<World>> worldKey = DynamicRegistries.func_239770_b_().getRegistry(Registry.WORLD_KEY).getOptionalKey(key.get());
                         worldKey.ifPresent(worldRegistryKey -> dimList.remove(ServerLifecycleHooks.getCurrentServer().getWorld(worldRegistryKey)));
                     }
 
                 });
-                dimList.remove(ServerLifecycleHooks.getCurrentServer().getWorld(MDimensions.THE_VERGE));
             });
         }
     }

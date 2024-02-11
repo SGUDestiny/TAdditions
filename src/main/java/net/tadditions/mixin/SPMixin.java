@@ -31,10 +31,10 @@ public class SPMixin {
             if(player.getHeldItemMainhand().getItem() == TItems.SONIC.get() && console.getSonicItem().isEmpty() || player.getHeldItemMainhand().getItem() == ModItems.BOOS_UPGRADE.get() && console.getSonicItem().isEmpty()) {
                 if(player.getHeldItemMainhand().getItem() == ModItems.BOOS_UPGRADE.get()){
                     player.getHeldItemMainhand().getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
-                       Optional<World> type = DynamicRegistries.func_239770_b_().getRegistry(Registry.WORLD_KEY).getOptional(cap.getDimdata());
+                       Optional<DimensionType> type = DynamicRegistries.func_239770_b_().getRegistry(Registry.DIMENSION_TYPE_KEY).getOptional(cap.getDimdata());
                        if(type.isPresent()){
-                           if(((IConsoleHelp) console).getBlocked().contains(type.get())){
-                               ((IConsoleHelp) console).removeBlocked(type.get());
+                           if(((IConsoleHelp) console).getBlocked().contains(cap.getDimdata().toString())){
+                               ((IConsoleHelp) console).removeBlocked(cap.getDimdata().toString());
                            }
                        }
                     });

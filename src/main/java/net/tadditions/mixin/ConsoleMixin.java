@@ -141,7 +141,7 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
     private int landTime = 0;
     private HashMap<ArtronUse.IArtronType, ArtronUse> artronUses = Maps.newHashMap();
     private LazyOptional<ExteriorTile> exteriorHolder = LazyOptional.empty();
-    private List<World> blocked = MHelper.blockedDimensions();
+    private List<String> blocked = MHelper.blockedDimensions();
     private boolean didVoidCrash = false;
     private UnlockManager unlockManager;
     protected HashMap<Class<?>, ControlOverride> controlOverrides = Maps.newHashMap();
@@ -518,8 +518,10 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
         ListNBT dimBlockedList = compound.getList("blocked", Constants.NBT.TAG_STRING);
         for (INBT base : dimBlockedList) {
             StringNBT nbt = (StringNBT) base;
-            Optional<World> type = DynamicRegistries.func_239770_b_().getRegistry(Registry.WORLD_KEY).getOptional(ResourceLocation.tryCreate(nbt.getString()));
-            type.ifPresent(dimensionType -> this.blocked.add(dimensionType));
+            Optional<DimensionType> type = DynamicRegistries.func_239770_b_().getRegistry(Registry.DIMENSION_TYPE_KEY).getOptional(ResourceLocation.tryCreate(nbt.getString()));
+            if(type.isPresent()){
+                this.blocked.add(nbt.getString());
+            }
         }
 
         ListNBT artronUsesList = compound.getList("artron_uses", Constants.NBT.TAG_COMPOUND);
@@ -608,7 +610,7 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
         }
         ListNBT dimBlockedList = new ListNBT();
         this.blocked.forEach(dim -> {
-            StringNBT nbt = StringNBT.valueOf(dim.toString());
+            StringNBT nbt = StringNBT.valueOf(dim);
             dimBlockedList.add(nbt);
         });
         compound.put("blocked", dimBlockedList);
@@ -834,17 +836,17 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
     }
 
     @Override
-    public List<World> getBlocked() {
+    public List<String> getBlocked() {
         return this.blocked;
     }
 
     @Override
-    public void removeBlocked(World type){
+    public void removeBlocked(String type){
         this.blocked.remove(type);
     }
 
     @Override
-    public void addBlocked(World type){
+    public void addBlocked(String type){
         this.blocked.add(type);
     }
 

@@ -53,6 +53,11 @@ public class ArcaneGuidebookItem extends Item implements IAnimatable, ISyncable 
         this.map = builder.build();
     }
 
+    @Override
+    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlotType equipmentSlot) {
+        return map;
+    }
+
     public static boolean isOpen() {
         return ModItems.ARCANE_GUIDEBOOK.getId().equals(PatchouliAPI.get().getOpenBookGui());
     }

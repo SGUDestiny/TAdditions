@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface IConsoleHelp {
 
-   List<World> getBlocked();
+   List<String> getBlocked();
 
-   void removeBlocked(World type);
-   void addBlocked(World type);
+   void removeBlocked(String type);
+   void addBlocked(String type);
 
 }
