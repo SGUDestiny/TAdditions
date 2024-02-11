@@ -53,7 +53,7 @@ public class DataDriveItem extends Item {
     @Override
     public void onCreated(ItemStack stack, World worldIn, PlayerEntity playerIn) {
         stack.getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
-            cap.setDimdata(MDimensions.THE_VERGE.getRegistryName());
+            cap.setDimdata(MDimensions.THE_VERGE.getRegistryName().getPath());
         });
         super.onCreated(stack, worldIn, playerIn);
     }

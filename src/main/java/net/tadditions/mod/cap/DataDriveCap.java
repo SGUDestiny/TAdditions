@@ -6,10 +6,11 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
+import net.tadditions.mod.world.MDimensions;
 
 public class DataDriveCap implements IOpener {
 
-    private ResourceLocation dimdata = World.OVERWORLD.getLocation();
+    private String dimdata = MDimensions.THE_VERGE.getRegistryName().toString();
     private ItemStack remote;
 
     public DataDriveCap(ItemStack stack) {
@@ -20,23 +21,23 @@ public class DataDriveCap implements IOpener {
     @Override
     public CompoundNBT serializeNBT() {
         CompoundNBT tag = new CompoundNBT();
-        tag.putString("dimdata", this.dimdata.getPath());
+        tag.putString("dimdata", this.dimdata);
         return tag;
     }
 
     @Override
     public void deserializeNBT(CompoundNBT nbt) {
-        this.dimdata = ResourceLocation.tryCreate(nbt.getString("dimdata"));
+        this.dimdata = nbt.getString("dimdata");
     }
 
 
     @Override
-    public ResourceLocation getDimdata() {
+    public String getDimdata() {
         return dimdata;
     }
 
     @Override
-    public void setDimdata(ResourceLocation type) {
+    public void setDimdata(String type) {
         dimdata = type;
     }
 

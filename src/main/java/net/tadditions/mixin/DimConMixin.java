@@ -37,6 +37,7 @@ import net.tardis.mod.tileentities.consoles.*;
 import org.spongepowered.asm.mixin.Mixin;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Optional;
 
 @Mixin(DimensionControl.class)
@@ -118,14 +119,9 @@ public abstract class DimConMixin extends BaseControl {
             ServerLifecycleHooks.getCurrentServer().getWorlds().forEach(world -> {
                 if (WorldHelper.canTravelToDimension(world))
                 dimList.add(world);
-                ((IConsoleHelp) console).getBlocked().forEach(blocked -> {
-                    Optional<World> key = DynamicRegistries.func_239770_b_().getRegistry(Registry.WORLD_KEY).getOptional(ResourceLocation.tryCreate(blocked));
-                    if (key.isPresent()) {
-                        Optional<RegistryKey<World>> worldKey = DynamicRegistries.func_239770_b_().getRegistry(Registry.WORLD_KEY).getOptionalKey(key.get());
-                        worldKey.ifPresent(worldRegistryKey -> dimList.remove(ServerLifecycleHooks.getCurrentServer().getWorld(worldRegistryKey)));
-                    }
-
-                });
+                if(((IConsoleHelp) console).getBlocked().contains(Objects.requireNonNull(DynamicRegistries.func_239770_b_().getRegistry(Registry.DIMENSION_TYPE_KEY).getKey(world.getDimensionType())).toString())){
+                    dimList.remove(world);
+                }
             });
         }
     }

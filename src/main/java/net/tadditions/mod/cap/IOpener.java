@@ -15,9 +15,9 @@ import net.minecraftforge.common.util.LazyOptional;
 public interface IOpener extends INBTSerializable<CompoundNBT> {
 
 
-    ResourceLocation getDimdata();
+    String getDimdata();
 
-    void setDimdata(ResourceLocation type);
+    void setDimdata(String type);
 
     void tick(World worldIn, Entity entityIn);
 
