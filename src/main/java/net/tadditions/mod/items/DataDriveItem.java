@@ -35,7 +35,7 @@ public class DataDriveItem extends Item {
         CompoundNBT tag = stack.getOrCreateTag();
         stack.getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap ->
         {
-            tag.put("data", cap.serializeNBT());
+            tag.put("dimdata", cap.serializeNBT());
         });
         return tag;
     }
@@ -44,7 +44,7 @@ public class DataDriveItem extends Item {
     public void readShareTag(ItemStack stack, @Nullable CompoundNBT nbt) {
         super.readShareTag(stack, nbt);
         if (nbt != null) {
-            if (nbt.contains("data")) {
+            if (nbt.contains("dimdata")) {
                 stack.getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(handler -> handler.deserializeNBT(nbt.getCompound("data")));
             }
         }
@@ -53,7 +53,7 @@ public class DataDriveItem extends Item {
     @Override
     public void onCreated(ItemStack stack, World worldIn, PlayerEntity playerIn) {
         stack.getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
-            cap.setDimdata(MDimensions.THE_VERGE.getRegistryName().getPath());
+            cap.setDimdata(MDimensions.THE_VERGE.getLocation().toString());
         });
         super.onCreated(stack, worldIn, playerIn);
     }

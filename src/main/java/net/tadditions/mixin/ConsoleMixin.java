@@ -141,7 +141,7 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
     private int landTime = 0;
     private HashMap<ArtronUse.IArtronType, ArtronUse> artronUses = Maps.newHashMap();
     private LazyOptional<ExteriorTile> exteriorHolder = LazyOptional.empty();
-    private List<String> blocked = MHelper.blockedDimensions();
+    private List<World> available = MHelper.availableDimensions();
     private boolean didVoidCrash = false;
     private UnlockManager unlockManager;
     protected HashMap<Class<?>, ControlOverride> controlOverrides = Maps.newHashMap();
@@ -518,10 +518,8 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
         ListNBT dimBlockedList = compound.getList("blocked", Constants.NBT.TAG_STRING);
         for (INBT base : dimBlockedList) {
             StringNBT nbt = (StringNBT) base;
-            Optional<DimensionType> type = DynamicRegistries.func_239770_b_().getRegistry(Registry.DIMENSION_TYPE_KEY).getOptional(ResourceLocation.tryCreate(nbt.getString()));
-            if(type.isPresent()){
-                this.blocked.add(nbt.getString());
-            }
+            Optional<World> worlds = DynamicRegistries.func_239770_b_().getRegistry(Registry.WORLD_KEY).getOptional(ResourceLocation.tryCreate(nbt.getString()));
+            worlds.ifPresent(value -> this.available.add(value));
         }
 
         ListNBT artronUsesList = compound.getList("artron_uses", Constants.NBT.TAG_COMPOUND);
@@ -609,8 +607,8 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
             artronUseList.add(nbt);
         }
         ListNBT dimBlockedList = new ListNBT();
-        this.blocked.forEach(dim -> {
-            StringNBT nbt = StringNBT.valueOf(dim);
+        this.available.forEach(world -> {
+            StringNBT nbt = StringNBT.valueOf(world.getDimensionKey().getRegistryName().toString());
             dimBlockedList.add(nbt);
         });
         compound.put("blocked", dimBlockedList);
@@ -836,18 +834,20 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
     }
 
     @Override
-    public List<String> getBlocked() {
-        return this.blocked;
+    public List<World> getAvailable() {
+        return this.available;
     }
 
     @Override
-    public void removeBlocked(String type){
-        this.blocked.remove(type);
+    public void removeAvailable(String type){
+        Optional<World> world = DynamicRegistries.func_239770_b_().getRegistry(Registry.WORLD_KEY).getOptional(ResourceLocation.tryCreate(type));
+        world.ifPresent(value -> available.remove(value));
     }
 
     @Override
-    public void addBlocked(String type){
-        this.blocked.add(type);
+    public void addAvailable(String type){
+        Optional<World> world = DynamicRegistries.func_239770_b_().getRegistry(Registry.WORLD_KEY).getOptional(ResourceLocation.tryCreate(type));
+        world.ifPresent(value -> available.add(value));
     }
 
     public void VoidCrash() {

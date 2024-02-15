@@ -1,13 +1,17 @@
 package net.tadditions.mod.helper;
 
 import com.google.common.collect.Lists;
+import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.DynamicRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.server.ServerLifecycleHooks;
 import net.tadditions.mod.QolMod;
 import net.tadditions.mod.config.MConfigs;
+import net.tardis.mod.helper.WorldHelper;
+import org.spongepowered.asm.mixin.Dynamic;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,14 +30,17 @@ public class MHelper {
         return new ResourceLocation(QolMod.MOD_ID, string);
     }
 
-    public static List<String> blockedDimensions(){
-        List<String> types = new ArrayList<>();
-        MConfigs.SERVER.BlockedDimensions.get().forEach(dim -> {
-            Optional<DimensionType> type = DynamicRegistries.func_239770_b_().getRegistry(Registry.DIMENSION_TYPE_KEY).getOptional(ResourceLocation.tryCreate(dim));
-            if(type.isPresent()){
-                types.add(dim);
+    public static List<World> availableDimensions(){
+        List<World> types = new ArrayList<>();
+        ServerLifecycleHooks.getCurrentServer().getWorlds().forEach(world -> {
+            if(WorldHelper.canTravelToDimension(world)){
+                types.add(world);
+            }
+            if(MConfigs.SERVER.BlockedDimensions.get().contains(world.getDimensionKey().getLocation().toString())){
+                types.remove(world);
             }
         });
+
         return types;
     }
 }

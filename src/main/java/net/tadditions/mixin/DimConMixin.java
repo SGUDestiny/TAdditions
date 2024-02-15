@@ -44,7 +44,7 @@ import java.util.Optional;
 public abstract class DimConMixin extends BaseControl {
 
     private static final String MESSAGE = "message.tardis.control.dimchange";
-    public ArrayList<ServerWorld> dimList = new ArrayList<ServerWorld>();
+    public ArrayList<World> dimList = new ArrayList<World>();
     private int index = 0;
 
     public DimConMixin(ControlRegistry.ControlEntry entry, ConsoleTile console, ControlEntity entity) {
@@ -84,10 +84,9 @@ public abstract class DimConMixin extends BaseControl {
 
     private boolean doDimChangeAction(ConsoleTile console, PlayerEntity player) {
         if(!console.getWorld().isRemote() && console.getLandTime() <= 0) {
-            this.createDimListIfEmptyConsole(console);
-            if(!this.dimList.isEmpty()) {
+            if(!((IConsoleHelp) console).getAvailable().isEmpty()) {
                 this.modIndex(player.isSneaking() ? -1 : 1);
-                ServerWorld type = this.dimList.get(index);
+                World type = ((IConsoleHelp) console).getAvailable().get(index);
                 console.setDestination(type.getDimensionKey(), console.getDestinationPosition());
                 player.sendStatusMessage(new TranslationTextComponent(MESSAGE).appendSibling(new StringTextComponent(WorldHelper.formatDimName(type.getDimensionKey())).mergeStyle(TextFormatting.LIGHT_PURPLE)), true);
                 this.startAnimation();
@@ -112,18 +111,6 @@ public abstract class DimConMixin extends BaseControl {
             return;
         }
         this.index += i;
-    }
-
-    private void createDimListIfEmptyConsole(ConsoleTile console){
-        if(this.dimList.isEmpty()){
-            ServerLifecycleHooks.getCurrentServer().getWorlds().forEach(world -> {
-                if (WorldHelper.canTravelToDimension(world))
-                dimList.add(world);
-                if(((IConsoleHelp) console).getBlocked().contains(Objects.requireNonNull(DynamicRegistries.func_239770_b_().getRegistry(Registry.DIMENSION_TYPE_KEY).getKey(world.getDimensionType())).toString())){
-                    dimList.remove(world);
-                }
-            });
-        }
     }
 
     @Override
