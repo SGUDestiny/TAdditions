@@ -10,6 +10,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 import net.tadditions.mod.QolMod;
 import net.tadditions.mod.config.MConfigs;
+import net.tardis.mod.helper.NBTHelper;
 import net.tardis.mod.helper.WorldHelper;
 import org.spongepowered.asm.mixin.Dynamic;
 
@@ -33,14 +34,10 @@ public class MHelper {
     public static List<World> availableDimensions(){
         List<World> types = new ArrayList<>();
         ServerLifecycleHooks.getCurrentServer().getWorlds().forEach(world -> {
-            if(WorldHelper.canTravelToDimension(world)){
+            if(WorldHelper.canTravelToDimension(world) && !MConfigs.SERVER.BlockedDimensions.get().contains(world.getDimensionKey().getLocation().toString())) {
                 types.add(world);
             }
-            if(MConfigs.SERVER.BlockedDimensions.get().contains(world.getDimensionKey().getLocation().toString())){
-                types.remove(world);
-            }
         });
-
         return types;
     }
 }

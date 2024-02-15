@@ -105,13 +105,13 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
 
     public int flightTicks = 0;
     private int reachDestinationTick = 0;
-    private EmotionHandler emotionHandler;
-    private InteriorManager interiorManager;
-    private List<PlayerEntity> players = new ArrayList<PlayerEntity>();
-    private List<ITickable> tickers = new ArrayList<ITickable>();
-    private HashMap<ResourceLocation, INBTSerializable<CompoundNBT>> dataHandlers = new HashMap<ResourceLocation, INBTSerializable<CompoundNBT>>();
-    private ArrayList<ControlEntity> controls = new ArrayList<ControlEntity>();
-    private ArrayList<ControlRegistry.ControlEntry> controlEntries = new ArrayList<ControlRegistry.ControlEntry>();
+    private final EmotionHandler emotionHandler;
+    private final InteriorManager interiorManager;
+    private final List<PlayerEntity> players = new ArrayList<PlayerEntity>();
+    private final List<ITickable> tickers = new ArrayList<ITickable>();
+    private final HashMap<ResourceLocation, INBTSerializable<CompoundNBT>> dataHandlers = new HashMap<ResourceLocation, INBTSerializable<CompoundNBT>>();
+    private final ArrayList<ControlEntity> controls = new ArrayList<ControlEntity>();
+    private final ArrayList<ControlRegistry.ControlEntry> controlEntries = new ArrayList<ControlRegistry.ControlEntry>();
     private AbstractExterior exterior;
     private AbstractSoundScheme scheme;
     private BlockPos location = BlockPos.ZERO;
@@ -123,31 +123,31 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
     private float artron = 0;
     private float rechargeMod = 1F;
     private ConsoleRoom consoleRoom = ConsoleRoom.STEAM;
-    private List<Subsystem> subsystems = new ArrayList<>();
-    private List<Upgrade> upgrades = new ArrayList<>();
+    private final List<Subsystem> subsystems = new ArrayList<>();
+    private final List<Upgrade> upgrades = new ArrayList<>();
     private String customName = "";
-    private ExteriorPropertyManager exteriorProps;
+    private final ExteriorPropertyManager exteriorProps;
     private SpaceTimeCoord returnLocation = SpaceTimeCoord.UNIVERAL_CENTER;
     private FlightEvent currentEvent = null;
-    private List<DistressSignal> distressSignal = new ArrayList<DistressSignal>();
+    private final List<DistressSignal> distressSignal = new ArrayList<DistressSignal>();
     private ItemStack sonic = ItemStack.EMPTY;
     protected TexVariant[] variants = {};
     private int variant = 0;
     private boolean antiGravs = false;
     private UUID tardisEntityID = null;
-    private TardisEntity tardisEntity = null;
+    private final TardisEntity tardisEntity = null;
     private SparkingLevel sparkLevel = SparkingLevel.NONE;
     private String landingCode = "";
     private int landTime = 0;
-    private HashMap<ArtronUse.IArtronType, ArtronUse> artronUses = Maps.newHashMap();
-    private LazyOptional<ExteriorTile> exteriorHolder = LazyOptional.empty();
-    private List<World> available = MHelper.availableDimensions();
+    private final HashMap<ArtronUse.IArtronType, ArtronUse> artronUses = Maps.newHashMap();
+    private final LazyOptional<ExteriorTile> exteriorHolder = LazyOptional.empty();
+    private final List<World> available;
     private boolean didVoidCrash = false;
-    private UnlockManager unlockManager;
+    private final UnlockManager unlockManager;
     protected HashMap<Class<?>, ControlOverride> controlOverrides = Maps.newHashMap();
     private boolean hasPoweredDown = false;
     private boolean hasNavCom = false;
-    private boolean isBeingTowed = false;
+    private final boolean isBeingTowed = false;
     private BlockPos takeoffLocation = BlockPos.ZERO;
     /**
      * If the console has been force loaded. Internal use only
@@ -189,6 +189,7 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
         this.exterior = ExteriorRegistry.STEAMPUNK.get();
         this.dimension = World.OVERWORLD;
         this.destinationDimension = World.OVERWORLD;
+        this.available = MHelper.availableDimensions();
         this.unlockManager = new UnlockManager(((ConsoleTile) (Object) this));
         this.scheme = SoundSchemeRegistry.BASIC.get();
         ((ConsoleTile) (Object) this).registerControlEntry(ControlRegistry.HANDBRAKE.get());
@@ -235,7 +236,7 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
         //If the time is lower than this, the console will not be able to serialise things that quickly, and the deadlock kicking mechanic will loop forever.
         this.getInteriorManager().setInteriorProcessingTime(cancelProcess ?  InteriorManager.resetInteriorChangeProcessTime :  (isInstantChange ? 60 : processingTicks)); //Set how much time to elapse before the console can fully finish its interior change
         this.setNextConsoleRoomToChange(cancelProcess ? this.consoleRoom : roomToSpawn); //Set the next room to be the one inputted
-        this.setStartChangingInterior(cancelProcess ? false : true);
+        this.setStartChangingInterior(!cancelProcess);
         this.onPowerDown(!cancelProcess);
         //Handle edge case of fuel where player somehow gets inside and cancels the interior change process
         //We want to stop the Tardis from continuing to use fuel if the change process is already underway
@@ -258,7 +259,7 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
             //Setup the Artron Use before the player exits the doors, but don't let it start yet by not setting the ticks
             int fuelUsage = TConfig.SERVER.interiorChangeArtronUse.get();
             ArtronUse artronUse = this.getOrCreateArtronUse(ArtronUse.ArtronType.INTERIOR_CHANGE);
-            artronUse.setArtronUsePerTick((float)((float)fuelUsage/(float)processingTicks));
+            artronUse.setArtronUsePerTick((float)fuelUsage/(float)processingTicks);
         }
         AxisAlignedBB radius = new AxisAlignedBB(this.getPos()).grow(30);
         for (PlayerEntity player : this.getWorld().getEntitiesWithinAABB(PlayerEntity.class, radius)){
@@ -519,7 +520,7 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
         for (INBT base : dimBlockedList) {
             StringNBT nbt = (StringNBT) base;
             Optional<World> worlds = DynamicRegistries.func_239770_b_().getRegistry(Registry.WORLD_KEY).getOptional(ResourceLocation.tryCreate(nbt.getString()));
-            worlds.ifPresent(value -> this.available.add(value));
+            worlds.ifPresent(this.available::add);
         }
 
         ListNBT artronUsesList = compound.getList("artron_uses", Constants.NBT.TAG_COMPOUND);
@@ -608,7 +609,7 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
         }
         ListNBT dimBlockedList = new ListNBT();
         this.available.forEach(world -> {
-            StringNBT nbt = StringNBT.valueOf(world.getDimensionKey().getRegistryName().toString());
+            StringNBT nbt = StringNBT.valueOf(world.getDimensionKey().getLocation().toString());
             dimBlockedList.add(nbt);
         });
         compound.put("blocked", dimBlockedList);
@@ -716,7 +717,7 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
                             TardisHelper.getConsoleInWorld(world).ifPresent(tile -> {
                                 //if unstabilized and not ourselves
                                 ((ConsoleTile) (Object) this).getSubsystem(StabilizerSubsystem.class).ifPresent(sys -> {
-                                    if (tile != ((ConsoleTile) (Object) this) && tile.isInFlight() && !sys.isControlActivated()) {
+                                    if (tile != (Object) this && tile.isInFlight() && !sys.isControlActivated()) {
                                         //If not landing and not already colliding
                                         if (tile.getLandTime() == 0 && !(tile.getFlightEvent() instanceof TardisCollideInstigate) && !(tile.getFlightEvent() instanceof TardisCollideRecieve)) {
                                             if (tile.getPositionInFlight().getPos().withinDistance(((ConsoleTile) (Object) this).getPositionInFlight().getPos(), TConfig.SERVER.collisionRange.get())) {
@@ -768,7 +769,7 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
     public float calcSpeed() {
         ObjectWrapper<Float> throttle = new ObjectWrapper<>(0.0F);
         ObjectWrapper<Float> speedmod = new ObjectWrapper<>(1.0F);
-        ((ConsoleTile) (Object) this).getWorld().getCapability(Capabilities.TARDIS_DATA).ifPresent(tard -> {
+        this.getWorld().getCapability(Capabilities.TARDIS_DATA).ifPresent(tard -> {
             ItemStackHandler handler = tard.getEngineInventoryForSide(Direction.NORTH).getHandler();
             for(int i = 0; i<handler.getSlots(); i++){
                 if(handler.getStackInSlot(i).getItem().getRegistryName().toString().contains("overcharged")){
@@ -776,10 +777,10 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
                 }
                 if(EnchantmentHelper.getEnchantmentLevel(TAEnchants.BLESSING_OF_FLOW.get(), handler.getStackInSlot(i)) > 0){
                     speedmod.setValue(speedmod.getValue()*1.25F);
-                };
+                }
                 if(EnchantmentHelper.getEnchantmentLevel(TAEnchants.CURSE_OF_WINDS.get(), handler.getStackInSlot(i)) > 0){
                     speedmod.setValue(speedmod.getValue()*0.75F);
-                };
+                }
             }
         });
         if(timeStormCompleted)
@@ -841,13 +842,13 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
     @Override
     public void removeAvailable(String type){
         Optional<World> world = DynamicRegistries.func_239770_b_().getRegistry(Registry.WORLD_KEY).getOptional(ResourceLocation.tryCreate(type));
-        world.ifPresent(value -> available.remove(value));
+        world.ifPresent(available::remove);
     }
 
     @Override
     public void addAvailable(String type){
         Optional<World> world = DynamicRegistries.func_239770_b_().getRegistry(Registry.WORLD_KEY).getOptional(ResourceLocation.tryCreate(type));
-        world.ifPresent(value -> available.add(value));
+        world.ifPresent(available::add);
     }
 
     public void VoidCrash() {

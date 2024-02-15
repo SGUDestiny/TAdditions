@@ -51,14 +51,6 @@ public class DataDriveItem extends Item {
     }
 
     @Override
-    public void onCreated(ItemStack stack, World worldIn, PlayerEntity playerIn) {
-        stack.getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
-            cap.setDimdata(MDimensions.THE_VERGE.getLocation().toString());
-        });
-        super.onCreated(stack, worldIn, playerIn);
-    }
-
-    @Override
     public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
         if (!worldIn.isRemote) {
             if (entityIn instanceof PlayerEntity) {

@@ -1,8 +1,10 @@
 package net.tadditions.mod.cap;
 
+import com.simibubi.create.foundation.utility.NBTHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.NBTUtil;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
@@ -10,7 +12,7 @@ import net.tadditions.mod.world.MDimensions;
 
 public class DataDriveCap implements IOpener {
 
-    private String dimdata = MDimensions.THE_VERGE.getRegistryName().toString();
+    private String dimdata = MDimensions.THE_VERGE.getLocation().toString();
     private ItemStack remote;
 
     public DataDriveCap(ItemStack stack) {

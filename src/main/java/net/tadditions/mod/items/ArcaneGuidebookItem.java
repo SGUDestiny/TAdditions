@@ -55,7 +55,9 @@ public class ArcaneGuidebookItem extends Item implements IAnimatable, ISyncable 
 
     @Override
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlotType equipmentSlot) {
-        return map;
+        if(equipmentSlot.equals(EquipmentSlotType.MAINHAND)){
+            return map;
+        } else return super.getAttributeModifiers(equipmentSlot);
     }
 
     public static boolean isOpen() {
@@ -118,7 +120,7 @@ public class ArcaneGuidebookItem extends Item implements IAnimatable, ISyncable 
     }
 
     public <P extends Item & IAnimatable> PlayState predicateIdle(AnimationEvent<P> event) {
-        event.getController().setAnimation(new AnimationBuilder().addAnimation("close", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME));
+        //event.getController().setAnimation(new AnimationBuilder().addAnimation("close", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME));
         return PlayState.CONTINUE;
     }
 
