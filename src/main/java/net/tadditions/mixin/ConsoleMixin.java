@@ -519,7 +519,9 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
         for (INBT base : dimBlockedList) {
             StringNBT nbt = (StringNBT) base;
             RegistryKey<World> worlds = WorldHelper.getWorldKeyFromRL(ResourceLocation.tryCreate(nbt.getString()));
-            available.add(worlds);
+            if(!available.contains(worlds)) {
+                available.add(worlds);
+            }
         }
 
         ListNBT artronUsesList = compound.getList("artron_uses", Constants.NBT.TAG_COMPOUND);
