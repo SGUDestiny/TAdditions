@@ -12,11 +12,12 @@ import net.tadditions.mod.world.MDimensions;
 
 public class DataDriveCap implements IOpener {
 
-    private String dimdata = MDimensions.THE_VERGE.getLocation().toString();
+    private String dimdata;
     private ItemStack remote;
 
     public DataDriveCap(ItemStack stack) {
         this.remote = stack;
+        this.dimdata = MDimensions.THE_VERGE.getLocation().toString();
     }
 
 

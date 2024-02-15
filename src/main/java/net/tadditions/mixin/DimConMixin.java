@@ -86,14 +86,13 @@ public abstract class DimConMixin extends BaseControl {
         if(!console.getWorld().isRemote() && console.getLandTime() <= 0) {
             if(!((IConsoleHelp) console).getAvailable().isEmpty()) {
                 this.modIndex(player.isSneaking() ? -1 : 1);
-                World type = ((IConsoleHelp) console).getAvailable().get(index);
-                console.setDestination(type.getDimensionKey(), console.getDestinationPosition());
-                player.sendStatusMessage(new TranslationTextComponent(MESSAGE).appendSibling(new StringTextComponent(WorldHelper.formatDimName(type.getDimensionKey())).mergeStyle(TextFormatting.LIGHT_PURPLE)), true);
+                console.setDestination(((IConsoleHelp) console).getAvailable().get(index), console.getDestinationPosition());
+                player.sendStatusMessage(new TranslationTextComponent(MESSAGE).appendSibling(new StringTextComponent(WorldHelper.formatDimName(((IConsoleHelp) console).getAvailable().get(index))).mergeStyle(TextFormatting.LIGHT_PURPLE)), true);
                 this.startAnimation();
 
                 ConsoleTile tile = this.getConsole();
                 if(tile != null)
-                    Network.sendToTrackingTE(new ConsoleUpdateMessage(DataTypes.DIMENSION_LIST, new DimensionData(this.dimList.size(), this.index)), tile);
+                    Network.sendToTrackingTE(new ConsoleUpdateMessage(DataTypes.DIMENSION_LIST, new DimensionData(((IConsoleHelp) tile).getAvailable().size(), this.index)), tile);
             }
             else index = 0;
             return true;
@@ -102,12 +101,12 @@ public abstract class DimConMixin extends BaseControl {
     }
 
     private void modIndex(int i) {
-        if(this.index + i >= this.dimList.size()) {
+        if(this.index + i >= ((IConsoleHelp) this.getConsole()).getAvailable().size()) {
             this.index = 0;
             return;
         }
         if(this.index + i < 0) {
-            this.index = this.dimList.size() - 1;
+            this.index = ((IConsoleHelp) this.getConsole()).getAvailable().size() - 1;
             return;
         }
         this.index += i;

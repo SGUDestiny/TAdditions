@@ -4,6 +4,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
+import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.DynamicRegistries;
 import net.minecraft.util.registry.Registry;
@@ -15,6 +16,7 @@ import net.tadditions.mod.helper.IConsoleHelp;
 import net.tadditions.mod.items.ModItems;
 import net.tardis.mod.cap.Capabilities;
 import net.tardis.mod.controls.SonicPortControl;
+import net.tardis.mod.helper.WorldHelper;
 import net.tardis.mod.items.TItems;
 import net.tardis.mod.schematics.Schematic;
 import net.tardis.mod.tileentities.ConsoleTile;
@@ -32,12 +34,10 @@ public class SPMixin {
             if(player.getHeldItemMainhand().getItem() == TItems.SONIC.get() && console.getSonicItem().isEmpty() || player.getHeldItemMainhand().getItem() == ModItems.BOOS_UPGRADE.get() && console.getSonicItem().isEmpty()) {
                 if(player.getHeldItemMainhand().getItem() == ModItems.BOOS_UPGRADE.get()){
                     player.getHeldItemMainhand().getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
-                       Optional<World> type = DynamicRegistries.func_239770_b_().getRegistry(Registry.WORLD_KEY).getOptional(ResourceLocation.tryCreate(cap.getDimdata()));
-                       if(type.isPresent()){
-                           if(!((IConsoleHelp) console).getAvailable().contains(type.get())){
-                               ((IConsoleHelp) console).addAvailable(cap.getDimdata());
-                           }
-                       }
+                        RegistryKey<World> type = WorldHelper.getWorldKeyFromRL(ResourceLocation.tryCreate(cap.getDimdata()));
+                        if(!((IConsoleHelp) console).getAvailable().contains(type)){
+                           ((IConsoleHelp) console).addAvailable(type);
+                        }
                     });
                 }
                 console.setSonicItem(player.getHeldItemMainhand());

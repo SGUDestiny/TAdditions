@@ -141,7 +141,7 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
     private int landTime = 0;
     private final HashMap<ArtronUse.IArtronType, ArtronUse> artronUses = Maps.newHashMap();
     private final LazyOptional<ExteriorTile> exteriorHolder = LazyOptional.empty();
-    private final List<World> available;
+    private final List<RegistryKey<World>> available = MHelper.availableDimensions();
     private boolean didVoidCrash = false;
     private final UnlockManager unlockManager;
     protected HashMap<Class<?>, ControlOverride> controlOverrides = Maps.newHashMap();
@@ -189,7 +189,6 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
         this.exterior = ExteriorRegistry.STEAMPUNK.get();
         this.dimension = World.OVERWORLD;
         this.destinationDimension = World.OVERWORLD;
-        this.available = MHelper.availableDimensions();
         this.unlockManager = new UnlockManager(((ConsoleTile) (Object) this));
         this.scheme = SoundSchemeRegistry.BASIC.get();
         ((ConsoleTile) (Object) this).registerControlEntry(ControlRegistry.HANDBRAKE.get());
@@ -519,8 +518,8 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
         ListNBT dimBlockedList = compound.getList("blocked", Constants.NBT.TAG_STRING);
         for (INBT base : dimBlockedList) {
             StringNBT nbt = (StringNBT) base;
-            Optional<World> worlds = DynamicRegistries.func_239770_b_().getRegistry(Registry.WORLD_KEY).getOptional(ResourceLocation.tryCreate(nbt.getString()));
-            worlds.ifPresent(this.available::add);
+            RegistryKey<World> worlds = WorldHelper.getWorldKeyFromRL(ResourceLocation.tryCreate(nbt.getString()));
+            available.add(worlds);
         }
 
         ListNBT artronUsesList = compound.getList("artron_uses", Constants.NBT.TAG_COMPOUND);
@@ -609,8 +608,10 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
         }
         ListNBT dimBlockedList = new ListNBT();
         this.available.forEach(world -> {
-            StringNBT nbt = StringNBT.valueOf(world.getDimensionKey().getLocation().toString());
-            dimBlockedList.add(nbt);
+            StringNBT nbt = StringNBT.valueOf(world.getLocation().toString());
+            if(!dimBlockedList.contains(nbt)) {
+                dimBlockedList.add(nbt);
+            }
         });
         compound.put("blocked", dimBlockedList);
         compound.put("artron_uses", artronUseList);
@@ -835,20 +836,18 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
     }
 
     @Override
-    public List<World> getAvailable() {
+    public List<RegistryKey<World>> getAvailable() {
         return this.available;
     }
 
     @Override
-    public void removeAvailable(String type){
-        Optional<World> world = DynamicRegistries.func_239770_b_().getRegistry(Registry.WORLD_KEY).getOptional(ResourceLocation.tryCreate(type));
-        world.ifPresent(available::remove);
+    public void removeAvailable(RegistryKey<World> type){
+        available.remove(type);
     }
 
     @Override
-    public void addAvailable(String type){
-        Optional<World> world = DynamicRegistries.func_239770_b_().getRegistry(Registry.WORLD_KEY).getOptional(ResourceLocation.tryCreate(type));
-        world.ifPresent(available::add);
+    public void addAvailable(RegistryKey<World> type){
+        available.add(type);
     }
 
     public void VoidCrash() {

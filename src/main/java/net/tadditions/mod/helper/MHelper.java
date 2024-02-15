@@ -31,11 +31,11 @@ public class MHelper {
         return new ResourceLocation(QolMod.MOD_ID, string);
     }
 
-    public static List<World> availableDimensions(){
-        List<World> types = new ArrayList<>();
+    public static List<RegistryKey<World>> availableDimensions(){
+        List<RegistryKey<World>> types = new ArrayList<>();
         ServerLifecycleHooks.getCurrentServer().getWorlds().forEach(world -> {
             if(WorldHelper.canTravelToDimension(world) && !MConfigs.SERVER.BlockedDimensions.get().contains(world.getDimensionKey().getLocation().toString())) {
-                types.add(world);
+                types.add(world.getDimensionKey());
             }
         });
         return types;
