@@ -120,7 +120,8 @@ public class QolMod
         CommonEvents.getAllMappingEntries();
         CraftingHelper.register(TrueConCondition.Serializer.INSTANCE);
         CapabilityManager.INSTANCE.register(IOneRemote.class, new IOneRemote.Storage(), () -> new OneUseRemoteCapability(null));
-        CapabilityManager.INSTANCE.register(IOpener.class, new IOpener.Storage(), () -> new DataDriveCap(null));
+        CapabilityManager.INSTANCE.register(IOpener.class, new IOpener.Storage(), DataDriveCap::new);
+        CapabilityManager.INSTANCE.register(ICrystal.class, new ICrystal.Storage(), DataCrystalCap::new);
         CapabilityManager.INSTANCE.register(IQuant.class, new IQuant.Storage(), () -> new QuantCapability(null));
     }
 

@@ -5,42 +5,47 @@ import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.NBTUtil;
+import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
+import net.minecraftforge.items.ItemStackHandler;
 import net.tadditions.mod.world.MDimensions;
+import net.tardis.mod.helper.WorldHelper;
 
 public class DataDriveCap implements IOpener {
 
-    private String dimdata;
-    private ItemStack remote;
+    private RegistryKey<World> dimdata;
+    private ItemStackHandler handler = new ItemStackHandler();
+    private boolean crystalUsed = false;
 
-    public DataDriveCap(ItemStack stack) {
-        this.remote = stack;
-        this.dimdata = MDimensions.THE_VERGE.getLocation().toString();
+    public DataDriveCap() {
+        dimdata = World.OVERWORLD;
     }
 
 
     @Override
     public CompoundNBT serializeNBT() {
         CompoundNBT tag = new CompoundNBT();
-        tag.putString("dimdata", this.dimdata);
+        tag.putString("dimdata", this.dimdata.getLocation().toString());
+        tag.put("crystal", this.handler.serializeNBT());
         return tag;
     }
 
     @Override
     public void deserializeNBT(CompoundNBT nbt) {
-        this.dimdata = nbt.getString("dimdata");
+        this.dimdata = WorldHelper.getWorldKeyFromRL(ResourceLocation.tryCreate(nbt.getString("dimdata")));
+        this.handler.deserializeNBT(nbt);
     }
 
 
     @Override
-    public String getDimdata() {
+    public RegistryKey<World> getDimdata() {
         return dimdata;
     }
 
     @Override
-    public void setDimdata(String type) {
+    public void setDimdata(RegistryKey<World> type) {
         dimdata = type;
     }
 
@@ -52,5 +57,17 @@ public class DataDriveCap implements IOpener {
                 this.serializeNBT();
             }
         }
+        ItemStack crystal = handler.getStackInSlot(0);
+        if(!crystal.isItemEqual(ItemStack.EMPTY)) {
+            crystal.getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap -> {
+                if (!cap.getUsed()) {
+                    this.setDimdata(cap.getDimData());
+                }
+            });
+        }
+    }
+
+    public ItemStackHandler getHandler() {
+        return handler;
     }
 }

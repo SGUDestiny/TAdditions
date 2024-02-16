@@ -56,9 +56,10 @@ import java.util.Map;
 public class CommonEvents {
 
 
-    public static final ResourceLocation ONEUSEREMOTE_CAP = new ResourceLocation(QolMod.MOD_ID, "oneuseremote");
-    public static final ResourceLocation TAGREAOPENER_CAP = new ResourceLocation(QolMod.MOD_ID, "tagreaopener");
+    public static final ResourceLocation ONEUSEREMOTE_CAP = new ResourceLocation(QolMod.MOD_ID, "olim_remote");
+    public static final ResourceLocation TAGREAOPENER_CAP = new ResourceLocation(QolMod.MOD_ID, "data_drive");
     public static final ResourceLocation QUANT_CAP = new ResourceLocation(QolMod.MOD_ID, "quantum");
+    public static final ResourceLocation CRYSTAL_CAP = new ResourceLocation("data_crystal");
 
 
     private static HashMap<ResourceLocation, ResourceLocation> remappedEntries = new HashMap<ResourceLocation, ResourceLocation>();
@@ -72,9 +73,11 @@ public class CommonEvents {
         if (event.getObject().getItem() == ModItems.ONEUSEREMOTE.get())
             event.addCapability(ONEUSEREMOTE_CAP, new IOneRemote.Provider(new OneUseRemoteCapability(event.getObject())));
         if (event.getObject().getItem() == ModItems.BOOS_UPGRADE.get())
-            event.addCapability(TAGREAOPENER_CAP, new IOpener.Provider(new DataDriveCap(event.getObject())));
+            event.addCapability(TAGREAOPENER_CAP, new IOpener.Provider(new DataDriveCap()));
         if (event.getObject().getItem() == ModItems.QUANTUM_EXOTIC_MATTER.get())
             event.addCapability(QUANT_CAP, new IQuant.Provider(new QuantCapability(event.getObject())));
+        if(event.getObject().getItem() == ModItems.data_crystal.get())
+            event.addCapability(CRYSTAL_CAP, new ICrystal.Provider(new DataCrystalCap()));
     }
 
     @SubscribeEvent

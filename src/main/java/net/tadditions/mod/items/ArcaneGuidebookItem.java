@@ -135,7 +135,7 @@ public class ArcaneGuidebookItem extends Item implements IAnimatable, ISyncable 
         controller.markNeedsReload();
         AnimationBuilder builder = new AnimationBuilder();
         if (state == 0) {
-            controller.transitionLengthTicks = 0.01;
+            controller.transitionLengthTicks = 0.1;
             builder.addAnimation("close", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME).addAnimation("idle", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME);
             controller.clearAnimationCache();
         } else if (state == 1) {
