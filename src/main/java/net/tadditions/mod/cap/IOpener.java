@@ -17,11 +17,7 @@ import net.minecraftforge.items.ItemStackHandler;
 
 public interface IOpener extends INBTSerializable<CompoundNBT> {
 
-
-    RegistryKey<World> getDimdata();
-
     ItemStackHandler getHandler();
-    void setDimdata(RegistryKey<World> type);
 
     void tick(World worldIn, Entity entityIn);
 

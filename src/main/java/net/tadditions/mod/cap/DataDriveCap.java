@@ -15,55 +15,31 @@ import net.tardis.mod.helper.WorldHelper;
 
 public class DataDriveCap implements IOpener {
 
-    private RegistryKey<World> dimdata;
-    private ItemStackHandler handler = new ItemStackHandler();
-    private boolean crystalUsed = false;
+    private ItemStackHandler handler;
 
     public DataDriveCap() {
-        dimdata = World.OVERWORLD;
+        handler = new ItemStackHandler();
     }
-
 
     @Override
     public CompoundNBT serializeNBT() {
         CompoundNBT tag = new CompoundNBT();
-        tag.putString("dimdata", this.dimdata.getLocation().toString());
         tag.put("crystal", this.handler.serializeNBT());
         return tag;
     }
 
     @Override
     public void deserializeNBT(CompoundNBT nbt) {
-        this.dimdata = WorldHelper.getWorldKeyFromRL(ResourceLocation.tryCreate(nbt.getString("dimdata")));
         this.handler.deserializeNBT(nbt);
-    }
-
-
-    @Override
-    public RegistryKey<World> getDimdata() {
-        return dimdata;
-    }
-
-    @Override
-    public void setDimdata(RegistryKey<World> type) {
-        dimdata = type;
     }
 
     @Override
     public void tick(World worldIn, Entity entityIn) {
         if (!worldIn.isRemote) {
             if (worldIn.getGameTime() % 20 == 0) {
-                this.dimdata = getDimdata();
+                this.handler = getHandler();
                 this.serializeNBT();
             }
-        }
-        ItemStack crystal = handler.getStackInSlot(0);
-        if(!crystal.isItemEqual(ItemStack.EMPTY)) {
-            crystal.getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap -> {
-                if (!cap.getUsed()) {
-                    this.setDimdata(cap.getDimData());
-                }
-            });
         }
     }
 

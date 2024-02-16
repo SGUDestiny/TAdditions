@@ -34,8 +34,12 @@ public class SPMixin {
             if(player.getHeldItemMainhand().getItem() == TItems.SONIC.get() && console.getSonicItem().isEmpty() || player.getHeldItemMainhand().getItem() == ModItems.BOOS_UPGRADE.get() && console.getSonicItem().isEmpty()) {
                 if(player.getHeldItemMainhand().getItem() == ModItems.BOOS_UPGRADE.get()){
                     player.getHeldItemMainhand().getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
-                        if(!((IConsoleHelp) console).getAvailable().contains(cap.getDimdata())){
-                           ((IConsoleHelp) console).addAvailable(cap.getDimdata());
+                        if(!cap.getHandler().getStackInSlot(0).isItemEqual(ItemStack.EMPTY)){
+                            cap.getHandler().getStackInSlot(0).getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap1 -> {
+                                if(!((IConsoleHelp) console).getAvailable().contains(cap1.getDimData())){
+                                    ((IConsoleHelp) console).addAvailable(cap1.getDimData());
+                                }
+                            });
                         }
                     });
                 }

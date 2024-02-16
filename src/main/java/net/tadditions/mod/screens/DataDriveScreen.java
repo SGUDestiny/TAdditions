@@ -16,7 +16,6 @@ import net.tadditions.mod.helper.MHelper;
 
 public class DataDriveScreen extends ContainerScreen<DataDriveContainer> {
 
-    public static final StringTextComponent TITLE = new StringTextComponent("Data Drive");
     public static final ResourceLocation TEXTURE = new ResourceLocation(QolMod.MOD_ID, "textures/gui/data_drive.png");
 
     public static int WIDTH = 176, HEIGHT = 166;
@@ -33,12 +32,18 @@ public class DataDriveScreen extends ContainerScreen<DataDriveContainer> {
     }
 
     @Override
+    public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
+        super.render(matrixStack, mouseX, mouseY, partialTicks);
+        this.renderHoveredTooltip(matrixStack, mouseX, mouseY);
+    }
+
+    @Override
     public void drawGuiContainerBackgroundLayer(MatrixStack matrixStack, float partialTicks, int mouseX, int mouseY) {
         this.renderBackground(matrixStack);
         this.minecraft.textureManager.bindTexture(TEXTURE);
         this.blit(matrixStack, width / 2 - WIDTH / 2, height / 2 - HEIGHT / 2, 0, 0, WIDTH, HEIGHT);
 
-        if(MHelper.isInBounds(mouseX, mouseY, 85, 26, 92, 24)){
+        if(MHelper.isInBounds(mouseX, mouseY, 85, 25, 92, 22)){
             this.renderTooltip(matrixStack, getState(), mouseX, mouseY);
         }
     }
@@ -58,6 +63,11 @@ public class DataDriveScreen extends ContainerScreen<DataDriveContainer> {
         });
 
         return text;
+    }
+
+    @Override
+    protected void drawGuiContainerForegroundLayer(MatrixStack matrixStack, int x, int y) {
+
     }
 
     @Override

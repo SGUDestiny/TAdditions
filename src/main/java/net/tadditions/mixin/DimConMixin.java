@@ -44,7 +44,6 @@ import java.util.Optional;
 public abstract class DimConMixin extends BaseControl {
 
     private static final String MESSAGE = "message.tardis.control.dimchange";
-    public ArrayList<World> dimList = new ArrayList<World>();
     private int index = 0;
 
     public DimConMixin(ControlRegistry.ControlEntry entry, ConsoleTile console, ControlEntity entity) {

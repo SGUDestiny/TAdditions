@@ -39,14 +39,15 @@ public class DataDriveContainer extends BaseContainer {
 		this.datadrive = stack;
 	      
 		stack.getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
-			this.addSlot(new SlotItemHandlerFiltered(cap.getHandler(), 0, 81, 45, item -> item.getItem().equals(ModItems.data_crystal.get())));
+			this.addSlot(new SlotItemHandlerFiltered(cap.getHandler(), 0, 80, 29, item -> item.getItem().equals(ModItems.data_crystal.get())));
 		});
 
 
-		TInventoryHelper.addPlayerInvContainer(this, playerInventoryIn,  0, 23);
+		TInventoryHelper.addPlayerInvContainer(this, playerInventoryIn,  0, -2);
 	}
 	
 	public ItemStack getStack() {
 		return this.datadrive;
 	}
+
 }

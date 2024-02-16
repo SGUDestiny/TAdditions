@@ -100,7 +100,7 @@ public class DataDriveItem extends Item {
                         public Container createMenu(int id, PlayerInventory inventory, PlayerEntity player) {
                             return new DataDriveContainer(id, inventory, stack);
                         }
-                    });
+                    }, buf -> buf.writeItemStack(stack));
                 }
             }
         }
