@@ -12,7 +12,7 @@ public class MContainers {
     public static final DeferredRegister<ContainerType<?>> CONTAINERS = DeferredRegister.create(ForgeRegistries.CONTAINERS, QolMod.MOD_ID);
 
     public static final RegistryObject<ContainerType<AdvQuantiscopeWeldContainer>> ADVQUANTISCOPE_WELD = CONTAINERS.register("advquantiscope_weld", () -> registerContainer(AdvQuantiscopeWeldContainer::new));
-
+    public static final RegistryObject<ContainerType<DataDriveContainer>> DATADRIVE = CONTAINERS.register("data_drive", () -> registerContainer(DataDriveContainer::new));
 
     public static <T extends Container> ContainerType<T> registerContainer(IContainerFactory<T> fact){
         ContainerType<T> type = new ContainerType<T>(fact);

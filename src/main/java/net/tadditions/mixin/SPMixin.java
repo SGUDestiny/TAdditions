@@ -34,9 +34,8 @@ public class SPMixin {
             if(player.getHeldItemMainhand().getItem() == TItems.SONIC.get() && console.getSonicItem().isEmpty() || player.getHeldItemMainhand().getItem() == ModItems.BOOS_UPGRADE.get() && console.getSonicItem().isEmpty()) {
                 if(player.getHeldItemMainhand().getItem() == ModItems.BOOS_UPGRADE.get()){
                     player.getHeldItemMainhand().getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
-                        RegistryKey<World> type = WorldHelper.getWorldKeyFromRL(ResourceLocation.tryCreate(cap.getDimdata()));
-                        if(!((IConsoleHelp) console).getAvailable().contains(type)){
-                           ((IConsoleHelp) console).addAvailable(type);
+                        if(!((IConsoleHelp) console).getAvailable().contains(cap.getDimdata())){
+                           ((IConsoleHelp) console).addAvailable(cap.getDimdata());
                         }
                     });
                 }

@@ -5,7 +5,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 public class MConstants {
 
     public static class Gui {
-        public static final int MANUAL = 1;
+        public static final int DATADRIVE = 1;
         public static final int FOODMAKER = 2;
     }
 

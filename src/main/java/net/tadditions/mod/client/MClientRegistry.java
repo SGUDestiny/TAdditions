@@ -18,6 +18,7 @@ import net.tadditions.mod.client.renderers.*;
 import net.tadditions.mod.container.MContainers;
 import net.tadditions.mod.helper.IMDoorType;
 import net.tadditions.mod.screens.AdvQuantiscopeWeldScreen;
+import net.tadditions.mod.screens.DataDriveScreen;
 import net.tadditions.mod.screens.misc.AdvQuantiscopePage;
 import net.tadditions.mod.screens.misc.AdvQuantiscopeScreenType;
 import net.tadditions.mod.tileentity.ModTileEntitys;
@@ -82,6 +83,7 @@ public class MClientRegistry extends TClientRegistry {
 
     public static void registerScreens() {
         ScreenManager.registerFactory(MContainers.ADVQUANTISCOPE_WELD.get(), AdvQuantiscopeWeldScreen::new);
+        ScreenManager.registerFactory(MContainers.DATADRIVE.get(), DataDriveScreen::new);
     }
 
 }
