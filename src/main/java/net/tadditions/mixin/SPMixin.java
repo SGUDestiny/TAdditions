@@ -36,8 +36,9 @@ public class SPMixin {
                     player.getHeldItemMainhand().getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
                         if(!cap.getHandler().getStackInSlot(0).isItemEqual(ItemStack.EMPTY)){
                             cap.getHandler().getStackInSlot(0).getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap1 -> {
-                                if(!((IConsoleHelp) console).getAvailable().contains(cap1.getDimData())){
+                                if(!((IConsoleHelp) console).getAvailable().contains(cap1.getDimData()) && !cap1.getUsed()){
                                     ((IConsoleHelp) console).addAvailable(cap1.getDimData());
+                                    cap1.setUsed(true);
                                 }
                             });
                         }

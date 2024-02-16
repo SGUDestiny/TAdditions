@@ -30,7 +30,7 @@ public class DataDriveCap implements IOpener {
 
     @Override
     public void deserializeNBT(CompoundNBT nbt) {
-        this.handler.deserializeNBT(nbt);
+        this.handler.deserializeNBT(nbt.getCompound("crystal"));
     }
 
     @Override

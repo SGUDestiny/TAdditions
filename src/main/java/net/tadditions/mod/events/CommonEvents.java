@@ -59,7 +59,7 @@ public class CommonEvents {
     public static final ResourceLocation ONEUSEREMOTE_CAP = new ResourceLocation(QolMod.MOD_ID, "olim_remote");
     public static final ResourceLocation TAGREAOPENER_CAP = new ResourceLocation(QolMod.MOD_ID, "data_drive");
     public static final ResourceLocation QUANT_CAP = new ResourceLocation(QolMod.MOD_ID, "quantum");
-    public static final ResourceLocation CRYSTAL_CAP = new ResourceLocation("data_crystal");
+    public static final ResourceLocation CRYSTAL_CAP = new ResourceLocation(QolMod.MOD_ID, "data_crystal");
 
 
     private static HashMap<ResourceLocation, ResourceLocation> remappedEntries = new HashMap<ResourceLocation, ResourceLocation>();

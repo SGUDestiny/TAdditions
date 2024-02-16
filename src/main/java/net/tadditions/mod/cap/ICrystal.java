@@ -45,7 +45,7 @@ public interface ICrystal extends INBTSerializable<CompoundNBT> {
         @SuppressWarnings("unchecked")
         @Override
         public <T> LazyOptional<T> getCapability(Capability<T> cap, Direction side) {
-            return cap == MCapabilities.OPENER_CAPABILITY ? (LazyOptional<T>) LazyOptional.of(() -> remote) : LazyOptional.empty();
+            return cap == MCapabilities.CRYSTAL_CAPABILITY ? (LazyOptional<T>) LazyOptional.of(() -> remote) : LazyOptional.empty();
         }
 
         @Override
