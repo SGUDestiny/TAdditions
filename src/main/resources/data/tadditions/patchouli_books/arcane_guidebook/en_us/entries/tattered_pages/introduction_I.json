@@ -1,0 +1,11 @@
+{
+  "name": "Introduction I",
+  "icon": "tadditions:arcane_guidebook",
+  "category": "tadditions:tattered_pages",
+  "pages": [
+    {
+      "title": "Introduction I",
+      "text": "''Nothing here... For now.''"
+    }
+  ]
+}

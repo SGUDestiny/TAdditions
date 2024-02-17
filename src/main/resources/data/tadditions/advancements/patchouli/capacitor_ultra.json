@@ -1,11 +1,11 @@
 {
   "criteria": {
-    "nav_com": {
+    "capacitor_high": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "tardis:subsystem/nav_com"
+            "item": "tadditions:artron_capacitor_high"
           }
         ]
       }
@@ -13,7 +13,7 @@
   },
   "requirements": [
     [
-      "nav_com"
+      "capacitor_high"
     ]
   ]
 }

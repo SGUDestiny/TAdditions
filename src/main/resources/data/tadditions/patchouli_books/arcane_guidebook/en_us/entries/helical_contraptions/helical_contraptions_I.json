@@ -1,0 +1,13 @@
+{
+  "name": "Helical Contraptions I",
+  "icon": "tadditions:arcane_guidebook",
+  "category": "tadditions:helical_contraptions",
+  "advancement": "tadditions:patchouli/lore/helical_contraptions_I",
+  "sortnum": 1,
+  "pages": [
+    {
+      "title": "Helical Contraptions I",
+      "text": "WIP"
+    }
+  ]
+}

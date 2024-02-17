@@ -1,6 +1,6 @@
 {
   "criteria": {
-    "tadditions:fluid_link": {
+    "fluid_link": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -13,7 +13,7 @@
   },
   "requirements": [
     [
-      "tadditions:fluid_link"
+      "fluid_link"
     ]
   ]
 }

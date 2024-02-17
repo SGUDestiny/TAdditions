@@ -1,0 +1,30 @@
+{
+  "criteria": {
+    "battery_high": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tadditions:artron_battery_high"
+          }
+        ]
+      }
+    },
+    "battery_ultra": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tadditions:artron_battery_ultra"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "battery_high",
+      "battery_ultra"
+    ]
+  ]
+}

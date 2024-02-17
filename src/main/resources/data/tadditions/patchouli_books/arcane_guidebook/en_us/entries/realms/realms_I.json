@@ -1,0 +1,13 @@
+{
+  "name": "Realms I",
+  "icon": "minecraft:barrier",
+  "sortnum": 1,
+  "category": "tadditions:realms",
+  "advancement": "tadditions:patchouli/lore/realms_I",
+  "pages": [
+    {
+      "title": "Realms I",
+      "text": "WIP"
+    }
+  ]
+}

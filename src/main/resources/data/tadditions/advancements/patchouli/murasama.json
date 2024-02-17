@@ -1,6 +1,6 @@
 {
   "criteria": {
-    "tadditions:murasama": {
+    "murasama": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -13,7 +13,7 @@
   },
   "requirements": [
     [
-      "tadditions:murasama"
+      "murasama"
     ]
   ]
 }

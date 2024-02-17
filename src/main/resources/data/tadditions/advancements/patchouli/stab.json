@@ -1,6 +1,6 @@
 {
   "criteria": {
-    "tadditions:stab": {
+    "stab": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -13,7 +13,7 @@
   },
   "requirements": [
     [
-      "tadditions:stab"
+      "stab"
     ]
   ]
 }

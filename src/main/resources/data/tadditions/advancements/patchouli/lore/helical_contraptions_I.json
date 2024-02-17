@@ -1,0 +1,34 @@
+{
+  "criteria": {
+    "obtain_tardis": {
+      "trigger": "tardis:obtain_tardis"
+    },
+    "quantiscope_brass": {
+      "trigger": "minecraft:inventory_change",
+      "conditions": {
+        "items": [
+          {
+            "item": "tardis:quantiscope_brass"
+          }
+        ]
+      }
+    },
+    "quantiscope_iron": {
+      "trigger": "minecraft:inventory_change",
+      "conditions": {
+        "items": [
+          {
+            "item": "tardis:quantiscope_iron"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      ["obtain_tardis"],
+      ["quantiscope_brass",
+      "quantiscope_iron"]
+    ]
+  ]
+}

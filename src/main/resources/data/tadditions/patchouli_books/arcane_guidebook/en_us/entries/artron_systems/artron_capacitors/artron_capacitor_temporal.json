@@ -2,7 +2,7 @@
   "name": "Temporal Artron Capacitor",
   "icon": "tadditions:artron_capacitor_temporal",
   "category": "tadditions:artron_systems/artron_capacitors",
-  "advancement": "tadditions:patchouli/temporal_capacitor",
+  "advancement": "tadditions:patchouli/capacitor_temporal",
   "pages": [
     {
       "type": "patchouli:spotlight",

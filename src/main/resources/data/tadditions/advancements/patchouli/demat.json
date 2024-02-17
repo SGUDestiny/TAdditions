@@ -1,6 +1,6 @@
 {
   "criteria": {
-    "tadditions:demat": {
+    "demat": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -13,7 +13,7 @@
   },
   "requirements": [
     [
-      "tadditions:demat"
+      "demat"
     ]
   ]
 }

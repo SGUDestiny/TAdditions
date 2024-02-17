@@ -1,0 +1,30 @@
+{
+  "criteria": {
+    "capacitor_speed": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tadditions:artron_capacitor_speed"
+          }
+        ]
+      }
+    },
+    "capacitor_ultra": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tadditions:artron_capacitor_ultra"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "capacitor_speed",
+      "capacitor_ultra"
+    ]
+  ]
+}

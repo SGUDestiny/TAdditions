@@ -2,6 +2,7 @@
   "name": "Moon",
   "icon": "tardis:regolith_sand",
   "category": "tadditions:realms",
+  "advancement": "tardis:moon/root",
   "pages": [
     {
       "type": "patchouli:text",

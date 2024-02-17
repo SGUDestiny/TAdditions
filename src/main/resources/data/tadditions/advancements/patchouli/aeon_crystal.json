@@ -1,12 +1,9 @@
 {
   "criteria": {
-    "tadditions:aeon_crystal": {
+    "aeon_crystal": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
-          {
-            "item": "tardis:xion_crystal"
-          },
           {
             "item": "tardis:artron_battery"
           }
@@ -16,7 +13,7 @@
   },
   "requirements": [
     [
-      "tadditions:aeon_crystal"
+      "aeon_crystal"
     ]
   ]
 }

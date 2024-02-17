@@ -1,6 +1,6 @@
 {
   "criteria": {
-    "tadditions:exotic_matter": {
+    "exotic_matter": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -13,7 +13,7 @@
   },
   "requirements": [
     [
-      "tadditions:exotic_matter"
+      "exotic_matter"
     ]
   ]
 }

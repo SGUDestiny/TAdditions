@@ -2,6 +2,7 @@
   "name": "Space",
   "icon": "tardis:space_helm",
   "category": "tadditions:realms",
+  "advancement": "tardis:space/root",
   "pages": [
     {
       "type": "patchouli:text",

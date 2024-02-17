@@ -1,0 +1,16 @@
+{
+  "name": "Advanced Quantiscope",
+  "icon": "tadditions:advanced_quantiscope",
+  "category": "tadditions:helical_contraptions",
+  "advancement": "tadditions:patchouli/advanced_quantiscope",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tadditions:advanced_quantiscope"
+      },
+      "title": "Advanced Quantiscope",
+      "text": "WIP"
+    }
+  ]
+}
