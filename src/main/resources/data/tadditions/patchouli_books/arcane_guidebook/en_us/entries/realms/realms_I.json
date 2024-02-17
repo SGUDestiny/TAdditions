@@ -3,7 +3,7 @@
   "icon": "tadditions:arcane_guidebook",
   "sortnum": 1,
   "category": "tadditions:realms",
-  "advancement": "tadditions:patchouli/lore/realms_I",
+  "advancement": "tadditions:patchouli/lore/realms_i",
   "pages": [
     {
       "title": "Realms I",
