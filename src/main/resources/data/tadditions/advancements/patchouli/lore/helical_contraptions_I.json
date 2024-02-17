@@ -4,7 +4,7 @@
       "trigger": "tardis:obtain_tardis"
     },
     "quantiscope_brass": {
-      "trigger": "minecraft:inventory_change",
+      "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
@@ -14,7 +14,7 @@
       }
     },
     "quantiscope_iron": {
-      "trigger": "minecraft:inventory_change",
+      "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {

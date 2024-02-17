@@ -4,7 +4,7 @@
       "trigger": "tardis:obtain_tardis"
     },
     "nav_com": {
-      "trigger": "minecraft:inventory_change",
+      "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
