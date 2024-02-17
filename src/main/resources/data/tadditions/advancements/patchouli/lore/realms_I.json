@@ -15,9 +15,7 @@
     }
   },
   "requirements": [
-    [
-      ["obtain_tardis"],
-      ["nav_com"]
-    ]
+    ["obtain_tardis"],
+    ["nav_com"]
   ]
 }

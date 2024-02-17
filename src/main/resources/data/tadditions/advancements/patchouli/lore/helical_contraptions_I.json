@@ -25,10 +25,8 @@
     }
   },
   "requirements": [
-    [
       ["obtain_tardis"],
       ["quantiscope_brass",
       "quantiscope_iron"]
-    ]
   ]
 }

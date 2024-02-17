@@ -1,6 +1,6 @@
 {
   "name": "Realms I",
-  "icon": "minecraft:barrier",
+  "icon": "tadditions:arcane_guidebook",
   "sortnum": 1,
   "category": "tadditions:realms",
   "advancement": "tadditions:patchouli/lore/realms_I",
