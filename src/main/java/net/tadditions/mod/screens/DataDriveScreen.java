@@ -41,7 +41,7 @@ public class DataDriveScreen extends ContainerScreen<DataDriveContainer> {
         super.render(matrixStack, mouseX, mouseY, partialTicks);
         this.renderHoveredTooltip(matrixStack, mouseX, mouseY);
 
-        if(MHelper.isInBounds(mouseX, mouseY, width / 2 - 85, height / 2 - 27, width / 2 - 92, height / 2 - 24)){
+        if(MHelper.isInBounds(mouseX, mouseY, width / 2 - 5, height / 2 - HEIGHT / 4 - 22, width / 2 + 4, height / 2 - HEIGHT / 4 - 16)){
             this.renderTooltip(matrixStack, getState(), mouseX, mouseY);
         }
     }
@@ -52,8 +52,7 @@ public class DataDriveScreen extends ContainerScreen<DataDriveContainer> {
         this.minecraft.textureManager.bindTexture(TEXTURE);
         this.blit(matrixStack, width / 2 - WIDTH / 2, height / 2 - HEIGHT / 2, 0, 0, WIDTH, HEIGHT);
 
-        this.blit(matrixStack, width / 2 - 178, height / 2 - 3, width / 2 - 183, height / 2 - 2, 6, getLightState());
-    }
+        this.blit(matrixStack, width / 2 - 3, height / 2 - HEIGHT / 4 - 18, 177, 1, 6, getLightState()); }
 
     public int getLightState(){
         AtomicInteger inte = new AtomicInteger(0);
@@ -66,7 +65,7 @@ public class DataDriveScreen extends ContainerScreen<DataDriveContainer> {
     }
 
     public TranslationTextComponent getState(){
-        TranslationTextComponent text = new TranslationTextComponent("tadditions.datadrive_crystal_state_");
+        TranslationTextComponent text = new TranslationTextComponent("tadditions.datadrive_crystal_state_empty");
         drive.getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
             if(cap.getHandler().getStackInSlot(0).isItemEqual(ItemStack.EMPTY)){
                 text.appendSibling(new TranslationTextComponent("empty"));

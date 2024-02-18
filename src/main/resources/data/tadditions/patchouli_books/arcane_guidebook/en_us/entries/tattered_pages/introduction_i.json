@@ -4,6 +4,7 @@
   "category": "tadditions:tattered_pages",
   "pages": [
     {
+      "type": "patchouli:text",
       "title": "Introduction I",
       "text": "''Nothing here... For now.''"
     }

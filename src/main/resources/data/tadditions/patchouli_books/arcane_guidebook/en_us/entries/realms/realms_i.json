@@ -6,6 +6,7 @@
   "advancement": "tadditions:patchouli/lore/realms_i",
   "pages": [
     {
+      "type": "patchouli:text",
       "title": "Realms I",
       "text": "WIP"
     }

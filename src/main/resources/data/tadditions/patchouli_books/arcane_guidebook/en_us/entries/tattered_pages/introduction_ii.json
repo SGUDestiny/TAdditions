@@ -5,6 +5,7 @@
   "advancement": "tardis:obtain_tardis",
   "pages": [
     {
+      "type": "patchouli:text",
       "title": "Introduction II",
       "text": "WIP"
     }

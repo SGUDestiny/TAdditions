@@ -6,6 +6,7 @@
   "sortnum": 1,
   "pages": [
     {
+      "type": "patchouli:text",
       "title": "Helical Contraptions I",
       "text": "WIP"
     }
