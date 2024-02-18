@@ -65,15 +65,15 @@ public class DataDriveScreen extends ContainerScreen<DataDriveContainer> {
     }
 
     public TranslationTextComponent getState(){
-        TranslationTextComponent text = new TranslationTextComponent("tadditions.datadrive_crystal_state_empty");
+        TranslationTextComponent text = new TranslationTextComponent("tadditions.datadrive_crystal_state");
         drive.getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
             if(cap.getHandler().getStackInSlot(0).isItemEqual(ItemStack.EMPTY)){
-                text.appendSibling(new TranslationTextComponent("empty"));
+                text.appendSibling(new TranslationTextComponent("_empty"));
             } else if(cap.getHandler().getStackInSlot(0).getCapability(MCapabilities.CRYSTAL_CAPABILITY).isPresent()){
                 cap.getHandler().getStackInSlot(0).getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap1-> {
                     if(cap1.getUsed()){
-                        text.appendSibling(new TranslationTextComponent("used"));
-                    } else text.appendSibling(new TranslationTextComponent("ready"));
+                        text.appendSibling(new TranslationTextComponent("_used"));
+                    } else text.appendSibling(new TranslationTextComponent("_ready"));
                 });
             }
         });

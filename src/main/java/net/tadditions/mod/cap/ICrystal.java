@@ -5,6 +5,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
 import net.minecraft.util.Direction;
 import net.minecraft.util.RegistryKey;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
@@ -13,6 +14,10 @@ import net.minecraftforge.common.util.LazyOptional;
 
 public interface ICrystal extends INBTSerializable<CompoundNBT> {
 
+    void setCoords(BlockPos pos);
+    BlockPos getCoords();
+    int getType();
+    void setType(int type);
     void setDimData(RegistryKey<World> world);
     boolean getUsed();
     void setUsed(boolean used);

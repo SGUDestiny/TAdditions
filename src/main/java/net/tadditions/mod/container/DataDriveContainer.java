@@ -7,6 +7,7 @@ import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.tadditions.mod.cap.MCapabilities;
+import net.tadditions.mod.container.slot.SlotItemHandlerFilteredCapped;
 import net.tadditions.mod.items.ModItems;
 import net.tardis.mod.artron.IArtronItemStackBattery;
 import net.tardis.mod.containers.BaseContainer;
@@ -39,7 +40,7 @@ public class DataDriveContainer extends BaseContainer {
 		this.datadrive = stack;
 	      
 		stack.getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
-			this.addSlot(new SlotItemHandlerFiltered(cap.getHandler(), 0, 80, 29, item -> item.getItem().equals(ModItems.data_crystal.get())));
+			this.addSlot(new SlotItemHandlerFilteredCapped(cap.getHandler(), 0, 80, 29, item -> item.getItem().equals(ModItems.data_crystal.get()), 1));
 		});
 
 

@@ -1,5 +1,7 @@
 package net.tadditions.mod.items;
 
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -8,18 +10,26 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUseContext;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 import net.tadditions.mod.cap.MCapabilities;
 import net.tadditions.mod.container.DataDriveContainer;
+import net.tardis.mod.constants.TardisConstants;
+import net.tardis.mod.helper.WorldHelper;
 
 import javax.annotation.Nullable;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class DataCrystalItem extends Item {
 
@@ -52,6 +62,23 @@ public class DataCrystalItem extends Item {
     }
 
     @Override
+    public ITextComponent getDisplayName(ItemStack stack) {
+        AtomicReference<String> translation = new AtomicReference<>("item.tadditions.data_crystal");
+
+        stack.getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap -> {
+            if(cap.getUsed()){
+                translation.set("item.tadditions.data_crystal.used");
+            } else if(cap.getType() == 0){
+                translation.set("item.tadditions.data_crystal_dimension");
+            } else if(cap.getType() == 1){
+                translation.set("item.tadditions.data_crystal_coord");
+            }
+        });
+
+        return new TranslationTextComponent(translation.get());
+    }
+
+    @Override
     public void readShareTag(ItemStack stack, @Nullable CompoundNBT nbt) {
         super.readShareTag(stack, nbt);
         if (nbt != null) {
@@ -74,5 +101,61 @@ public class DataCrystalItem extends Item {
             }
         }
         super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
+    }
+
+    @Override
+    public int getItemStackLimit(ItemStack stack) {
+        AtomicInteger integer = new AtomicInteger(1);
+        stack.getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap -> {
+            if(cap.getUsed()){
+                integer.set(64);
+            } else if(cap.getType() == 0){
+                integer.set(1);
+            } else if(cap.getType() == 1){
+                integer.set(16);
+            }
+        });
+        return integer.get();
+    }
+
+
+
+    @Override
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+        stack.getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap -> {
+            if(cap.getUsed()){
+                tooltip.add(new TranslationTextComponent("tadditions.data_crystal_used"));
+            } else if (cap.getType() == 0 && !cap.getUsed()) {
+                tooltip.add(TardisConstants.Translations.TOOLTIP_HOLD_SHIFT);
+                if (Screen.hasShiftDown()) {
+                    tooltip.clear();
+                    tooltip.add(0, this.getDisplayName(stack));
+                    tooltip.add(new TranslationTextComponent("tadditions.dimension_data_crystal_description"));
+                    tooltip.add(new TranslationTextComponent("tadditions.dimension_text").appendSibling(new StringTextComponent(cap.getDimData().getLocation().toString())));
+                    tooltip.add(new TranslationTextComponent("tadditions.data_crystal_will_burn"));
+                }
+            } else if (cap.getType() == 1 && !cap.getUsed()){
+                tooltip.add(TardisConstants.Translations.TOOLTIP_HOLD_SHIFT);
+                if(Screen.hasShiftDown()){
+                    tooltip.clear();
+                    tooltip.add(0, this.getDisplayName(stack));
+                    tooltip.add(new TranslationTextComponent("tadditions.coordinate_data_crystal_description"));
+                    tooltip.add(new TranslationTextComponent("tadditions.cordinate_text").appendSibling(new StringTextComponent(cap.getCoords().getCoordinatesAsString())));
+                    tooltip.add(new TranslationTextComponent("tadditions.dimension_text").appendSibling(new StringTextComponent(cap.getDimData().getLocation().toString())));
+                    tooltip.add(new TranslationTextComponent("tadditions.data_crystal_will_burn"));
+                }
+            }
+        });
+    }
+
+    @Override
+    public ActionResultType onItemUse(ItemUseContext context) {
+        context.getItem().getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap -> {
+            if(cap.getType() == 1 && !cap.getUsed())
+            cap.setDimData(context.getWorld().getDimensionKey());
+            cap.setCoords(context.getPos());
+        });
+
+        return super.onItemUse(context);
     }
 }

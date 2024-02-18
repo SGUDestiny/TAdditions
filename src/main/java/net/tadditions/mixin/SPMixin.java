@@ -6,8 +6,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.concurrent.TickDelayedTask;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.DynamicRegistries;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -15,10 +20,14 @@ import net.tadditions.mod.cap.MCapabilities;
 import net.tadditions.mod.helper.IConsoleHelp;
 import net.tadditions.mod.items.ModItems;
 import net.tardis.mod.cap.Capabilities;
+import net.tardis.mod.controls.HandbrakeControl;
 import net.tardis.mod.controls.SonicPortControl;
+import net.tardis.mod.controls.ThrottleControl;
 import net.tardis.mod.helper.WorldHelper;
 import net.tardis.mod.items.TItems;
+import net.tardis.mod.misc.SpaceTimeCoord;
 import net.tardis.mod.schematics.Schematic;
+import net.tardis.mod.subsystem.StabilizerSubsystem;
 import net.tardis.mod.tileentities.ConsoleTile;
 import org.spongepowered.asm.mixin.Mixin;
 
@@ -36,9 +45,27 @@ public class SPMixin {
                     player.getHeldItemMainhand().getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
                         if(!cap.getHandler().getStackInSlot(0).isItemEqual(ItemStack.EMPTY)){
                             cap.getHandler().getStackInSlot(0).getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap1 -> {
-                                if(!((IConsoleHelp) console).getAvailable().contains(cap1.getDimData()) && !cap1.getUsed()){
-                                    ((IConsoleHelp) console).addAvailable(cap1.getDimData());
-                                    cap1.setUsed(true);
+                                if(cap1.getType() == 0) {
+                                    if (!((IConsoleHelp) console).getAvailable().contains(cap1.getDimData()) && !cap1.getUsed()) {
+                                        ((IConsoleHelp) console).addAvailable(cap1.getDimData());
+                                        player.sendStatusMessage(new TranslationTextComponent("tadditions.dimension_added").appendSibling(new StringTextComponent(WorldHelper.formatDimName(cap1.getDimData())).mergeStyle(TextFormatting.LIGHT_PURPLE)), true);
+                                        cap1.setUsed(true);
+                                    } else player.sendStatusMessage(new TranslationTextComponent("tadditions.dimension_add_fail"), true);
+                                } else if(cap1.getType() == 1){
+                                    if(((IConsoleHelp) console).getAvailable().contains(cap1.getDimData()) && !cap1.getUsed() && !cap1.getCoords().equals(BlockPos.ZERO)) {
+                                        cap1.setUsed(true);
+                                        player.sendStatusMessage(new TranslationTextComponent("tadditions.coords_uploaded"), true);
+                                        console.getWorld().getServer().enqueue(new TickDelayedTask(30, () -> {
+                                            console.setDestination(new SpaceTimeCoord(cap1.getDimData(), cap1.getCoords()));
+                                            console.getControl(ThrottleControl.class).ifPresent(throttle -> throttle.setAmount(1.0F));
+                                            console.getControl(HandbrakeControl.class).ifPresent(handbrake -> handbrake.setFree(true));
+                                            console.getSubsystem(StabilizerSubsystem.class).ifPresent(sys -> sys.setControlActivated(true));
+                                            console.takeoff();
+                                        }));
+                                    } else if(!cap1.getUsed() && cap1.getCoords().equals(BlockPos.ZERO)) {
+                                        cap1.setCoords(console.getDestinationPosition());
+                                        cap1.setDimData(console.getDestinationDimension());
+                                    }
                                 }
                             });
                         }
