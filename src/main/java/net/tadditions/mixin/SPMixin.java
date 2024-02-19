@@ -69,6 +69,8 @@ public class SPMixin {
                                         cap1.setCoords(console.getDestinationPosition());
                                         cap1.setDimData(console.getDestinationDimension());
                                     }
+                                } else if (cap1.getUsed()){
+                                    console.getWorld().playSound(player, console.getPos(), TSounds.ELECTRIC_SPARK.get(), SoundCategory.BLOCKS, 1F, 1F);
                                 }
                             });
                         }
