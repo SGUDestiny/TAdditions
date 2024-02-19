@@ -140,7 +140,7 @@ public class DataCrystalItem extends Item {
                     tooltip.clear();
                     tooltip.add(0, this.getDisplayName(stack));
                     tooltip.add(new TranslationTextComponent("tadditions.coordinate_data_crystal_description"));
-                    tooltip.add(new TranslationTextComponent("tadditions.cordinate_text").appendSibling(new StringTextComponent(cap.getCoords().getCoordinatesAsString())));
+                    tooltip.add(new TranslationTextComponent("tadditions.coordinate_text").appendSibling(new StringTextComponent(cap.getCoords().getCoordinatesAsString())));
                     tooltip.add(new TranslationTextComponent("tadditions.dimension_text").appendSibling(new StringTextComponent(cap.getDimData().getLocation().toString())));
                     tooltip.add(new TranslationTextComponent("tadditions.data_crystal_will_burn"));
                 }
