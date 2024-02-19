@@ -41,20 +41,18 @@ public class SPMixin {
     public boolean onRightClicked(ConsoleTile console, PlayerEntity player) {
         if(!console.getWorld().isRemote()) {
             if(player.getHeldItemMainhand().getItem() == TItems.SONIC.get() && console.getSonicItem().isEmpty() || player.getHeldItemMainhand().getItem() == ModItems.BOOS_UPGRADE.get() && console.getSonicItem().isEmpty()) {
-                if(player.getHeldItemMainhand().getItem() == ModItems.BOOS_UPGRADE.get()){
+                if(player.getHeldItemMainhand().getItem() == ModItems.BOOS_UPGRADE.get()) {
                     player.getHeldItemMainhand().getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
-                        if(!cap.getHandler().getStackInSlot(0).isItemEqual(ItemStack.EMPTY)){
+                        if (!cap.getHandler().getStackInSlot(0).isItemEqual(ItemStack.EMPTY)) {
                             cap.getHandler().getStackInSlot(0).getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap1 -> {
-                                if(cap1.getType() == 0) {
+                                if (cap1.getType() == 0) {
                                     if (!((IConsoleHelp) console).getAvailable().contains(cap1.getDimData()) && !cap1.getUsed()) {
                                         ((IConsoleHelp) console).addAvailable(cap1.getDimData());
-                                        player.sendStatusMessage(new TranslationTextComponent("tadditions.dimension_added").appendSibling(new StringTextComponent(WorldHelper.formatDimName(cap1.getDimData())).mergeStyle(TextFormatting.LIGHT_PURPLE)), true);
                                         cap1.setUsed(true);
-                                    } else player.sendStatusMessage(new TranslationTextComponent("tadditions.dimension_add_fail"), true);
-                                } else if(cap1.getType() == 1){
-                                    if(((IConsoleHelp) console).getAvailable().contains(cap1.getDimData()) && !cap1.getUsed() && !cap1.getCoords().equals(BlockPos.ZERO)) {
+                                    }
+                                } else if (cap1.getType() == 1) {
+                                    if (((IConsoleHelp) console).getAvailable().contains(cap1.getDimData()) && !cap1.getUsed() && !cap1.getCoords().equals(BlockPos.ZERO)) {
                                         cap1.setUsed(true);
-                                        player.sendStatusMessage(new TranslationTextComponent("tadditions.coords_uploaded"), true);
                                         console.getWorld().getServer().enqueue(new TickDelayedTask(30, () -> {
                                             console.setDestination(new SpaceTimeCoord(cap1.getDimData(), cap1.getCoords()));
                                             console.getControl(ThrottleControl.class).ifPresent(throttle -> throttle.setAmount(1.0F));
@@ -62,8 +60,7 @@ public class SPMixin {
                                             console.getSubsystem(StabilizerSubsystem.class).ifPresent(sys -> sys.setControlActivated(true));
                                             console.takeoff();
                                         }));
-                                    } else if(!cap1.getUsed() && cap1.getCoords().equals(BlockPos.ZERO)) {
-                                        player.sendStatusMessage(new TranslationTextComponent("tadditions.coords_downloaded"), true);
+                                    } else if (!cap1.getUsed() && cap1.getCoords().equals(BlockPos.ZERO)) {
                                         cap1.setCoords(console.getDestinationPosition());
                                         cap1.setDimData(console.getDestinationDimension());
                                     }
@@ -72,6 +69,7 @@ public class SPMixin {
                         }
                     });
                 }
+
                 console.setSonicItem(player.getHeldItemMainhand());
                 player.setHeldItem(Hand.MAIN_HAND, ItemStack.EMPTY);
                 console.getSonicItem().getCapability(Capabilities.SONIC_CAPABILITY).ifPresent(cap -> {
