@@ -73,37 +73,83 @@ public class MClientRegistry extends TClientRegistry {
             RenderTypeLookup.setRenderLayer(ModBlocks.zero_point_field_normal.get(), RenderType.getCutout());
         });
 
-        ItemModelsProperties.registerProperty(ModItems.data_crystal.get(), new ResourceLocation(QolMod.MOD_ID, "type"),
+        ItemModelsProperties.registerProperty(ModItems.data_crystal.get(), new ResourceLocation(QolMod.MOD_ID, "used"),
                 (stack, clientWorld, entity) -> {
                     AtomicInteger integer = new AtomicInteger(0);
                     stack.getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap -> {
                         if(cap.getUsed()){
-                            integer.set(0);
-                        } else if (cap.getType() == 0){
                             integer.set(1);
-                        } else if (cap.getType() == 1){
-                            integer.set(2);
                         }
                     });
                     return integer.get();
                 });
-        ItemModelsProperties.registerProperty(ModItems.BOOS_UPGRADE.get(), new ResourceLocation(QolMod.MOD_ID, "type"),
+        ItemModelsProperties.registerProperty(ModItems.data_crystal.get(), new ResourceLocation(QolMod.MOD_ID, "coord"),
+                (stack, clientWorld, entity) -> {
+                    AtomicInteger integer = new AtomicInteger(0);
+                    stack.getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap -> {
+                        if(cap.getType() == 1){
+                            integer.set(1);
+                        }
+                    });
+                    return integer.get();
+                });
+        ItemModelsProperties.registerProperty(ModItems.data_crystal.get(), new ResourceLocation(QolMod.MOD_ID, "dim"),
+                (stack, clientWorld, entity) -> {
+                    AtomicInteger integer = new AtomicInteger(0);
+                    stack.getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap -> {
+                        if(cap.getType() == 0){
+                            integer.set(1);
+                        }
+                    });
+                    return integer.get();
+                });
+        ItemModelsProperties.registerProperty(ModItems.BOOS_UPGRADE.get(), new ResourceLocation(QolMod.MOD_ID, "used"),
+                (stack, clientWorld, entity) -> {
+                    AtomicInteger integer = new AtomicInteger(0);
+                    stack.getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
+                        cap.getHandler().getStackInSlot(0).getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap1 -> {
+                            if(cap1.getUsed()){
+                                integer.set(1);
+                            }
+                        });
+
+                    });
+                    return integer.get();
+                });
+        ItemModelsProperties.registerProperty(ModItems.BOOS_UPGRADE.get(), new ResourceLocation(QolMod.MOD_ID, "coord"),
+                (stack, clientWorld, entity) -> {
+                    AtomicInteger integer = new AtomicInteger(0);
+                    stack.getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
+                        cap.getHandler().getStackInSlot(0).getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap1 -> {
+                            if(cap1.getType() == 1){
+                                integer.set(1);
+                            }
+                        });
+
+                    });
+                    return integer.get();
+                });
+        ItemModelsProperties.registerProperty(ModItems.BOOS_UPGRADE.get(), new ResourceLocation(QolMod.MOD_ID, "dim"),
+                (stack, clientWorld, entity) -> {
+                    AtomicInteger integer = new AtomicInteger(0);
+                    stack.getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
+                        cap.getHandler().getStackInSlot(0).getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap1 -> {
+                            if(cap1.getType() == 0){
+                                integer.set(1);
+                            }
+                        });
+
+                    });
+                    return integer.get();
+                });
+        ItemModelsProperties.registerProperty(ModItems.BOOS_UPGRADE.get(), new ResourceLocation(QolMod.MOD_ID, "empty"),
                 (stack, clientWorld, entity) -> {
                     AtomicInteger integer = new AtomicInteger(0);
                     stack.getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
                         if(!cap.getHandler().getStackInSlot(0).isEmpty()) {
-                            cap.getHandler().getStackInSlot(0).getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap1 -> {
-                                if (cap1.getUsed()) {
-                                    integer.set(0);
-                                } else if (cap1.getType() == 0) {
-                                    integer.set(1);
-                                } else if (cap1.getType() == 1) {
-                                    integer.set(2);
-                                }
-                            });
-                        } else integer.set(3);
+                            integer.set(1);
+                        }
                     });
-
                     return integer.get();
                 });
     }
