@@ -91,7 +91,7 @@ public class DataDriveItem extends Item {
                 tooltip.add(TardisConstants.Translations.TOOLTIP_HOLD_SHIFT);
                 if(Screen.hasShiftDown()){
                     tooltip.clear();
-                    tooltip.add(new TranslationTextComponent("tadditions.data_drive_descriptions"+ "_" + (cap1.getUsed() ? "used" : "not_used")));
+                    tooltip.add(new TranslationTextComponent("tadditions.data_drive_description"));
                     tooltip.add(new TranslationTextComponent("tadditions.data_drive_crystal_type_" + cap1.getType()));
                     if(cap1.getType() == 0){
                         tooltip.add(new TranslationTextComponent("tadditions.data_drive_dimension").appendSibling(new StringTextComponent(WorldHelper.formatDimName(cap1.getDimData()))));
