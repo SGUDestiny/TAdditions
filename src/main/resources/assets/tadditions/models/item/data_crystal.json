@@ -92,7 +92,9 @@
 	"overrides": [
 		{
 			"predicate": {
-				"tadditions:used": 1
+				"tadditions:used": 1,
+				"tadditions:dim": 0,
+				"tadditions:coord": 0
 			},
 			"model": "tadditions:item/data_crystal_burnt"
 		},

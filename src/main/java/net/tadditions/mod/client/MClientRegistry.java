@@ -87,7 +87,7 @@ public class MClientRegistry extends TClientRegistry {
                 (stack, clientWorld, entity) -> {
                     AtomicInteger integer = new AtomicInteger(0);
                     stack.getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap -> {
-                        if(cap.getType() == 1){
+                        if(cap.getType() == 1 && !cap.getUsed()){
                             integer.set(1);
                         }
                     });
@@ -97,7 +97,7 @@ public class MClientRegistry extends TClientRegistry {
                 (stack, clientWorld, entity) -> {
                     AtomicInteger integer = new AtomicInteger(0);
                     stack.getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap -> {
-                        if(cap.getType() == 0){
+                        if(cap.getType() == 0 && !cap.getUsed()){
                             integer.set(1);
                         }
                     });
@@ -121,7 +121,7 @@ public class MClientRegistry extends TClientRegistry {
                     AtomicInteger integer = new AtomicInteger(0);
                     stack.getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
                         cap.getHandler().getStackInSlot(0).getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap1 -> {
-                            if(cap1.getType() == 1){
+                            if(cap1.getType() == 1 && !cap1.getUsed()){
                                 integer.set(1);
                             }
                         });
@@ -134,7 +134,7 @@ public class MClientRegistry extends TClientRegistry {
                     AtomicInteger integer = new AtomicInteger(0);
                     stack.getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
                         cap.getHandler().getStackInSlot(0).getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap1 -> {
-                            if(cap1.getType() == 0){
+                            if(cap1.getType() == 0 && !cap1.getUsed()){
                                 integer.set(1);
                             }
                         });
@@ -146,7 +146,7 @@ public class MClientRegistry extends TClientRegistry {
                 (stack, clientWorld, entity) -> {
                     AtomicInteger integer = new AtomicInteger(0);
                     stack.getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
-                        if(!cap.getHandler().getStackInSlot(0).isEmpty()) {
+                        if(cap.getHandler().getStackInSlot(0).isEmpty()) {
                             integer.set(1);
                         }
                     });

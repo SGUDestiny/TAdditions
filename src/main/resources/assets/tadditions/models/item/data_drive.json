@@ -527,7 +527,9 @@
 		{
 			"predicate": {
 				"tadditions:used": 1,
-				"tadditions:empty": 0
+				"tadditions:empty": 0,
+				"tadditions:dim": 0,
+				"tadditions:coord": 0
 			},
 			"model": "tadditions:item/data_drive_burnt"
 		},
@@ -535,7 +537,8 @@
 			"predicate": {
 				"tadditions:coord": 1,
 				"tadditions:used": 0,
-				"tadditions:dim": 0
+				"tadditions:dim": 0,
+				"tadditions:empty": 0
 			},
 			"model": "tadditions:item/data_drive_coordinate"
 		},
@@ -543,13 +546,17 @@
 			"predicate": {
 				"tadditions:dim": 1,
 				"tadditions:coord": 0,
-				"tadditions:used": 0
+				"tadditions:used": 0,
+				"tadditions:empty": 0
 			},
 			"model": "tadditions:item/data_drive_dimensional"
 		},
 		{
 			"predicate": {
-				"tadditions:empty": 1
+				"tadditions:empty": 1,
+				"taddutuibs:used": 0,
+				"tadditions:coord": 0,
+				"tadditions:dim": 0
 			},
 			"model": "tadditions:item/data_drive_empty"
 		}
