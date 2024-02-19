@@ -93,11 +93,13 @@ public class DataDriveItem extends Item {
                     tooltip.clear();
                     tooltip.add(new TranslationTextComponent("tadditions.data_drive_description"));
                     tooltip.add(new TranslationTextComponent("tadditions.data_drive_crystal_type_" + (cap1.getUsed() ? "used" : cap1.getType())));
-                    if(cap1.getType() == 0){
-                        tooltip.add(new TranslationTextComponent("tadditions.data_drive_dimension").appendSibling(new StringTextComponent(WorldHelper.formatDimName(cap1.getDimData()))));
-                    } else if(cap1.getType() == 1){
-                        tooltip.add(new TranslationTextComponent("tadditions.data_drive_coordinates").appendSibling(new StringTextComponent(cap1.getCoords().getCoordinatesAsString())));
-                        tooltip.add(new TranslationTextComponent("tadditions.data_drive_dimension").appendSibling(new StringTextComponent(WorldHelper.formatDimName(cap1.getDimData()))));
+                    if(!cap1.getUsed()) {
+                        if (cap1.getType() == 0) {
+                            tooltip.add(new TranslationTextComponent("tadditions.data_drive_dimension").appendSibling(new StringTextComponent(WorldHelper.formatDimName(cap1.getDimData()))));
+                        } else if (cap1.getType() == 1) {
+                            tooltip.add(new TranslationTextComponent("tadditions.data_drive_coordinates").appendSibling(new StringTextComponent(cap1.getCoords().getCoordinatesAsString())));
+                            tooltip.add(new TranslationTextComponent("tadditions.data_drive_dimension").appendSibling(new StringTextComponent(WorldHelper.formatDimName(cap1.getDimData()))));
+                        }
                     }
                     tooltip.add(new TranslationTextComponent("tadditions.data_drive_status").appendSibling(getStatus(stack)));
                 }
