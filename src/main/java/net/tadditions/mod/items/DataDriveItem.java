@@ -1,6 +1,7 @@
 package net.tadditions.mod.items;
 
-import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -13,18 +14,18 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 import net.tadditions.mod.cap.MCapabilities;
 import net.tadditions.mod.container.DataDriveContainer;
-import net.tadditions.mod.screens.DataDriveScreen;
-import net.tadditions.mod.screens.MConstants;
-import net.tadditions.mod.world.MDimensions;
-import net.tardis.mod.client.ClientHelper;
 import net.tardis.mod.constants.TardisConstants;
+import net.tardis.mod.helper.WorldHelper;
 
 import javax.annotation.Nullable;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class DataDriveItem extends Item {
 
@@ -81,6 +82,44 @@ public class DataDriveItem extends Item {
             }
         }
         super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+        stack.getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
+            cap.getHandler().getStackInSlot(0).getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap1 -> {
+                tooltip.add(TardisConstants.Translations.TOOLTIP_HOLD_SHIFT);
+                if(Screen.hasShiftDown()){
+                    tooltip.clear();
+                    tooltip.add(new TranslationTextComponent("tadditions.data_drive_descriptions"+ "_" + (cap1.getUsed() ? "used" : "not_used")));
+                    tooltip.add(new TranslationTextComponent("tadditions.data_drive_crystal_type_" + cap1.getType()));
+                    if(cap1.getType() == 0){
+                        tooltip.add(new TranslationTextComponent("tadditions.data_drive_dimension").appendSibling(new StringTextComponent(WorldHelper.formatDimName(cap1.getDimData()))));
+                    } else if(cap1.getType() == 1){
+                        tooltip.add(new TranslationTextComponent("tadditions.data_drive_coordinates").appendSibling(new StringTextComponent(cap1.getCoords().getCoordinatesAsString())));
+                        tooltip.add(new TranslationTextComponent("tadditions.data_drive_dimension").appendSibling(new StringTextComponent(WorldHelper.formatDimName(cap1.getDimData()))));
+                    }
+                    tooltip.add(new TranslationTextComponent("tadditions.data_drive_status").appendSibling(getStatus(stack)));
+                }
+            });
+        });
+    }
+
+    public ITextComponent getStatus(ItemStack stack){
+        AtomicReference<TranslationTextComponent> text = new AtomicReference<>(new TranslationTextComponent("tadditions.data_drive_status_error"));
+
+        stack.getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
+            cap.getHandler().getStackInSlot(0).getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap1 -> {
+                if(cap.getHandler().getStackInSlot(0).isEmpty()){
+                    text.set(new TranslationTextComponent("tadditions.data_drive_status_empty"));
+                } else if(cap1.getUsed()){
+                    text.set(new TranslationTextComponent("tadditions.data_drive_status_used"));
+                } else if(!cap1.getUsed()){
+                    text.set(new TranslationTextComponent("tadditions.data_drive_status_ready"));
+                }
+            });
+        });
+        return text.get();
     }
 
     @Override
