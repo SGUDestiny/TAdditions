@@ -92,7 +92,7 @@ public class DataDriveItem extends Item {
                 if(Screen.hasShiftDown()){
                     tooltip.clear();
                     tooltip.add(new TranslationTextComponent("tadditions.data_drive_description"));
-                    tooltip.add(new TranslationTextComponent("tadditions.data_drive_crystal_type_" + cap1.getType()));
+                    tooltip.add(new TranslationTextComponent("tadditions.data_drive_crystal_type_" + (cap1.getUsed() ? "used" : cap1.getType())));
                     if(cap1.getType() == 0){
                         tooltip.add(new TranslationTextComponent("tadditions.data_drive_dimension").appendSibling(new StringTextComponent(WorldHelper.formatDimName(cap1.getDimData()))));
                     } else if(cap1.getType() == 1){

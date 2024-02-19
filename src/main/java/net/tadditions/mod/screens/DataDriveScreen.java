@@ -65,7 +65,7 @@ public class DataDriveScreen extends ContainerScreen<DataDriveContainer> {
     }
 
     public TranslationTextComponent getState(){
-        TranslationTextComponent text = new TranslationTextComponent("tadditions.datadrive_crystal_state");
+        TranslationTextComponent text = new TranslationTextComponent("tadditions.data_drive_status");
         drive.getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
             if(cap.getHandler().getStackInSlot(0).isItemEqual(ItemStack.EMPTY)){
                 text.appendSibling(new TranslationTextComponent("_empty"));
