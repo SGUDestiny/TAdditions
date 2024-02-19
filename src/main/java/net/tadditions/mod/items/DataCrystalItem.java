@@ -149,22 +149,24 @@ public class DataCrystalItem extends Item {
             if(cap.getUsed()){
                 tooltip.add(new TranslationTextComponent("tadditions.data_crystal_used"));
             } else if (cap.getType() == 0 && !cap.getUsed()) {
+                tooltip.add(new TranslationTextComponent("tadditions.dimension_data_crystal_description"));
                 tooltip.add(TardisConstants.Translations.TOOLTIP_HOLD_SHIFT);
                 if (Screen.hasShiftDown()) {
                     tooltip.clear();
                     tooltip.add(0, this.getDisplayName(stack));
                     tooltip.add(new TranslationTextComponent("tadditions.dimension_data_crystal_description"));
-                    tooltip.add(new TranslationTextComponent("tadditions.dimension_text").appendSibling(new StringTextComponent(WorldHelper.formatDimName(cap.getDimData()))));
+                    tooltip.add(new TranslationTextComponent("tadditions.dimension_text").appendSibling(new StringTextComponent(WorldHelper.formatDimName(cap.getDimData())).mergeStyle(TextFormatting.DARK_PURPLE)));
                     tooltip.add(new TranslationTextComponent("tadditions.data_crystal_will_burn"));
                 }
             } else if (cap.getType() == 1 && !cap.getUsed()){
+                tooltip.add(new TranslationTextComponent("tadditions.coordinate_data_crystal_description"));
                 tooltip.add(TardisConstants.Translations.TOOLTIP_HOLD_SHIFT);
                 if(Screen.hasShiftDown()){
                     tooltip.clear();
                     tooltip.add(0, this.getDisplayName(stack));
                     tooltip.add(new TranslationTextComponent("tadditions.coordinate_data_crystal_description"));
-                    tooltip.add(new TranslationTextComponent("tadditions.coordinate_text").appendSibling(new StringTextComponent(cap.getCoords().getCoordinatesAsString())));
-                    tooltip.add(new TranslationTextComponent("tadditions.dimension_text").appendSibling(new StringTextComponent(WorldHelper.formatDimName(cap.getDimData()))));
+                    tooltip.add(new TranslationTextComponent("tadditions.coordinate_text").appendSibling(new StringTextComponent(cap.getCoords().getCoordinatesAsString()).mergeStyle(TextFormatting.DARK_AQUA)));
+                    tooltip.add(new TranslationTextComponent("tadditions.dimension_text").appendSibling(new StringTextComponent(WorldHelper.formatDimName(cap.getDimData())).mergeStyle(TextFormatting.DARK_AQUA)));
                     tooltip.add(new TranslationTextComponent("tadditions.data_crystal_will_burn"));
                 }
             }
