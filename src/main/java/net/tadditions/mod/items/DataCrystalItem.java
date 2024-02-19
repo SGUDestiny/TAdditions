@@ -9,12 +9,14 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -23,6 +25,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 import net.tadditions.mod.cap.MCapabilities;
 import net.tadditions.mod.container.DataDriveContainer;
+import net.tadditions.mod.world.MDimensions;
 import net.tardis.mod.constants.TardisConstants;
 import net.tardis.mod.helper.WorldHelper;
 
@@ -118,7 +121,25 @@ public class DataCrystalItem extends Item {
         return integer.get();
     }
 
-
+    @Override
+    public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
+        ItemStack dis = new ItemStack(this);
+        dis.getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap -> {
+            cap.setUsed(true);
+        });
+        items.add(dis);
+        dis.getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap -> {
+            cap.setUsed(false);
+            cap.setType(0);
+            cap.setDimData(MDimensions.THE_VERGE);
+        });
+        items.add(dis);
+        dis.getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap -> {
+            cap.setUsed(false);
+            cap.setType(1);
+        });
+        items.add(dis);
+    }
 
     @Override
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {

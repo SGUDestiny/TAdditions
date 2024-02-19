@@ -20,7 +20,7 @@ public class DataCrystalCap implements ICrystal {
     public DataCrystalCap() {
         this.dimdata = World.OVERWORLD;
         this.used = false;
-        this.type = 5;
+        this.type = 0;
         this.coord = BlockPos.ZERO;
     }
 
