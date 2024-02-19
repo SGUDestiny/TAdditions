@@ -110,7 +110,7 @@ public class DataDriveItem extends Item {
                         if (cap1.getType() == 0) {
                             tooltip.add(new TranslationTextComponent("tadditions.data_drive_dimension").appendSibling(new StringTextComponent(WorldHelper.formatDimName(cap1.getDimData())).mergeStyle(TextFormatting.DARK_PURPLE)));
                         } else if (cap1.getType() == 1) {
-                            tooltip.add(new TranslationTextComponent("tadditions.data_drive_coordinates").appendSibling(new StringTextComponent(cap1.getCoords().getCoordinatesAsString())).mergeStyle(TextFormatting.DARK_AQUA));
+                            tooltip.add(new TranslationTextComponent("tadditions.data_drive_coordinates").appendSibling(new StringTextComponent(cap1.getCoords().getCoordinatesAsString()).mergeStyle(TextFormatting.DARK_AQUA)));
                             tooltip.add(new TranslationTextComponent("tadditions.data_drive_dimension").appendSibling(new StringTextComponent(WorldHelper.formatDimName(cap1.getDimData())).mergeStyle(TextFormatting.DARK_PURPLE)));
                         }
                     }

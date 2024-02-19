@@ -23,6 +23,12 @@ public class SlotItemHandlerFilteredCapped extends SlotItemHandler{
 		return this.filter.test(stack);
 	}
 
+
+	@Override
+	public int getSlotStackLimit() {
+		return cap;
+	}
+
 	@Override
 	public int getItemStackLimit(@Nonnull ItemStack stack) {
 		return cap;

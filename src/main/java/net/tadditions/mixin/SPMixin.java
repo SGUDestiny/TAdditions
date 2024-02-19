@@ -51,12 +51,12 @@ public class SPMixin {
                                     if (!((IConsoleHelp) console).getAvailable().contains(cap1.getDimData()) && !cap1.getUsed()) {
                                         ((IConsoleHelp) console).addAvailable(cap1.getDimData());
                                         cap1.setUsed(true);
-                                        player.playSound(TSounds.SCREEN_BEEP_SINGLE.get(),1f, 1f);
+                                        ((SonicPortControl) (Object) this).getEntity().world.playSound(null, ((SonicPortControl) (Object) this).getEntity().getPosition(), TSounds.SCREEN_BEEP_SINGLE.get(), SoundCategory.PLAYERS,1f, 1f);
                                     }
                                 } else if (cap1.getType() == 1) {
                                     if (((IConsoleHelp) console).getAvailable().contains(cap1.getDimData()) && !cap1.getUsed() && !cap1.getCoords().equals(BlockPos.ZERO)) {
                                         cap1.setUsed(true);
-                                        player.playSound(TSounds.REACHED_DESTINATION.get(), 1f, 1f);
+                                        ((SonicPortControl) (Object) this).getEntity().world.playSound(null, ((SonicPortControl) (Object) this).getEntity().getPosition(), TSounds.REACHED_DESTINATION.get(), SoundCategory.PLAYERS,1f, 1f);
                                         console.getWorld().getServer().enqueue(new TickDelayedTask(30, () -> {
                                             console.setDestination(new SpaceTimeCoord(cap1.getDimData(), cap1.getCoords()));
                                             console.getControl(ThrottleControl.class).ifPresent(throttle -> throttle.setAmount(1.0F));
@@ -65,12 +65,12 @@ public class SPMixin {
                                             console.takeoff();
                                         }));
                                     } else if (!cap1.getUsed() && cap1.getCoords().equals(BlockPos.ZERO)) {
-                                        player.playSound(TSounds.REMOTE_ACCEPT.get(), 1f, 1f);
+                                        ((SonicPortControl) (Object) this).getEntity().world.playSound(null, ((SonicPortControl) (Object) this).getEntity().getPosition(), TSounds.REMOTE_ACCEPT.get(), SoundCategory.PLAYERS,1f, 1f);
                                         cap1.setCoords(console.getDestinationPosition());
                                         cap1.setDimData(console.getDestinationDimension());
                                     }
                                 } else if (cap1.getUsed()){
-                                    player.playSound(TSounds.ELECTRIC_SPARK.get(), 1f, 1f);
+                                    ((SonicPortControl) (Object) this).getEntity().world.playSound(null, ((SonicPortControl) (Object) this).getEntity().getPosition(), TSounds.ELECTRIC_SPARK.get(), SoundCategory.PLAYERS,1f, 1f);
                                 }
                             });
                         }
