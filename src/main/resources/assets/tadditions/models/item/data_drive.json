@@ -526,25 +526,25 @@
 	"overrides": [
 		{
 			"predicate": {
-				"type": 0
+				"tadditions:type": 0
 			},
 			"model": "tadditions:item/data_drive_burnt"
 		},
 		{
 			"predicate": {
-				"type": 1
+				"tadditions:type": 1
 			},
 			"model": "tadditions:item/data_drive_coordinate"
 		},
 		{
 			"predicate": {
-				"type": 2
+				"tadditions:type": 2
 			},
 			"model": "tadditions:item/data_drive_dimensional"
 		},
 		{
 			"predicate": {
-				"type": 3
+				"tadditions:type": 3
 			},
 			"model": "tadditions:item/data_drive_empty"
 		}
