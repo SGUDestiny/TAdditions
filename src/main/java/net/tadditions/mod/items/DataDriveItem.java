@@ -92,6 +92,7 @@ public class DataDriveItem extends Item {
                 tooltip.add(TardisConstants.Translations.TOOLTIP_HOLD_SHIFT);
                 if(Screen.hasShiftDown()) {
                     tooltip.clear();
+                    tooltip.add(0, this.getDisplayName(stack));
                     tooltip.add(new TranslationTextComponent("tadditions.data_drive_description"));
                     tooltip.add(new TranslationTextComponent("tadditions.data_drive_status_empty"));
                 }
@@ -100,6 +101,7 @@ public class DataDriveItem extends Item {
                 tooltip.add(TardisConstants.Translations.TOOLTIP_HOLD_SHIFT);
                 if(Screen.hasShiftDown()){
                     tooltip.clear();
+                    tooltip.add(0, this.getDisplayName(stack));
                     tooltip.add(new TranslationTextComponent("tadditions.data_drive_description"));
                     tooltip.add(new TranslationTextComponent("tadditions.data_drive_crystal_type_" + (cap1.getUsed() ? "used" : cap1.getType())));
                     if(!cap1.getUsed()) {
