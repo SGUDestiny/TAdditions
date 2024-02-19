@@ -88,5 +88,25 @@
 			"translation": [-0.25, 4.25, -18.5],
 			"scale": [3, 3, 3]
 		}
-	}
+	},
+	"overrides": [
+		{
+			"predicate": {
+				"custom_model_data": 0
+			},
+			"model": "tadditions:item/data_crystal_burnt"
+		},
+		{
+			"predicate": {
+				"custom_model_data": 1
+			},
+			"model": "tadditions:item/data_crystal_coordinate"
+		},
+		{
+			"predicate": {
+				"custom_model_data": 2
+			},
+			"model": "tadditions:item/data_crystal_dimensional"
+		}
+	]
 }

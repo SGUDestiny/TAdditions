@@ -18,6 +18,8 @@ import net.minecraftforge.items.ItemStackHandler;
 public interface IOpener extends INBTSerializable<CompoundNBT> {
 
     ItemStackHandler getHandler();
+    void setModelID(int model);
+    int getModelID();
 
     void tick(World worldIn, Entity entityIn);
 

@@ -522,5 +522,31 @@
 			"translation": [-1.5, 7.5, 12.5],
 			"scale": [0.9, 0.9, 0.9]
 		}
-	}
+	},
+	"overrides": [
+		{
+			"predicate": {
+				"custom_model_data": 0
+			},
+			"model": "tadditions:item/data_drive_burnt"
+		},
+		{
+			"predicate": {
+				"custom_model_data": 1
+			},
+			"model": "tadditions:item/data_drive_coordinate"
+		},
+		{
+			"predicate": {
+				"custom_model_data": 2
+			},
+			"model": "tadditions:item/data_drive_dimensional"
+		},
+		{
+			"predicate": {
+				"custom_model_data": 3
+			},
+			"model": "tadditions:item/data_drive_empty"
+		}
+	]
 }

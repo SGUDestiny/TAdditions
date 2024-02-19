@@ -22,6 +22,8 @@ public interface ICrystal extends INBTSerializable<CompoundNBT> {
     boolean getUsed();
     void setUsed(boolean used);
     RegistryKey<World> getDimData();
+    void setModelID(int model);
+    int getModelID();
     void tick(World world, Entity entity);
 
     public static class Storage implements Capability.IStorage<ICrystal> {
