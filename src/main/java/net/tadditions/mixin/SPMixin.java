@@ -20,6 +20,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.tadditions.mod.cap.MCapabilities;
 import net.tadditions.mod.helper.IConsoleHelp;
 import net.tadditions.mod.items.ModItems;
+import net.tadditions.mod.world.MDimensions;
 import net.tardis.mod.cap.Capabilities;
 import net.tardis.mod.controls.HandbrakeControl;
 import net.tardis.mod.controls.SonicPortControl;
@@ -47,13 +48,14 @@ public class SPMixin {
                     player.getHeldItemMainhand().getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
                         if (!cap.getHandler().getStackInSlot(0).isItemEqual(ItemStack.EMPTY)) {
                             cap.getHandler().getStackInSlot(0).getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap1 -> {
-                                if (cap1.getType() == 0) {
+                                if (cap1.getType() == 0 && !cap1.getUsed()) {
                                     if (!((IConsoleHelp) console).getAvailable().contains(cap1.getDimData()) && !cap1.getUsed()) {
                                         ((IConsoleHelp) console).addAvailable(cap1.getDimData());
+                                        cap1.setDimData(World.OVERWORLD);
                                         cap1.setUsed(true);
                                         ((SonicPortControl) (Object) this).getEntity().world.playSound(null, ((SonicPortControl) (Object) this).getEntity().getPosition(), TSounds.SCREEN_BEEP_SINGLE.get(), SoundCategory.PLAYERS,1f, 1f);
                                     }
-                                } else if (cap1.getType() == 1) {
+                                } else if (cap1.getType() == 1 && !cap1.getUsed()) {
                                     if (((IConsoleHelp) console).getAvailable().contains(cap1.getDimData()) && !cap1.getUsed() && !cap1.getCoords().equals(BlockPos.ZERO)) {
                                         cap1.setUsed(true);
                                         ((SonicPortControl) (Object) this).getEntity().world.playSound(null, ((SonicPortControl) (Object) this).getEntity().getPosition(), TSounds.REACHED_DESTINATION.get(), SoundCategory.PLAYERS,1f, 1f);
@@ -63,6 +65,9 @@ public class SPMixin {
                                             console.getControl(HandbrakeControl.class).ifPresent(handbrake -> handbrake.setFree(true));
                                             console.getSubsystem(StabilizerSubsystem.class).ifPresent(sys -> sys.setControlActivated(true));
                                             console.takeoff();
+
+                                            cap1.setDimData(World.OVERWORLD);
+                                            cap1.setCoords(BlockPos.ZERO);
                                         }));
                                     } else if (!cap1.getUsed() && cap1.getCoords().equals(BlockPos.ZERO)) {
                                         ((SonicPortControl) (Object) this).getEntity().world.playSound(null, ((SonicPortControl) (Object) this).getEntity().getPosition(), TSounds.REMOTE_ACCEPT.get(), SoundCategory.PLAYERS,1f, 1f);
@@ -70,6 +75,7 @@ public class SPMixin {
                                         cap1.setDimData(console.getDestinationDimension());
                                     }
                                 } else if (cap1.getUsed()){
+                                    ((IConsoleHelp) console).removeAvailable(MDimensions.THE_VERGE);
                                     ((SonicPortControl) (Object) this).getEntity().world.playSound(null, ((SonicPortControl) (Object) this).getEntity().getPosition(), TSounds.ELECTRIC_SPARK.get(), SoundCategory.PLAYERS,1f, 1f);
                                 }
                             });
