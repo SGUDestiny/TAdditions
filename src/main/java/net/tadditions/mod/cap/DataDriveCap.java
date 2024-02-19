@@ -16,25 +16,21 @@ import net.tardis.mod.helper.WorldHelper;
 public class DataDriveCap implements IOpener {
 
     private ItemStackHandler handler;
-    private int model;
 
     public DataDriveCap() {
         handler = new ItemStackHandler();
-        this.model = 3;
     }
 
     @Override
     public CompoundNBT serializeNBT() {
         CompoundNBT tag = new CompoundNBT();
         tag.put("crystal", this.handler.serializeNBT());
-        tag.putInt("CustomModelData", model);
         return tag;
     }
 
     @Override
     public void deserializeNBT(CompoundNBT nbt) {
         this.handler.deserializeNBT(nbt.getCompound("crystal"));
-        this.model = nbt.getInt("CustomModelData");
     }
 
     @Override
@@ -42,30 +38,12 @@ public class DataDriveCap implements IOpener {
         if (!worldIn.isRemote) {
             if (worldIn.getGameTime() % 20 == 0) {
                 this.handler = getHandler();
-                this.model = getModelID();
                 this.serializeNBT();
-                this.getHandler().getStackInSlot(0).getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap ->{
-                    cap.tick(worldIn, entityIn);
-                    setModelID(cap.getModelID());
-                });
-                if(this.getHandler().getStackInSlot(0).isEmpty()){
-                    setModelID(3);
-                }
             }
         }
     }
 
     public ItemStackHandler getHandler() {
         return handler;
-    }
-
-    @Override
-    public void setModelID(int model) {
-        this.model = model;
-    }
-
-    @Override
-    public int getModelID() {
-        return model;
     }
 }

@@ -16,14 +16,12 @@ public class DataCrystalCap implements ICrystal {
     private boolean used;
     private int type;
     private BlockPos coord;
-    private int model;
 
     public DataCrystalCap() {
         this.dimdata = World.OVERWORLD;
         this.used = false;
         this.type = 0;
         this.coord = BlockPos.ZERO;
-        this.model = 0;
     }
 
 
@@ -34,7 +32,6 @@ public class DataCrystalCap implements ICrystal {
         tag.putBoolean("used", this.used);
         tag.putInt("type", this.type);
         tag.put("coord",NBTUtil.writeBlockPos(coord));
-        tag.putInt("CustomModelData", model);
         return tag;
     }
 
@@ -44,23 +41,12 @@ public class DataCrystalCap implements ICrystal {
         this.used = nbt.getBoolean("used");
         this.type = nbt.getInt("type");
         this.coord = NBTUtil.readBlockPos(nbt.getCompound("coord"));
-        this.model = nbt.getInt("CustomModelData");
     }
 
 
     @Override
     public RegistryKey<World> getDimData() {
         return dimdata;
-    }
-
-    @Override
-    public void setModelID(int model) {
-        this.model = model;
-    }
-
-    @Override
-    public int getModelID() {
-        return model;
     }
 
     @Override
@@ -106,15 +92,7 @@ public class DataCrystalCap implements ICrystal {
                 this.used = getUsed();
                 this.type = getType();
                 this.coord = getCoords();
-                this.model = getModelID();
                 this.serializeNBT();
-                if(this.getUsed()){
-                    this.setModelID(0);
-                } else if(this.getType() == 0 && !this.getUsed()){
-                    this.setModelID(1);
-                } else if(this.getType() == 1 && !this.getUsed()) {
-                    this.setModelID(2);
-                }
             }
         }
     }

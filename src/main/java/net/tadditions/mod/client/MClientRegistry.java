@@ -4,7 +4,13 @@ import com.google.common.collect.Maps;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.client.world.DimensionRenderInfo;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.IItemPropertyGetter;
+import net.minecraft.item.ItemModelsProperties;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -12,11 +18,13 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.tadditions.mod.QolMod;
 import net.tadditions.mod.blocks.ModBlocks;
+import net.tadditions.mod.cap.MCapabilities;
 import net.tadditions.mod.client.model.FourteenthInteriorDoors;
 import net.tadditions.mod.client.model.ToyotaInteriorDoor;
 import net.tadditions.mod.client.renderers.*;
 import net.tadditions.mod.container.MContainers;
 import net.tadditions.mod.helper.IMDoorType;
+import net.tadditions.mod.items.ModItems;
 import net.tadditions.mod.screens.AdvQuantiscopeWeldScreen;
 import net.tadditions.mod.screens.DataDriveScreen;
 import net.tadditions.mod.screens.misc.AdvQuantiscopePage;
@@ -30,7 +38,9 @@ import net.tardis.mod.client.models.interiordoors.FortuneInteriorModel;
 import net.tardis.mod.config.TConfig;
 import software.bernie.geckolib3.renderers.geo.GeoBlockRenderer;
 
+import javax.annotation.Nullable;
 import java.util.EnumMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @SuppressWarnings("deprecation")
 @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = QolMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -62,6 +72,40 @@ public class MClientRegistry extends TClientRegistry {
             RenderTypeLookup.setRenderLayer(ModBlocks.zero_point_field_broken.get(), RenderType.getCutout());
             RenderTypeLookup.setRenderLayer(ModBlocks.zero_point_field_normal.get(), RenderType.getCutout());
         });
+
+        ItemModelsProperties.registerProperty(ModItems.data_crystal.get(), new ResourceLocation(QolMod.MOD_ID, "type"),
+                (stack, clientWorld, entity) -> {
+                    AtomicInteger integer = new AtomicInteger(0);
+                    stack.getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap -> {
+                        if(cap.getUsed()){
+                            integer.set(0);
+                        } else if (cap.getType() == 0){
+                            integer.set(1);
+                        } else if (cap.getType() == 1){
+                            integer.set(2);
+                        }
+                    });
+                    return integer.get();
+                });
+        ItemModelsProperties.registerProperty(ModItems.BOOS_UPGRADE.get(), new ResourceLocation(QolMod.MOD_ID, "type"),
+                (stack, clientWorld, entity) -> {
+                    AtomicInteger integer = new AtomicInteger(0);
+                    stack.getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
+                        if(!cap.getHandler().getStackInSlot(0).isEmpty()) {
+                            cap.getHandler().getStackInSlot(0).getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap1 -> {
+                                if (cap1.getUsed()) {
+                                    integer.set(0);
+                                } else if (cap1.getType() == 0) {
+                                    integer.set(1);
+                                } else if (cap1.getType() == 1) {
+                                    integer.set(2);
+                                }
+                            });
+                        } else integer.set(3);
+                    });
+
+                    return integer.get();
+                });
     }
 
 
