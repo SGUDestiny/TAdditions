@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.concurrent.TickDelayedTask;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.DynamicRegistries;
@@ -27,6 +28,7 @@ import net.tardis.mod.helper.WorldHelper;
 import net.tardis.mod.items.TItems;
 import net.tardis.mod.misc.SpaceTimeCoord;
 import net.tardis.mod.schematics.Schematic;
+import net.tardis.mod.sounds.TSounds;
 import net.tardis.mod.subsystem.StabilizerSubsystem;
 import net.tardis.mod.tileentities.ConsoleTile;
 import org.spongepowered.asm.mixin.Mixin;
@@ -49,10 +51,12 @@ public class SPMixin {
                                     if (!((IConsoleHelp) console).getAvailable().contains(cap1.getDimData()) && !cap1.getUsed()) {
                                         ((IConsoleHelp) console).addAvailable(cap1.getDimData());
                                         cap1.setUsed(true);
+                                        console.getWorld().playSound(player, console.getPos(), TSounds.SCREEN_BEEP_SINGLE.get(), SoundCategory.BLOCKS, 1f, 1f);
                                     }
                                 } else if (cap1.getType() == 1) {
                                     if (((IConsoleHelp) console).getAvailable().contains(cap1.getDimData()) && !cap1.getUsed() && !cap1.getCoords().equals(BlockPos.ZERO)) {
                                         cap1.setUsed(true);
+                                        console.getWorld().playSound(player, console.getPos(), TSounds.REACHED_DESTINATION.get(), SoundCategory.BLOCKS, 1F, 1F);
                                         console.getWorld().getServer().enqueue(new TickDelayedTask(30, () -> {
                                             console.setDestination(new SpaceTimeCoord(cap1.getDimData(), cap1.getCoords()));
                                             console.getControl(ThrottleControl.class).ifPresent(throttle -> throttle.setAmount(1.0F));
@@ -61,6 +65,7 @@ public class SPMixin {
                                             console.takeoff();
                                         }));
                                     } else if (!cap1.getUsed() && cap1.getCoords().equals(BlockPos.ZERO)) {
+                                        console.getWorld().playSound(player, console.getPos(), TSounds.REMOTE_ACCEPT.get(), SoundCategory.BLOCKS, 1f, 1f);
                                         cap1.setCoords(console.getDestinationPosition());
                                         cap1.setDimData(console.getDestinationDimension());
                                     }
