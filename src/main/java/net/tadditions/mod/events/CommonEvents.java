@@ -3,6 +3,7 @@ package net.tadditions.mod.events;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.boss.dragon.EnderDragonEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
@@ -22,6 +23,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.event.world.BlockEvent;
@@ -34,6 +36,7 @@ import net.tadditions.mod.QolMod;
 import net.tadditions.mod.blocks.ModBlocks;
 import net.tadditions.mod.cap.*;
 import net.tadditions.mod.commands.TACommands;
+import net.tadditions.mod.helper.MHelper;
 import net.tadditions.mod.items.ModItems;
 import net.tadditions.mod.world.MDimensions;
 import net.tadditions.mod.world.structures.MStructures;
@@ -109,6 +112,13 @@ public class CommonEvents {
     public static void registerCommands(RegisterCommandsEvent event) {
         TACommands.register(event.getDispatcher());
     }
+
+    @SubscribeEvent
+    public static void onLivingDead(LivingDeathEvent event){
+        if(event.getEntity() instanceof EnderDragonEntity && !MHelper.hasEnd){
+            MHelper.hasEnd = true;
+        }
+    };
 
     @SubscribeEvent
     public static void onLivingTick(LivingEvent.LivingUpdateEvent event){

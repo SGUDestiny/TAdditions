@@ -63,6 +63,7 @@ public class SPMixin {
                                             console.takeoff();
                                         }));
                                     } else if(!cap1.getUsed() && cap1.getCoords().equals(BlockPos.ZERO)) {
+                                        player.sendStatusMessage(new TranslationTextComponent("tadditions.coords_downloaded"), true);
                                         cap1.setCoords(console.getDestinationPosition());
                                         cap1.setDimData(console.getDestinationDimension());
                                     }

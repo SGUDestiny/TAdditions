@@ -22,6 +22,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.concurrent.TickDelayedTask;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.registry.DynamicRegistries;
 import net.minecraft.util.registry.Registry;
@@ -29,6 +30,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.common.util.LazyOptional;
@@ -42,10 +44,12 @@ import net.tadditions.mod.helper.MHelper;
 import net.tadditions.mod.helper.MSoundSchemeRegistry;
 import net.tadditions.mod.upgrades.FrameStabUpgrade;
 import net.tadditions.mod.world.MDimensions;
+import net.tardis.api.events.TardisEvent;
 import net.tardis.mod.ars.ConsoleRoom;
 import net.tardis.mod.cap.Capabilities;
 import net.tardis.mod.config.TConfig;
 import net.tardis.mod.constants.TardisConstants;
+import net.tardis.mod.controls.RefuelerControl;
 import net.tardis.mod.controls.ThrottleControl;
 import net.tardis.mod.entity.ControlEntity;
 import net.tardis.mod.entity.DoorEntity;
@@ -83,6 +87,10 @@ import static net.tardis.mod.tileentities.ConsoleTile.rand;
 
 @Mixin(ConsoleTile.class)
 public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
+
+    @Shadow public abstract <T extends Upgrade> LazyOptional<T> getUpgrade(Class<T> clazz);
+
+    @Shadow public abstract RegistryKey<World> getDestinationDimension();
 
     @Shadow public abstract RegistryKey<World> getCurrentDimension();
 
@@ -148,7 +156,12 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
     protected HashMap<Class<?>, ControlOverride> controlOverrides = Maps.newHashMap();
     private boolean hasPoweredDown = false;
     private boolean hasNavCom = false;
-    private final boolean isBeingTowed = false;
+
+    @Shadow
+    private boolean isCrashing = false;
+
+    @Shadow
+    private boolean isBeingTowed = false;
     private BlockPos takeoffLocation = BlockPos.ZERO;
     /**
      * If the console has been force loaded. Internal use only
@@ -436,6 +449,86 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
         return this.artron > 0;
     }*/
 
+    public boolean takeoff(boolean towed) {
+        if(((ConsoleTile) (Object) this).isInFlight() || world.isRemote)
+            return false;
+        if(!((ConsoleTile) (Object) this).canFly() && !towed) {
+            this.world.playSound(null, this.getPos(), TSounds.CANT_START.get(), SoundCategory.BLOCKS, 1F, 1F);
+            return false;
+        }
+        if((((ConsoleTile) (Object) this).getDestinationDimension() == World.THE_END && !((ConsoleTile) (Object) this).getUpgrade(FrameStabUpgrade.class).isPresent())){
+            this.world.playSound(null, this.getPos(), TSounds.CANT_START.get(), SoundCategory.BLOCKS, 1F, 1F);
+            return false;
+        }
+        //Force load the console tile during takeoff to ensure it will stay in flight
+        ((ConsoleTile) (Object) this).forceLoadInteriorChunk(true, false);
+
+        this.isCrashing = false;
+        this.isBeingTowed = towed;
+
+        this.takeoffLocation = this.location;
+
+        if(((ConsoleTile) (Object) this).getEntity() != null)
+            ((ConsoleTile) (Object) this).getEntity().remove();
+
+        this.currentEvent = null;
+
+        this.returnLocation = new SpaceTimeCoord(this.getCurrentDimension(), ((ConsoleTile) (Object) this).getCurrentLocation(), ((ConsoleTile) (Object) this).getTrueExteriorFacingDirection());
+
+        ((ConsoleTile) (Object) this).getEmotionHandler().addMood(10);
+        ((ConsoleTile) (Object) this).getEmotionHandler().addLoyalty(((ConsoleTile) (Object) this).getPilot(), 1);
+
+        //Forceload the chunk at the current location
+        //This will be unloaded by the exterior block in ExteriorBlock#onRemoved if the exterior block is present
+        ServerWorld otherWorld = world.getServer().getWorld(this.dimension);
+
+        BlockPos extPos = this.location.up(); //Assume the exterior block is one block above our location
+        ChunkPos chunkPos = new ChunkPos(extPos);
+//        Tardis.LOGGER.debug("Does {} have forced chunks before Takeoff? Counted: {}", otherWorld.getDimensionKey().getLocation(), WorldHelper.getTickingBlockForcedChunks(otherWorld) != null ? WorldHelper.getTickingBlockForcedChunks(otherWorld).size() : "None");
+        //Force load the take off position so the exterior blocks can be removed properly. We will unload them after the blocks are removed
+        WorldHelper.forceChunkIfNotLoaded(otherWorld, chunkPos, extPos);
+
+
+        world.getServer().enqueue(new TickDelayedTask(1, () -> {
+            this.landTime = 0;
+            this.reachDestinationTick = ((ConsoleTile) (Object) this).calcFlightTicks(false) +
+                    ((ConsoleTile) (Object) this).getSoundScheme().getTakeoffTime();
+            this.flightTicks = 1;
+            this.exterior.demat(((ConsoleTile) (Object) this)); //Start the demat animation and remove the exterior blocks
+            this.scheme.playTakeoffSounds(((ConsoleTile) (Object) this));
+//            System.out.println("TARDIS: Started a flight to last " + this.reachDestinationTick);
+            ((ConsoleTile) (Object) this).getControl(RefuelerControl.class).ifPresent(refuel -> refuel.setRefueling(false));
+            MinecraftForge.EVENT_BUS.post(new TardisEvent.Takeoff(((ConsoleTile) (Object) this)));
+
+            //Force the area we loaded if the exterior block has not done so
+            WorldHelper.unForceChunkIfLoaded(otherWorld, chunkPos, location);
+
+        }));
+
+        ((ConsoleTile) (Object) this).updateClient();
+
+        //Blocks things like mercury from crashes
+        if(!this.isBeingTowed){
+            for (Subsystem sub : this.getSubSystems()) {
+                sub.onTakeoff();
+            }
+            for (Upgrade up : ((ConsoleTile) (Object) this).getUpgrades()) {
+                up.onTakeoff();
+            }
+        }
+
+        //Shake player's screens
+        if(!world.isRemote) {
+            for(PlayerEntity player : world.getPlayers()) {
+                player.getCapability(Capabilities.PLAYER_DATA).ifPresent(cap -> {
+                    cap.setShaking(((ConsoleTile) (Object) this).getSoundScheme().getTakeoffTime());
+                    cap.update();
+                });
+            }
+        }
+        return true;
+    }
+
     public void scaleDestination() {
 
         //Demat if landing
@@ -452,9 +545,12 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
         //Reset dimension if less than half way there
         if(per < 0.5) {
             this.destinationDimension = this.dimension;
-        }
-        if(per > 0.5 && per < 0.9 && destinationDimension == MDimensions.THE_VERGE && !this.isCrashing() && !didVoidCrash){
+        } else if(per > 0.5 && per < 0.9 && destinationDimension == MDimensions.THE_VERGE && !this.isCrashing() && !didVoidCrash){
             VoidCrash();
+        } else if(per > 0.5 && per < 0.9 && destinationDimension == World.THE_END && !this.isCrashing()){
+            ((ConsoleTile) (Object) this).setDestination(((ConsoleTile) (Object) this).getReturnLocation());
+            ((ConsoleTile) (Object) this).setDestinationReachedTick(100);
+            ((ConsoleTile) (Object) this).crash(CrashTypes.DEFAULT);
         }
 
         BlockPos diff = this.destination.subtract(((ConsoleTile) (Object) this).getCurrentLocation());
@@ -653,15 +749,31 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
                 });
             }
 
-            if (!world.isRemote && ((ConsoleTile) (Object) this).getDestinationDimension() == MDimensions.THE_VERGE && ((ConsoleTile) (Object) this).getPercentageJourney() >= 0.9 && !((ConsoleTile) (Object) this).isLanding()) {
+            if (!world.isRemote && ((ConsoleTile) (Object) this).getDestinationDimension() == MDimensions.THE_VERGE && ((ConsoleTile) (Object) this).getPercentageJourney() == 0.9 && !((ConsoleTile) (Object) this).isLanding()) {
                 if (((ConsoleTile) (Object) this).getUpgrade(FrameStabUpgrade.class).isPresent()) {
                     ((ConsoleTile) (Object) this).getUpgrade(FrameStabUpgrade.class).ifPresent(up -> {
                         if (up.isActivated() && up.isUsable()) {
                             up.damage(10, Upgrade.DamageType.ITEM, null);
-                            ((ConsoleTile) (Object) this).setDestinationReachedTick(0);
                         } else VoidCrash();
                     });
                 } else VoidCrash();
+            }
+            if(!world.isRemote && ((ConsoleTile) (Object) this).getDestinationDimension() == World.THE_END && ((ConsoleTile) (Object) this).getPercentageJourney() == 0.9 && !((ConsoleTile) (Object) this).isLanding()){
+                if(((ConsoleTile) (Object) this).getUpgrade(FrameStabUpgrade.class).isPresent()){
+                    ((ConsoleTile) (Object) this).getUpgrade(FrameStabUpgrade.class).ifPresent(up -> {
+                        if(up.isActivated() && up.isUsable()) {
+                            up.damage(1, Upgrade.DamageType.ITEM, null);
+                        } else {
+                            ((ConsoleTile) (Object) this).setDestination(((ConsoleTile) (Object) this).getReturnLocation());
+                            ((ConsoleTile) (Object) this).setDestinationReachedTick(100);
+                            ((ConsoleTile) (Object) this).crash(CrashTypes.DEFAULT);
+                        }
+                    });
+                } else {
+                    ((ConsoleTile) (Object) this).setDestination(((ConsoleTile) (Object) this).getReturnLocation());
+                    ((ConsoleTile) (Object) this).setDestinationReachedTick(100);
+                    ((ConsoleTile) (Object) this).crash(CrashTypes.DEFAULT);
+                }
             }
 
             if (!world.isRemote && this.flightTicks > this.landTime && this.landTime > 0) {

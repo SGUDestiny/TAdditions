@@ -20,6 +20,8 @@ import java.util.Optional;
 
 public class MHelper {
 
+    public static boolean hasEnd = false;
+
     public static boolean isInBounds(int testX, int testY, int x, int y, int u, int v) {
         return (testX > x &&
                 testX < u &&
@@ -38,6 +40,9 @@ public class MHelper {
                 types.add(world.getDimensionKey());
             }
         });
+        if(!types.contains(World.THE_END) && hasEnd){
+            types.add(World.THE_END);
+        }
         return types;
     }
 }
