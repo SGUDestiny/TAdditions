@@ -554,7 +554,7 @@
 		{
 			"predicate": {
 				"tadditions:empty": 1,
-				"taddutuibs:used": 0,
+				"tadditions:used": 0,
 				"tadditions:coord": 0,
 				"tadditions:dim": 0
 			},
