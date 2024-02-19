@@ -1,15 +1,11 @@
 package net.tadditions.mod.screens;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
-import net.minecraft.client.gui.widget.Widget;
-import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.tadditions.mod.QolMod;
 import net.tadditions.mod.cap.MCapabilities;
@@ -17,6 +13,7 @@ import net.tadditions.mod.container.DataDriveContainer;
 import net.tadditions.mod.helper.MHelper;
 
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class DataDriveScreen extends ContainerScreen<DataDriveContainer> {
 
@@ -65,20 +62,20 @@ public class DataDriveScreen extends ContainerScreen<DataDriveContainer> {
     }
 
     public TranslationTextComponent getState(){
-        TranslationTextComponent text = new TranslationTextComponent("tadditions.data_drive_gui_status");
+        AtomicReference<TranslationTextComponent> text = new AtomicReference<>(new TranslationTextComponent("tadditions.data_drive_gui_status_error"));
         drive.getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
             if(cap.getHandler().getStackInSlot(0).isEmpty()){
-                text.appendSibling(new TranslationTextComponent("_empty"));
+                text.set(new TranslationTextComponent("tadditions.data_drive_gui_status_empty"));
             } else if(cap.getHandler().getStackInSlot(0).getCapability(MCapabilities.CRYSTAL_CAPABILITY).isPresent()){
                 cap.getHandler().getStackInSlot(0).getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap1-> {
                     if(cap1.getUsed()){
-                        text.appendSibling(new TranslationTextComponent("_used"));
-                    } else text.appendSibling(new TranslationTextComponent("_ready"));
+                        text.set(new TranslationTextComponent("tadditions.data_drive_gui_status_used"));
+                    } else text.set(new TranslationTextComponent("tadditions.data_drive_gui_status_ready"));
                 });
             }
         });
 
-        return text;
+        return text.get();
     }
 
     @Override
