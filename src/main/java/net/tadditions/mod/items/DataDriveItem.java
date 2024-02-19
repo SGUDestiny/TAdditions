@@ -89,6 +89,7 @@ public class DataDriveItem extends Item {
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         stack.getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
             if(cap.getHandler().getStackInSlot(0).isEmpty()){
+                tooltip.add(new TranslationTextComponent("tadditions.data_drive_description"));
                 tooltip.add(TardisConstants.Translations.TOOLTIP_HOLD_SHIFT);
                 if(Screen.hasShiftDown()) {
                     tooltip.clear();
@@ -98,6 +99,7 @@ public class DataDriveItem extends Item {
                 }
             }
             cap.getHandler().getStackInSlot(0).getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap1 -> {
+                tooltip.add(new TranslationTextComponent("tadditions.data_drive_description"));
                 tooltip.add(TardisConstants.Translations.TOOLTIP_HOLD_SHIFT);
                 if(Screen.hasShiftDown()){
                     tooltip.clear();
