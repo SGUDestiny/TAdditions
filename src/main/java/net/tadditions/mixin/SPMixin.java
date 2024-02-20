@@ -76,7 +76,7 @@ public class SPMixin {
                                         ((SonicPortControl) (Object) this).getEntity().world.playSound(null, ((SonicPortControl) (Object) this).getEntity().getPosition(), TSounds.REMOTE_ACCEPT.get(), SoundCategory.PLAYERS,1f, 1f);
                                         cap1.setCoords(console.getDestinationPosition());
                                         cap1.setDimData(console.getDestinationDimension());
-                                    } else if(!cap1.getUsed() && ((IConsoleHelp) console).getAvailable().contains(cap1.getDimData()) && !cap1.getCoords().equals(BlockPos.ZERO)) {
+                                    } else if(!cap1.getUsed() && !((IConsoleHelp) console).getAvailable().contains(cap1.getDimData()) && !cap1.getCoords().equals(BlockPos.ZERO)) {
                                         ((SonicPortControl) (Object) this).getEntity().world.playSound(null, ((SonicPortControl) (Object) this).getEntity().getPosition(), TSounds.CANT_START.get(), SoundCategory.PLAYERS, 1f, 1f);
                                         ((SonicPortControl) (Object) this).getEntity().world.playSound(null, ((SonicPortControl) (Object) this).getEntity().getPosition(), TSounds.SINGLE_CLOISTER.get(), SoundCategory.PLAYERS, 1f, 1f);
                                     } else if (cap1.getUsed()){
