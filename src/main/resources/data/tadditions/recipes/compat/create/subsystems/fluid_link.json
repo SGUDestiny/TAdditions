@@ -1,0 +1,65 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "tag": "forge:plates/iron"
+  },
+  "transitionalItem": {
+    "item": "tadditions:fluid_link_incomplete"
+  },
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:fluid_link_incomplete"
+        },
+        {
+          "item": "create:cogwheel"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:fluid_link_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:fluid_link_incomplete"
+        },
+        {
+          "item": "create:large_cogwheel"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:fluid_link_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:fluid_link_incomplete"
+        },
+        {
+          "tag": "forge:nuggets/iron"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:fluid_link_incomplete"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "item": "tardis:subsystem/fluid_link"
+    }
+  ],
+  "loops": 5
+}
