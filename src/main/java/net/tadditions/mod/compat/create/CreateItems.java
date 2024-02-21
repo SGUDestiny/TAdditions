@@ -35,6 +35,18 @@ public class CreateItems {
     public static final RegistryObject<Item> INCOMPLETE_GRACE2 = ITEMS.register("temporal_grace_overcharged_incomplete", () -> createItem(new AnimatedSequenceAssemblyItem((new Item.Properties()).group(ModItemGroups.TA).setISTER(() -> IncompleteGraceRenderer::new))));
     public static final RegistryObject<Item> INCOMPLETE_ANTENNA2 = ITEMS.register("interstitial_antenna_overcharged_incomplete", () -> createItem(new AnimatedSequenceAssemblyItem((new Item.Properties()).group(ModItemGroups.TA).setISTER(() -> IncompleteAntennaRenderer::new))));
     public static final RegistryObject<Item> INCOMPLETE_CHAMELEON2 = ITEMS.register("chameleon_circuit_overcharged_incomplete", () -> createItem(new AnimatedSequenceAssemblyItem((new Item.Properties()).group(ModItemGroups.TA).setISTER(() -> IncompleteChameleonRenderer::new))));
+    public static final RegistryObject<Item> INCOMPLETE_CAP1 = ITEMS.register("artron_capacitor_incomplete", () -> createItem(new SequencedAssemblyItem((new Item.Properties()).group(ModItemGroups.TA))));
+    public static final RegistryObject<Item> INCOMPLETE_CAP2 = ITEMS.register("artron_capacitor_mid_incomplete", () -> createItem(new SequencedAssemblyItem((new Item.Properties()).group(ModItemGroups.TA))));
+    public static final RegistryObject<Item> INCOMPLETE_CAP3 = ITEMS.register("artron_capacitor_high_incomplete", () -> createItem(new SequencedAssemblyItem((new Item.Properties()).group(ModItemGroups.TA))));
+    public static final RegistryObject<Item> INCOMPLETE_CAP4 = ITEMS.register("artron_capacitor_speed_incomplete", () -> createItem(new SequencedAssemblyItem((new Item.Properties()).group(ModItemGroups.TA))));
+    public static final RegistryObject<Item> INCOMPLETE_CAP5 = ITEMS.register("artron_capacitor_ultra_incomplete", () -> createItem(new SequencedAssemblyItem((new Item.Properties()).group(ModItemGroups.TA))));
+    public static final RegistryObject<Item> INCOMPLETE_CAP6 = ITEMS.register("artron_capacitor_temporal_incomplete", () -> createItem(new SequencedAssemblyItem((new Item.Properties()).group(ModItemGroups.TA))));
+    public static final RegistryObject<Item> INCOMPLETE_BAT1 = ITEMS.register("artron_battery_incomplete", () -> createItem(new SequencedAssemblyItem((new Item.Properties()).group(ModItemGroups.TA))));
+    public static final RegistryObject<Item> INCOMPLETE_BAT2 = ITEMS.register("artron_battery_medium_incomplete", () -> createItem(new SequencedAssemblyItem((new Item.Properties()).group(ModItemGroups.TA))));
+    public static final RegistryObject<Item> INCOMPLETE_BAT3 = ITEMS.register("artron_battery_high_incomplete", () -> createItem(new SequencedAssemblyItem((new Item.Properties()).group(ModItemGroups.TA))));
+    public static final RegistryObject<Item> INCOMPLETE_BAT4 = ITEMS.register("artron_battery_speed_incomplete", () -> createItem(new SequencedAssemblyItem((new Item.Properties()).group(ModItemGroups.TA))));
+    public static final RegistryObject<Item> INCOMPLETE_BAT5 = ITEMS.register("artron_battery_ultra_incomplete", () -> createItem(new SequencedAssemblyItem((new Item.Properties()).group(ModItemGroups.TA))));
+    public static final RegistryObject<Item> INCOMPLETE_BAT6 = ITEMS.register("artron_battery_temporal_incomplete", () -> createItem(new SequencedAssemblyItem((new Item.Properties()).group(ModItemGroups.TA))));
 
 
     public static void register(IEventBus eventBus) {
