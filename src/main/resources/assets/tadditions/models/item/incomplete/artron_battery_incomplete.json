@@ -1,0 +1,95 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "tardis:item/battery"
+	},
+	"elements": [
+		{
+			"name": "base_bottom",
+			"from": [8, 8, 8],
+			"to": [10, 9, 10],
+			"faces": {
+				"north": {"uv": [11, 11, 13, 12], "texture": "#0"},
+				"east": {"uv": [10, 9, 12, 10], "texture": "#0"},
+				"south": {"uv": [11, 10, 13, 11], "texture": "#0"},
+				"west": {"uv": [12, 11, 14, 12], "texture": "#0"},
+				"up": {"uv": [11, 11, 13, 13], "texture": "#0"},
+				"down": {"uv": [10, 10, 12, 12], "texture": "#0"}
+			}
+		},
+		{
+			"name": "base_top",
+			"from": [8, 12.5, 8],
+			"to": [10, 13.5, 10],
+			"faces": {
+				"north": {"uv": [11, 9, 13, 10], "texture": "#0"},
+				"east": {"uv": [13, 10, 15, 11], "texture": "#0"},
+				"south": {"uv": [14, 9, 16, 10], "texture": "#0"},
+				"west": {"uv": [11, 9, 13, 10], "texture": "#0"},
+				"up": {"uv": [10, 10, 12, 12], "texture": "#0"},
+				"down": {"uv": [8, 10, 10, 12], "texture": "#0"}
+			}
+		},
+		{
+			"name": "cell",
+			"from": [8.25, 9, 8.25],
+			"to": [9.75, 12.5, 9.75],
+			"faces": {
+				"north": {"uv": [12, 1.5, 13.5, 5.5], "texture": "#0"},
+				"east": {"uv": [12, 1.5, 13.5, 5.5], "texture": "#0"},
+				"south": {"uv": [12, 1.5, 13.5, 5.5], "texture": "#0"},
+				"west": {"uv": [12, 1.5, 13.5, 5.5], "texture": "#0"},
+				"up": {"uv": [8, 9, 9.5, 10.5], "texture": "#0"},
+				"down": {"uv": [9, 9, 10.5, 10.5], "texture": "#0"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"translation": [-0.5, -1.5, 0.5],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"thirdperson_lefthand": {
+			"translation": [0.5, -1.5, 0.5],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"gui": {
+			"rotation": [30, 135, 0],
+			"translation": [0, -6.5, 0],
+			"scale": [2, 2, 2]
+		},
+		"fixed": {
+			"translation": [-2, -4.75, -1.25],
+			"scale": [2, 2, 2]
+		}
+	},
+	"groups": [
+		0,
+		1,
+		2,
+		{
+			"name": "wires",
+			"origin": [9.00124, 12.50044, 8.16791],
+			"color": 0,
+			"children": []
+		},
+		{
+			"name": "wires2",
+			"origin": [9.00124, 12.50044, 8.16791],
+			"color": 0,
+			"children": []
+		},
+		{
+			"name": "wires3",
+			"origin": [9.00124, 12.50044, 8.16791],
+			"color": 0,
+			"children": []
+		},
+		{
+			"name": "wires4",
+			"origin": [9.00124, 12.50044, 8.16791],
+			"color": 0,
+			"children": []
+		}
+	]
+}
