@@ -1,0 +1,78 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "minecraft:compass"
+  },
+  "transitionalItem": {
+    "item": "tadditions:incomplete/nav_com_incomplete"
+  },
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/nav_com_incomplete"
+        },
+        {
+          "item": "minecraft:clock"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/nav_com_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/nav_com_incomplete"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/nav_com_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/nav_com_incomplete"
+        },
+        {
+          "item": "tardis:xion_crystal"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/nav_com_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/nav_com_incomplete"
+        },
+        {
+          "item": "minecraft:ender_eye"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/nav_com_incomplete"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "item": "tardis:subsystem/nav_com"
+    }
+  ],
+  "loops": 1
+}

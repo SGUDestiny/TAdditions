@@ -1,0 +1,107 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "tardis:artron_battery"
+  },
+  "transitionalItem": {
+    "item": "tadditions:incomplete/artron_battery_medium_incomplete"
+  },
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/artron_battery_medium_incomplete"
+        },
+        {
+          "tag": "forge:glass"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/artron_battery_medium_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/artron_battery_medium_incomplete"
+        },
+        {
+          "item": "tardis:xion_crystal"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/artron_battery_medium_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/artron_battery_medium_incomplete"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/artron_battery_medium_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/artron_battery_medium_incomplete"
+        },
+        {
+          "item": "tardis:circuits"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/artron_battery_medium_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/artron_battery_medium_incomplete"
+        },
+        {
+          "item": "minecraft:blaze_powder"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/artron_battery_medium_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/artron_battery_medium_incomplete"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/artron_battery_medium_incomplete"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "item": "tardis:artron_battery_medium"
+    }
+  ],
+  "loops": 1
+}

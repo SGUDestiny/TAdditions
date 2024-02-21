@@ -1,0 +1,124 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "minecraft:redstone_block"
+  },
+  "transitionalItem": {
+    "item": "tadditions:incomplete/artron_capacitor_incomplete"
+  },
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/artron_capacitor_incomplete"
+        },
+        {
+          "tag": "forge:ingots/gold"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/artron_capacitor_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:cutting",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/artron_capacitor_incomplete"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/artron_capacitor_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:filling",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/artron_capacitor_incomplete"
+        },
+        {
+          "fluid": "tadditions:mercury",
+          "nbt": {},
+          "amount": 250
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/artron_capacitor_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/artron_capacitor_incomplete"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/artron_capacitor_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:filling",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/artron_capacitor_incomplete"
+        },
+        {
+          "fluid": "tadditions:mercury",
+          "nbt": {},
+          "amount": 250
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/artron_capacitor_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/artron_capacitor_incomplete"
+        },
+        {
+          "tag": "forge:ingots/gold"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/artron_capacitor_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/artron_capacitor_incomplete"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/artron_capacitor_incomplete"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "item": "tardis:artron_capacitor"
+    }
+  ],
+  "loops": 1
+}

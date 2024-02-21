@@ -1,0 +1,232 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "tardis:subsystem/nav_com"
+  },
+  "transitionalItem": {
+    "item": "tadditions:incomplete/nav_com_overcharged_incomplete"
+  },
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/nav_com_overcharged_incomplete"
+        },
+        {
+          "item": "tardis:circuits"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/nav_com_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/nav_com_overcharged_incomplete"
+        },
+        {
+          "item": "tadditions:artron_capacitor_temporal"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/nav_com_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/nav_com_overcharged_incomplete"
+        },
+        {
+          "item": "tadditions:filled_electromagnetic_solenoid_container"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/nav_com_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/nav_com_overcharged_incomplete"
+        },
+        {
+          "item": "tadditions:artron_battery_temporal"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/nav_com_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/nav_com_overcharged_incomplete"
+        },
+        {
+          "item": "minecraft:netherite_ingot"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/nav_com_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/nav_com_overcharged_incomplete"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/nav_com_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/nav_com_overcharged_incomplete"
+        },
+        {
+          "item": "minecraft:netherite_ingot"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/nav_com_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/nav_com_overcharged_incomplete"
+        },
+        {
+          "item": "minecraft:ender_pearl"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/nav_com_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/nav_com_overcharged_incomplete"
+        },
+        {
+          "item": "tardis:circuits"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/nav_com_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/nav_com_overcharged_incomplete"
+        },
+        {
+          "item": "minecraft:ender_eye"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/nav_com_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/nav_com_overcharged_incomplete"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/nav_com_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/nav_com_overcharged_incomplete"
+        },
+        {
+          "item": "minecraft:compass"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/nav_com_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/nav_com_overcharged_incomplete"
+        },
+        {
+          "item": "minecraft:clock"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/nav_com_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/nav_com_overcharged_incomplete"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/nav_com_overcharged_incomplete"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "item": "tadditions:subsystem/nav_com_overcharged"
+    }
+  ],
+  "loops": 1
+}

@@ -1,0 +1,219 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "tardis:subsystem/interstitial_antenna"
+  },
+  "transitionalItem": {
+    "item": "tadditions:incomplete/interstitial_antenna_overcharged_incomplete"
+  },
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/interstitial_antenna_overcharged_incomplete"
+        },
+        {
+          "item": "tardis:circuits"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/interstitial_antenna_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/interstitial_antenna_overcharged_incomplete"
+        },
+        {
+          "item": "tadditions:artron_capacitor_temporal"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/interstitial_antenna_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/interstitial_antenna_overcharged_incomplete"
+        },
+        {
+          "item": "tadditions:filled_electromagnetic_solenoid_container"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/interstitial_antenna_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/interstitial_antenna_overcharged_incomplete"
+        },
+        {
+          "item": "tadditions:artron_battery_temporal"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/interstitial_antenna_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/interstitial_antenna_overcharged_incomplete"
+        },
+        {
+          "item": "minecraft:netherite_ingot"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/interstitial_antenna_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/interstitial_antenna_overcharged_incomplete"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/interstitial_antenna_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/interstitial_antenna_overcharged_incomplete"
+        },
+        {
+          "item": "minecraft:netherite_ingot"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/interstitial_antenna_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/interstitial_antenna_overcharged_incomplete"
+        },
+        {
+          "item": "minecraft:redstone_block"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/interstitial_antenna_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:cutting",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/interstitial_antenna_overcharged_incomplete"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/interstitial_antenna_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/interstitial_antenna_overcharged_incomplete"
+        },
+        {
+          "item": "minecraft:comparator"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/interstitial_antenna_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/interstitial_antenna_overcharged_incomplete"
+        },
+        {
+          "item": "tardis:circuits"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/interstitial_antenna_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/interstitial_antenna_overcharged_incomplete"
+        },
+        {
+          "item": "tardis:xion_crystal"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/interstitial_antenna_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/interstitial_antenna_overcharged_incomplete"
+        },
+        {
+          "item": "minecraft:black_stained_glass_pane"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/interstitial_antenna_overcharged_incomplete"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "item": "tadditions:subsystem/interstitial_antenna_overcharged"
+    }
+  ],
+  "loops": 1
+}

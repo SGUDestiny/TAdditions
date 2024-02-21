@@ -1,0 +1,14 @@
+{
+	"type": "tardis:quantiscope",
+	"repair":false,
+	"ingredients":[
+		{"item":"minecraft:blaze_powder"},
+		{"item":"tardis:artron_battery"},
+		{"item":"minecraft:glass"},
+		{"item":"tardis:circuits"},
+		{"item":"tardis:xion_crystal"}
+	],
+	"result":{
+		"item":"tardis:artron_battery_medium"
+	}
+}

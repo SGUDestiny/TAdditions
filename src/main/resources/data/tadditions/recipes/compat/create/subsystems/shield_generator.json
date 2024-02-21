@@ -1,0 +1,94 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "tardis:circuits"
+  },
+  "transitionalItem": {
+    "item": "tadditions:incomplete/shield_generator_incomplete"
+  },
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/shield_generator_incomplete"
+        },
+        {
+          "tag": "forge:plates/gold"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/shield_generator_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/shield_generator_incomplete"
+        },
+        {
+          "item": "minecraft:diamond"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/shield_generator_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:cutting",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/shield_generator_incomplete"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/shield_generator_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/shield_generator_incomplete"
+        },
+        {
+          "item": "tardis:circuits"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/shield_generator_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/shield_generator_incomplete"
+        },
+        {
+          "item": "minecraft:comparator"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/shield_generator_incomplete"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "item": "tardis:subsystem/shield_generator"
+    }
+  ],
+  "loops": 1
+}

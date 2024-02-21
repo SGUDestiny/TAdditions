@@ -1,0 +1,231 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "tadditions:artron_capacitor_ultra"
+  },
+  "transitionalItem": {
+    "item": "tadditions:incomplete/artron_capacitor_temporal_incomplete"
+  },
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/artron_capacitor_temporal_incomplete"
+        },
+        {
+          "item": "tardis:artron_capacitor_high"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/artron_capacitor_temporal_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:cutting",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/artron_capacitor_temporal_incomplete"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/artron_capacitor_temporal_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:filling",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/artron_capacitor_temporal_incomplete"
+        },
+        {
+          "fluid": "tadditions:mercury",
+          "nbt": {},
+          "amount": 250
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/artron_capacitor_temporal_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/artron_capacitor_temporal_incomplete"
+        },
+        {
+          "item": "tardis:xion_crystal"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/artron_capacitor_temporal_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/artron_capacitor_temporal_incomplete"
+        },
+        {
+          "item": "tardis:circuits"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/artron_capacitor_temporal_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/artron_capacitor_temporal_incomplete"
+        },
+        {
+          "item": "minecraft:netherite_ingot"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/artron_capacitor_temporal_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/artron_capacitor_temporal_incomplete"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/artron_capacitor_temporal_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/artron_capacitor_temporal_incomplete"
+        },
+        {
+          "item": "tadditions:artron_capacitor_speed"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/artron_capacitor_temporal_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/artron_capacitor_temporal_incomplete"
+        },
+        {
+          "item": "tardis:artron_capacitor_high"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/artron_capacitor_temporal_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:cutting",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/artron_capacitor_temporal_incomplete"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/artron_capacitor_temporal_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/artron_capacitor_temporal_incomplete"
+        },
+        {
+          "item": "tardis:xion_crystal"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/artron_capacitor_temporal_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/artron_capacitor_temporal_incomplete"
+        },
+        {
+          "item": "tardis:circuits"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/artron_capacitor_temporal_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/artron_capacitor_temporal_incomplete"
+        },
+        {
+          "item": "minecraft:netherite_ingot"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/artron_capacitor_temporal_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/artron_capacitor_temporal_incomplete"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/artron_capacitor_temporal_incomplete"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "item": "tadditions:artron_capacitor_temporal"
+    }
+  ],
+  "loops": 1
+}
