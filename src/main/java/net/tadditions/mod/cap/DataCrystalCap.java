@@ -7,7 +7,6 @@ import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.items.ItemStackHandler;
 import net.tardis.mod.helper.WorldHelper;
 
 public class DataCrystalCap implements ICrystal {
