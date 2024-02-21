@@ -11,6 +11,10 @@
             {
               "function": "minecraft:set_count",
               "count": 1
+            },
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{crystal: {dimdata: \"the_verge_of_reality\"}}"
             }
           ]
         }
