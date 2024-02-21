@@ -10,7 +10,7 @@ import software.bernie.geckolib3.model.AnimatedGeoModel;
 import java.util.List;
 
 public class ChameleonIncompleteModel extends AnimatedGeoModel<AnimatedSequenceAssemblyItem> {
-    private static final ResourceLocation modelResource = new ResourceLocation(QolMod.MOD_ID, "geo/chameleon_circuit_incomplete.geo.json");
+    private static final ResourceLocation modelResource = new ResourceLocation(QolMod.MOD_ID, "geo/incomplete/chameleon_circuit_incomplete.geo.json");
     private static final ResourceLocation animationResource = new ResourceLocation(QolMod.MOD_ID, "animations/chameleon_circuit.animation.json");
     private static final ResourceLocation textureResource = new ResourceLocation(QolMod.MOD_ID, "textures/itemanim/chameleon/chameleon_circuit_frame_1.png");
 

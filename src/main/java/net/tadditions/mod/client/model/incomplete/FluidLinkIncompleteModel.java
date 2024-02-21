@@ -6,7 +6,7 @@ import net.tadditions.mod.compat.create.AnimatedSequenceAssemblyItem;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 
 public class FluidLinkIncompleteModel extends AnimatedGeoModel<AnimatedSequenceAssemblyItem> {
-    private static final ResourceLocation modelResource = new ResourceLocation(QolMod.MOD_ID, "geo/fluid_link_incomplete.geo.json");
+    private static final ResourceLocation modelResource = new ResourceLocation(QolMod.MOD_ID, "geo/incomplete/fluid_link_incomplete.geo.json");
     private static final ResourceLocation textureResource = new ResourceLocation(QolMod.MOD_ID, "textures/itemanim/fluidlink/fluid_link_frame_1.png");
     private static final ResourceLocation animationResource = new ResourceLocation(QolMod.MOD_ID, "animations/fluid_link_animation.json");
     @Override

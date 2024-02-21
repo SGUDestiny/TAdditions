@@ -6,7 +6,7 @@ import net.tadditions.mod.compat.create.AnimatedSequenceAssemblyItem;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 
 public class StabilizerIncompleteModel extends AnimatedGeoModel<AnimatedSequenceAssemblyItem> {
-    private static final ResourceLocation modelResource = new ResourceLocation(QolMod.MOD_ID, "geo/stabilizer_incomplete.geo.json");
+    private static final ResourceLocation modelResource = new ResourceLocation(QolMod.MOD_ID, "geo/incomplete/stabilizer_incomplete.geo.json");
     private static final ResourceLocation animationResource = new ResourceLocation(QolMod.MOD_ID, "animations/stabilizer.animation.json");
     private static final ResourceLocation textureResource = new ResourceLocation(QolMod.MOD_ID, "textures/itemanim/stabilizer/stabilizer_frame_1.png");
     @Override

@@ -1,25 +1,57 @@
 {
   "type": "create:sequenced_assembly",
   "ingredient": {
-    "tag": "forge:plates/iron"
+    "item": "tardis:circuits"
   },
   "transitionalItem": {
-    "item": "tadditions:fluid_link_incomplete"
+    "item": "tadditions:incomplete/fluid_link_incomplete"
   },
   "sequence": [
     {
-      "type": "create:deploying",
+      "type": "create:cutting",
       "ingredients": [
         {
-          "item": "tadditions:fluid_link_incomplete"
-        },
-        {
-          "item": "create:cogwheel"
+          "item": "tadditions:incomplete/fluid_link_incomplete"
         }
       ],
       "results": [
         {
-          "item": "tadditions:fluid_link_incomplete"
+          "item": "tadditions:incomplete/fluid_link_incomplete"
+        }
+      ],
+      "processingTime": 40
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/fluid_link_incomplete"
+        },
+        {
+          "tag": "forge:plates/iron"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/fluid_link_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:filling",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/fluid_link_incomplete"
+        },
+        {
+          "fluid": "tadditions:mercury",
+          "nbt": {},
+          "amount": 250
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/fluid_link_incomplete"
         }
       ]
     },
@@ -27,31 +59,28 @@
       "type": "create:deploying",
       "ingredients": [
         {
-          "item": "tadditions:fluid_link_incomplete"
+          "item": "tadditions:incomplete/fluid_link_incomplete"
         },
         {
-          "item": "create:large_cogwheel"
+          "tag": "forge:plates/iron"
         }
       ],
       "results": [
         {
-          "item": "tadditions:fluid_link_incomplete"
+          "item": "tadditions:incomplete/fluid_link_incomplete"
         }
       ]
     },
     {
-      "type": "create:deploying",
+      "type": "create:pressing",
       "ingredients": [
         {
-          "item": "tadditions:fluid_link_incomplete"
-        },
-        {
-          "tag": "forge:nuggets/iron"
+          "item": "tadditions:incomplete/fluid_link_incomplete"
         }
       ],
       "results": [
         {
-          "item": "tadditions:fluid_link_incomplete"
+          "item": "tadditions:incomplete/fluid_link_incomplete"
         }
       ]
     }
@@ -61,5 +90,5 @@
       "item": "tardis:subsystem/fluid_link"
     }
   ],
-  "loops": 5
+  "loops": 1
 }

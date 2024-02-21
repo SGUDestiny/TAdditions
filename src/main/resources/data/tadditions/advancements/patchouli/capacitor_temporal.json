@@ -22,9 +22,7 @@
     }
   },
   "requirements": [
-    [
-      "capacitor_speed",
-      "capacitor_ultra"
-    ]
+      ["capacitor_speed"],
+      ["capacitor_ultra"]
   ]
 }
