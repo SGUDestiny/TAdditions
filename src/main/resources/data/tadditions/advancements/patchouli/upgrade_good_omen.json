@@ -1,0 +1,19 @@
+{
+  "criteria": {
+    "goodomen": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tadditions:upgrades/goodomen"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "goodomen"
+    ]
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Thermal Protection",
+  "icon": "tadditions:upgrades/thermal_protection",
+  "category": "tadditions:upgrades",
+  "advancement": "tadditions:patchouli/upgrade_thermal",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tadditions:upgrades/thermal_protection"
+      },
+      "title": "Thermal Protection",
+      "text": "WIP"
+    }
+  ]
+}

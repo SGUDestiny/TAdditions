@@ -1,0 +1,16 @@
+{
+  "name": "Zero Room 2",
+  "icon": "tadditions:upgrades/zr2",
+  "category": "tadditions:upgrades",
+  "advancement": "tadditions:patchouli/upgrade_zr2",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tadditions:upgrades/zr2"
+      },
+      "title": "Zero Room 2",
+      "text": "WIP"
+    }
+  ]
+}

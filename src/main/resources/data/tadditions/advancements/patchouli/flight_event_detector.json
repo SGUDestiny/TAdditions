@@ -1,0 +1,19 @@
+{
+  "criteria": {
+    "detector": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tadditions:flight_event_detector"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "detector"
+    ]
+  ]
+}

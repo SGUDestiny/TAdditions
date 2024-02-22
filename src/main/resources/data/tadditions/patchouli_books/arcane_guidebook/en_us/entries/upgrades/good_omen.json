@@ -1,0 +1,16 @@
+{
+  "name": "Good Omen",
+  "icon": "tadditions:upgrades/goodomen",
+  "category": "tadditions:upgrades",
+  "advancement": "tadditions:patchouli/upgrade_good_omen",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tadditions:upgrades/good_omen"
+      },
+      "title": "Good Omen",
+      "text": "WIP"
+    }
+  ]
+}

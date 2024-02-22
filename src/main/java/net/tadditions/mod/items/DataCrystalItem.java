@@ -123,24 +123,26 @@ public class DataCrystalItem extends Item {
 
     @Override
     public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
-        ItemStack dis = new ItemStack(this);
-        dis.getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap -> {
-            cap.setUsed(true);
-        });
-        items.add(dis);
-        ItemStack dis1 = new ItemStack(this);
-        dis1.getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap -> {
-            cap.setUsed(false);
-            cap.setType(0);
-            cap.setDimData(MDimensions.THE_VERGE);
-        });
-        items.add(dis1);
-        ItemStack dis2 = new ItemStack(this);
-        dis2.getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap -> {
-            cap.setUsed(false);
-            cap.setType(1);
-        });
-        items.add(dis2);
+        if (group.equals(ModItemGroups.TA)) {
+            ItemStack dis = new ItemStack(this);
+            dis.getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap -> {
+                cap.setUsed(true);
+            });
+            items.add(dis);
+            ItemStack dis1 = new ItemStack(this);
+            dis1.getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap -> {
+                cap.setUsed(false);
+                cap.setType(0);
+                cap.setDimData(MDimensions.THE_VERGE);
+            });
+            items.add(dis1);
+            ItemStack dis2 = new ItemStack(this);
+            dis2.getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap -> {
+                cap.setUsed(false);
+                cap.setType(1);
+            });
+            items.add(dis2);
+        }
     }
 
     @Override

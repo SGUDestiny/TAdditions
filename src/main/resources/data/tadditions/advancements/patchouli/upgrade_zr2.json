@@ -1,0 +1,19 @@
+{
+  "criteria": {
+    "zr2": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tadditions:upgrades/zr2"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "zr2"
+    ]
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "criteria": {
+    "key": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tadditions:impulse_key"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "key"
+    ]
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "criteria": {
+    "ec2": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tadditions:upgrades/ec2"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "ec2"
+    ]
+  ]
+}

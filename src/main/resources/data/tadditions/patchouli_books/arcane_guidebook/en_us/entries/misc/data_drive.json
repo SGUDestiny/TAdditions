@@ -1,0 +1,16 @@
+{
+  "name": "Advanced Quantiscope",
+  "icon": "tadditions:data_drive",
+  "category": "tadditions:misc",
+  "advancement": "tadditions:patchouli/data_drive",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tadditions:data_drive"
+      },
+      "title": "Data Drive",
+      "text": "WIP"
+    }
+  ]
+}

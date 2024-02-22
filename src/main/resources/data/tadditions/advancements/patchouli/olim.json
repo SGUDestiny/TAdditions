@@ -1,0 +1,19 @@
+{
+  "criteria": {
+    "olim": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tadditions:onetimeremote"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "olim"
+    ]
+  ]
+}

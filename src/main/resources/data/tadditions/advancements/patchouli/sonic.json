@@ -1,0 +1,19 @@
+{
+  "criteria": {
+    "sonic": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tardis:sonic"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "sonic"
+    ]
+  ]
+}

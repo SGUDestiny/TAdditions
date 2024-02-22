@@ -1,0 +1,19 @@
+{
+  "criteria": {
+    "tablet": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tardis:ars_tablet"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "tablet"
+    ]
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "criteria": {
+    "backdoor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tardis:timeship_backdoor"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "backdoor"
+    ]
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Impulse Key",
+  "icon": "tadditions:impulse_key",
+  "category": "tadditions:misc",
+  "advancement": "tadditions:patchouli/impulse_key",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tadditions:impulse_key"
+      },
+      "title": "Impulse Key",
+      "text": "WIP"
+    }
+  ]
+}

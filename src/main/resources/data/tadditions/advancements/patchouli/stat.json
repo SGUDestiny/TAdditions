@@ -1,0 +1,19 @@
+{
+  "criteria": {
+    "stat": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tardis:stattenheim_remote"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "stat"
+    ]
+  ]
+}

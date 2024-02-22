@@ -1,0 +1,19 @@
+{
+  "criteria": {
+    "data_drive": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tadditions:data_drive"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "data_drive"
+    ]
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "criteria": {
+    "foodmaker": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tadditions:foodmaker"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "foodmaker"
+    ]
+  ]
+}

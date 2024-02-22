@@ -1,0 +1,16 @@
+{
+  "name": "Electro Convert 2",
+  "icon": "tadditions:upgrades/ec2",
+  "category": "tadditions:upgrades",
+  "advancement": "tadditions:patchouli/upgrade_ec2",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tadditions:upgrades/ec2"
+      },
+      "title": "Electro Convert 2",
+      "text": "WIP"
+    }
+  ]
+}

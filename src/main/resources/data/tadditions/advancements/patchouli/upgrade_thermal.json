@@ -1,0 +1,19 @@
+{
+  "criteria": {
+    "thermal": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tadditions:upgrades/thermal_protection"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "thermal"
+    ]
+  ]
+}

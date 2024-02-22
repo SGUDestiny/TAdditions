@@ -1,0 +1,19 @@
+{
+  "criteria": {
+    "watch": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tardis:pocket_watch"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "watch"
+    ]
+  ]
+}

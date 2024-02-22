@@ -1,0 +1,16 @@
+{
+  "name": "Frame Stabilizer",
+  "icon": "tadditions:upgrades/frame_stabilizer",
+  "category": "tadditions:upgrades",
+  "advancement": "tadditions:patchouli/upgrade_frame",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tadditions:upgrades/frame_stabilizer"
+      },
+      "title": "Frame Stabilizer",
+      "text": "WIP"
+    }
+  ]
+}

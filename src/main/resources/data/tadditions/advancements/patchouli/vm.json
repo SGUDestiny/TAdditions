@@ -1,0 +1,19 @@
+{
+  "criteria": {
+    "vm": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tardis:vm"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "vm"
+    ]
+  ]
+}

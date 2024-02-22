@@ -1,0 +1,16 @@
+{
+  "name": "Stattenheim Remote",
+  "icon": "tardis:stattenheim_remote",
+  "category": "tadditions:timeship",
+  "advancement": "tadditions:patchouli/stat",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:stattenheim_remote"
+      },
+      "title": "Stattenheim Remote",
+      "text": "WIP"
+    }
+  ]
+}

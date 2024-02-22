@@ -1,0 +1,16 @@
+{
+  "name": "Olim Remote",
+  "icon": "tadditions:onetimeremote",
+  "category": "tadditions:helical_contraptions",
+  "advancement": "tadditions:patchouli/olim",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tadditions:onetimeremote"
+      },
+      "title": "Olim Remote",
+      "text": "WIP"
+    }
+  ]
+}

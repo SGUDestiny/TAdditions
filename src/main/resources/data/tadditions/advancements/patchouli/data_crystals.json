@@ -1,0 +1,19 @@
+{
+  "criteria": {
+    "datacrystal": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tadditions:data_crystal"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "datacrystal"
+    ]
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Data Crystals",
+  "icon": "tadditions:data_crystal",
+  "category": "tadditions:misc",
+  "advancement": "tadditions:patchouli/data_crystals",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tadditions:data_drive"
+      },
+      "title": "Data Crystal",
+      "text": "WIP"
+    }
+  ]
+}
