@@ -38,6 +38,7 @@ import net.tadditions.mod.QolMod;
 import net.tadditions.mod.blocks.ModBlocks;
 import net.tadditions.mod.cap.*;
 import net.tadditions.mod.commands.TACommands;
+import net.tadditions.mod.helper.IConsoleHelp;
 import net.tadditions.mod.helper.MHelper;
 import net.tadditions.mod.items.ModItems;
 import net.tadditions.mod.sound.MSounds;
@@ -58,6 +59,7 @@ import net.tardis.mod.world.dimensions.TDimensions;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.ConsoleHandler;
 
 @Mod.EventBusSubscriber(modid = QolMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class CommonEvents {
@@ -121,6 +123,12 @@ public class CommonEvents {
     public static void onLivingDead(LivingDeathEvent event){
         if(event.getEntity() instanceof EnderDragonEntity && !MHelper.hasEnd){
             MHelper.hasEnd = true;
+            for(World world : ServerLifecycleHooks.getCurrentServer().getWorlds()){
+                if(world.getCapability(Capabilities.TARDIS_DATA).isPresent()){
+                    ConsoleTile tile = TardisHelper.getConsole(ServerLifecycleHooks.getCurrentServer(), world).orElse(null);
+                    ((IConsoleHelp) tile).addAvailable(World.THE_END);
+                }
+            }
         }
     };
 
