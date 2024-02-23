@@ -31,7 +31,7 @@ public class FourteenthConsoleRender extends TileEntityRenderer<FourteenthConsol
     @Override
     public void render(FourteenthConsoleTile tileEntityIn, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
         matrixStackIn.push();
-        matrixStackIn.translate(0.5, 0, 0.5); //Translate to middle of block
+        matrixStackIn.translate(0.5, 0.6, 0.5); //Translate to middle of block
         matrixStackIn.rotate(Vector3f.ZN.rotationDegrees(180));
 
         //Monitor Text
