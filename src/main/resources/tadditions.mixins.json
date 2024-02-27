@@ -15,7 +15,6 @@
     "SPMixin",
     "SubsysMixin",
     "TARDISEngineMixin",
-    "WetMixin",
     "WorldHelperMixin"
   ],
   "minVersion": "0.8",
