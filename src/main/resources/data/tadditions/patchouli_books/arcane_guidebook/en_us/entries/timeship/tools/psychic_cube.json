@@ -1,0 +1,16 @@
+{
+  "name": "Psychic Cube",
+  "icon": "tardis:psychic_cube",
+  "category": "tadditions:timeship/tools",
+  "advancement": "tadditions:patchouli/timeship/tools/psychic_cube",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:psychic_cube"
+      },
+      "title": "Psychic Cube",
+      "text": "WIP"
+    }
+  ]
+}

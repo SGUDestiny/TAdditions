@@ -1,0 +1,16 @@
+{
+  "name": "Mercury Bottle",
+  "icon": "tardis:mercury_bottle",
+  "category": "tadditions:timeship/materials",
+  "advancement": "tadditions:patchouli/timeship/materials/mercury_bottle",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:mercury_bottle"
+      },
+      "title": "Mercury Bottle",
+      "text": "WIP"
+    }
+  ]
+}

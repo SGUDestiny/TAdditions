@@ -1,0 +1,32 @@
+{
+  "criteria": {
+    "obtain_tardis": {
+      "trigger": "tardis:obtain_tardis"
+    },
+    "mercury_bottle": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tardis:mercury_bottle"
+          }
+        ]
+      }
+    },
+    "circuits": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tardis:circuits"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    ["circuits"],
+    ["mercury_bottle"],
+    ["obtain_tardis"]
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "criteria": {
+    "obtain_tardis": {
+      "trigger": "tardis:obtain_tardis"
+    },
+    "leaky_capacitor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tardis:leaky_capacitor"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    ["leaky_capacitor"],
+    ["obtain_tardis"]
+  ]
+}

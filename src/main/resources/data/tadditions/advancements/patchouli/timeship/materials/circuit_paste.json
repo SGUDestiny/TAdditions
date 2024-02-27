@@ -1,0 +1,21 @@
+{
+  "criteria": {
+    "obtain_tardis": {
+      "trigger": "tardis:obtain_tardis"
+    },
+    "alembic": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tardis:alembic"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    ["alembic"],
+    ["obtain_tardis"]
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Data Crystal",
+  "icon": "tardis:data_crystal",
+  "category": "tadditions:timeship/tools",
+  "advancement": "tadditions:patchouli/timeship/tools/data_crystal",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:data_crystal"
+      },
+      "title": "Data Crystal",
+      "text": "WIP"
+    }
+  ]
+}

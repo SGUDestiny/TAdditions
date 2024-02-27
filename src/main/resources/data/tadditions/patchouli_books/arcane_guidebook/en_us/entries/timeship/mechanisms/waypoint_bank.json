@@ -1,0 +1,16 @@
+{
+  "name": "Waypoint Bank",
+  "icon": "tardis:waypoint_bank",
+  "category": "tadditions:timeship/mechanisms",
+  "advancement": "tadditions:patchouli/timeship/mechanisms/waypoint_bank",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:waypoint_bank"
+      },
+      "title": "Waypoint Bank",
+      "text": "WIP"
+    }
+  ]
+}

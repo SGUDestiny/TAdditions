@@ -1,0 +1,16 @@
+{
+  "name": "Artron Capacitor (Medium)",
+  "icon": "tardis:artron_capacitor_mid",
+  "category": "tadditions:timeship/artron",
+  "advancement": "tadditions:patchouli/timeship/artron/artron_capacitor_mid",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:artron_capacitor_mid"
+      },
+      "title": "Artron Capacitor (Medium)",
+      "text": "WIP"
+    }
+  ]
+}

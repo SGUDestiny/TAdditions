@@ -1,0 +1,16 @@
+{
+  "name": "Wet",
+  "icon": "minecraft:water_bucket",
+  "category": "tadditions:timeship/traits",
+  "advancement": "tadditions:patchouli/timeship/traits/traits",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "minecraft:water_bucket"
+      },
+      "title": "Wet",
+      "text": "WIP"
+    }
+  ]
+}

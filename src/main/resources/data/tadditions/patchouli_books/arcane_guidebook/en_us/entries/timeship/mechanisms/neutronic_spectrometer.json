@@ -1,0 +1,16 @@
+{
+  "name": "Neutronic Spectrometer",
+  "icon": "tardis:neutronic_spectrometer",
+  "category": "tadditions:timeship/mechanisms",
+  "advancement": "tadditions:patchouli/timeship/mechanisms/neutronic_spectrometer",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:neutronic_spectrometer"
+      },
+      "title": "Neutronic Spectrometer",
+      "text": "WIP"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Extroverted",
+  "icon": "minecraft:lantern",
+  "category": "tadditions:behaviour_traits",
+  "advancement": "tadditions:patchouli/timeship/flight_events/flight_events",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "minecraft:lantern"
+      },
+      "title": "Extroverted",
+      "text": "WIP"
+    }
+  ]
+}

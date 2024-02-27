@@ -1,0 +1,16 @@
+{
+  "name": "Atrium Upgrade",
+  "icon": "tardis:upgrades/atrium",
+  "category": "tadditions:timeship/upgrades",
+  "advancement": "tadditions:patchouli/timeship/upgrades/atrium",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:upgrades/atrium"
+      },
+      "title": "Atrium Upgrade",
+      "text": "WIP"
+    }
+  ]
+}

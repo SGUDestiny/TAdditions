@@ -1,0 +1,16 @@
+{
+  "name": "Jealous",
+  "icon": "minecraft:poisonous_potato",
+  "category": "tadditions:timeship/traits",
+  "advancement": "tadditions:patchouli/timeship/traits/traits",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "minecraft:poisonous_potato"
+      },
+      "title": "Jealous",
+      "text": "WIP"
+    }
+  ]
+}

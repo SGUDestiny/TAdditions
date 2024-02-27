@@ -1,0 +1,32 @@
+{
+  "criteria": {
+    "obtain_tardis": {
+      "trigger": "tardis:obtain_tardis"
+    },
+    "alembic": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tardis:alembic"
+          }
+        ]
+      }
+    },
+    "mercury_bottle": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tardis:mercury_bottle"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    ["alembic"],
+    ["obtain_tardis"],
+    ["mercury_bottle"]
+  ]
+}

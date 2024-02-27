@@ -1,0 +1,16 @@
+{
+  "name": "Roundel Tap",
+  "icon": "tardis:roundel_tap",
+  "category": "tadditions:timeship/mechanisms",
+  "advancement": "tadditions:patchouli/timeship/mechanisms/roundel_tap",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:roundel_tap"
+      },
+      "title": "Roundel Tap",
+      "text": "WIP"
+    }
+  ]
+}

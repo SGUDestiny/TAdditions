@@ -1,0 +1,16 @@
+{
+  "name": "Monitors",
+  "icon": "tardis:rotate_monitor",
+  "category": "tadditions:timeship/mechanisms",
+  "advancement": "tadditions:patchouli/timeship/mechanisms/monitors",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:rotate_monitor"
+      },
+      "title": "Rotating Monitor",
+      "text": "WIP"
+    }
+  ]
+}

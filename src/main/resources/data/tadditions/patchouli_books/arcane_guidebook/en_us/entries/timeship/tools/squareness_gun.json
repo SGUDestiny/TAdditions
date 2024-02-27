@@ -1,0 +1,17 @@
+{
+  "name": "Squareness Gun",
+  "icon": "tardis:squareness_gun",
+  "category": "tadditions:timeship/tools",
+  "secret": true,
+  "advancement": "tadditions:patchouli/timeship/tools/squareness_gun",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:squareness_gun"
+      },
+      "title": "Squareness Gun",
+      "text": "WIP"
+    }
+  ]
+}

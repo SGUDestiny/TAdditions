@@ -1,0 +1,16 @@
+{
+  "name": "Xion Crystals",
+  "icon": "tardis:xion_crystal",
+  "category": "tadditions:timeship/materials",
+  "advancement": "tadditions:patchouli/timeship/materials/xion_crystals",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:xion_crystal"
+      },
+      "title": "Xion Crystals",
+      "text": "WIP"
+    }
+  ]
+}

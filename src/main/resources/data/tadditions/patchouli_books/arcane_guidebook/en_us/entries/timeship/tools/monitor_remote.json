@@ -1,0 +1,16 @@
+{
+  "name": "Monitor Remote",
+  "icon": "tardis:monitor_remote",
+  "category": "tadditions:timeship/tools",
+  "advancement": "tadditions:patchouli/timeship/tools/monitor_remote",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:monitor_remote"
+      },
+      "title": "Monitor Remote",
+      "text": "WIP"
+    }
+  ]
+}

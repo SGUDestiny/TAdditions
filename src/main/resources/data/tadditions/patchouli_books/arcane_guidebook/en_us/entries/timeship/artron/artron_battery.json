@@ -1,0 +1,16 @@
+{
+  "name": "Artron Battery (Basic)",
+  "icon": "tardis:artron_battery",
+  "category": "tadditions:timeship/artron",
+  "advancement": "tadditions:patchouli/timeship/artron/artron_battery",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:artron_battery"
+      },
+      "title": "Artron Battery (Basic)",
+      "text": "WIP"
+    }
+  ]
+}

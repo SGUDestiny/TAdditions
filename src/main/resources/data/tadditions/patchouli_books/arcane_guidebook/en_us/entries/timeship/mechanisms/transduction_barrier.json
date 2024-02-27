@@ -1,0 +1,16 @@
+{
+  "name": "Transduction Barrier",
+  "icon": "tardis:transduction_barrier",
+  "category": "tadditions:timeship/mechanisms",
+  "advancement": "tadditions:patchouli/timeship/mechanisms/transduction_barrier",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:transduction_barrier"
+      },
+      "title": "Transduction Barrier",
+      "text": "WIP"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Earthshock Gun",
+  "icon": "tardis:earthshock_gun",
+  "category": "tadditions:timeship/tools",
+  "secret": true,
+  "advancement": "tadditions:patchouli/timeship/tools/earthshock_gun",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:earthshock_gun"
+      },
+      "title": "Earthshock Gun",
+      "text": "WIP"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Structure Upgrade",
+  "icon": "tardis:upgrades/structure",
+  "category": "tadditions:timeship/upgrades",
+  "advancement": "tadditions:patchouli/timeship/upgrades/structure",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:upgrades/structure"
+      },
+      "title": "Structure Upgrade",
+      "text": "WIP"
+    }
+  ]
+}

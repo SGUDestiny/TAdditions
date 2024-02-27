@@ -1,0 +1,16 @@
+{
+  "name": "TARDIS Key",
+  "icon": "tardis:tardis_key",
+  "category": "tadditions:timeship/tools",
+  "advancement": "tadditions:patchouli/timeship/tools/tardis_key",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:tardis_key"
+      },
+      "title": "TARDIS Key",
+      "text": "WIP"
+    }
+  ]
+}
