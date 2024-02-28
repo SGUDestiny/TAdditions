@@ -49,8 +49,6 @@ public class EHMixin implements IEmotionHelp {
     private boolean hasIncompatibleTrait(TardisTraitType type) {
         for (TardisTrait old : this.traits) {
             //Stop if a pre-existing trait exists already
-            if(type != null && !type.isCompatible(old.getType()))
-                return true;
             if (old != null && !old.getType().isCompatible(type))
                 return true;
         }
