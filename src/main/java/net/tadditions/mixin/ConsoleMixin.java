@@ -153,6 +153,7 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
     private final List<RegistryKey<World>> available = MHelper.availableDimensions();
     private boolean didVoidCrash = false;
     private final UnlockManager unlockManager;
+    private boolean cloakState = false;
     protected HashMap<Class<?>, ControlOverride> controlOverrides = Maps.newHashMap();
     private boolean hasPoweredDown = false;
     private boolean hasNavCom = false;
@@ -574,7 +575,7 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
 
         if (compound.contains("unlock_manager"))
             this.unlockManager.deserializeNBT(compound.getCompound("unlock_manager"));
-
+        this.cloakState = compound.getBoolean("cloakState");
         this.location = BlockPos.fromLong(compound.getLong("location"));
         this.destination = BlockPos.fromLong(compound.getLong("destination"));
         this.dimension = WorldHelper.getWorldKeyFromRL(new ResourceLocation(compound.getString("dimension")));
@@ -664,6 +665,7 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
 
         compound.put("unlock_manager", this.unlockManager.serializeNBT());
 
+        compound.putBoolean("cloakState", this.cloakState);
         compound.putLong("location", this.location.toLong());
         compound.putLong("destination", this.destination.toLong());
         compound.putInt("flight_ticks", this.flightTicks);
@@ -1026,6 +1028,14 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
     private void findNewMission(){
     }
 
+    @Override
+    public boolean getCloakState() {
+        return cloakState;
+    }
 
+    @Override
+    public void setCloakState(boolean state) {
+        this.cloakState = state;
+    }
 }
 
