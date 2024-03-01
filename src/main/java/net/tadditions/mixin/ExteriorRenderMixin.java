@@ -6,6 +6,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraftforge.common.util.LazyOptional;
 import net.tadditions.mod.helper.IConsoleHelp;
 import net.tardis.mod.client.renderers.exteriors.ExteriorRenderer;
 import net.tardis.mod.enums.EnumMatterState;
@@ -23,7 +24,7 @@ public class ExteriorRenderMixin<T extends ExteriorTile> {
     public void render(T tile, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
         matrixStackIn.push();
 
-        ConsoleTile console = TardisHelper.getConsole(tile.getWorld().getServer(), tile.getInteriorDimensionKey()).orElse(null);
+        LazyOptional<ConsoleTile> console = TardisHelper.getConsole(tile.getWorld().getServer(), tile.getInteriorDimensionKey());
 
         ExteriorRenderer.applyTransforms(matrixStackIn, tile);
 
@@ -33,7 +34,7 @@ public class ExteriorRenderMixin<T extends ExteriorTile> {
                 alpha = tile.getExteriorAnimation().getAlpha();
             }
         }
-        if(((IConsoleHelp) console).getCloakState()){
+        if(console != null && ((IConsoleHelp) console).getCloakState()){
             alpha = 0.0F;
         }
 
