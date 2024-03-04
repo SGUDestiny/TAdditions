@@ -8,6 +8,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
@@ -49,8 +50,10 @@ import net.tardis.mod.client.ClientHelper;
 import net.tardis.mod.damagesources.TDamageSources;
 import net.tardis.mod.events.LivingEvents;
 import net.tardis.mod.events.MissingMappingsLookup;
+import net.tardis.mod.helper.PlayerHelper;
 import net.tardis.mod.helper.TardisHelper;
 import net.tardis.mod.items.ISpaceHelmet;
+import net.tardis.mod.items.TItems;
 import net.tardis.mod.misc.IDontBreak;
 import net.tardis.mod.sounds.TSounds;
 import net.tardis.mod.tileentities.ConsoleTile;
@@ -90,11 +93,16 @@ public class CommonEvents {
     }
 
     @SubscribeEvent
-    public static void stopHungerAtVerge(TickEvent.PlayerTickEvent event){
+    public static void onPlayerTick(TickEvent.PlayerTickEvent event){
         if(event.player.getEntityWorld().getGameTime() % 20 == 0) {
             if (event.player.getEntityWorld().getDimensionKey() == MDimensions.THE_VERGE) {
                 if (event.player.getFoodStats().getFoodLevel() < 10)
                     event.player.getFoodStats().setFoodLevel(10);
+            }
+            if(event.player.getEntityWorld().getDimensionKey() == TDimensions.VORTEX_DIM) {
+                if(event.player.getHealth() != 1 || PlayerHelper.isInEitherHand(event.player, TItems.VORTEX_MANIP.get())){
+                    event.player.attackEntityFrom(DamageSource.OUT_OF_WORLD, 1);
+                }
             }
         }
     }
