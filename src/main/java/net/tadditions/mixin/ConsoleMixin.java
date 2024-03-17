@@ -38,10 +38,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import net.tadditions.mod.config.MConfigs;
 import net.tadditions.mod.enchantments.TAEnchants;
 import net.tadditions.mod.flightevents.TimeStorm;
-import net.tadditions.mod.helper.IConsoleHelp;
-import net.tadditions.mod.helper.MExteriorAnimationRegistry;
-import net.tadditions.mod.helper.MHelper;
-import net.tadditions.mod.helper.MSoundSchemeRegistry;
+import net.tadditions.mod.helper.*;
 import net.tadditions.mod.upgrades.FrameStabUpgrade;
 import net.tadditions.mod.world.MDimensions;
 import net.tardis.api.events.TardisEvent;
@@ -298,6 +295,10 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
             tick.tick(((ConsoleTile) (Object) this));
         }
 
+        this.getOrFindExteriorTile().ifPresent(ex -> {
+            ((IExteriorHelp) ex).setCloaked(this.cloakState);
+        });
+
         ((ConsoleTile) (Object) this).prevFlightTicks = this.flightTicks;
         if(((ConsoleTile) (Object) this).isInFlight()) {
             fly();
@@ -473,6 +474,7 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
             ((ConsoleTile) (Object) this).getEntity().remove();
 
         this.currentEvent = null;
+        this.cloakState = false;
 
         this.returnLocation = new SpaceTimeCoord(this.getCurrentDimension(), ((ConsoleTile) (Object) this).getCurrentLocation(), ((ConsoleTile) (Object) this).getTrueExteriorFacingDirection());
 
@@ -725,6 +727,7 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
     public void fly() {
         if (((ConsoleTile) (Object) this).isInFlight()) {
 
+            this.cloakState = false;
             ((ConsoleTile) (Object) this).prevFlightTicks = this.flightTicks;
             ++this.flightTicks;
 
@@ -905,7 +908,7 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
             speedmod.setValue(speedmod.getValue()*4);
 
         ((ConsoleTile) (Object) this).getControl(ThrottleControl.class).ifPresent(throt -> throttle.setValue(throt.getAmount()));
-        return ConsoleTile.TARDIS_MAX_SPEED * MathHelper.clamp(throttle.getValue(), 0.1F, 1.0F)*MathHelper.clamp(speedmod.getValue(), 0.1f, 24f);
+        return ConsoleTile.TARDIS_MAX_SPEED * MathHelper.clamp(throttle.getValue(), 0.1F, 1.0F)*MathHelper.clamp(speedmod.getValue(), 0.1f, 25f);
     }
 
     public void updateArtronValues() {
@@ -1027,6 +1030,8 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
     @Shadow
     private void findNewMission(){
     }
+
+    @Shadow public abstract void getOrCreateControls();
 
     @Override
     public boolean getCloakState() {
