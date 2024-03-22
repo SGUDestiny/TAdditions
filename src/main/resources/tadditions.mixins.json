@@ -15,6 +15,7 @@
     "NTMHelperMixin",
     "SPMixin",
     "SubsysMixin",
+    "TARDISBottomMixin",
     "TARDISEngineMixin",
     "WetMixin",
     "WorldHelperMixin"
