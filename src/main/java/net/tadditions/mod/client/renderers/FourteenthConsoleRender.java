@@ -12,6 +12,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Vector3f;
 import net.tadditions.mod.QolMod;
 import net.tadditions.mod.client.model.FourteenthConsoleModel;
+import net.tadditions.mod.helper.IMonitorHelp;
 import net.tadditions.mod.tileentity.FourteenthConsoleTile;
 import net.tardis.mod.Tardis;
 import net.tardis.mod.controls.MonitorControl;
@@ -20,7 +21,7 @@ import net.tardis.mod.misc.WorldText;
 
 public class FourteenthConsoleRender extends TileEntityRenderer<FourteenthConsoleTile> {
 
-    public static final WorldText TEXT = new WorldText(0.31F, 0.26F, 0.003F, 0xFFFFFF);
+    public static final WorldText TEXT = new WorldText(0.4F, 0.3F, 0.003F, 0xFFFFFF);
     public static FourteenthConsoleModel model = new FourteenthConsoleModel();
 
     public FourteenthConsoleRender(TileEntityRendererDispatcher rendererDispatcherIn) {
@@ -36,10 +37,42 @@ public class FourteenthConsoleRender extends TileEntityRenderer<FourteenthConsol
 
         //Monitor Text
         tileEntityIn.getControl(MonitorControl.class).ifPresent(monitor -> {
-
             matrixStackIn.push();
-            matrixStackIn.rotate(Vector3f.YP.rotationDegrees(150));
-            matrixStackIn.translate(-0.15, -0.32, -10.86 / 16.0);
+            if(tileEntityIn.getControl(MonitorControl.class).isPresent()) {
+                MonitorControl control = tileEntityIn.getControl(MonitorControl.class).get();
+
+                float angle1 = ((IMonitorHelp) control).getRotAngle();
+                float angle2 = 0;
+                if(angle1 == 45 || angle1 == 90 || angle1 == 135 || angle1 == 0){
+                    if(angle1 == 45){
+                        angle2 = 135;
+                    }
+                    if(angle1 == 90){
+                        angle2 = 90;
+                    }
+                    if(angle1 == 135){
+                        angle2 = 45;
+                    }
+                    if(angle1 == 0){
+                        angle2 = 180;
+                    }
+                    matrixStackIn.rotate(Vector3f.YN.rotationDegrees(angle2));
+                }else{
+                    if(angle1 == -135){
+                        angle2 = 45;
+                    }
+                    if(angle1 == -90){
+                        angle2 = 90;
+                    }
+                    if(angle1 == -45){
+                        angle2 = 135;
+                    }
+                    matrixStackIn.rotate(Vector3f.YP.rotationDegrees(angle2));
+                }
+            }else{
+                //matrixStackIn.rotate(Vector3f.YN.rotationDegrees(135));
+            }
+            matrixStackIn.translate(-0.2, -1.2, -0.85);
             TEXT.renderText(matrixStackIn, bufferIn, combinedLightIn, Helper.getConsoleText(tileEntityIn));
             matrixStackIn.pop();
         });
@@ -53,9 +86,8 @@ public class FourteenthConsoleRender extends TileEntityRenderer<FourteenthConsol
 
         //Sonic
         matrixStackIn.push();
-        matrixStackIn.translate(0.225, 0.5, 1.8);
-        matrixStackIn.rotate(Vector3f.XN.rotationDegrees(15));
-        float sonic_scale = 0.75F;
+        matrixStackIn.translate(0.3, -1.4, -1.5);
+        float sonic_scale = 1.0F;
         matrixStackIn.scale(sonic_scale, sonic_scale, sonic_scale);
         Minecraft.getInstance().getItemRenderer().renderItem(tileEntityIn.getSonicItem(), ItemCameraTransforms.TransformType.NONE, combinedLightIn, combinedOverlayIn, matrixStackIn, bufferIn);
         matrixStackIn.pop();

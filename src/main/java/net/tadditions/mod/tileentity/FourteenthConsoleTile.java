@@ -14,30 +14,29 @@ public class FourteenthConsoleTile extends ConsoleTile {
     public FourteenthConsoleTile() {
 
         this(ModTileEntitys.FOURTEENTH_CONSOLE.get());
-        //super(ModTileEntitys.FOURTEENTH_CONSOLE.get());
         this.registerControlEntry(ControlRegistry.MONITOR.get());
     }
 
     public FourteenthConsoleTile(TileEntityType<?> type) {
         super(type);
         this.controlOverrides.put(FacingControl.class, new ControlOverride(new Vector3d(0.22, 0.47, 1.525), EntitySize.flexible(0.2F, 0.2F)));
-        this.controlOverrides.put(StabilizerControl.class, new ControlOverride(new Vector3d(0.275, 0.438, -0.988),EntitySize.flexible(0.1875F, 0.1875F)));
+        this.controlOverrides.put(StabilizerControl.class, new ControlOverride(new Vector3d(-1.27, 0.4, 0.91),EntitySize.flexible(0.25F, 0.15F)));
         this.controlOverrides.put(TelepathicControl.class, new ControlOverride(new Vector3d(1.15, 0.4, -1.1),EntitySize.flexible(0.3F, 0.2F)));
         this.controlOverrides.put(CommunicatorControl.class, new ControlOverride(new Vector3d(1, 0.6, 0.59),EntitySize.flexible(0.3F, 0.2F)));
         this.controlOverrides.put(RefuelerControl.class, new ControlOverride(new Vector3d(0.075, 0.69, 1.17), EntitySize.flexible(0.12F, 0.12F)));
-        this.controlOverrides.put(RandomiserControl.class, new ControlOverride(new Vector3d(-0.814, 0.531, 0.007),EntitySize.flexible(0.25F, 0.25F)));
+        this.controlOverrides.put(RandomiserControl.class, new ControlOverride(new Vector3d(-1.3275, 0.48, -0.76),EntitySize.flexible(0.3F, 0.1F)));
         this.controlOverrides.put(HandbrakeControl.class, new ControlOverride(new Vector3d(1.175, 0.55, -0.78), EntitySize.flexible(0.17F, 0.2F)));
         this.controlOverrides.put(DoorControl.class, new ControlOverride(new Vector3d(-0.28, 0.64, 1.1),EntitySize.flexible(0.15F, 0.3F)));
-        this.controlOverrides.put(IncModControl.class, new ControlOverride(new Vector3d(1.019, 0.281, 0.33), EntitySize.flexible(0.25F, 0.25F)));
-        this.controlOverrides.put(DimensionControl.class, new ControlOverride(new Vector3d(-0.451, 0.562, -0.693),EntitySize.flexible(0.1875F, 0.1875F)));
-        this.controlOverrides.put(LandingTypeControl.class, new ControlOverride(new Vector3d(-0.034, 0.594, 0.884),EntitySize.flexible(0.24999999999999994F, 0.25F)));
-        this.controlOverrides.put(SonicPortControl.class, new ControlOverride(new Vector3d(0.784, 0.562, -0.001),EntitySize.flexible(0.3125F, 0.3125F)));
-        this.controlOverrides.put(XControl.class, new ControlOverride(new Vector3d(1.4, 1, -1),EntitySize.flexible(0.125F, 0.125F)));
-        this.controlOverrides.put(YControl.class, new ControlOverride(new Vector3d(-1.181, 0.406, 0.013),EntitySize.flexible(0.125F, 0.125F)));
-        this.controlOverrides.put(ZControl.class, new ControlOverride(new Vector3d(-1.182, 0.406, 0.149),EntitySize.flexible(0.125F, 0.125F)));
+        this.controlOverrides.put(IncModControl.class, new ControlOverride(new Vector3d(-0.88, 0.66, 0.906), EntitySize.flexible(0.1F, 0.1F)));
+        this.controlOverrides.put(DimensionControl.class, new ControlOverride(new Vector3d(0, 0.52, -1.5),EntitySize.flexible(0.4F, 0.12F)));
+        this.controlOverrides.put(LandingTypeControl.class, new ControlOverride(new Vector3d(-1.075, 0.62, -0.625),EntitySize.flexible(0.3F, 0.15F)));
+        this.controlOverrides.put(SonicPortControl.class, new ControlOverride(new Vector3d(0, 0.65, -0.935),EntitySize.flexible(0.15F, 0.15F)));
+        this.controlOverrides.put(XControl.class, new ControlOverride(new Vector3d(-1.29, 0.635, 0.165),EntitySize.flexible(0.1F, 0.1F)));
+        this.controlOverrides.put(YControl.class, new ControlOverride(new Vector3d(-1.15, 0.66, 0.435),EntitySize.flexible(0.1F, 0.1F)));
+        this.controlOverrides.put(ZControl.class, new ControlOverride(new Vector3d(-0.99, 0.645, 0.685),EntitySize.flexible(0.1F, 0.1F)));
         this.controlOverrides.put(ThrottleControl.class, new ControlOverride(new Vector3d(1.25, 0.55, -0.6), EntitySize.flexible(0.17F, 0.2F)));
-        this.controlOverrides.put(FastReturnControl.class, new ControlOverride(new Vector3d(0.237, 0.281, -1.056),EntitySize.flexible(0.125F, 0.125F)));
-        this.controlOverrides.put(MonitorControl.class, new ControlOverride(new Vector3d(-0.165, 1.406, -0.895), EntitySize.flexible(0.5F, 0.5F)));
+        this.controlOverrides.put(FastReturnControl.class, new ControlOverride(new Vector3d(-1.475, 0.4, 0.57),EntitySize.flexible(0.25F, 0.15F)));
+        this.controlOverrides.put(MonitorControl.class, new ControlOverride(new Vector3d(0.475, 0.8, 0.475), EntitySize.flexible(1.2F, 0.5F)));
     }
 
     @Override

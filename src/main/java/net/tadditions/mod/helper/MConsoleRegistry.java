@@ -8,8 +8,8 @@ import net.tardis.mod.misc.Console;
 import net.tardis.mod.registries.ConsoleRegistry;
 
 
-public class MConsoleRegistry extends ConsoleRegistry {
+public class MConsoleRegistry {
     public static final DeferredRegister<Console> CONSOLES = DeferredRegister.create(Console.class, QolMod.MOD_ID);
 
-    public static final RegistryObject<Console> FOURTEENTH = CONSOLES.register("fourteenth", () -> new Console(() -> ModBlocks.fourteenth_console.get().getDefaultState(), "fourteenth"));
+    public static final RegistryObject<Console> FOURTEENTH = CONSOLES.register("voyager", () -> new ModConsoles(() -> ModBlocks.fourteenth_console.get().getDefaultState(), "fourteenth"));
 }
