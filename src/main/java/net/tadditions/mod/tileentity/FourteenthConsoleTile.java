@@ -36,7 +36,7 @@ public class FourteenthConsoleTile extends ConsoleTile {
         this.controlOverrides.put(ZControl.class, new ControlOverride(new Vector3d(-0.99, 0.645, 0.685),EntitySize.flexible(0.1F, 0.1F)));
         this.controlOverrides.put(ThrottleControl.class, new ControlOverride(new Vector3d(1.25, 0.55, -0.6), EntitySize.flexible(0.17F, 0.2F)));
         this.controlOverrides.put(FastReturnControl.class, new ControlOverride(new Vector3d(-1.475, 0.4, 0.57),EntitySize.flexible(0.25F, 0.15F)));
-        this.controlOverrides.put(MonitorControl.class, new ControlOverride(new Vector3d(0.475, 0.8, 0.475), EntitySize.flexible(1.2F, 0.5F)));
+        this.controlOverrides.put(MonitorControl.class, new ControlOverride(new Vector3d(0.475, 0.8, 0.475), EntitySize.flexible(1.2F, 0.7F)));
     }
 
     @Override
