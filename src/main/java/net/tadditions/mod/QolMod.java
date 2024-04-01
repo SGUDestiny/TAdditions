@@ -30,10 +30,7 @@ import net.tadditions.mod.enchantments.TAEnchants;
 import net.tadditions.mod.events.CommonEvents;
 import net.tadditions.mod.flightevents.MFlightEvent;
 import net.tadditions.mod.fluids.MFluids;
-import net.tadditions.mod.helper.MExteriorAnimationRegistry;
-import net.tadditions.mod.helper.MExteriorRegistry;
-import net.tadditions.mod.helper.MSoundSchemeRegistry;
-import net.tadditions.mod.helper.TrueConCondition;
+import net.tadditions.mod.helper.*;
 import net.tadditions.mod.items.ModItems;
 import net.tadditions.mod.network.MNetwork;
 import net.tadditions.mod.protocol.MProtocolRegistry;
@@ -79,6 +76,7 @@ public class QolMod
         MExteriorAnimationRegistry.EXTERIOR_ANIMATIONS.register(eventBus);
         MSoundSchemeRegistry.SOUND_SCHEMES.register(eventBus);
         MExteriorRegistry.EXTERIORS.register(eventBus);
+        MConsoleRegistry.CONSOLES.register(eventBus);
         MSounds.SOUND_EVENT.register(eventBus);
 
 
