@@ -4,7 +4,10 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.tadditions.mod.helper.CloakState;
 import net.tadditions.mod.helper.IConsoleHelp;
+import net.tadditions.mod.helper.IExteriorHelp;
 import net.tardis.mod.client.ClientHelper;
 import net.tardis.mod.constants.TardisConstants;
 import net.tardis.mod.misc.GuiContext;
@@ -25,6 +28,7 @@ public class CloakingProtocol extends Protocol {
     public void call(World world, PlayerEntity playerIn, ConsoleTile console) {
         if (!world.isRemote) {
             ((IConsoleHelp) console).setCloakState(!((IConsoleHelp) console).getCloakState());
+            console.getOrFindExteriorTile().ifPresent(ex -> ((IExteriorHelp) ex).setCloakState(((IConsoleHelp) console).getCloakState() ? CloakState.CLOAKING : CloakState.UNCLOAKING));
             for (PlayerEntity player : world.getEntitiesWithinAABB(PlayerEntity.class, new AxisAlignedBB(console.getPos()).grow(16))) {
                 player.sendStatusMessage(new TranslationTextComponent(TRANS + ((IConsoleHelp) console).getCloakState()), true);
             }

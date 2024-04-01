@@ -17,7 +17,7 @@
     "SubsysMixin",
     "TARDISBottomMixin",
     "TARDISEngineMixin",
-    "WetMixin",
+    "WetTraitMixin",
     "WorldHelperMixin"
   ],
   "minVersion": "0.8",

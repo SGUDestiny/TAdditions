@@ -295,10 +295,6 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
             tick.tick(((ConsoleTile) (Object) this));
         }
 
-        this.getOrFindExteriorTile().ifPresent(ex -> {
-            ((IExteriorHelp) ex).setCloaked(this.cloakState);
-        });
-
         ((ConsoleTile) (Object) this).prevFlightTicks = this.flightTicks;
         if(((ConsoleTile) (Object) this).isInFlight()) {
             fly();

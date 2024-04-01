@@ -6,7 +6,7 @@ import net.tardis.mod.traits.WetTrait;
 import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(WetTrait.class)
-public class WetMixin {
+public class WetTraitMixin {
 
     public TardisTraitType getType() {
         return new TardisTraitType(WetTrait::new, test -> test.getTraitClass() == HydrophobicTrait.class);

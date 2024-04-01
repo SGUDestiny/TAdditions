@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraftforge.common.util.LazyOptional;
+import net.tadditions.mod.helper.CloakState;
 import net.tadditions.mod.helper.IConsoleHelp;
 import net.tadditions.mod.helper.IExteriorHelp;
 import net.tardis.mod.client.renderers.exteriors.ExteriorRenderer;
@@ -33,7 +34,11 @@ public class ExteriorRenderMixin<T extends ExteriorTile> {
                 alpha = tile.getExteriorAnimation().getAlpha();
             }
         }
-        if(((IExteriorHelp) tile).getCloaked()){
+        if(((IExteriorHelp) tile).getCloakState() == CloakState.CLOAKING){
+            alpha = (float) -Math.pow(2, ((IExteriorHelp) tile).getCloakAnimTime() / 30F)+2;
+        } else if(((IExteriorHelp) tile).getCloakState() == CloakState.UNCLOAKING){
+            alpha = (float) Math.pow(2, ((IExteriorHelp) tile).getCloakAnimTime() / 30F)-1;
+        } else if(((IExteriorHelp) tile).getCloakState() == CloakState.CLOAKED){
             alpha = 0.0F;
         }
 
