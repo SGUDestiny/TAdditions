@@ -99,6 +99,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> decorative_toyota_police_box = register("decorative_toyota_police_box", () -> setUpBlock(new FakeToyotaBlock(AbstractBlock.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(-1.0F, -1.0F).variableOpacity().notSolid())), false);
     public static final RegistryObject<Block> decorative_fourteenth_police_box = register("decorative_fourteenth_police_box", () -> setUpBlock(new FakeFourteenthPoliceBoxBlock(AbstractBlock.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(-1.0F, -1.0F).variableOpacity().notSolid())), false);
 
+    public static final RegistryObject<Block> fourteenth_console = register("fourteenth_console", () -> setUpBlock(new ConsoleBlock()), false);
 
     public static final RegistryObject<Block> ash = registerforblock("ash", () -> setUpBlock(new SandBlock(0, Prop.Blocks.BASIC_SAND.get())));
 

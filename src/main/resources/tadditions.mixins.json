@@ -5,6 +5,7 @@
   "mixins": [
     "ArtronBatMixin",
     "ArtronCapMixin",
+    "CommunicatorControlMixin",
     "ConsoleMixin",
     "DimConMixin",
     "EHMixin",
@@ -12,6 +13,7 @@
     "ExteriorArgumentMixin",
     "ExteriorMixin",
     "InvisRenMixin",
+    "MonitorControlMixin",
     "NTMHelperMixin",
     "SPMixin",
     "SubsysMixin",
