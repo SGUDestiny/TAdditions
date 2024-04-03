@@ -3,7 +3,9 @@ package net.tadditions.mixin;
 import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundNBT;
 import net.tadditions.mod.helper.CloakState;
+import net.tadditions.mod.helper.IConsoleHelp;
 import net.tadditions.mod.helper.IExteriorHelp;
+import net.tardis.mod.tileentities.ConsoleTile;
 import net.tardis.mod.tileentities.exteriors.ExteriorTile;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -40,6 +42,11 @@ public class ExteriorMixin implements IExteriorHelp {
         if(this.getCloakState() == CloakState.UNCLOAKING && this.cloakAnimTime == 30){
             this.setCloakState(CloakState.UNCLOAKED);
         }
+    }
+
+    @Inject(at = @At(value = "HEAD"), method = "copyConsoleData(Lnet/tardis/mod/tileentities/ConsoleTile;)V")
+    public void copyConsoleData(ConsoleTile console, CallbackInfo ci){
+        this.setCloakState(((IConsoleHelp) console).getCloakState() ? CloakState.CLOAKED : CloakState.UNCLOAKED);
     }
 
     @Override
