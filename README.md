@@ -7,7 +7,7 @@ Development Team:<br>
 * <i>ᐰ Destiny ᐰ</i> - <b>Lead Artist</b><br>
 * <i>Zolton</i> - <b>Part-Time Developer</b><br>
 * <i>Avathy</i> - <b>Part-Time Artist</b><br>
-* <i>Nihil</i>, <i>TheDoctor</i>, <i>TheGingerDoctor</i, <i>PastelMEMEB96</i>, <i>Monsterwaill</i> - <b>Contributors</b>
+* <i>Nihil</i>, <i>TheDoctor</i>, <i>TheGingerDoctor</i>, <i>PastelMEMEB96</i>, <i>Monsterwaill</i> - <b>Contributors</b>
 
 But most importantly, have fun!
 
