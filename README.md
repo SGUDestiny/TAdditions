@@ -4,8 +4,10 @@ Reuse and republishment is allowed under conditions of credit of original develo
 
 Development Team:<br>
 * <i>mistersecret312</i> - <b>Lead Developer</b><br>
-* <i>ᐰ Destiny ᐰ</i> and <i>Avathy</i> - <b>Content Creators</b><br>
-* <i>TheDoctor</i> and <i>Monsterwaill</i> - <b>Contributors</b>
+* <i>ᐰ Destiny ᐰ</i> - <b>Lead Artist</b><br>
+* <i>Zolton</i> - <b>Part-Time Developer</b><br>
+* <i>Avathy</i> - <b>Part-Time Artist</b><br>
+* <i>Nihil</i>, <i>TheDoctor</i>, <i>TheGingerDoctor</i, <i>PastelMEMEB96</i>, <i>Monsterwaill</i> - <b>Contributors</b>
 
 But most importantly, have fun!
 
