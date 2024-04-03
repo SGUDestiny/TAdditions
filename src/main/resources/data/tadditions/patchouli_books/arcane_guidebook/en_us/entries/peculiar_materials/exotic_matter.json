@@ -1,0 +1,16 @@
+{
+  "name": "Exotic Matter",
+  "icon": "tadditions:exotic_matter",
+  "category": "tadditions:peculiar_materials",
+  "advancement": "tadditions:patchouli/exotic_matter",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tadditions:exotic_matter"
+      },
+      "title": "Exotic Matter",
+      "text": "WIP"
+    }
+  ]
+}

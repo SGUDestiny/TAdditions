@@ -1,0 +1,251 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "tardis:subsystem/temporal_grace"
+  },
+  "transitionalItem": {
+    "item": "tadditions:incomplete/temporal_grace_overcharged_incomplete"
+  },
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/temporal_grace_overcharged_incomplete"
+        },
+        {
+          "item": "tardis:circuits"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/temporal_grace_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/temporal_grace_overcharged_incomplete"
+        },
+        {
+          "item": "tadditions:artron_capacitor_temporal"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/temporal_grace_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/temporal_grace_overcharged_incomplete"
+        },
+        {
+          "item": "tadditions:filled_electromagnetic_solenoid_container"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/temporal_grace_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/temporal_grace_overcharged_incomplete"
+        },
+        {
+          "item": "tadditions:artron_battery_temporal"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/temporal_grace_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/temporal_grace_overcharged_incomplete"
+        },
+        {
+          "item": "minecraft:netherite_ingot"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/temporal_grace_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/temporal_grace_overcharged_incomplete"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/temporal_grace_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/temporal_grace_overcharged_incomplete"
+        },
+        {
+          "item": "minecraft:redstone_block"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/temporal_grace_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/temporal_grace_overcharged_incomplete"
+        },
+        {
+          "item": "minecraft:blaze_rod"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/temporal_grace_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:cutting",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/temporal_grace_overcharged_incomplete"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/temporal_grace_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/temporal_grace_overcharged_incomplete"
+        },
+        {
+          "item": "tardis:xion_crystal"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/temporal_grace_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/temporal_grace_overcharged_incomplete"
+        },
+        {
+          "item": "tardis:circuits"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/temporal_grace_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/temporal_grace_overcharged_incomplete"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/temporal_grace_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/temporal_grace_overcharged_incomplete"
+        },
+        {
+          "item": "minecraft:golden_apple"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/temporal_grace_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/temporal_grace_overcharged_incomplete"
+        },
+        {
+          "item": "minecraft:shield"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/temporal_grace_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/temporal_grace_overcharged_incomplete"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/temporal_grace_overcharged_incomplete"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "item": "tadditions:subsystem/temporal_grace_overcharged"
+    }
+  ],
+  "loops": 1
+}

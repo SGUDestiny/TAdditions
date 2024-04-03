@@ -1,0 +1,16 @@
+{
+  "name": "Artron Battery (High)",
+  "icon": "tardis:artron_battery_high",
+  "category": "tadditions:timeship/artron",
+  "advancement": "tadditions:patchouli/timeship/artron/artron_battery_high",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:artron_battery_high"
+      },
+      "title": "Artron Battery (High)",
+      "text": "WIP"
+    }
+  ]
+}

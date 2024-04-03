@@ -1,0 +1,222 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "tardis:subsystem/dematerialisation_circuit"
+  },
+  "transitionalItem": {
+    "item": "tadditions:incomplete/dematerialisation_circuit_overcharged_incomplete"
+  },
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/dematerialisation_circuit_overcharged_incomplete"
+        },
+        {
+          "item": "tardis:circuits"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/dematerialisation_circuit_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/dematerialisation_circuit_overcharged_incomplete"
+        },
+        {
+          "item": "tadditions:artron_capacitor_temporal"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/dematerialisation_circuit_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/dematerialisation_circuit_overcharged_incomplete"
+        },
+        {
+          "item": "tadditions:filled_electromagnetic_solenoid_container"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/dematerialisation_circuit_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/dematerialisation_circuit_overcharged_incomplete"
+        },
+        {
+          "item": "tadditions:artron_battery_temporal"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/dematerialisation_circuit_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/dematerialisation_circuit_overcharged_incomplete"
+        },
+        {
+          "item": "minecraft:netherite_ingot"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/dematerialisation_circuit_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/dematerialisation_circuit_overcharged_incomplete"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/dematerialisation_circuit_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/dematerialisation_circuit_overcharged_incomplete"
+        },
+        {
+          "item": "tardis:circuits"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/dematerialisation_circuit_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/dematerialisation_circuit_overcharged_incomplete"
+        },
+        {
+          "item": "tardis:xion_crystal"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/dematerialisation_circuit_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/dematerialisation_circuit_overcharged_incomplete"
+        },
+        {
+          "item": "minecraft:netherite_ingot"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/dematerialisation_circuit_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/dematerialisation_circuit_overcharged_incomplete"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/dematerialisation_circuit_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/dematerialisation_circuit_overcharged_incomplete"
+        },
+        {
+          "item": "minecraft:ender_eye"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/dematerialisation_circuit_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/dematerialisation_circuit_overcharged_incomplete"
+        },
+        {
+          "item": "minecraft:black_stained_glass"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/dematerialisation_circuit_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/dematerialisation_circuit_overcharged_incomplete"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/dematerialisation_circuit_overcharged_incomplete"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "item": "tadditions:subsystem/dematerialisation_circuit_overcharged"
+    }
+  ],
+  "loops": 1
+}

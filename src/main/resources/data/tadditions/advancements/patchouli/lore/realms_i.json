@@ -1,0 +1,21 @@
+{
+  "criteria": {
+    "obtain_tardis": {
+      "trigger": "tardis:obtain_tardis"
+    },
+    "nav_com": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tardis:subsystem/nav_com"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    ["obtain_tardis"],
+    ["nav_com"]
+  ]
+}

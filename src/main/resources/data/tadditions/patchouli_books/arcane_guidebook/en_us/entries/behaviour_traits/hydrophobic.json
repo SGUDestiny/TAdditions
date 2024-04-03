@@ -1,0 +1,16 @@
+{
+  "name": "Hydrophobic",
+  "icon": "minecraft:bucket",
+  "category": "tadditions:behaviour_traits",
+  "advancement": "tadditions:patchouli/timeship/flight_events/flight_events",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "minecraft:bucket"
+      },
+      "title": "Hydrophobic",
+      "text": "WIP"
+    }
+  ]
+}

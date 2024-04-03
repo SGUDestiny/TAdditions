@@ -1,0 +1,6 @@
+{
+  "name": "Artron Batteries",
+  "description": "WIP",
+  "icon": "tadditions:artron_battery_temporal",
+  "parent": "tadditions:artron_systems"
+}

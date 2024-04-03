@@ -22,6 +22,13 @@ public class ModTileEntitys {
     public static final RegistryObject<TileEntityType<AdvQuantiscopeTile>> ADVQ = TILES.register("advq", () -> registerTiles(AdvQuantiscopeTile::new, ModBlocks.advanced_quantiscope_iron.get()));
 
     public static final RegistryObject<TileEntityType<ToyotaPoliceBoxExteriorTile>> EXTERIOR_TOYOTA_POLICE_BOX = TILES.register("exterior_toyota_police_box", () ->  registerTiles(ToyotaPoliceBoxExteriorTile::new, ModBlocks.exterior_toyota_police_box.get()));
+    public static final RegistryObject<TileEntityType<FourteenthPoliceBoxExteriorTile>> EXTERIOR_FOURTEENTH_POLICE_BOX = TILES.register("exterior_fourteenth_police_box", () ->  registerTiles(FourteenthPoliceBoxExteriorTile::new, ModBlocks.exterior_fourteenth_police_box.get()));
+    public static final RegistryObject<TileEntityType<FourteenthConsoleTile>> FOURTEENTH_CONSOLE = TILES.register("console_fourteenth", () -> registerTiles(FourteenthConsoleTile::new, ModBlocks.fourteenth_console.get()));
+    public static final RegistryObject<TileEntityType<ToyotaPoliceBoxDecoTile>> DECORATIVE_TOYOTA_POLICE_BOX = TILES.register("decorative_toyota_police_box", () ->  registerTiles(ToyotaPoliceBoxDecoTile::new, ModBlocks.decorative_toyota_police_box.get()));
+    public static final RegistryObject<TileEntityType<FourteenthPoliceBoxDecoTile>> DECORATIVE_FOURTEENTH_POLICE_BOX = TILES.register("decorative_fourteenth_police_box", () ->  registerTiles(FourteenthPoliceBoxDecoTile::new, ModBlocks.decorative_fourteenth_police_box.get()));
+
+    public static final RegistryObject<TileEntityType<FlightEventDetectorTile>> FLIGHT_EVENT_DETECTOR = TILES.register("flight_event_detector", () ->  registerTiles(FlightEventDetectorTile::new, ModBlocks.flight_event_detector.get()));
+
 
     public static final RegistryObject<TileEntityType<WeaponHolderBE>> WPH = TILES.register("wph", () -> registerTiles(WeaponHolderBE::new, ModBlocks.weaponholder.get()));
 

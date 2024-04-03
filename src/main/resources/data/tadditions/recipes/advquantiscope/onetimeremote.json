@@ -3,7 +3,7 @@
 	"ingredients":[
 		{"item":"minecraft:repeater"},
 		{"item":"minecraft:redstone_block"},
-		{"item":"minecraft:netherite_ingot"},
+		{"item":"minecraft:diamond"},
 		{"item":"tardis:xion_crystal"},
 		{"item":"tardis:xion_crystal"},
 		{"item":"tadditions:artron_battery_temporal"},
@@ -11,7 +11,7 @@
 		{"item":"tardis:xion_crystal"},
 		{"item":"tardis:xion_crystal"},
 		{"item":"minecraft:redstone_block"},
-		{"item":"minecraft:netherite_ingot"},
+		{"item":"minecraft:ender_eye"},
 		{"item":"tardis:stattenheim_remote"}
 	],
 	"result":{

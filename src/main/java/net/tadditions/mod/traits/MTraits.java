@@ -22,7 +22,8 @@ public class MTraits extends TraitRegistry {
     public static final RegistryObject<TardisTraitType> PEL = TRAITS.register("petlover", () -> setupTrait(PetLoverTrait::new, test -> test.getTraitClass() == PetHaterTrait.class));
     public static final RegistryObject<TardisTraitType> PEH = TRAITS.register("zoophobic", () -> setupTrait(PetHaterTrait::new, test -> test.getTraitClass() == PetLoverTrait.class));
     public static final RegistryObject<TardisTraitType> HYDROPHOBIC = TRAITS.register("hydrophobic", () -> setupTrait(HydrophobicTrait::new, test -> test.getTraitClass() == WetTrait.class));
-
+    public static final RegistryObject<TardisTraitType> INTROVERT = TRAITS.register("introvert", () -> setupTrait(IntrovertTrait::new, test -> test.getTraitClass() == ExtrovertTrait.class));
+    public static final RegistryObject<TardisTraitType> EXTROVERT = TRAITS.register("extrovert", () -> setupTrait(ExtrovertTrait::new, test -> test.getTraitClass() == IntrovertTrait.class));
 
 
     public static TardisTraitType setupTrait(Function<TardisTraitType, TardisTrait> supplier, Predicate<TardisTraitType> test){

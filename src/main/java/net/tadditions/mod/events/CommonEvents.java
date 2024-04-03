@@ -2,71 +2,76 @@ package net.tadditions.mod.events;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.mojang.serialization.Codec;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.boss.dragon.EnderDragonEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.INBT;
-import net.minecraft.util.Direction;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biomes;
-import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.FlatChunkGenerator;
-import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.settings.DimensionStructuresSettings;
 import net.minecraft.world.gen.settings.StructureSeparationSettings;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ICapabilitySerializable;
-import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.player.AdvancementEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.server.ServerLifecycleHooks;
 import net.tadditions.mod.QolMod;
 import net.tadditions.mod.blocks.ModBlocks;
 import net.tadditions.mod.cap.*;
+import net.tadditions.mod.commands.TACommands;
+import net.tadditions.mod.helper.IConsoleHelp;
+import net.tadditions.mod.helper.MHelper;
 import net.tadditions.mod.items.ModItems;
+import net.tadditions.mod.sound.MSounds;
 import net.tadditions.mod.world.MDimensions;
-import net.tadditions.mod.world.biomes.MBiomes;
 import net.tadditions.mod.world.structures.MStructures;
-import net.tardis.mod.Tardis;
-import net.tardis.mod.cap.*;
-import net.tardis.mod.config.TConfig;
-import net.tardis.mod.constants.TardisConstants;
+import net.tardis.mod.cap.Capabilities;
+import net.tardis.mod.client.ClientHelper;
+import net.tardis.mod.damagesources.TDamageSources;
+import net.tardis.mod.events.LivingEvents;
 import net.tardis.mod.events.MissingMappingsLookup;
+import net.tardis.mod.helper.PlayerHelper;
+import net.tardis.mod.helper.TardisHelper;
+import net.tardis.mod.items.ISpaceHelmet;
+import net.tardis.mod.items.TItems;
 import net.tardis.mod.misc.IDontBreak;
+import net.tardis.mod.sounds.TSounds;
+import net.tardis.mod.tileentities.ConsoleTile;
 import net.tardis.mod.world.biomes.TBiomes;
 import net.tardis.mod.world.dimensions.TDimensions;
-import net.tardis.mod.world.feature.TFeatures;
-import net.tardis.mod.world.structures.TStructures;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static net.tardis.mod.events.CommonEvents.CHUNK_CAP;
-import static net.tardis.mod.events.CommonEvents.SPACE_DIM_CAP;
+import java.util.logging.ConsoleHandler;
 
 @Mod.EventBusSubscriber(modid = QolMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class CommonEvents {
 
 
-    public static final ResourceLocation ONEUSEREMOTE_CAP = new ResourceLocation(QolMod.MOD_ID, "oneuseremote");
-    public static final ResourceLocation TAGREAOPENER_CAP = new ResourceLocation(QolMod.MOD_ID, "tagreaopener");
+    public static final ResourceLocation ONEUSEREMOTE_CAP = new ResourceLocation(QolMod.MOD_ID, "olim_remote");
+    public static final ResourceLocation TAGREAOPENER_CAP = new ResourceLocation(QolMod.MOD_ID, "data_drive");
     public static final ResourceLocation QUANT_CAP = new ResourceLocation(QolMod.MOD_ID, "quantum");
+    public static final ResourceLocation CRYSTAL_CAP = new ResourceLocation(QolMod.MOD_ID, "data_crystal");
 
 
     private static HashMap<ResourceLocation, ResourceLocation> remappedEntries = new HashMap<ResourceLocation, ResourceLocation>();
@@ -74,22 +79,84 @@ public class CommonEvents {
     public static void attachWorldCaps(AttachCapabilitiesEvent<World> event) {
 
     }
+
     @SubscribeEvent
     public static void attachItemStackCap(AttachCapabilitiesEvent<ItemStack> event) {
         if (event.getObject().getItem() == ModItems.ONEUSEREMOTE.get())
             event.addCapability(ONEUSEREMOTE_CAP, new IOneRemote.Provider(new OneUseRemoteCapability(event.getObject())));
         if (event.getObject().getItem() == ModItems.BOOS_UPGRADE.get())
-            event.addCapability(TAGREAOPENER_CAP, new IOpener.Provider(new TagreaOpenerCap(event.getObject())));
+            event.addCapability(TAGREAOPENER_CAP, new IOpener.Provider(new DataDriveCap()));
         if (event.getObject().getItem() == ModItems.QUANTUM_EXOTIC_MATTER.get())
             event.addCapability(QUANT_CAP, new IQuant.Provider(new QuantCapability(event.getObject())));
+        if(event.getObject().getItem() == ModItems.data_crystal.get())
+            event.addCapability(CRYSTAL_CAP, new ICrystal.Provider(new DataCrystalCap()));
     }
 
     @SubscribeEvent
-    public static void stopHungerAtVerge(TickEvent.PlayerTickEvent event){
+    public static void onPlayerTick(TickEvent.PlayerTickEvent event){
         if(event.player.getEntityWorld().getGameTime() % 20 == 0) {
             if (event.player.getEntityWorld().getDimensionKey() == MDimensions.THE_VERGE) {
                 if (event.player.getFoodStats().getFoodLevel() < 10)
                     event.player.getFoodStats().setFoodLevel(10);
+            }
+            if(event.player.getEntityWorld().getDimensionKey() == TDimensions.VORTEX_DIM) {
+                if(event.player.getHealth() != 1 || PlayerHelper.isInEitherHand(event.player, TItems.VORTEX_MANIP.get())){
+                    event.player.attackEntityFrom(DamageSource.OUT_OF_WORLD, 1);
+                }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onServerTick(TickEvent.ServerTickEvent event) {
+        MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
+        if (server != null && server.isServerRunning() && event.phase == TickEvent.Phase.START) {
+            for (World world : server.getWorlds()) {
+                if (world.getCapability(Capabilities.TARDIS_DATA).isPresent() && world.getGameTime() % 40 == 0) {
+                    ConsoleTile tile = TardisHelper.getConsole(server, world).orElse(null);
+                    if (tile.getInteriorManager().isAlarmOn()) {
+                        tile.getOrFindExteriorTile().ifPresent(ext -> ext.getWorld().playSound(null, ext.getPos(), TSounds.SINGLE_CLOISTER.get(), SoundCategory.BLOCKS, 5F, 0.5F));
+                    }
+                }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void registerCommands(RegisterCommandsEvent event) {
+        TACommands.register(event.getDispatcher());
+    }
+
+    @SubscribeEvent
+    public static void onLivingDead(LivingDeathEvent event){
+        if(event.getEntity() instanceof EnderDragonEntity && !MHelper.hasEnd){
+            MHelper.hasEnd = true;
+            for(World world : ServerLifecycleHooks.getCurrentServer().getWorlds()){
+                if(world.getCapability(Capabilities.TARDIS_DATA).isPresent()){
+                    ConsoleTile tile = TardisHelper.getConsole(ServerLifecycleHooks.getCurrentServer(), world).orElse(null);
+                    ((IConsoleHelp) tile).addAvailable(World.THE_END);
+                }
+            }
+        }
+    };
+
+    @SubscribeEvent
+    public static void onLivingTick(LivingEvent.LivingUpdateEvent event){
+        LivingEntity entity = event.getEntityLiving();
+        if (entity instanceof PlayerEntity) {
+
+            //Oxygen
+            if (entity.getEntityWorld().getDimensionKey() == MDimensions.MARS) {
+                if (entity.ticksExisted % 20 == 0) {
+
+                    ItemStack helm = event.getEntityLiving().getItemStackFromSlot(EquipmentSlotType.HEAD);
+                    if (helm.getItem() instanceof ISpaceHelmet)
+                        if (!((ISpaceHelmet) helm.getItem()).shouldSufficate(entity))
+                            return;
+
+                    if (!MinecraftForge.EVENT_BUS.post(new LivingEvents.SpaceAir(entity)))
+                        entity.attackEntityFrom(TDamageSources.SPACE, 2);
+                }
             }
         }
     }
@@ -111,22 +178,8 @@ public class CommonEvents {
     public static void onBiomeLoad(BiomeLoadingEvent event) {
         RegistryKey<Biome> biomeRegistryKey = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, event.getName());
         Biome.Category biomeCategory = event.getCategory();
-        if (biomeCategory != Biome.Category.NETHER && biomeCategory != Biome.Category.THEEND && biomeRegistryKey != TBiomes.TARDIS_BIOME_KEY && biomeRegistryKey != TBiomes.VORTEX_BIOME_KEY) {
-            if (biomeRegistryKey != TBiomes.SPACE_BIOME_KEY && biomeRegistryKey != Biomes.THE_VOID && biomeRegistryKey != TBiomes.MOON_BIOME_KEY) {
-                //event.getGeneration().withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, TFeatures.ConfiguredFeatures.CONFIGURED_CINNABAR_ORE);
-//                Tardis.LOGGER.log(Level.DEBUG, "Added Cinnabar Ore to: " + event.getName());
-
-                //event.getGeneration().withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, TFeatures.ConfiguredFeatures.CONFIGURED_XION_CRYSTAL);
-//                Tardis.LOGGER.log(Level.DEBUG, "Added Xion Crystal to: " + event.getName());
-
-                //event.getGeneration().withFeature(GenerationStage.Decoration.RAW_GENERATION, TFeatures.ConfiguredFeatures.CONFIGURED_BROKEN_EXTERIOR);
-//                Tardis.LOGGER.log(Level.DEBUG, "Added Broken Tardis Exterior to: " + event.getName());
-                }
-            }
-            else {
-                if (biomeRegistryKey == TBiomes.MOON_BIOME_KEY) {
-                    event.getGeneration().getStructures().add(() -> MStructures.ConfiguredStructures.CONFIGURED_MOONTEMPLE);
-            }
+        if (biomeRegistryKey == TBiomes.MOON_BIOME_KEY) {
+            event.getGeneration().getStructures().add(() -> MStructures.ConfiguredStructures.CONFIGURED_MOONTEMPLE);
         }
     }
 

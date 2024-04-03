@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": [
+      { "model": "tardis:block/three_point_lamp_on"}
+    ]
+  }
+}

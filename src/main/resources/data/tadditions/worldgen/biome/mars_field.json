@@ -51,23 +51,7 @@
   "starts": [
     "tadditions:mars_temple"
   ],
-  "spawners": {
-    "monster": [
-      {
-        "type": "minecraft:slime",
-        "weight": 20,
-        "minCount": 1,
-        "maxCount": 1
-      }
-    ],
-    "creature": [
-      
-    ],
-    "ambient": [],
-    "water_creature": [],
-    "water_ambient": [],
-    "misc": []
-  },
+  "spawners": {},
   "spawn_costs": {},
   "creature_spawn_probability": 0.20,
   "player_spawn_friendly": false,

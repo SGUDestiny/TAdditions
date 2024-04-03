@@ -1,0 +1,16 @@
+{
+  "name": "Electro Convert Upgrade",
+  "icon": "tardis:upgrades/electro_convert",
+  "category": "tadditions:timeship/upgrades",
+  "advancement": "tadditions:patchouli/timeship/upgrades/electro_convert",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:upgrades/electro_convert"
+      },
+      "title": "Electro Convert Upgrade",
+      "text": "WIP"
+    }
+  ]
+}

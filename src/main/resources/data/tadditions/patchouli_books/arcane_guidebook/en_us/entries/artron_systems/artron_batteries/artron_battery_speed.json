@@ -1,0 +1,16 @@
+{
+  "name": "Speed Artron Battery",
+  "icon": "tadditions:artron_battery_speed",
+  "category": "tadditions:artron_systems/artron_batteries",
+  "advancement": "tadditions:patchouli/battery_speed",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tadditions:artron_battery_speed"
+      },
+      "title": "Speed Battery",
+      "text": "WIP"
+    }
+  ]
+}

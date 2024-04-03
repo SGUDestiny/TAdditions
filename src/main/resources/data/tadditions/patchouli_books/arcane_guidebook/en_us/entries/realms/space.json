@@ -1,0 +1,12 @@
+{
+  "name": "Space",
+  "icon": "tardis:space_helm",
+  "category": "tadditions:realms",
+  "advancement": "tardis:space/root",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The far reaches of the universe. Empty, black nothingness as far as the eye can see. Many distant stars and galaxies, and old abandoned ships, left behind by ghost crews. I wonder what they might have left behind?"
+    }
+  ]
+}

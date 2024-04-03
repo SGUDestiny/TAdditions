@@ -1,0 +1,13 @@
+{
+  "name": "Introduction II",
+  "icon": "tadditions:arcane_guidebook",
+  "category": "tadditions:tattered_pages",
+  "advancement": "tardis:obtain_tardis",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Introduction II",
+      "text": "WIP"
+    }
+  ]
+}

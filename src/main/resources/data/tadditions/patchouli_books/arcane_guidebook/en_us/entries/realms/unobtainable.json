@@ -1,0 +1,9 @@
+{
+  "name": "Locked",
+  "icon": "minecraft:barrier",
+  "sortnum": 5,
+  "category": "tadditions:realms",
+  "advancement": "tadditions:patchouli/locked",
+  "pages": [
+  ]
+}

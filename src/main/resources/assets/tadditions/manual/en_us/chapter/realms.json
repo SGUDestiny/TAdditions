@@ -1,0 +1,8 @@
+{
+  "display_name": "Realms",
+  "pages": [
+    "tadditions:realms/realms_intro",
+    "tadditions:realms/realms_mars",
+    "tadditions:realms/realms_verge"
+  ]
+}

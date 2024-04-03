@@ -19,7 +19,7 @@ import software.bernie.geckolib3.util.GeckoLibUtil;
 
 import java.util.List;
 
-public class ZPFChamberTile extends MultiblockMasterTile implements IAnimatable {
+public class ZPFChamberTile extends TileEntity implements IAnimatable {
     public AnimationFactory factory = GeckoLibUtil.createFactory(this);
 
     public ZPFChamberTile(){
@@ -30,21 +30,6 @@ public class ZPFChamberTile extends MultiblockMasterTile implements IAnimatable 
         event.getController().setAnimation((new AnimationBuilder()).addAnimation("loop", ILoopType.EDefaultLoopTypes.LOOP));
 
         return PlayState.CONTINUE;
-    }
-
-    @Override
-    public void remove() {
-        List<BlockPos> poses = this.getSlavePositions();
-        super.remove();
-        this.getWorld().setBlockState(this.getMaster(), ModBlocks.zero_point_field_broken.get().getDefaultState());
-        poses.forEach(pos -> {
-            this.getWorld().setBlockState(pos, TBlocks.multiblock.get().getDefaultState());
-            TileEntity te = this.getWorld().getTileEntity(pos);
-            if (te instanceof IMultiblock) {
-                ((IMultiblock) te).setMasterPos(this.getPos());
-                ((IMultiblock) te).getMasterTile().addSlavePos(pos);
-            }
-        });
     }
 
     @Override

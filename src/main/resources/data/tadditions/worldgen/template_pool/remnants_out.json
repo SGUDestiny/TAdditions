@@ -1,0 +1,42 @@
+{
+  "name": "tadditions:remnants_out",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 25,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "tadditions:loot_corridor",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 25,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "tadditions:tardis_corridor",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 25,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "tadditions:zpfc_room",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 25,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "tadditions:remnant_murasama",
+        "processors": "minecraft:empty"
+      }
+    }
+  ]
+}

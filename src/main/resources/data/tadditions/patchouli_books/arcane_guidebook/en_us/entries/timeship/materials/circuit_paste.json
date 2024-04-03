@@ -1,0 +1,16 @@
+{
+  "name": "Circuit Paste",
+  "icon": "tardis:circuit_paste",
+  "category": "tadditions:timeship/materials",
+  "advancement": "tadditions:patchouli/timeship/materials/circuit_paste",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:circuit_paste"
+      },
+      "title": "Circuit Paste",
+      "text": "WIP"
+    }
+  ]
+}

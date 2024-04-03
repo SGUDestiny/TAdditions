@@ -1,0 +1,19 @@
+{
+  "criteria": {
+    "murasama": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tadditions:murasama"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "murasama"
+    ]
+  ]
+}

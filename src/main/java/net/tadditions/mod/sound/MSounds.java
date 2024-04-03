@@ -12,6 +12,9 @@ import net.tadditions.mod.QolMod;
 public class MSounds {
     public static final DeferredRegister<SoundEvent> SOUND_EVENT = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, QolMod.MOD_ID);
 
+    public static final RegistryObject<SoundEvent> FULLREMA =
+            soundEventRegister("remasound");
+
     public static final RegistryObject<SoundEvent> DISC1 =
             soundEventRegister("disc1");
 
@@ -24,18 +27,11 @@ public class MSounds {
     public static final RegistryObject<SoundEvent> DISC4 =
             soundEventRegister("disc4");
 
-
     public static final RegistryObject<SoundEvent> VERAMB1 =
             soundEventRegister("verge_ambient");
 
-    public static final RegistryObject<SoundEvent> FULLREMA =
-            soundEventRegister("remasound");
-
     public static final RegistryObject<SoundEvent> MURASAMA =
             soundEventRegister("murasama");
-
-    public static final RegistryObject<SoundEvent> POWERAXE =
-            soundEventRegister("poweraxe");
 
     public static final RegistryObject<SoundEvent> DESPITEITALL =
             soundEventRegister("despite_it_all");

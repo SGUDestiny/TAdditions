@@ -1,0 +1,16 @@
+{
+  "name": "Murasama",
+  "icon": "tadditions:murasama",
+  "category": "tadditions:artifacts",
+  "advancement": "tadditions:patchouli/murasama",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tadditions:murasama"
+      },
+      "title": "Murasama",
+      "text": "WIP"
+    }
+  ]
+}

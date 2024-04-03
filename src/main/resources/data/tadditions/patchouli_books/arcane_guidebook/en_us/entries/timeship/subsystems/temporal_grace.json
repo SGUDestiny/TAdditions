@@ -1,0 +1,16 @@
+{
+  "name": "Temporal Grace",
+  "icon": "tardis:subsystem/temporal_grace",
+  "category": "tadditions:timeship/subsystems",
+  "advancement": "tadditions:patchouli/timeship/subsystems/temporal_grace",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:subsystem/temporal_grace"
+      },
+      "title": "Temporal Grace",
+      "text": "WIP"
+    }
+  ]
+}

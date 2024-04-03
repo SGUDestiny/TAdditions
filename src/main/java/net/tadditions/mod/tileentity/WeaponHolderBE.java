@@ -1,12 +1,14 @@
 package net.tadditions.mod.tileentity;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.block.StainedGlassPaneBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntity;
+import net.tadditions.mod.items.ModItems;
 
 public class WeaponHolderBE extends TileEntity {
-    private ItemStack weapons = ItemStack.EMPTY;
+    private ItemStack weapons = ModItems.MURASAMA.get().getDefaultInstance();
 
     public WeaponHolderBE() {
         super(ModTileEntitys.WPH.get());
@@ -38,4 +40,5 @@ public class WeaponHolderBE extends TileEntity {
         if(!world.isRemote)
             world.notifyBlockUpdate(getPos(), getBlockState(), getBlockState(), 3);
     }
+
 }

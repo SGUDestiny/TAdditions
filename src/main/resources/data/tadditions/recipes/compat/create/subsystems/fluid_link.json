@@ -1,0 +1,100 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "tardis:circuits"
+  },
+  "transitionalItem": {
+    "item": "tadditions:incomplete/fluid_link_incomplete"
+  },
+  "sequence": [
+    {
+      "type": "create:cutting",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/fluid_link_incomplete"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/fluid_link_incomplete"
+        }
+      ],
+      "processingTime": 40
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/fluid_link_incomplete"
+        },
+        {
+          "tag": "forge:plates/iron"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/fluid_link_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:filling",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/fluid_link_incomplete"
+        },
+        {
+          "fluid": "tadditions:mercury",
+          "nbt": {},
+          "amount": 250
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/fluid_link_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/fluid_link_incomplete"
+        },
+        {
+          "tag": "forge:plates/iron"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/fluid_link_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/fluid_link_incomplete"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/fluid_link_incomplete"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "item": "tardis:subsystem/fluid_link"
+    }
+  ],
+  "loops": 1
+}

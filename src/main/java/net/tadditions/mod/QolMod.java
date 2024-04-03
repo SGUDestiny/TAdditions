@@ -8,10 +8,9 @@ import net.minecraft.item.AxeItem;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.crafting.CraftingHelper;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.InterModComms;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -23,15 +22,15 @@ import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.tadditions.mod.blocks.ModBlocks;
 import net.tadditions.mod.cap.*;
+import net.tadditions.mod.commands.TACommands;
+import net.tadditions.mod.compat.create.CreateItems;
 import net.tadditions.mod.config.MConfigs;
 import net.tadditions.mod.container.MContainers;
+import net.tadditions.mod.enchantments.TAEnchants;
 import net.tadditions.mod.events.CommonEvents;
 import net.tadditions.mod.flightevents.MFlightEvent;
 import net.tadditions.mod.fluids.MFluids;
-import net.tadditions.mod.helper.MExteriorAnimationRegistry;
-import net.tadditions.mod.helper.MExteriorRegistry;
-import net.tadditions.mod.helper.MSoundSchemeRegistry;
-import net.tadditions.mod.helper.TrueConCondition;
+import net.tadditions.mod.helper.*;
 import net.tadditions.mod.items.ModItems;
 import net.tadditions.mod.network.MNetwork;
 import net.tadditions.mod.protocol.MProtocolRegistry;
@@ -69,6 +68,7 @@ public class QolMod
         MProtocolRegistry.PROTOCOLS.register(eventBus);
         TARecipeSerialisers.RECIPE_SERIALISERS.register(eventBus);
         MBiomes.BIOMES.register(eventBus);
+        TAEnchants.register(eventBus);
         MFluids.register(eventBus);
         MFeatures.FEATURES.register(eventBus);
         MStructures.Structures.STRUCTURES.register(eventBus);
@@ -76,9 +76,8 @@ public class QolMod
         MExteriorAnimationRegistry.EXTERIOR_ANIMATIONS.register(eventBus);
         MSoundSchemeRegistry.SOUND_SCHEMES.register(eventBus);
         MExteriorRegistry.EXTERIORS.register(eventBus);
+        MConsoleRegistry.CONSOLES.register(eventBus);
         MSounds.SOUND_EVENT.register(eventBus);
-
-
 
 
         eventBus.addListener(this::setup);
@@ -88,6 +87,9 @@ public class QolMod
         eventBus.addListener(this::processIMC);
 
         eventBus.addListener(this::doClientStuff);
+        if(ModList.get().isLoaded("create")) {
+            CreateItems.register(eventBus);
+        }
 
 
         MNetwork.init();
@@ -105,14 +107,19 @@ public class QolMod
                     MTraits.registerRarities();
                     MStructures.setupStructures();
                     MStructures.ConfiguredStructures.registerConfiguredStructures();
+                    TACommands.registerCustomArgumentTypes();
                     MFeatures.registerConfiguredFeatures();
                     AxeItem.BLOCK_STRIPPING_MAP = new ImmutableMap.Builder<Block, Block>().putAll(AxeItem.BLOCK_STRIPPING_MAP)
                             .put(ModBlocks.scorched_log.get(), ModBlocks.sanguine_log.get()).build();
                 });
+
+
+
         CommonEvents.getAllMappingEntries();
         CraftingHelper.register(TrueConCondition.Serializer.INSTANCE);
         CapabilityManager.INSTANCE.register(IOneRemote.class, new IOneRemote.Storage(), () -> new OneUseRemoteCapability(null));
-        CapabilityManager.INSTANCE.register(IOpener.class, new IOpener.Storage(), () -> new TagreaOpenerCap(null));
+        CapabilityManager.INSTANCE.register(IOpener.class, new IOpener.Storage(), DataDriveCap::new);
+        CapabilityManager.INSTANCE.register(ICrystal.class, new ICrystal.Storage(), DataCrystalCap::new);
         CapabilityManager.INSTANCE.register(IQuant.class, new IQuant.Storage(), () -> new QuantCapability(null));
     }
 

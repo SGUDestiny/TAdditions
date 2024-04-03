@@ -1,0 +1,16 @@
+{
+  "name": "Nav Com",
+  "icon": "tardis:subsystem/nav_com",
+  "category": "tadditions:timeship/subsystems",
+  "advancement": "tadditions:patchouli/timeship/subsystems/nav_com",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:subsystem/nav_com"
+      },
+      "title": "Nav Com",
+      "text": "WIP"
+    }
+  ]
+}

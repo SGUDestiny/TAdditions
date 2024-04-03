@@ -1,0 +1,16 @@
+{
+  "name": "Quantiscope",
+  "icon": "tardis:quantiscope_brass",
+  "category": "tadditions:timeship/mechanisms",
+  "advancement": "tadditions:patchouli/timeship/mechanisms/quantiscope",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:quantiscope_brass"
+      },
+      "title": "Quantiscope",
+      "text": "WIP"
+    }
+  ]
+}

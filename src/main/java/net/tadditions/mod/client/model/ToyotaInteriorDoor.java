@@ -15,6 +15,7 @@ import net.tadditions.mod.QolMod;
 import net.tardis.mod.cap.Capabilities;
 import net.tardis.mod.client.models.LightModelRenderer;
 import net.tardis.mod.client.models.interiordoors.AbstractInteriorDoorModel;
+import net.tardis.mod.client.models.interiordoors.ModernPoliceBoxInteriorModel;
 import net.tardis.mod.client.renderers.boti.BOTIRenderer;
 import net.tardis.mod.client.renderers.boti.PortalInfo;
 import net.tardis.mod.client.renderers.entity.DoorRenderer;
@@ -273,8 +274,7 @@ public class ToyotaInteriorDoor extends AbstractInteriorDoorModel {
 
 		SOTO = new ModelRenderer(this);
 		SOTO.setRotationPoint(0.0F, 0.0F, 0.0F);
-		Interior_doors.addChild(SOTO);
-		SOTO.setTextureOffset(70, 70).addBox(-9.0F, -33.0F, -2.0F, 18.0F, 33.0F, 2.0F, 0.0F, false);
+		SOTO.setTextureOffset(200, 181).addBox(-9.0F, -9.0F, -2.0F, 18.0F, 33.0F, 2.0F, 0.0F, false);
 	}
 
 		@Override
@@ -339,8 +339,10 @@ public class ToyotaInteriorDoor extends AbstractInteriorDoorModel {
 		matrixStack.pop();
 	}
 
+
 	@Override
-	public void renderBoti(DoorEntity door, MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay) {
+	public void renderBoti(DoorEntity door, MatrixStack matrixStack, IVertexBuilder buffer, int packedLight,
+						   int packedOverlay) {
 		if(Minecraft.getInstance().world != null && door.getOpenState() != EnumDoorState.CLOSED){
 			Minecraft.getInstance().world.getCapability(Capabilities.TARDIS_DATA).ifPresent(data -> {
 				matrixStack.push();
@@ -349,19 +351,20 @@ public class ToyotaInteriorDoor extends AbstractInteriorDoorModel {
 				info.setWorldShell(data.getBotiWorld());
 
 				info.setTranslate(matrix -> {
-					matrix.scale(1f, 1f, 1.3f);
-				//	matrix.translate(0, -1.4f, -0.4f);
+
+					matrix.scale(1.1f, 1.1f, 1.2f);
+					matrix.translate(0.025, 0, 0);
 					DoorRenderer.applyTranslations(matrix, door.rotationYaw - 180, door.getHorizontalFacing());
 				});
 				info.setTranslatePortal(matrix -> {
-                    matrix.rotate(Vector3f.YP.rotationDegrees(WorldHelper.getAngleFromFacing(data.getBotiWorld().getPortalDirection())));
-                    matrix.rotate(Vector3f.ZN.rotationDegrees(180));
-				//	matrix.translate(-0.5f, -0.5f, 0.0);
+					matrix.rotate(Vector3f.ZN.rotationDegrees(180));
+					matrix.rotate(Vector3f.YP.rotationDegrees(WorldHelper.getAngleFromFacing(data.getBotiWorld().getPortalDirection())));
+					matrix.translate(-0.5, -1.75, -0.5);
 				});
 
 				info.setRenderPortal((matrix, impl) -> {
 					matrix.push();
-					matrix.translate(0,0,0);
+					matrix.translate(-0.05, -0.2, -0.5f);
 					matrix.scale(1.1F, 1.1F, 1.1F);
 					this.SOTO.render(matrix, impl.getBuffer(RenderType.getEntityCutout(this.getTexture())), packedLight, packedOverlay);
 					matrix.pop();

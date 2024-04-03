@@ -1,0 +1,6 @@
+{
+  "name": "Flight Events",
+  "description": "WIP",
+  "icon": "tardis:manual",
+  "parent": "tadditions:timeship"
+}

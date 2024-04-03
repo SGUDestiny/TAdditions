@@ -1,0 +1,16 @@
+{
+  "name": "Temporal Artron Battery",
+  "icon": "tadditions:artron_battery_temporal",
+  "category": "tadditions:artron_systems/artron_batteries",
+  "advancement": "tadditions:patchouli/battery_temporal",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tadditions:artron_battery_temporal"
+      },
+      "title": "Temporal Battery",
+      "text": "WIP"
+    }
+  ]
+}

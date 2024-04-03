@@ -118,4 +118,8 @@ public class FoodMakerScreen extends Screen {
         return list;
     }
 
+    @Override
+    public boolean isPauseScreen() {
+        return false;
+    }
 }

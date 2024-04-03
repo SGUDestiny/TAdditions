@@ -1,0 +1,113 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "tardis:circuits"
+  },
+  "transitionalItem": {
+    "item": "tadditions:incomplete/stabilizer_incomplete"
+  },
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/stabilizer_incomplete"
+        },
+        {
+          "tag": "forge:storage_blocks/iron"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/stabilizer_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/stabilizer_incomplete"
+        },
+        {
+          "item": "minecraft:obsidian"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/stabilizer_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/stabilizer_incomplete"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/stabilizer_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/stabilizer_incomplete"
+        },
+        {
+          "tag": "forge:storage_blocks/iron"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/stabilizer_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/stabilizer_incomplete"
+        },
+        {
+          "item": "minecraft:obsidian"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/stabilizer_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/stabilizer_incomplete"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/stabilizer_incomplete"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "item": "tardis:subsystem/stabilizer"
+    }
+  ],
+  "loops": 1
+}

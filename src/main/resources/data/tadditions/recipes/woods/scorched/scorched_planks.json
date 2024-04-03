@@ -3,7 +3,7 @@
   "group": "planks",
   "ingredients": [
     {
-      "tag": "tadditions:scorched_logs"
+      "item": "tadditions:scorched_log"
     }
   ],
   "result": {

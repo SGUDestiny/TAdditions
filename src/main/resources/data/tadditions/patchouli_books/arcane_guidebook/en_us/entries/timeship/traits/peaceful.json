@@ -1,0 +1,16 @@
+{
+  "name": "Peaceful",
+  "icon": "minecraft:poppy",
+  "category": "tadditions:timeship/traits",
+  "advancement": "tadditions:patchouli/timeship/traits/traits",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "minecraft:poppy"
+      },
+      "title": "Peaceful",
+      "text": "WIP"
+    }
+  ]
+}

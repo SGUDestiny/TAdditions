@@ -13,18 +13,16 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.tadditions.mod.QolMod;
+import net.tadditions.mod.client.renderers.DecorativeToyotaItemRenderer;
 import net.tadditions.mod.client.renderers.SolenoidFilledItemRenderer;
 import net.tadditions.mod.client.renderers.ZPFChamberBrokenItemRenderer;
 import net.tadditions.mod.client.renderers.ZPFChamberItemRenderer;
+import net.tadditions.mod.fluids.MFluids;
 import net.tadditions.mod.helper.TAMultiblockPatterns;
 import net.tadditions.mod.items.AnimatedBlockItem;
-import net.tadditions.mod.items.AnimatedMultiblockBlockItem;
 import net.tadditions.mod.items.ModItemGroups;
 import net.tadditions.mod.items.ModItems;
-import net.tardis.mod.blocks.HoloLadderBlock;
-import net.tardis.mod.blocks.QuantiscopeBlock;
-import net.tardis.mod.blocks.RoundelBlock;
-import net.tardis.mod.blocks.WaypointBankBlock;
+import net.tardis.mod.blocks.*;
 import net.tardis.mod.blocks.exteriors.ExteriorBlock;
 import net.tardis.mod.blocks.multiblock.MultiblockPatterns;
 import net.tardis.mod.itemgroups.TItemGroups;
@@ -42,21 +40,24 @@ public class ModBlocks {
 
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, QolMod.MOD_ID);
 
+    public static final RegistryObject<Block> flight_event_detector = registerforblock("flight_event_detector", () -> setUpBlock(new FlightEventDetectorBlock(Prop.Blocks.BASIC_TECH.get().notSolid())));
+
+
     public static final RegistryObject<Block> barrier = registerforblock("verge_barrier", () -> setUpBlock(new VergeBarrierBlock(Prop.Blocks.BASIC_TECH.get())));
-    public static final RegistryObject<Block> lightbox = registerforblock("lightbox", () -> setUpBlock(new LightBox(Prop.Blocks.BASIC_TECH.get().setLightLevel((state) -> {
+    public static final RegistryObject<Block> lightbox = registerforblock("lightbox", () -> setUpBlock(new LightBox(Prop.Blocks.BASIC_TECH.get().hardnessAndResistance(2F).setLightLevel((state) -> {
         return 15;
     }))));
 
-    public static final RegistryObject<Block> zero_point_field_normal = registerformultiblockanimitem("zero_point_field_chamber", () -> setUpBlock(new ZeroPointFieldChamberBlock(Prop.Blocks.BASIC_TECH.get().notSolid().setLightLevel((state) -> {
+    public static final RegistryObject<Block> zero_point_field_normal = registerforblockanimitem("zero_point_field_chamber", () -> setUpBlock(new ZeroPointFieldChamberBlock(Prop.Blocks.BASIC_TECH.get().notSolid().setLightLevel((state) -> {
         return 3;
-    }))), new Item.Properties().group(ModItemGroups.TA).setISTER(() -> ZPFChamberItemRenderer::new), TAMultiblockPatterns.ZPFC);
-    public static final RegistryObject<Block> zero_point_field_broken = registerformultiblockanimitem("zero_point_field_chamber_broken", () -> setUpBlock(new ZeroPointFieldChamberBlock(Prop.Blocks.BASIC_TECH.get().notSolid().setLightLevel((state) -> {
+    }))), new Item.Properties().group(ModItemGroups.TA).setISTER(() -> ZPFChamberItemRenderer::new));
+    public static final RegistryObject<Block> zero_point_field_broken = registerforblockanimitem("zero_point_field_chamber_broken", () -> setUpBlock(new ZeroPointFieldChamberBlock(Prop.Blocks.BASIC_TECH.get().notSolid().setLightLevel((state) -> {
         return 0;
-    }))), new Item.Properties().group(ModItemGroups.TA).setISTER(() -> ZPFChamberBrokenItemRenderer::new), TAMultiblockPatterns.ZPFC);
+    }))), new Item.Properties().group(ModItemGroups.TA).setISTER(() -> ZPFChamberBrokenItemRenderer::new));
 
     public static final RegistryObject<Block> controlpanel_deco = registerforblock("decorative_control_panel", () -> setUpBlock(new ControlPanel(Prop.Blocks.BASIC_TECH.get().notSolid())));
 
-    public static final RegistryObject<Block> weaponholder = registerforblock("katana_stand", () -> setUpBlock(new WeaponHolder(AbstractBlock.Properties.create(Material.WOOD).harvestTool(ToolType.AXE))));
+    public static final RegistryObject<Block> weaponholder = registerforblock("katana_stand", () -> setUpBlock(new WeaponHolder(AbstractBlock.Properties.create(Material.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(2F))));
 
     public static final RegistryObject<Block> broken_old_ladder = registerforblock("broken_old_ladders", () -> setUpBlock(new HoloLadderBlock(Prop.Blocks.BASIC_TECH.get().notSolid())));
     public static final RegistryObject<Block> old_ladder = registerforblock("old_ladders", () -> setUpBlock(new HoloLadderBlock(Prop.Blocks.BASIC_TECH.get().notSolid())));
@@ -93,6 +94,12 @@ public class ModBlocks {
     public static final RegistryObject<Block> scorched_fence_gate = registerforblock("scorched_fence_gate", () -> setUpBlock(new FenceGateBlock(Prop.Blocks.BASIC_WOOD.get())));
 
     public static final RegistryObject<Block> exterior_toyota_police_box = register("exterior_toyota_police_box", () -> setUpBlock(new ExteriorBlock()), false);
+    public static final RegistryObject<Block> exterior_fourteenth_police_box = register("exterior_fourteenth_police_box", () -> setUpBlock(new ExteriorBlock()), false);
+
+    public static final RegistryObject<Block> decorative_toyota_police_box = register("decorative_toyota_police_box", () -> setUpBlock(new FakeToyotaBlock(AbstractBlock.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(-1.0F, -1.0F).variableOpacity().notSolid())), false);
+    public static final RegistryObject<Block> decorative_fourteenth_police_box = register("decorative_fourteenth_police_box", () -> setUpBlock(new FakeFourteenthPoliceBoxBlock(AbstractBlock.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(-1.0F, -1.0F).variableOpacity().notSolid())), false);
+
+    public static final RegistryObject<Block> fourteenth_console = register("fourteenth_console", () -> setUpBlock(new ConsoleBlock()), false);
 
     public static final RegistryObject<Block> ash = registerforblock("ash", () -> setUpBlock(new SandBlock(0, Prop.Blocks.BASIC_SAND.get())));
 
@@ -631,8 +638,13 @@ public class ModBlocks {
     public static final RegistryObject<Block> roundel_tech_wall_lamp = register("roundelcon/tech_wall_lamp", () -> setUpBlock(new RoundelContainer(Block.Properties.create(Material.ROCK).setLightLevel((state) -> {
         return 15;
     }))));
+
+    public static final RegistryObject<Block> three_point_lamp = register("roundelcon/three_point_lamp", () -> setUpBlock(new RoundelContainer(Block.Properties.create(Material.ROCK, MaterialColor.SAND))));
+    public static final RegistryObject<Block> tungsten_blue_runner_light = register("roundelcon/tungsten_blue_runner_light", () -> setUpBlock(new RoundelContainer(Block.Properties.create(Material.ROCK).setLightLevel((state) -> {
+        return 15;
+    }))));
     
-    public static final RegistryObject<Block> foodmaker = register("foodmaker", () -> setUpBlock(new FoodMaker()), TItemGroups.MAINTENANCE);
+    public static final RegistryObject<Block> foodmaker = register("foodmaker", () -> setUpBlock(new FoodMaker()), ModItemGroups.TA);
 
 
     private static <T extends Block> T setUpBlock(T block) {
@@ -697,12 +709,6 @@ public class ModBlocks {
         return registryObject;
     }
 
-    private static <T extends Block> RegistryObject<T> registerformultiblockanimitem(String id, Supplier<T> blockSupplier, Item.Properties props, MultiblockPatterns.MultiblockPattern pattern){
-        RegistryObject<T> registryObject = BLOCKS.register(id, blockSupplier);
-        ModItems.ITEMS.register(id, () -> new AnimatedMultiblockBlockItem(registryObject.get(), pattern, props));
-        return registryObject;
-    }
-
     /**
      * Registers a Block and registers a BlockItem depending if hasItem is true
      * <br> If hasItem is true, register a blockItem into the Future ItemGroup
@@ -712,10 +718,10 @@ public class ModBlocks {
      * @param hasItem
      * @return
      */
-    private static <T extends Block> RegistryObject<T> register(String id, Supplier<T> blockSupplier, boolean hasItem){
+    private static <T extends Block> RegistryObject<T>  register(String id, Supplier<T> blockSupplier, boolean hasItem){
         RegistryObject<T> registryObject = BLOCKS.register(id, blockSupplier);
         if (hasItem)
-            TItems.ITEMS.register(id, () -> new BlockItem(registryObject.get(), new Item.Properties().group(TItemGroups.FUTURE)));
+            ModItems.ITEMS.register(id, () -> new BlockItem(registryObject.get(), new Item.Properties().group(TItemGroups.FUTURE)));
         return registryObject;
     }
 

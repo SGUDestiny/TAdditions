@@ -18,36 +18,93 @@
         "items": [
           {
             "item": "tadditions:subsystem/dematerialisation_circuit_overcharged"
-          },
+          }
+        ]
+      }
+    },
+    "2": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "item": "tadditions:subsystem/fluid_link_overcharged"
-          },
+          }
+        ]
+      }
+    },
+    "3": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "item": "tadditions:subsystem/chameleon_circuit_overcharged"
-          },
+          }
+        ]
+      }
+    },
+    "4": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+
           {
             "item": "tadditions:subsystem/interstitial_antenna_overcharged"
-          },
+          }
+        ]
+      }
+    },
+    "5": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "item": "tadditions:subsystem/temporal_grace_overcharged"
-          },
+          }
+        ]
+      }
+    },
+    "6": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "item": "tadditions:subsystem/stabilizer_overcharged"
-          },
+          }
+        ]
+      }
+    },
+    "7": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "item": "tadditions:subsystem/nav_com_overcharged"
           }
         ]
       }
+    },
+    "8": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tadditions:subsystem/shield_generator_overcharged"
+          }
+        ]
+      }
     }
-},
-
+  },
   "rewards": {
     "experience": 10
   },
   "requirements": [
-    [
-      "1"
-    ]
+    ["1"],
+    ["2"],
+    ["3"],
+    ["4"],
+    ["5"],
+    ["6"],
+    ["7"],
+    ["8"]
   ]
 }

@@ -1,0 +1,62 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "tardis:leaky_capacitor"
+  },
+  "transitionalItem": {
+    "item": "tadditions:incomplete/artron_capacitor_incomplete"
+  },
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/stabilizer_incomplete"
+        },
+        {
+          "item": "minecraft:redstone"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/stabilizer_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/stabilizer_incomplete"
+        },
+        {
+          "tag": "forge:plates/iron"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/stabilizer_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/stabilizer_incomplete"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/stabilizer_incomplete"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "item": "tardis:artron_capacitor"
+    }
+  ],
+  "loops": 1
+}

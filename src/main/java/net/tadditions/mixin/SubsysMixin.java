@@ -111,7 +111,6 @@ public abstract class SubsysMixin {
                 }
             });
         if(!this.canBeUsed()) {
-            System.out.print("pain3");
             this.onBreak();
         }
 

@@ -7,7 +7,7 @@
       "translate": "advancements.tadditions.desc.tadditions"
     },
     "icon": {
-      "item": "tadditions:upgrades_manual"
+      "item": "tadditions:arcane_guidebook"
     },
     "frame": "task",
     "announce_to_chat": false,
@@ -20,7 +20,7 @@
       "conditions": {
         "items": [
           {
-            "item": "tadditions:upgrades_manual"
+            "item": "tadditions:arcane_guidebook"
           }
         ]
       }

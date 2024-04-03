@@ -1,0 +1,16 @@
+{
+  "name": "Exotronic Circuits",
+  "icon": "tardis:circuits",
+  "category": "tadditions:timeship/materials",
+  "advancement": "tadditions:patchouli/timeship/materials/exotronic_circuits",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:circuits"
+      },
+      "title": "Exotronic Circuits",
+      "text": "WIP"
+    }
+  ]
+}

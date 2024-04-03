@@ -1,0 +1,16 @@
+{
+  "name": "Stabilizer",
+  "icon": "tardis:subsystem/stabilizer",
+  "category": "tadditions:timeship/subsystems",
+  "advancement": "tadditions:patchouli/timeship/subsystems/stabilizer",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:subsystem/stabilizer"
+      },
+      "title": "Stabilizer",
+      "text": "WIP"
+    }
+  ]
+}

@@ -2,6 +2,7 @@ package net.tadditions.mod.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.BlockItemUseContext;
@@ -20,10 +21,12 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
 import net.tadditions.mod.items.ModItems;
+import net.tadditions.mod.tileentity.ModTileEntitys;
 import net.tadditions.mod.tileentity.WeaponHolderBE;
 import net.tardis.mod.blocks.template.NotSolidTileBlock;
 import net.tardis.mod.helper.TInventoryHelper;
 
+import javax.annotation.Nullable;
 import java.util.stream.Stream;
 
 public class WeaponHolder extends NotSolidTileBlock {
@@ -132,6 +135,15 @@ public class WeaponHolder extends NotSolidTileBlock {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void onBlockPlacedBy(World world, BlockPos pos, BlockState state, @Nullable LivingEntity entity, ItemStack stack) {
+        super.onBlockPlacedBy(world, pos, state, entity, stack);
+        if(world.getTileEntity(pos).getType() == ModTileEntitys.WPH.get()){
+            WeaponHolderBE tile = (WeaponHolderBE) world.getTileEntity(pos).getTileEntity();
+            tile.setWeapon(ItemStack.EMPTY);
+        }
     }
 
     @Override

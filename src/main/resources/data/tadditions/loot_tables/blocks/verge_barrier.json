@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "name": "tadditions:verge_barrier",
+      "rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "tadditions:verge_barrier"
+        }
+      ]
+    }
+  ]
+}

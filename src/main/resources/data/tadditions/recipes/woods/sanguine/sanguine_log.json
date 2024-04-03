@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "logs",
+  "ingredients": [
+    {
+      "item": "tadditions:scorched_log"
+    }
+  ],
+  "result": {
+    "item": "tadditions:sanguine_log",
+    "count": 1
+  }
+}

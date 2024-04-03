@@ -1,0 +1,16 @@
+{
+  "name": "Mars",
+  "icon": "tadditions:mars_dust",
+  "category": "tadditions:realms",
+  "advancement": "tadditions:mars",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The fourth planet from Earth's host star. With a surface rich in iron oxide, giving it a red and rustic surface. It is barren, arid, and desolate, though it is believed it may have harbored life once before, when its magnetic field was in tact. Some structures may be found here-- including a temple also found on the Moon. It can contain valuable items, such as a data crystal,"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "used to craft an elusive data drive. What kind of data does it contain?"
+    }
+  ]
+}

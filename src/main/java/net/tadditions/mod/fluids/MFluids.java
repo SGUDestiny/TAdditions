@@ -37,11 +37,11 @@ public class MFluids {
     public static final ForgeFlowingFluid.Properties MERCURY_PROPERTIES = new ForgeFlowingFluid.Properties(
             MERCURY_FLUID, MERCURY_FLOWING, FluidAttributes.builder(WATER_STILL_RL, WATER_FLOWING_RL)
             .density(15000).luminosity(0).viscosity(5000).sound(SoundEvents.ITEM_HONEY_BOTTLE_DRINK).overlay(WATER_OVERLAY_RL)).levelDecreasePerBlock(2)
-            .block(MFluids.MERCURY_BLOCK)
-            .bucket(ModItems.MERCURY_BUCKET);
+            .block(() -> MFluids.MERCURY_BLOCK.get())
+            .bucket(() -> ModItems.MERCURY_BUCKET.get());
 
     public static final RegistryObject<FlowingFluidBlock> MERCURY_BLOCK = ModBlocks.BLOCKS.register("mercury",
-            () -> new FlowingFluidBlock(MFluids.MERCURY_FLUID, AbstractBlock.Properties.create(Material.WATER)
+            () -> new FlowingFluidBlock(() -> MFluids.MERCURY_FLUID.get(), AbstractBlock.Properties.create(Material.WATER)
                     .doesNotBlockMovement().hardnessAndResistance(100f).noDrops()));
 
     public static void register(IEventBus eventBus) {

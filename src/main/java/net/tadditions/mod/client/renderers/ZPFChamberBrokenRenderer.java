@@ -25,4 +25,14 @@ public class ZPFChamberBrokenRenderer extends GeoBlockRenderer<ZPFChamberBrokenT
     public RenderType getRenderType(ZPFChamberBrokenTile animatable, float partialTicks, MatrixStack stack, @Nullable IRenderTypeBuffer renderTypeBuffer, @Nullable IVertexBuilder vertexBuilder, int packedLightIn, ResourceLocation textureLocation) {
         return RenderType.getEntityTranslucent(textureLocation);
     }
+
+    @Override
+    public float getHeightScale(ZPFChamberBrokenTile entity) {
+        return 0.65F;
+    }
+
+    @Override
+    public float getWidthScale(ZPFChamberBrokenTile animatable2) {
+        return 0.65F;
+    }
 }

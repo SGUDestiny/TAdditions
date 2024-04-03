@@ -26,7 +26,7 @@ import java.util.Random;
 
 public class RemnantPieces {
 	
-	private static final ResourceLocation VERGEREMNANTS = new ResourceLocation(QolMod.MOD_ID, "the_remnants_shaft_start");
+	private static final ResourceLocation VERGEREMNANTS = new ResourceLocation(QolMod.MOD_ID, "remnants_center");
 	private static final Map<ResourceLocation, BlockPos> OFFSET = ImmutableMap.of(VERGEREMNANTS, BlockPos.ZERO);
     
 	

@@ -1,0 +1,16 @@
+{
+  "name": "TARDIS Console",
+  "icon": "minecraft:command_block",
+  "category": "tadditions:timeship/mechanisms",
+  "advancement": "tadditions:patchouli/timeship/mechanisms/tardis_console",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "minecraft:command_block"
+      },
+      "title": "TARDIS Console",
+      "text": "WIP"
+    }
+  ]
+}

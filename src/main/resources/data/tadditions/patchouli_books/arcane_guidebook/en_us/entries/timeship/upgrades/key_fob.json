@@ -1,0 +1,16 @@
+{
+  "name": "Key Fob Upgrade",
+  "icon": "tardis:upgrades/key_fob",
+  "category": "tadditions:timeship/upgrades",
+  "advancement": "tadditions:patchouli/timeship/upgrades/key_fob",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:upgrades/key_fob"
+      },
+      "title": "Key Fob Upgrade",
+      "text": "WIP"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Pyro",
+  "icon": "minecraft:flint_and_steel",
+  "category": "tadditions:timeship/traits",
+  "advancement": "tadditions:patchouli/timeship/traits/traits",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "minecraft:flint_and_steel"
+      },
+      "title": "Pyro",
+      "text": "WIP"
+    }
+  ]
+}

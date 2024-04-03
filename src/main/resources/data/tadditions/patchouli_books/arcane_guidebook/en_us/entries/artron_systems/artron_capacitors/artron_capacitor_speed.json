@@ -1,0 +1,16 @@
+{
+  "name": "Speed Artron Capacitor",
+  "icon": "tadditions:artron_capacitor_speed",
+  "category": "tadditions:artron_systems/artron_capacitors",
+  "advancement": "tadditions:patchouli/capacitor_speed",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tadditions:artron_capacitor_speed"
+      },
+      "title": "Speed Capacitor",
+      "text": "WIP"
+    }
+  ]
+}

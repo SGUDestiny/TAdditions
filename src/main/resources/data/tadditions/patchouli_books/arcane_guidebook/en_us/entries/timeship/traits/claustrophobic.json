@@ -1,0 +1,16 @@
+{
+  "name": "Claustrophobic",
+  "icon": "minecraft:chest",
+  "category": "tadditions:timeship/traits",
+  "advancement": "tadditions:patchouli/timeship/traits/traits",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "minecraft:chest"
+      },
+      "title": "Claustrophobic",
+      "text": "WIP"
+    }
+  ]
+}

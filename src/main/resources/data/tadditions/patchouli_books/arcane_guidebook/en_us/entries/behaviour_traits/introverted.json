@@ -1,0 +1,16 @@
+{
+  "name": "Introverted",
+  "icon": "minecraft:soul_lantern",
+  "category": "tadditions:behaviour_traits",
+  "advancement": "tadditions:patchouli/timeship/flight_events/flight_events",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "minecraft:soul_lantern"
+      },
+      "title": "Introverted",
+      "text": "WIP"
+    }
+  ]
+}

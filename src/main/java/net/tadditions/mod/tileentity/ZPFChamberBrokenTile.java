@@ -13,7 +13,7 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.util.GeckoLibUtil;
 
-public class ZPFChamberBrokenTile extends MultiblockMasterTile implements IAnimatable {
+public class ZPFChamberBrokenTile extends TileEntity implements IAnimatable {
     public AnimationFactory factory = GeckoLibUtil.createFactory(this);
 
     public ZPFChamberBrokenTile(){

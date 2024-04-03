@@ -1,0 +1,97 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "minecraft:redstone_block"
+  },
+  "transitionalItem": {
+    "item": "tadditions:incomplete/temporal_grace_incomplete"
+  },
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/temporal_grace_incomplete"
+        },
+        {
+          "item": "tardis:circuits"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/temporal_grace_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:cutting",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/temporal_grace_incomplete"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/temporal_grace_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/temporal_grace_incomplete"
+        },
+        {
+          "item": "minecraft:golden_apple"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/temporal_grace_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/temporal_grace_incomplete"
+        },
+        {
+          "item": "minecraft:shield"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/temporal_grace_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/temporal_grace_incomplete"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/temporal_grace_incomplete"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "item": "tardis:subsystem/temporal_grace"
+    }
+  ],
+  "loops": 1
+}

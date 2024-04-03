@@ -21,7 +21,6 @@ public class MFlightEvent extends FlightEventRegistry{
     public static final RegistryObject<FlightEventFactory> TIMESTORM = FLIGHT_EVENTS.register("time_storm", () -> setupFlightEvent(TimeStorm::new, TimeStorm.CONTROLS));
     public static final RegistryObject<FlightEventFactory> VECTOR = FLIGHT_EVENTS.register("vector", () -> setupFlightEvent(Vector::new, Vector.CONTROLS));
 
-
     public static FlightEventFactory setupFlightEvent(IFlightEventFactory<FlightEvent> event, Supplier<ArrayList<ResourceLocation>> sequence){
         FlightEventFactory fact = new FlightEventFactory(event, sequence);
         return fact;

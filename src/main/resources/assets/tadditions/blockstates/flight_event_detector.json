@@ -1,0 +1,10 @@
+{
+	"variants":{
+		"alternative=false":{
+			"model":"tardis:block/vortex_detector"
+		},
+		"alternative=true":{
+			"model":"tardis:block/vortex_detector_inverted"
+		}
+	}
+}

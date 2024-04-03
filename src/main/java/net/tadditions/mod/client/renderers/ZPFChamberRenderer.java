@@ -24,4 +24,14 @@ public class ZPFChamberRenderer extends GeoBlockRenderer<ZPFChamberTile> {
     public RenderType getRenderType(ZPFChamberTile animatable, float partialTicks, MatrixStack stack, @Nullable IRenderTypeBuffer renderTypeBuffer, @Nullable IVertexBuilder vertexBuilder, int packedLightIn, ResourceLocation textureLocation) {
         return RenderType.getEntityTranslucent(textureLocation);
     }
+
+    @Override
+    public float getHeightScale(ZPFChamberTile entity) {
+        return 0.65F;
+    }
+
+    @Override
+    public float getWidthScale(ZPFChamberTile animatable2) {
+        return 0.65F;
+    }
 }

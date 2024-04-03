@@ -5,9 +5,12 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.registry.DynamicRegistries;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -34,12 +37,13 @@ import net.tardis.mod.tileentities.consoles.*;
 import org.spongepowered.asm.mixin.Mixin;
 
 import java.util.ArrayList;
+import java.util.Objects;
+import java.util.Optional;
 
 @Mixin(DimensionControl.class)
 public abstract class DimConMixin extends BaseControl {
 
     private static final String MESSAGE = "message.tardis.control.dimchange";
-    public ArrayList<ServerWorld> dimList = new ArrayList<ServerWorld>();
     private int index = 0;
 
     public DimConMixin(ControlRegistry.ControlEntry entry, ConsoleTile console, ControlEntity entity) {
@@ -79,23 +83,15 @@ public abstract class DimConMixin extends BaseControl {
 
     private boolean doDimChangeAction(ConsoleTile console, PlayerEntity player) {
         if(!console.getWorld().isRemote() && console.getLandTime() <= 0) {
-            this.createDimListIfEmpty();
-            if(!this.dimList.isEmpty()) {
-                if (!dimList.contains(ServerLifecycleHooks.getCurrentServer().getWorld(MDimensions.THE_VERGE)) && ((IConsoleHelp) console).isDimOver()) {
-                     dimList.add(ServerLifecycleHooks.getCurrentServer().getWorld(MDimensions.THE_VERGE));
-                }
-                if(!dimList.contains(ServerLifecycleHooks.getCurrentServer().getWorld(World.THE_END)) && hasFreeTheEndAdvancement((ServerPlayerEntity)player)){
-                    dimList.add(ServerLifecycleHooks.getCurrentServer().getWorld(World.THE_END));
-                }
+            if(!((IConsoleHelp) console).getAvailable().isEmpty()) {
                 this.modIndex(player.isSneaking() ? -1 : 1);
-                ServerWorld type = this.dimList.get(index);
-                console.setDestination(type.getDimensionKey(), console.getDestinationPosition());
-                player.sendStatusMessage(new TranslationTextComponent(MESSAGE).appendSibling(new StringTextComponent(WorldHelper.formatDimName(type.getDimensionKey())).mergeStyle(TextFormatting.LIGHT_PURPLE)), true);
+                console.setDestination(((IConsoleHelp) console).getAvailable().get(index), console.getDestinationPosition());
+                player.sendStatusMessage(new TranslationTextComponent(MESSAGE).appendSibling(new StringTextComponent(WorldHelper.formatDimName(((IConsoleHelp) console).getAvailable().get(index))).mergeStyle(TextFormatting.LIGHT_PURPLE)), true);
                 this.startAnimation();
 
                 ConsoleTile tile = this.getConsole();
                 if(tile != null)
-                    Network.sendToTrackingTE(new ConsoleUpdateMessage(DataTypes.DIMENSION_LIST, new DimensionData(this.dimList.size(), this.index)), tile);
+                    Network.sendToTrackingTE(new ConsoleUpdateMessage(DataTypes.DIMENSION_LIST, new DimensionData(((IConsoleHelp) tile).getAvailable().size(), this.index)), tile);
             }
             else index = 0;
             return true;
@@ -104,25 +100,15 @@ public abstract class DimConMixin extends BaseControl {
     }
 
     private void modIndex(int i) {
-        if(this.index + i >= this.dimList.size()) {
+        if(this.index + i >= ((IConsoleHelp) this.getConsole()).getAvailable().size()) {
             this.index = 0;
             return;
         }
         if(this.index + i < 0) {
-            this.index = this.dimList.size() - 1;
+            this.index = ((IConsoleHelp) this.getConsole()).getAvailable().size() - 1;
             return;
         }
         this.index += i;
-    }
-
-    private void createDimListIfEmpty(){
-        if(this.dimList.isEmpty()){
-            ServerLifecycleHooks.getCurrentServer().getWorlds().forEach(world -> {
-                if (WorldHelper.canTravelToDimension(world))
-                dimList.add(world);
-                dimList.remove(ServerLifecycleHooks.getCurrentServer().getWorld(MDimensions.THE_VERGE));
-            });
-        }
     }
 
     @Override

@@ -1,0 +1,16 @@
+{
+  "name": "Alembic",
+  "icon": "tardis:alembic",
+  "category": "tadditions:timeship/mechanisms",
+  "advancement": "tadditions:patchouli/timeship/mechanisms/alembic",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:alembic"
+      },
+      "title": "Alembic",
+      "text": "WIP"
+    }
+  ]
+}

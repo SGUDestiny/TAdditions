@@ -20,9 +20,7 @@ import org.spongepowered.asm.mixin.Shadow;
 @Mixin(ExteriorArgument.class)
 public class ExteriorArgumentMixin {
 
-    private static final DynamicCommandExceptionType MINVALID_EXTERIOR_EXCEPTION = new DynamicCommandExceptionType((exterior) -> {
-        return new TranslationTextComponent(new ResourceLocation("tadditions","triedmaketoyota").toString());
-    });
+
 
     @Shadow @Final private static DynamicCommandExceptionType INVALID_EXTERIOR_EXCEPTION;
 
@@ -36,9 +34,6 @@ public class ExteriorArgumentMixin {
         AbstractExterior room = ExteriorRegistry.EXTERIOR_REGISTRY.get().getValue(resourcelocation);
         if (room == null)
             throw INVALID_EXTERIOR_EXCEPTION.create(resourcelocation);
-       // else if(room == MExteriorRegistry.TOYOTA_POLICE_BOX.get()){
-       //     throw MINVALID_EXTERIOR_EXCEPTION.create(resourcelocation);
-        //}
         else return room;
     }
 

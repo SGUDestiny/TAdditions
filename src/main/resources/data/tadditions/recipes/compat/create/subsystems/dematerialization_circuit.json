@@ -1,0 +1,98 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "tag": "forge:plates/iron"
+  },
+  "transitionalItem": {
+    "item": "tadditions:incomplete/dematerialisation_circuit_incomplete"
+  },
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/dematerialisation_circuit_incomplete"
+        },
+        {
+          "item": "tardis:xion_crystal"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/dematerialisation_circuit_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:cutting",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/dematerialisation_circuit_incomplete"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/dematerialisation_circuit_incomplete"
+        }
+      ],
+      "processingTime": 60
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/dematerialisation_circuit_incomplete"
+        },
+        {
+          "item": "minecraft:ender_pearl"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/dematerialisation_circuit_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/dematerialisation_circuit_incomplete"
+        },
+        {
+          "tag": "forge:glass"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/dematerialisation_circuit_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/dematerialisation_circuit_incomplete"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/dematerialisation_circuit_incomplete"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "item": "tardis:subsystem/dematerialisation_circuit"
+    }
+  ],
+  "loops": 1
+}

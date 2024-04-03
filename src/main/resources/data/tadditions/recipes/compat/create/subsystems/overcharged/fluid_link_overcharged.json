@@ -1,0 +1,229 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "tardis:subsystem/fluid_link"
+  },
+  "transitionalItem": {
+    "item": "tadditions:incomplete/fluid_link_overcharged_incomplete"
+  },
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/fluid_link_overcharged_incomplete"
+        },
+        {
+          "item": "tardis:circuits"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/fluid_link_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/fluid_link_overcharged_incomplete"
+        },
+        {
+          "item": "tadditions:artron_capacitor_temporal"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/fluid_link_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/fluid_link_overcharged_incomplete"
+        },
+        {
+          "item": "tadditions:filled_electromagnetic_solenoid_container"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/fluid_link_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/fluid_link_overcharged_incomplete"
+        },
+        {
+          "item": "tadditions:artron_battery_temporal"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/fluid_link_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/fluid_link_overcharged_incomplete"
+        },
+        {
+          "item": "minecraft:netherite_ingot"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/fluid_link_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/fluid_link_overcharged_incomplete"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/fluid_link_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/fluid_link_overcharged_incomplete"
+        },
+        {
+          "item": "tardis:circuits"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/fluid_link_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/fluid_link_overcharged_incomplete"
+        },
+        {
+          "item": "minecraft:netherite_ingot"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/fluid_link_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:filling",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/fluid_link_overcharged_incomplete"
+        },
+        {
+          "fluid": "tadditions:mercury",
+          "nbt": {},
+          "amount": 250
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/fluid_link_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/fluid_link_overcharged_incomplete"
+        },
+        {
+          "item": "tardis:artron_pylon"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/fluid_link_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:filling",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/fluid_link_overcharged_incomplete"
+        },
+        {
+          "fluid": "tadditions:mercury",
+          "nbt": {},
+          "amount": 250
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/fluid_link_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/fluid_link_overcharged_incomplete"
+        },
+        {
+          "item": "minecraft:netherite_ingot"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/fluid_link_overcharged_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/fluid_link_overcharged_incomplete"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/fluid_link_overcharged_incomplete"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "item": "tadditions:subsystem/fluid_link_overcharged"
+    }
+  ],
+  "loops": 1
+}

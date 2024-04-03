@@ -1,0 +1,16 @@
+{
+  "name": "Item Access Panel",
+  "icon": "tardis:item_access_panel",
+  "category": "tadditions:timeship/mechanisms",
+  "advancement": "tadditions:patchouli/timeship/mechanisms/item_access_panel",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:item_access_panel"
+      },
+      "title": "Item Access Panel",
+      "text": "WIP"
+    }
+  ]
+}

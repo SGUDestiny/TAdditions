@@ -1,0 +1,16 @@
+{
+  "name": "Chameleon Circuit",
+  "icon": "tardis:subsystem/chameleon_circuit",
+  "category": "tadditions:timeship/subsystems",
+  "advancement": "tadditions:patchouli/timeship/subsystems/chameleon_circuit",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tardis:subsystem/fluid_link"
+      },
+      "title": "Chameleon Circuit",
+      "text": "WIP"
+    }
+  ]
+}

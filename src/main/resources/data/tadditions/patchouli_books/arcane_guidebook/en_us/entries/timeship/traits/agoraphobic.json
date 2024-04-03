@@ -1,0 +1,16 @@
+{
+  "name": "Agoraphobic",
+  "icon": "minecraft:glass",
+  "category": "tadditions:timeship/traits",
+  "advancement": "tadditions:patchouli/timeship/traits/traits",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "minecraft:glass"
+      },
+      "title": "Agoraphobic",
+      "text": "WIP"
+    }
+  ]
+}

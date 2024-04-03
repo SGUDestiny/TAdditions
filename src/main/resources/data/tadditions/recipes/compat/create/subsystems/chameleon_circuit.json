@@ -1,0 +1,101 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "tardis:circuits"
+  },
+  "transitionalItem": {
+    "item": "tadditions:incomplete/chameleon_circuit_incomplete"
+  },
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/chameleon_circuit_incomplete"
+        },
+        {
+          "tag": "forge:dyes/red"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/chameleon_circuit_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/chameleon_circuit_incomplete"
+        },
+        {
+          "tag": "forge:dyes/green"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/chameleon_circuit_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/chameleon_circuit_incomplete"
+        },
+        {
+          "tag": "forge:dyes/blue"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/chameleon_circuit_incomplete"
+        }
+      ]
+    },
+    {
+      "type": "create:cutting",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/chameleon_circuit_incomplete"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/chameleon_circuit_incomplete"
+        }
+      ],
+      "processingTime": 100
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "tadditions:incomplete/chameleon_circuit_incomplete"
+        },
+        {
+          "tag": "forge:plates/iron"
+        }
+      ],
+      "results": [
+        {
+          "item": "tadditions:incomplete/chameleon_circuit_incomplete"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "item": "tardis:subsystem/chameleon_circuit"
+    }
+  ],
+  "loops": 1
+}

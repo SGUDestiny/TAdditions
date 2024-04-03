@@ -20,8 +20,6 @@ import net.tardis.mod.tileentities.exteriors.ModernPoliceBoxExteriorTile;
 public class ToyotaExteriorRenderer extends ExteriorRenderer<ToyotaPoliceBoxExteriorTile> {
     public static final ResourceLocation TEXTURE = new ResourceLocation(QolMod.MOD_ID,
             "textures/exteriors/toyota_exterior.png");
-    public static final ResourceLocation ON = new ResourceLocation(QolMod.MOD_ID,
-            "textures/exteriors/toyota_exterior_on.png");
     public static final WorldText TEXT = new WorldText(1.1F, 0.125F, 0.015F, 0xFFFFFF);
 
     private ToyotaExteriorModel model = new ToyotaExteriorModel();
@@ -47,27 +45,27 @@ public class ToyotaExteriorRenderer extends ExteriorRenderer<ToyotaPoliceBoxExte
 
         //Front
         matrixStackIn.push();
-        matrixStackIn.translate(-2F, 3F, -3.125F);
+        matrixStackIn.translate(-0.44, -2.1, -13.44 / 16.0F);
         TEXT.renderText(matrixStackIn, bufferIn, combinedLightIn, tile.getCustomName());
         matrixStackIn.pop();
 
         //Left text
         matrixStackIn.push();
-        matrixStackIn.translate(-9F, 36F, -12.125F);
+        matrixStackIn.translate(-0.84, -2.1, 6.9 / 16.0F);//6.5
         matrixStackIn.rotate(Vector3f.YP.rotationDegrees(90));
         TEXT.renderText(matrixStackIn, bufferIn, combinedLightIn, tile.getCustomName());
         matrixStackIn.pop();
 
         //Right text
         matrixStackIn.push();
-        matrixStackIn.translate(-9F, 36F, -12.125F);
+        matrixStackIn.translate(0.84, -2.1, -6.9 / 16.0F);
         matrixStackIn.rotate(Vector3f.YN.rotationDegrees(90));
         TEXT.renderText(matrixStackIn, bufferIn, combinedLightIn, tile.getCustomName());
         matrixStackIn.pop();
 
         //BACK text
         matrixStackIn.push();
-        matrixStackIn.translate(-9F, 36F, -12.125F);
+        matrixStackIn.translate(0.44, -2.1, 13.44 / 16.0F);
         matrixStackIn.rotate(Vector3f.YP.rotationDegrees(180));
         TEXT.renderText(matrixStackIn, bufferIn, combinedLightIn, tile.getCustomName());
         matrixStackIn.pop();

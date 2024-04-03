@@ -1,0 +1,16 @@
+{
+  "name": "Ultra Artron Capacitor",
+  "icon": "tadditions:artron_capacitor_ultra",
+  "category": "tadditions:artron_systems/artron_capacitors",
+  "advancement": "tadditions:patchouli/capacitor_ultra",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tadditions:artron_capacitor_ultra"
+      },
+      "title": "Ultra Capacitor",
+      "text": "WIP"
+    }
+  ]
+}
