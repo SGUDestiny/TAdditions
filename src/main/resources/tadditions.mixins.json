@@ -12,6 +12,7 @@
     "EngineSlotMixin",
     "ExteriorArgumentMixin",
     "ExteriorMixin",
+    "FastReturnControlMixin",
     "InvisRenMixin",
     "MonitorControlMixin",
     "NTMHelperMixin",
