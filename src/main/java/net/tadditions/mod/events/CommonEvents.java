@@ -47,6 +47,7 @@ import net.tadditions.mod.world.MDimensions;
 import net.tadditions.mod.world.structures.MStructures;
 import net.tardis.mod.cap.Capabilities;
 import net.tardis.mod.client.ClientHelper;
+import net.tardis.mod.controls.CommunicatorControl;
 import net.tardis.mod.damagesources.TDamageSources;
 import net.tardis.mod.events.LivingEvents;
 import net.tardis.mod.events.MissingMappingsLookup;
@@ -116,6 +117,16 @@ public class CommonEvents {
                     ConsoleTile tile = TardisHelper.getConsole(server, world).orElse(null);
                     if (tile.getInteriorManager().isAlarmOn()) {
                         tile.getOrFindExteriorTile().ifPresent(ext -> ext.getWorld().playSound(null, ext.getPos(), TSounds.SINGLE_CLOISTER.get(), SoundCategory.BLOCKS, 5F, 0.5F));
+                    }
+                }
+                if(world.getCapability(Capabilities.TARDIS_DATA).isPresent() && world.getGameTime() % 100 == 0){
+                    ConsoleTile tile = TardisHelper.getConsole(server, world).orElse(null);
+                    if (!tile.getDistressSignals().isEmpty() && !tile.getInteriorManager().isAlarmOn()) {
+                        if(tile.getControl(CommunicatorControl.class).get().usePhoneSounds(tile)) {
+                            tile.getOrFindExteriorTile().ifPresent(ext -> ext.getWorld().playSound(null, ext.getPos(), TSounds.COMMUNICATOR_RING.get(), SoundCategory.BLOCKS, 1F, 1F));
+                        } else {
+                            tile.getOrFindExteriorTile().ifPresent(ext -> ext.getWorld().playSound(null, ext.getPos(), TSounds.COMMUNICATOR_BEEP.get(), SoundCategory.BLOCKS, 1F, 1F));
+                        }
                     }
                 }
             }
