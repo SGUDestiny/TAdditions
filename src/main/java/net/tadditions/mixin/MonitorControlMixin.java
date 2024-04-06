@@ -24,51 +24,22 @@ import net.tardis.mod.tileentities.consoles.XionConsoleTile;
 import net.tardis.mod.tileentities.monitors.MonitorTile;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(MonitorControl.class)
-public abstract class MonitorControlMixin extends BaseControl implements IMonitorHelp{
+public abstract class MonitorControlMixin implements IMonitorHelp{
 
     float rotationAngle = 0;
 
-    public MonitorControlMixin(ControlRegistry.ControlEntry entry, ConsoleTile console, ControlEntity entity) {
-        super(entry, console, entity);
-    }
-
-    @Override
-    public boolean onRightClicked(ConsoleTile console, PlayerEntity player) {
-
-        if(console.getWorld().isRemote && !player.isSneaking()) {
-
-            if(PlayerHelper.InEitherHand(player, stack -> stack.getItem() == TItems.MONITOR_REMOTE.get())) {
-                ClientHelper.openGUI(TardisConstants.Gui.MONITOR_REMOTE, new EntityContext(this.getEntity()));
-                return true;
-            }
-
-            if(console instanceof GalvanicConsoleTile) {
-                ClientHelper.openGUI(TardisConstants.Gui.MONITOR_MAIN_GALVANIC, null);
-                return true;
-            }
-            if (console instanceof XionConsoleTile) {
-                ClientHelper.openGUI(TardisConstants.Gui.MONITOR_MAIN_XION, null);
-                return true;
-            }
-            if (console instanceof ToyotaConsoleTile) {
-                ClientHelper.openGUI(TardisConstants.Gui.MONITOR_MAIN_TOYOTA, null);
-                return true;
-            }
-            if (console instanceof CoralConsoleTile) {
-                ClientHelper.openGUI(TardisConstants.Gui.MONITOR_MAIN_CORAL, null);
-                return true;
-            }
-            else {
-                ClientHelper.openGUI(TardisConstants.Gui.MONITOR_MAIN_EYE, null);
-                return true;
-            }
-        }
+    @Inject(at = @At("HEAD"), method = "onRightClicked(Lnet/tardis/mod/tileentities/ConsoleTile;Lnet/minecraft/entity/player/PlayerEntity;)Z", cancellable = true)
+    public void onRightClicked(ConsoleTile console, PlayerEntity player, CallbackInfoReturnable<Boolean> cir) {
 
         if(console instanceof FourteenthConsoleTile && player.isSneaking()) {
             if(player.isSneaking()){
-                BlockPos pos = this.getConsole().getPos();
+                BlockPos pos = console.getPos();
                 Vector3d p = player.getPositionVec().subtract(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5).normalize();
 
                 float hype = (float) Math.sqrt(p.x * p.x + p.z * p.z);
@@ -101,7 +72,17 @@ public abstract class MonitorControlMixin extends BaseControl implements IMonito
                 setRotAngle(rot);
             }
         }
-        return true;
+        cir.setReturnValue(true);
+    }
+
+    @Inject(at = @At("TAIL"), method = "serializeNBT()Lnet/minecraft/nbt/CompoundNBT;")
+    public void serializeNBT(CallbackInfoReturnable<CompoundNBT> cir){
+        cir.getReturnValue().putFloat("rotationAngle", rotationAngle);
+    }
+
+    @Inject(at = @At("TAIL"), method = "deserializeNBT(Lnet/minecraft/nbt/CompoundNBT;)V")
+    public void deserializeNBT(CompoundNBT nbt, CallbackInfo ci){
+        this.rotationAngle = nbt.getFloat("rotationAngle");
     }
 
     @Override
@@ -114,11 +95,4 @@ public abstract class MonitorControlMixin extends BaseControl implements IMonito
         return rotationAngle;
     }
 
-    @Shadow public abstract Vector3d getPos();
-    @Shadow public abstract SoundEvent getFailSound(ConsoleTile console);
-    @Shadow public abstract SoundEvent getSuccessSound(ConsoleTile console);
-    @Shadow public abstract CompoundNBT serializeNBT();
-    @Shadow public abstract void deserializeNBT(CompoundNBT nbt);
-    @Shadow public abstract MonitorTile.MonitorView getView();
-    @Shadow public abstract void setView(MonitorTile.MonitorView view);
 }
