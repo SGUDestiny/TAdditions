@@ -4826,7 +4826,6 @@ public class FourteenthConsoleModel extends AbstractConsoleEntityModel<Fourteent
 
 
 		caps.render(matrixStack, buffer, packedLight, packedOverlay,1,1,1, alpha);
-		//monitor.render(matrixStack, buffer, packedLight, packedOverlay,1,1,1, alpha);
 		rotor_monitor_base.render(matrixStack, buffer, packedLight, packedOverlay,1,1,1, alpha);
 		side1.render(matrixStack, buffer, packedLight, packedOverlay,1,1,1, alpha);
 		side2.render(matrixStack, buffer, packedLight, packedOverlay,1,1,1, alpha);
@@ -4881,8 +4880,6 @@ public class FourteenthConsoleModel extends AbstractConsoleEntityModel<Fourteent
 		if(tileEntity.getControl(MonitorControl.class).isPresent()) {
 			MonitorControl control = tileEntity.getControl(MonitorControl.class).get();
 			this.monitor.rotateAngleY = (float) Math.toRadians(((IMonitorHelp) control).getRotAngle());
-		}else{
-			this.monitor.rotateAngleY = 0;
 		}
 		monitor.render(matrixStack, buffer, packedLight, packedOverlay,1,1,1, alpha);
 		matrixStack.pop();
