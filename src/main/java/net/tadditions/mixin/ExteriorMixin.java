@@ -44,7 +44,7 @@ public class ExteriorMixin implements IExteriorHelp {
         }
     }
 
-    @Inject(at = @At(value = "HEAD"), method = "copyConsoleData(Lnet/tardis/mod/tileentities/ConsoleTile;)V")
+    @Inject(at = @At(value = "HEAD"), method = "copyConsoleData(Lnet/tardis/mod/tileentities/ConsoleTile;)V", remap = false)
     public void copyConsoleData(ConsoleTile console, CallbackInfo ci){
         this.setCloakState(((IConsoleHelp) console).getCloakState() ? CloakState.CLOAKED : CloakState.UNCLOAKED);
     }
