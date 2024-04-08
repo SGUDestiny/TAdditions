@@ -85,22 +85,18 @@ public abstract class MonitorControlMixin extends BaseControl implements IMonito
                 rot = (rot + 180);
                 if(rot < 0)
                     rot = rot + 360;
-                if(rot < 22.5) {
+
+                if(rot < 30)
                     rot = 0;
-                }
-                if(rot >= 22.5 && rot < 67.5)
-                    rot = 45;
-                if(rot >= 67.5 && rot < 112.5)
-                    rot = 90;
-                if(rot >= 112.5 && rot < 180)
-                    rot = 135;
-                if(rot >= 180 && rot < 247.5)
-                    rot = -135;
-                if(rot >= 247.5 && rot < 292.5)
-                    rot = -90;
-                if(rot >= 292.5 && rot < 337.5)
-                    rot = -45;
-                if(rot >= 337.5)
+                if(rot >= 30 && rot < 90)
+                    rot = 60;
+                if(rot >= 90 && rot < 180)
+                    rot = 120;
+                if(rot >= 180 && rot < 270)
+                    rot = -120;
+                if(rot >= 270 && rot < 330)
+                    rot = -60;
+                if(rot >= 330)
                     rot = 0;
                 setRotAngle(rot);
             }

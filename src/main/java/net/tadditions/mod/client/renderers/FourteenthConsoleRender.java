@@ -43,36 +43,28 @@ public class FourteenthConsoleRender extends TileEntityRenderer<FourteenthConsol
 
                 float angle1 = ((IMonitorHelp) control).getRotAngle();
                 float angle2 = 0;
-                if(angle1 == 45 || angle1 == 90 || angle1 == 135 || angle1 == 0){
-                    if(angle1 == 45){
-                        angle2 = 135;
+                if(angle1 == 60 || angle1 == 120 || angle1 == 0){
+                    if(angle1 == 60){
+                        angle2 = 120;
                     }
-                    if(angle1 == 90){
-                        angle2 = 90;
-                    }
-                    if(angle1 == 135){
-                        angle2 = 45;
+                    if(angle1 == 120){
+                        angle2 = 60;
                     }
                     if(angle1 == 0){
                         angle2 = 180;
                     }
                     matrixStackIn.rotate(Vector3f.YN.rotationDegrees(angle2));
                 }else{
-                    if(angle1 == -135){
-                        angle2 = 45;
+                    if(angle1 == -120){
+                        angle2 = 60;
                     }
-                    if(angle1 == -90){
-                        angle2 = 90;
-                    }
-                    if(angle1 == -45){
-                        angle2 = 135;
+                    if(angle1 == -60){
+                        angle2 = 120;
                     }
                     matrixStackIn.rotate(Vector3f.YP.rotationDegrees(angle2));
                 }
-            }else{
-                //matrixStackIn.rotate(Vector3f.YN.rotationDegrees(135));
             }
-            matrixStackIn.translate(-0.2, -1.2, -0.85);
+            matrixStackIn.translate(-0.2, -1.2, -0.825);
             TEXT.renderText(matrixStackIn, bufferIn, combinedLightIn, Helper.getConsoleText(tileEntityIn));
             matrixStackIn.pop();
         });
