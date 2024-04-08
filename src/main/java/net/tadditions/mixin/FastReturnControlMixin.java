@@ -15,7 +15,11 @@ import net.tardis.mod.misc.SpaceTimeCoord;
 import net.tardis.mod.registries.ControlRegistry;
 import net.tardis.mod.tileentities.ConsoleTile;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(FastReturnControl.class)
 public abstract class FastReturnControlMixin extends BaseControl {
@@ -26,7 +30,7 @@ public abstract class FastReturnControlMixin extends BaseControl {
 
     @Shadow public abstract EntitySize getSize();
 
-    @Override
+    @Overwrite(remap = false)
     public boolean onRightClicked(ConsoleTile console, PlayerEntity player) {
         if(!console.getWorld().isRemote() && console.getLandTime() <= 0) {
             if(console.getCurrentLocation() == console.getDestinationPosition()) {
