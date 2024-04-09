@@ -1,9 +1,6 @@
 {
   "replace": false,
   "values": [
-    "tutorialmod:ebony_log",
-    "tutorialmod:ebony_wood",
-    "tutorialmod:stripped_ebony_log",
-    "tutorialmod:stripped_ebony_wood"
+
   ]
 }
