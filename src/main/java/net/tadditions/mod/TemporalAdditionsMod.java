@@ -13,6 +13,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.tadditions.mod.block.TABlocks;
 import net.tadditions.mod.item.TACreativeModeTabs;
 import net.tadditions.mod.item.TAItems;
+import net.tadditions.mod.worldgen.structures.TAStructures;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -26,6 +27,7 @@ public class TemporalAdditionsMod {
 
         TAItems.register(modEventBus);
         TABlocks.register(modEventBus);
+        TAStructures.register(modEventBus);
 
         //ModBlockEntities.register(modEventBus);
 

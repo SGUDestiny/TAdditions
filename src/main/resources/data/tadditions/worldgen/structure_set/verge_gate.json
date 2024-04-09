@@ -1,0 +1,17 @@
+{
+  "structures": [
+    {
+      "structure": "tadditions:verge_gate",
+      "weight": 1
+    }
+  ],
+  "placement": {
+     "salt": 1449332816,
+
+    "spacing": 1,
+
+    "separation": 0,
+
+    "type": "minecraft:random_spread"
+  }
+}
