@@ -18,11 +18,17 @@ import net.tardis.mod.items.TItems;
 import net.tardis.mod.tileentities.ConsoleTile;
 import net.tardis.mod.tileentities.exteriors.ExteriorTile;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
 
 
 @Mixin(ExteriorRenderer.class)
 public class ExteriorRenderMixin<T extends ExteriorTile> {
 
+    /**
+     * @author mistersecret312
+     * @reason pain.
+     */
+    @Overwrite
     public void render(T tile, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
         matrixStackIn.push();
 

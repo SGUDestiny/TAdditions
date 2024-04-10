@@ -1,23 +1,40 @@
 package net.tadditions.mixin;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.concurrent.TickDelayedTask;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.items.ItemStackHandler;
 import net.tadditions.mod.helper.CloakState;
 import net.tadditions.mod.helper.IConsoleHelp;
 import net.tadditions.mod.helper.IExteriorHelp;
+import net.tardis.mod.boti.WorldShell;
+import net.tardis.mod.cap.Capabilities;
 import net.tardis.mod.client.animation.IExteriorAnimation;
+import net.tardis.mod.energy.TardisEnergy;
+import net.tardis.mod.entity.TardisEntity;
 import net.tardis.mod.enums.EnumDoorState;
 import net.tardis.mod.enums.EnumMatterState;
 import net.tardis.mod.exterior.AbstractExterior;
+import net.tardis.mod.helper.LandingSystem;
+import net.tardis.mod.helper.TardisHelper;
+import net.tardis.mod.helper.WorldHelper;
 import net.tardis.mod.registries.ExteriorAnimationRegistry;
 import net.tardis.mod.registries.ExteriorRegistry;
+import net.tardis.mod.sounds.TSounds;
 import net.tardis.mod.tileentities.ConsoleTile;
+import net.tardis.mod.tileentities.exteriors.DisguiseExteriorTile;
 import net.tardis.mod.tileentities.exteriors.ExteriorTile;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -26,6 +43,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 @Mixin(ExteriorTile.class)
 public abstract class ExteriorMixin extends TileEntity implements IExteriorHelp {
@@ -51,6 +71,28 @@ public abstract class ExteriorMixin extends TileEntity implements IExteriorHelp 
     @Shadow private int additionalLockLevel;
     @Shadow private boolean isInteriorRegenerating;
     @Shadow private int materializeTime;
+
+    @Shadow public abstract void transferEntities(List<Entity> entityList);
+
+    @Shadow public abstract AxisAlignedBB getDoorAABB();
+
+    @Shadow public abstract void handleMaterializationAnimations();
+
+    @Shadow @Nullable public abstract TardisEntity fall();
+
+    @Shadow public abstract void pushPower();
+
+    @Shadow private int consoleInFlightTicks;
+
+    @Shadow public abstract void deleteExteriorBlocks();
+
+    @Shadow private ItemStackHandler buffer;
+    @Shadow private boolean hasSetupCaps;
+    @Shadow private TardisEnergy energy;
+    @Shadow private WorldShell shell;
+
+    @Shadow public abstract void updateOrBuildBoti();
+
     private CloakState cloakState = CloakState.UNCLOAKED;
     private int cloakAnimTime = 0;
 
@@ -117,8 +159,17 @@ public abstract class ExteriorMixin extends TileEntity implements IExteriorHelp 
         return super.write(compound);
     }
 
-    @Inject(at = @At(value = "HEAD"), method = "tick()V")
-    public void tick(CallbackInfo ci){
+    /**
+     * @author mistersecret312
+     * @reason pain2.
+     */
+    @Overwrite
+    public void tick() {
+
+        this.transferEntities(world.getEntitiesWithinAABB(Entity.class, this.getDoorAABB().offset(this.getPos())));
+
+        this.handleMaterializationAnimations();
+
         if(this.getCloakState() == CloakState.CLOAKING || this.getCloakState() == CloakState.UNCLOAKING) {
             this.cloakAnimTime ++;
         }
@@ -128,6 +179,100 @@ public abstract class ExteriorMixin extends TileEntity implements IExteriorHelp 
         if(this.getCloakState() == CloakState.UNCLOAKING && this.cloakAnimTime == 30){
             this.setCloakState(CloakState.UNCLOAKED);
         }
+
+        if(this.matterState != EnumMatterState.SOLID) {
+            this.animation.tick(this.materializeTime);
+
+            if(!world.isRemote) {
+                //Teleport what we land on
+                for(Entity ent : world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(this.getPos().down()).expand(0, 1, 0))) {
+                    ServerWorld serverWorld = world.getServer().getWorld(interiorDimension);
+                    if(serverWorld != null) {
+                        BlockPos pos = TardisHelper.TARDIS_POS.south(4);
+                        WorldHelper.teleportEntities(ent, serverWorld, pos.getX(), pos.getY(), pos.getZ(), ent.rotationYaw, ent.rotationPitch);
+                    }
+                }
+            }
+        }
+
+        if(!world.isRemote) {
+            //Update console on position
+            if(this.matterState == EnumMatterState.SOLID && world.getGameTime() % 90 == 0)
+                TardisHelper.getConsole(world.getServer(), interiorDimension).ifPresent(tile -> tile.setCurrentLocation(world.getDimensionKey(), this.getPos().down()));
+        }
+
+        boolean fall = LandingSystem.shouldTARDISFall(world, pos.down(2));
+
+        if(!world.isRemote && fall && !this.antiGravs && !(((ExteriorTile) (Object) this) instanceof DisguiseExteriorTile))
+            this.fall();
+
+        this.pushPower();
+
+        //Crashed particle effects
+        if(world.isRemote) {
+
+            double x = this.getPos().getX() + (world.rand.nextFloat() - 0.5), y = this.getPos().getY() + 1, z = this.getPos().getZ() + (world.rand.nextFloat() - 0.5);
+            if (this.crashed) {
+                if(world.getGameTime() % 20 == 0) {
+                    world.addParticle(ParticleTypes.LARGE_SMOKE, x, y, z, 0, 0.1, 0);
+                    world.addParticle(ParticleTypes.SMOKE, x, y, z, 0, 0, 0);
+                }
+                if(world.getGameTime() % 40 == 0)
+                    world.addParticle(ParticleTypes.LAVA, x, y, z, 0, 0, 0);
+            }
+        }
+
+        if (this.isInteriorRegenerating) {
+            if (world.isRemote()) {
+                double x = this.getPos().getX() + (world.rand.nextFloat() - 0.5), y = this.getPos().getY() + 1, z = this.getPos().getZ() + (world.rand.nextFloat() - 0.5);
+                if(world.getGameTime() % 20 == 0) {
+                    world.addParticle(ParticleTypes.LARGE_SMOKE, x, y, z, 0, 0.1, 0);
+                }
+            }
+            if (!world.isRemote()) {
+                if (world.getGameTime() % 200 == 0) {
+                    world.playSound(null, pos, TSounds.STEAM_HISS.get(), SoundCategory.BLOCKS, 0.1F, 1F);
+                }
+            }
+        }
+
+        if(!world.isRemote) {
+            //Logic to remove duplicate exteriors
+            if(this.interiorDimension == null)
+                ++this.consoleInFlightTicks;
+            else {
+                TardisHelper.getConsole(world.getServer(), interiorDimension).ifPresent(tile -> {
+                    if(tile.isInFlight() && tile.getLandTime() <= 0 && this.matterState == EnumMatterState.SOLID)
+                        ++this.consoleInFlightTicks;
+                });
+            }
+
+            if(this.consoleInFlightTicks > 40) {
+                this.deleteExteriorBlocks();
+            }
+
+            if(!this.hasSetupCaps && !this.world.isRemote) {
+                world.getServer().enqueue(new TickDelayedTask(0, () -> {
+                    world.getServer().getWorld(interiorDimension).getCapability(Capabilities.TARDIS_DATA).ifPresent(data -> {
+                        this.buffer = data.getItemBuffer();
+                        this.energy = data.getEnergyCap();
+                    });
+                }));
+                this.hasSetupCaps = true;
+            }
+        }
+
+        //Fetch initial world shell if null. If shell is built, update the world shell every 5 seconds
+        if(!world.isRemote()){
+            if (this.shell == null || world.getGameTime() % 100 == 0) {
+                this.updateOrBuildBoti();
+            }
+        }
+
+        //Tick the world shell on the client
+        if(this.shell != null)
+            this.shell.tick(world.isRemote);
+
     }
 
     @Inject(at = @At(value = "HEAD"), method = "copyConsoleData(Lnet/tardis/mod/tileentities/ConsoleTile;)V", remap = false)
