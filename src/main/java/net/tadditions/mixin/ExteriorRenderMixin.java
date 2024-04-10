@@ -6,16 +6,12 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.WorldRenderer;
-import net.minecraftforge.common.util.LazyOptional;
 import net.tadditions.mod.helper.CloakState;
-import net.tadditions.mod.helper.IConsoleHelp;
 import net.tadditions.mod.helper.IExteriorHelp;
 import net.tardis.mod.client.renderers.exteriors.ExteriorRenderer;
 import net.tardis.mod.enums.EnumMatterState;
 import net.tardis.mod.helper.PlayerHelper;
-import net.tardis.mod.helper.TardisHelper;
 import net.tardis.mod.items.TItems;
-import net.tardis.mod.tileentities.ConsoleTile;
 import net.tardis.mod.tileentities.exteriors.ExteriorTile;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -28,7 +24,7 @@ public class ExteriorRenderMixin<T extends ExteriorTile> {
      * @author mistersecret312
      * @reason pain.
      */
-    @Overwrite
+    @Overwrite(remap = false)
     public void render(T tile, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
         matrixStackIn.push();
 
