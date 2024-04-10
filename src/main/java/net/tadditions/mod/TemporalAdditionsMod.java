@@ -2,6 +2,7 @@ package net.tadditions.mod;
 
 import com.mojang.logging.LogUtils;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.RegisterDimensionSpecialEffectsEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -11,6 +12,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.tadditions.mod.block.TABlocks;
+import net.tadditions.mod.client.level.TADimensionSpecialEffects;
 import net.tadditions.mod.item.TACreativeModeTabs;
 import net.tadditions.mod.item.TAItems;
 import net.tadditions.mod.worldgen.structures.TAStructures;
@@ -47,6 +49,8 @@ public class TemporalAdditionsMod {
             event.accept(TAItems.ARTRON_CAPACITOR_TEMPORAL);
             event.accept(TAItems.ARTRON_CAPACITOR_ULTRA);
             event.accept(TAItems.ARTRON_CAPACITOR_SPEED);
+            event.accept(TABlocks.ASH);
+            event.accept(TABlocks.DENSE_ASH);
         }
     }
 
@@ -56,6 +60,11 @@ public class TemporalAdditionsMod {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
 
+        }
+
+        @SubscribeEvent
+        public static void registerDimensionalEffects(RegisterDimensionSpecialEffectsEvent event){
+            TADimensionSpecialEffects.registerStargateJourneyEffects(event);
         }
     }
 }
