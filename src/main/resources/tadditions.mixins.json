@@ -8,7 +8,7 @@
     "CommunicatorControlMixin",
     "ConsoleMixin",
     "DimConMixin",
-    "EHMixin",
+    "EmotionHandlerMixin",
     "EngineSlotMixin",
     "ExteriorArgumentMixin",
     "ExteriorMixin",

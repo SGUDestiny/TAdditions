@@ -10,18 +10,13 @@ import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.ISuggestionProvider;
 import net.minecraft.command.arguments.DimensionArgument;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.RegistryKey;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import net.tadditions.mixin.EHMixin;
-import net.tadditions.mod.helper.IEmotionHelp;
-import net.tardis.mod.Tardis;
+import net.tadditions.mixin.EmotionHandlerMixin;
 import net.tardis.mod.cap.Capabilities;
 import net.tardis.mod.commands.subcommands.TCommand;
 import net.tardis.mod.constants.TardisConstants;
@@ -35,8 +30,6 @@ import net.tardis.mod.traits.TardisTraitType;
 
 import java.util.*;
 
-import static net.tardis.mod.helper.TardisHelper.TARDIS_POS;
-
 public class SetTraitsCommand extends TCommand {
 
     private static int setTardisTraits(CommandContext<CommandSource> context, ServerWorld world, ArrayList<TardisTrait> traites){
@@ -45,7 +38,7 @@ public class SetTraitsCommand extends TCommand {
             Optional<ConsoleTile> console = TardisHelper.getConsoleInWorld(world);
             console.ifPresent(tile -> tile.getWorld().getCapability(Capabilities.TARDIS_DATA).ifPresent(data -> {
 
-                ((IEmotionHelp) tile.getEmotionHandler()).setTraits(traites);
+                ((EmotionHandlerMixin) tile.getEmotionHandler()).setTraits(traites.toArray(new TardisTrait[5]));
 
                 StringBuilder traits = new StringBuilder();
 
