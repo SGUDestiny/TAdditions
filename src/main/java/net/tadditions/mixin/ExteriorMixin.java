@@ -67,6 +67,10 @@ public abstract class ExteriorMixin extends TileEntity implements IExteriorHelp 
         if(compound.contains("matter_state"))
             this.matterState = EnumMatterState.values()[compound.getInt("matter_state")];
         else matterState = EnumMatterState.SOLID;
+        if(compound.contains("cloakState"))
+            this.cloakState = CloakState.values()[compound.getInt("cloakState")];
+        else cloakState = CloakState.UNCLOAKED;
+        this.cloakAnimTime = compound.getInt("cloakAnimTime");
         this.lightLevel = compound.getFloat("light_level");
         this.customName = compound.getString("custom_name");
         this.animation = ExteriorAnimationRegistry.EXTERIOR_ANIMATION_REGISTRY.get().getValue(new ResourceLocation(compound.getString("animation")))
@@ -96,6 +100,7 @@ public abstract class ExteriorMixin extends TileEntity implements IExteriorHelp 
             compound.putString("interior", this.interiorDimension.getLocation().toString());
         compound.putInt("matter_state", this.matterState.ordinal());
         compound.putInt("cloakState", this.cloakState.ordinal());
+        compound.putInt("cloakAnimTime", this.cloakAnimTime);
         compound.putFloat("light_level", this.lightLevel);
         compound.putString("custom_name", customName);
         compound.putString("animation", this.animation.getType().getRegistryName().toString());
