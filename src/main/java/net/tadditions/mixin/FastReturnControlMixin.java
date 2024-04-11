@@ -28,7 +28,7 @@ public abstract class FastReturnControlMixin extends BaseControl {
         super(entry, console, entity);
     }
 
-    @Shadow public abstract EntitySize getSize();
+    @Shadow(remap = false) public abstract EntitySize getSize();
 
     @Overwrite(remap = false)
     public boolean onRightClicked(ConsoleTile console, PlayerEntity player) {
@@ -48,9 +48,9 @@ public abstract class FastReturnControlMixin extends BaseControl {
         return true;
     }
 
-    @Shadow public abstract Vector3d getPos();
-    @Shadow public abstract SoundEvent getFailSound(ConsoleTile console);
-    @Shadow public abstract SoundEvent getSuccessSound(ConsoleTile console);
-    @Shadow public abstract CompoundNBT serializeNBT();
-    @Shadow public abstract void deserializeNBT(CompoundNBT nbt);
+    @Shadow(remap = false) public abstract Vector3d getPos();
+    @Shadow(remap = false) public abstract SoundEvent getFailSound(ConsoleTile console);
+    @Shadow(remap = false) public abstract SoundEvent getSuccessSound(ConsoleTile console);
+    @Shadow(remap = false) public abstract CompoundNBT serializeNBT();
+    @Shadow(remap = false) public abstract void deserializeNBT(CompoundNBT nbt);
 }

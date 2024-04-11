@@ -23,10 +23,10 @@ import java.util.List;
 @Mixin(ArtronItemStackBatteryItem.class)
 public abstract class ArtronBatMixin extends Item {
 
-    @Shadow @Final
+    @Shadow(remap = false) @Final
     private static final String CHARGE = "artron";
 
-    @Shadow @Final
+    @Shadow(remap = false) @Final
     protected final IFormattableTextComponent descriptionTooltip = TextHelper.createDescriptionItemTooltip(new TranslationTextComponent("tooltip.artron_capacitor.info"));
 
 
@@ -34,22 +34,22 @@ public abstract class ArtronBatMixin extends Item {
         super(properties);
     }
 
-    @Shadow
+    @Shadow(remap = false)
     public abstract float getChargeRate(float amount);
 
-    @Shadow
+    @Shadow(remap = false)
     public abstract float getMaxCharge(ItemStack stack);
 
-    @Shadow
+    @Shadow(remap = false)
     public abstract void writeCharge(ItemStack stack, float charge);
 
-    @Shadow
+    @Shadow(remap = false)
     public abstract boolean isCreative();
 
-    @Accessor
+    @Accessor(remap = false)
     public abstract float getChargeRateMultiplier();
 
-    @Accessor
+    @Accessor(remap = false)
     public abstract float getDischargeRateMultiplier();
 
     /**
@@ -86,7 +86,7 @@ public abstract class ArtronBatMixin extends Item {
         }
     }
 
-    @Shadow
+    @Shadow(remap = false)
     public abstract float getDischargeRate(float charge);
 
 
@@ -116,7 +116,7 @@ public abstract class ArtronBatMixin extends Item {
         return current;
     }
 
-    @Shadow
+    @Shadow(remap = false)
     public abstract float getCharge(ItemStack stack);
 
 

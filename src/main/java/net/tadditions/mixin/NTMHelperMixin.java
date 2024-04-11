@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.Overwrite;
 @Mixin(Helper.class)
 public class NTMHelperMixin {
 
-    @Overwrite
+    @Overwrite(remap = false)
     public static String[] getConsoleText(ConsoleTile console) {
 
         if(console.getFlightEvent() != null)

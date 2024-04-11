@@ -24,12 +24,12 @@ import org.spongepowered.asm.mixin.Shadow;
 @Mixin(EngineContainerScreen.class)
 public class EngineScreenMixin extends ContainerScreen<EngineContainer> {
 
-    @Shadow private Minecraft mc;
-    @Final @Shadow public static ResourceLocation TEXTURE;
-    @Final @Shadow public static ResourceLocation UPGRADES;
-    @Final @Shadow public static ResourceLocation SUBSYSTEM;
-    @Final @Shadow public static ResourceLocation CAPACITOR;
-    @Final @Shadow public static ResourceLocation ATTUNEMENT;
+    @Shadow(remap = false) private Minecraft mc;
+    @Final @Shadow(remap = false) public static ResourceLocation TEXTURE;
+    @Final @Shadow(remap = false) public static ResourceLocation UPGRADES;
+    @Final @Shadow(remap = false) public static ResourceLocation SUBSYSTEM;
+    @Final @Shadow(remap = false) public static ResourceLocation CAPACITOR;
+    @Final @Shadow(remap = false) public static ResourceLocation ATTUNEMENT;
 
 
     public EngineScreenMixin(EngineContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {

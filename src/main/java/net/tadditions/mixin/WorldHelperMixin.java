@@ -21,7 +21,7 @@ public class WorldHelperMixin {
      * @author mistersecret312
      * @reason ban our dimension
      */
-    @Overwrite
+    @Overwrite(remap = false)
     public static boolean canVMTravelToDimension(RegistryKey<World> worldKey) {
         ResourceLocation key = worldKey.getLocation();
         if(key == null)
@@ -51,7 +51,7 @@ public class WorldHelperMixin {
      * @author mistersecret312
      * @reason ban our dimension 2
      */
-    @Overwrite
+    @Overwrite(remap = false)
     public static List<World> getAllValidDimensions() {
 
         List<World> dims = new ArrayList<World>();

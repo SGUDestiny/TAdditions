@@ -20,12 +20,12 @@
     "SubsysMixin",
     "TARDISBottomMixin",
     "TARDISEngineMixin",
-    "WetTraitMixin",
     "WorldHelperMixin"
   ],
   "minVersion": "0.8",
   "client": [
     "EngineScreenMixin",
     "ExteriorRenderMixin"
-  ]
+  ],
+  "refmap": "tadditions.mixin-refmap.json"
 }

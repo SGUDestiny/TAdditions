@@ -85,29 +85,29 @@ import static net.tardis.mod.tileentities.ConsoleTile.rand;
 @Mixin(ConsoleTile.class)
 public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
 
-    @Shadow public abstract <T extends Upgrade> LazyOptional<T> getUpgrade(Class<T> clazz);
+    @Shadow(remap = false) public abstract <T extends Upgrade> LazyOptional<T> getUpgrade(Class<T> clazz);
 
-    @Shadow public abstract RegistryKey<World> getDestinationDimension();
+    @Shadow(remap = false) public abstract RegistryKey<World> getDestinationDimension();
 
-    @Shadow public abstract RegistryKey<World> getCurrentDimension();
+    @Shadow(remap = false) public abstract RegistryKey<World> getCurrentDimension();
 
-    @Shadow public abstract InteriorManager getInteriorManager();
+    @Shadow(remap = false) public abstract InteriorManager getInteriorManager();
 
-    @Shadow public abstract void setNextConsoleRoomToChange(ConsoleRoom room);
+    @Shadow(remap = false) public abstract void setNextConsoleRoomToChange(ConsoleRoom room);
 
-    @Shadow public abstract void setStartChangingInterior(boolean startChangingInterior);
+    @Shadow(remap = false) public abstract void setStartChangingInterior(boolean startChangingInterior);
 
-    @Shadow public abstract void onPowerDown(boolean shutDown);
+    @Shadow(remap = false) public abstract void onPowerDown(boolean shutDown);
 
-    @Shadow public abstract LazyOptional<DoorEntity> getDoor();
+    @Shadow(remap = false) public abstract LazyOptional<DoorEntity> getDoor();
 
-    @Shadow public abstract LazyOptional<ExteriorTile> getOrFindExteriorTile();
+    @Shadow(remap = false) public abstract LazyOptional<ExteriorTile> getOrFindExteriorTile();
 
-    @Shadow public abstract ArtronUse getOrCreateArtronUse(ArtronUse.IArtronType type);
+    @Shadow(remap = false) public abstract ArtronUse getOrCreateArtronUse(ArtronUse.IArtronType type);
 
-    @Shadow public abstract List<Subsystem> getSubSystems();
+    @Shadow(remap = false) public abstract List<Subsystem> getSubSystems();
 
-    @Shadow public abstract boolean isCrashing();
+    @Shadow(remap = false) public abstract boolean isCrashing();
 
     public int flightTicks = 0;
     private int reachDestinationTick = 0;
@@ -155,10 +155,10 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
     private boolean hasPoweredDown = false;
     private boolean hasNavCom = false;
 
-    @Shadow
+    @Shadow(remap = false)
     private boolean isCrashing = false;
 
-    @Shadow
+    @Shadow(remap = false)
     private boolean isBeingTowed = false;
     private BlockPos takeoffLocation = BlockPos.ZERO;
     /**
@@ -1012,22 +1012,22 @@ public abstract class ConsoleMixin extends TileEntity implements IConsoleHelp {
         }
     }
 
-    @Shadow
+    @Shadow(remap = false)
     protected void handleRefueling(){}
 
-    @Shadow
+    @Shadow(remap = false)
     private void playAmbientNoises() {
     }
 
-    @Shadow
+    @Shadow(remap = false)
     private void handleAutoLoadOrUnloadChunks() {
     }
 
-    @Shadow
+    @Shadow(remap = false)
     private void findNewMission(){
     }
 
-    @Shadow public abstract void getOrCreateControls();
+    @Shadow(remap = false) public abstract void getOrCreateControls();
 
     @Override
     public boolean getCloakState() {

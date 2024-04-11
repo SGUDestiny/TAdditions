@@ -40,6 +40,7 @@ public class MTraits extends TraitRegistry {
         RARITIES.addChance(50, PEL.get());
         RARITIES.addChance(10, PEH.get());
         RARITIES.addChance(66, HYDROPHOBIC.get());
-
+        RARITIES.addChance(8, INTROVERT.get());
+        RARITIES.addChance(8, EXTROVERT.get());
     }
 }

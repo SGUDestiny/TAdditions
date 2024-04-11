@@ -22,21 +22,21 @@ import javax.annotation.Nullable;
 @Mixin(Subsystem.class)
 public abstract class SubsysMixin {
 
-    @Shadow protected boolean canBeUsed;
-    @Shadow private boolean isActivated;
+    @Shadow(remap = false) protected boolean canBeUsed;
+    @Shadow(remap = false)private boolean isActivated;
     private Item parents;
 
-    @Shadow public abstract SubsystemEntry getEntry();
+    @Shadow(remap = false)public abstract SubsystemEntry getEntry();
 
-    @Shadow private Item itemKey;
+    @Shadow(remap = false)private Item itemKey;
 
-    @Shadow public abstract void onBreak();
+    @Shadow(remap = false)public abstract void onBreak();
 
-    @Shadow protected abstract void updateClientIfNeeded();
+    @Shadow(remap = false)protected abstract void updateClientIfNeeded();
 
-    @Shadow public abstract Item getItemKey();
+    @Shadow(remap = false)public abstract Item getItemKey();
 
-    @Shadow public abstract void setActivated(boolean active);
+    @Shadow(remap = false) public abstract void setActivated(boolean active);
 
 
     protected ConsoleTile console;

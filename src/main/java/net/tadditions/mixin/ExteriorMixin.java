@@ -54,44 +54,44 @@ public abstract class ExteriorMixin extends TileEntity implements IExteriorHelp 
         super(tileEntityTypeIn);
     }
 
-    @Shadow public abstract void updateClient();
+    @Shadow(remap = false) public abstract void updateClient();
 
-    @Shadow private boolean locked;
-    @Shadow private EnumDoorState openState;
-    @Shadow protected RegistryKey<World> interiorDimension;
-    @Shadow private EnumMatterState matterState;
-    @Shadow public float lightLevel;
-    @Shadow private String customName;
-    @Shadow private IExteriorAnimation animation;
-    @Shadow private int variantIndex;
-    @Shadow private boolean antiGravs;
-    @Shadow private boolean hasDemated;
-    @Shadow private boolean crashed;
-    @Shadow private AbstractExterior exterior;
-    @Shadow private int additionalLockLevel;
-    @Shadow private boolean isInteriorRegenerating;
-    @Shadow private int materializeTime;
+    @Shadow(remap = false) private boolean locked;
+    @Shadow(remap = false) private EnumDoorState openState;
+    @Shadow(remap = false) protected RegistryKey<World> interiorDimension;
+    @Shadow(remap = false) private EnumMatterState matterState;
+    @Shadow(remap = false) public float lightLevel;
+    @Shadow(remap = false) private String customName;
+    @Shadow(remap = false) private IExteriorAnimation animation;
+    @Shadow(remap = false) private int variantIndex;
+    @Shadow(remap = false) private boolean antiGravs;
+    @Shadow(remap = false) private boolean hasDemated;
+    @Shadow(remap = false) private boolean crashed;
+    @Shadow(remap = false) private AbstractExterior exterior;
+    @Shadow(remap = false) private int additionalLockLevel;
+    @Shadow(remap = false) private boolean isInteriorRegenerating;
+    @Shadow(remap = false) private int materializeTime;
 
-    @Shadow public abstract void transferEntities(List<Entity> entityList);
+    @Shadow(remap = false) public abstract void transferEntities(List<Entity> entityList);
 
-    @Shadow public abstract AxisAlignedBB getDoorAABB();
+    @Shadow(remap = false) public abstract AxisAlignedBB getDoorAABB();
 
-    @Shadow public abstract void handleMaterializationAnimations();
+    @Shadow(remap = false) public abstract void handleMaterializationAnimations();
 
-    @Shadow @Nullable public abstract TardisEntity fall();
+    @Shadow(remap = false) @Nullable public abstract TardisEntity fall();
 
-    @Shadow public abstract void pushPower();
+    @Shadow(remap = false) public abstract void pushPower();
 
-    @Shadow private int consoleInFlightTicks;
+    @Shadow(remap = false) private int consoleInFlightTicks;
 
-    @Shadow public abstract void deleteExteriorBlocks();
+    @Shadow(remap = false) public abstract void deleteExteriorBlocks();
 
-    @Shadow private ItemStackHandler buffer;
-    @Shadow private boolean hasSetupCaps;
-    @Shadow private TardisEnergy energy;
-    @Shadow private WorldShell shell;
+    @Shadow(remap = false) private ItemStackHandler buffer;
+    @Shadow(remap = false) private boolean hasSetupCaps;
+    @Shadow(remap = false) private TardisEnergy energy;
+    @Shadow(remap = false) private WorldShell shell;
 
-    @Shadow public abstract void updateOrBuildBoti();
+    @Shadow(remap = false) public abstract void updateOrBuildBoti();
 
     private CloakState cloakState = CloakState.UNCLOAKED;
     private int cloakAnimTime = 0;

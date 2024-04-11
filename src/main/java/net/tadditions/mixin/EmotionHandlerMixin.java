@@ -8,6 +8,6 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 @Mixin(EmotionHandler.class)
 public interface EmotionHandlerMixin {
 
-    @Accessor("traits")
+    @Accessor(value = "traits", remap = false)
     void setTraits(TardisTrait[] traits);
 }

@@ -29,15 +29,15 @@ import java.util.List;
 @Mixin(ArtronCapacitorItem.class)
 public class ArtronCapMixin extends Item {
 
-    @Shadow
+    @Shadow(remap = false)
     private float storage;
 
-    @Shadow
+    @Shadow(remap = false)
     private float rechargeModifier;
 
-    @Shadow @Final
+    @Shadow(remap = false) @Final
     protected final IFormattableTextComponent descriptionTooltip = TextHelper.createDescriptionItemTooltip(new TranslationTextComponent("tooltip.artron_capacitor.info"));
-    @Shadow @Final
+    @Shadow(remap = false) @Final
     protected final IFormattableTextComponent descriptionTooltipTwo = TextHelper.createExtraLineItemTooltip(new TranslationTextComponent("tooltip.artron_capacitor.howto"));
 
 

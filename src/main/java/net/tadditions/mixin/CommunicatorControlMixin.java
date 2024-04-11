@@ -23,11 +23,11 @@ public abstract class CommunicatorControlMixin extends BaseControl{
         super(entry, console, entity);
     }
 
-    @Shadow public abstract Vector3d getPos();
-    @Shadow public abstract SoundEvent getFailSound(ConsoleTile console);
-    @Shadow public abstract SoundEvent getSuccessSound(ConsoleTile console);
-    @Shadow public abstract CompoundNBT serializeNBT();
-    @Shadow public abstract void deserializeNBT(CompoundNBT nbt);
+    @Shadow(remap = false) public abstract Vector3d getPos();
+    @Shadow(remap = false) public abstract SoundEvent getFailSound(ConsoleTile console);
+    @Shadow(remap = false) public abstract SoundEvent getSuccessSound(ConsoleTile console);
+    @Shadow(remap = false) public abstract CompoundNBT serializeNBT();
+    @Shadow(remap = false) public abstract void deserializeNBT(CompoundNBT nbt);
 
     public boolean usePhoneSounds(ConsoleTile tile) {
         return this.getConsole() instanceof CoralConsoleTile || this.getConsole() instanceof XionConsoleTile || this.getConsole() instanceof ToyotaConsoleTile || this.getConsole() instanceof FourteenthConsoleTile;

@@ -22,13 +22,13 @@ public class ExteriorArgumentMixin {
 
 
 
-    @Shadow @Final private static DynamicCommandExceptionType INVALID_EXTERIOR_EXCEPTION;
+    @Shadow(remap = false) @Final private static DynamicCommandExceptionType INVALID_EXTERIOR_EXCEPTION;
 
     /**
      * @author e
      * @reason e
      */
-    @Overwrite
+    @Overwrite(remap = false)
     public static AbstractExterior getExterior(CommandContext<CommandSource> context, String name) throws CommandSyntaxException {
         ResourceLocation resourcelocation = context.getArgument(name, ResourceLocation.class);
         AbstractExterior room = ExteriorRegistry.EXTERIOR_REGISTRY.get().getValue(resourcelocation);
