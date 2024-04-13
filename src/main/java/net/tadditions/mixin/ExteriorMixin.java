@@ -30,6 +30,8 @@ import net.tardis.mod.exterior.AbstractExterior;
 import net.tardis.mod.helper.LandingSystem;
 import net.tardis.mod.helper.TardisHelper;
 import net.tardis.mod.helper.WorldHelper;
+import net.tardis.mod.network.packets.exterior.DoorData;
+import net.tardis.mod.network.packets.exterior.ExteriorData;
 import net.tardis.mod.registries.ExteriorAnimationRegistry;
 import net.tardis.mod.registries.ExteriorRegistry;
 import net.tardis.mod.sounds.TSounds;
@@ -42,7 +44,6 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -92,6 +93,8 @@ public abstract class ExteriorMixin extends TileEntity implements IExteriorHelp 
     @Shadow(remap = false) private WorldShell shell;
 
     @Shadow(remap = false) public abstract void updateOrBuildBoti();
+
+    @Shadow public abstract void updateSpecific(ExteriorData data);
 
     private CloakState cloakState = CloakState.UNCLOAKED;
     private int cloakAnimTime = 0;
@@ -298,5 +301,9 @@ public abstract class ExteriorMixin extends TileEntity implements IExteriorHelp 
         return cloakAnimTime;
     }
 
+    @Inject(method = "toggleLocked()V", at = @At("TAIL"), remap = false)
+    public void toggleLocked(CallbackInfo ci){
+        this.updateSpecific(DoorData.create((ExteriorTile) (Object)this));
+    }
 
 }
