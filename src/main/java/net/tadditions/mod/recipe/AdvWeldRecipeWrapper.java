@@ -13,7 +13,7 @@ public class AdvWeldRecipeWrapper extends RecipeWrapper{
 	
 	@Override
 	public int getSizeInventory() {
-		return inv.getSlots();
+		return 12;
 	}
 
 	@Override

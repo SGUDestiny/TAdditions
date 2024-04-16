@@ -2,6 +2,7 @@ package net.tadditions.mod.tileentity;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -20,6 +21,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import net.tadditions.mod.container.AdvQuantiscopeWeldContainer;
 import net.tadditions.mod.recipe.AdvWeldRecipe;
 import net.tadditions.mod.recipe.AdvWeldRecipeWrapper;
+import net.tadditions.mod.recipe.TARecipeSerialisers;
 import net.tardis.mod.sounds.TSounds;
 
 import javax.annotation.Nullable;
@@ -44,8 +46,8 @@ public class AdvQuantiscopeTile extends TileEntity implements IItemHandlerModifi
 				this.weldRecipe = this.getRecipe();
 			}
 			if(weldRecipe != null && this.shouldWeld()) {
-				this.maxProgress = weldRecipe.getProcessingTicks().orElse(400);
-				this.insertItem(12, new ItemStack(this.weldRecipe.getResult().get().getOutput()), true);
+				this.maxProgress = weldRecipe.getProcessingTicks();
+				this.insertItem(12, this.weldRecipe.getRecipeOutput(), true);
 				//If first progress tick, update client
 				if(this.progress == 0)
 					if(!world.isRemote)
@@ -79,14 +81,14 @@ public class AdvQuantiscopeTile extends TileEntity implements IItemHandlerModifi
 	
 	private boolean shouldWeld() {
 		if(this.weldRecipe != null) {
-			return this.doesMatrixMatchRecipe(this.weldRecipe) && this.insertItem(12, new ItemStack(this.weldRecipe.getResult().get().getOutput()), true) == ItemStack.EMPTY;
+			return this.doesMatrixMatchRecipe(this.weldRecipe) && this.insertItem(12, this.weldRecipe.getRecipeOutput(), true) == ItemStack.EMPTY;
 		}
 		return false;
 	}
 	
 	private void finish() {
-			this.insertItem(12, new ItemStack(this.weldRecipe.getResult().get().getOutput()), false);
-			this.markDirty();
+		this.insertItem(12, this.weldRecipe.getRecipeOutput(), false);
+		this.markDirty();
 
 		
 		for(int i = 0; i < 12; ++i)

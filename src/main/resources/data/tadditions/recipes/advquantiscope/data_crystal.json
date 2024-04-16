@@ -1,0 +1,11 @@
+{
+	"type": "tadditions:advquantiscope",
+	"ingredients":[
+		{"item":"tardis:artron_battery_high"},
+		{"item":"minecraft:diamond"}
+	],
+	"result":{
+		"item":"tadditions:data_crystal",
+		"nbt": {"type": 1}
+	}
+}

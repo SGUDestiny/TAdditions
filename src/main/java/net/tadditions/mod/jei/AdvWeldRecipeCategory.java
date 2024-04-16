@@ -63,7 +63,7 @@ public class AdvWeldRecipeCategory implements IRecipeCategory<AdvWeldRecipe> {
 	public void setIngredients(AdvWeldRecipe recipe, IIngredients ingredients) {
 		
 		ingredients.setInputIngredients(recipe.getIngredients());
-		ingredients.setOutput(VanillaTypes.ITEM, new ItemStack(recipe.getResult().get().getOutput()));
+		ingredients.setOutput(VanillaTypes.ITEM, recipe.getRecipeOutput());
 	}
 
 	@Override
@@ -76,7 +76,7 @@ public class AdvWeldRecipeCategory implements IRecipeCategory<AdvWeldRecipe> {
 	public void setRecipe(IRecipeLayout recipeLayout, AdvWeldRecipe recipe, IIngredients ingredients) {
 
 
-		List<Ingredient> ingredientList = recipe.getRequiredIngredients();
+		List<Ingredient> ingredientList = recipe.getIngredients();
 
 		
 		JEIHelper.addInputSlot(recipeLayout, 0, 7, 28, JEIHelper.getValidIngredientFromList(0, ingredientList).getMatchingStacks());
@@ -95,6 +95,6 @@ public class AdvWeldRecipeCategory implements IRecipeCategory<AdvWeldRecipe> {
 
 
 		recipeLayout.getItemStacks().init(12, false, 79, 74);
-		recipeLayout.getItemStacks().set(12, new ItemStack(recipe.getResult().get().getOutput()));
+		recipeLayout.getItemStacks().set(12, recipe.getRecipeOutput());
 	}
 }
