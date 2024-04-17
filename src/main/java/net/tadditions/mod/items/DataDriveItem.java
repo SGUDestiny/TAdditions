@@ -98,25 +98,27 @@ public class DataDriveItem extends Item {
                     tooltip.add(new TranslationTextComponent("tadditions.data_drive_status_empty"));
                 }
             }
-            cap.getHandler().getStackInSlot(0).getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap1 -> {
+            ItemStack crystal = cap.getHandler().getStackInSlot(0);
+            if(crystal.getItem() instanceof DataCrystalItem) {
+                DataCrystalItem crystalItem = (DataCrystalItem) crystal.getItem();
                 tooltip.add(new TranslationTextComponent("tadditions.data_drive_description"));
                 tooltip.add(TardisConstants.Translations.TOOLTIP_HOLD_SHIFT);
-                if(Screen.hasShiftDown()){
+                if (Screen.hasShiftDown()) {
                     tooltip.clear();
                     tooltip.add(0, this.getDisplayName(stack));
                     tooltip.add(new TranslationTextComponent("tadditions.data_drive_description"));
-                    tooltip.add(new TranslationTextComponent("tadditions.data_drive_crystal_type_" + (cap1.getUsed() ? "used" : cap1.getType())));
-                    if(!cap1.getUsed()) {
-                        if (cap1.getType() == 0) {
-                            tooltip.add(new TranslationTextComponent("tadditions.data_drive_dimension").appendSibling(new StringTextComponent(WorldHelper.formatDimName(cap1.getDimData())).mergeStyle(TextFormatting.DARK_PURPLE)));
-                        } else if (cap1.getType() == 1) {
-                            tooltip.add(new TranslationTextComponent("tadditions.data_drive_coordinates").appendSibling(new StringTextComponent(cap1.getCoords().getCoordinatesAsString()).mergeStyle(TextFormatting.DARK_AQUA)));
-                            tooltip.add(new TranslationTextComponent("tadditions.data_drive_dimension").appendSibling(new StringTextComponent(WorldHelper.formatDimName(cap1.getDimData())).mergeStyle(TextFormatting.DARK_PURPLE)));
+                    tooltip.add(new TranslationTextComponent("tadditions.data_drive_crystal_type_" + (crystalItem.getUsed(crystal) ? "used" : crystalItem.getType(crystal))));
+                    if (!crystalItem.getUsed(crystal)) {
+                        if (crystalItem.getType(crystal) == 0) {
+                            tooltip.add(new TranslationTextComponent("tadditions.data_drive_dimension").appendSibling(new StringTextComponent(WorldHelper.formatDimName(crystalItem.getDimData(crystal))).mergeStyle(TextFormatting.DARK_PURPLE)));
+                        } else if (crystalItem.getType(crystal) == 1) {
+                            tooltip.add(new TranslationTextComponent("tadditions.data_drive_coordinates").appendSibling(new StringTextComponent(crystalItem.getCoords(crystal).getCoordinatesAsString()).mergeStyle(TextFormatting.DARK_AQUA)));
+                            tooltip.add(new TranslationTextComponent("tadditions.data_drive_dimension").appendSibling(new StringTextComponent(WorldHelper.formatDimName(crystalItem.getDimData(crystal))).mergeStyle(TextFormatting.DARK_PURPLE)));
                         }
                     }
                     tooltip.add(new TranslationTextComponent("tadditions.data_drive_status").appendSibling(getStatus(stack)));
                 }
-            });
+            }
         });
     }
 
@@ -124,15 +126,17 @@ public class DataDriveItem extends Item {
         AtomicReference<TranslationTextComponent> text = new AtomicReference<>(new TranslationTextComponent("tadditions.data_drive_status_error"));
 
         stack.getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
-            cap.getHandler().getStackInSlot(0).getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap1 -> {
-                if(cap.getHandler().getStackInSlot(0).isEmpty()){
+            ItemStack crystal = cap.getHandler().getStackInSlot(0);
+            if(crystal.getItem() instanceof DataCrystalItem) {
+                DataCrystalItem crystalItem = (DataCrystalItem) crystal.getItem();
+                if (cap.getHandler().getStackInSlot(0).isEmpty()) {
                     text.set(new TranslationTextComponent("tadditions.data_drive_status_empty"));
-                } else if(cap1.getUsed()){
+                } else if (crystalItem.getUsed(crystal)) {
                     text.set(new TranslationTextComponent("tadditions.data_drive_status_used"));
-                } else if(!cap1.getUsed()){
+                } else if (!crystalItem.getUsed(crystal)) {
                     text.set(new TranslationTextComponent("tadditions.data_drive_status_ready"));
                 }
-            });
+            }
         });
         return text.get();
     }

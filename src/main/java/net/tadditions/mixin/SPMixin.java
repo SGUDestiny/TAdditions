@@ -19,6 +19,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.tadditions.mod.cap.MCapabilities;
 import net.tadditions.mod.helper.IConsoleHelp;
+import net.tadditions.mod.items.DataCrystalItem;
 import net.tadditions.mod.items.ModItems;
 import net.tadditions.mod.world.MDimensions;
 import net.tardis.mod.cap.Capabilities;
@@ -47,44 +48,46 @@ public class SPMixin {
                 if(player.getHeldItemMainhand().getItem() == ModItems.BOOS_UPGRADE.get()) {
                     player.getHeldItemMainhand().getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
                         if (!cap.getHandler().getStackInSlot(0).isItemEqual(ItemStack.EMPTY)) {
-                            cap.getHandler().getStackInSlot(0).getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap1 -> {
-                                if (cap1.getType() == 0) {
-                                    if (!((IConsoleHelp) console).getAvailable().contains(cap1.getDimData()) && !cap1.getUsed()) {
-                                        ((IConsoleHelp) console).addAvailable(cap1.getDimData());
-                                        cap1.setDimData(World.OVERWORLD);
-                                        cap1.setUsed(true);
-                                        ((SonicPortControl) (Object) this).getEntity().world.playSound(null, ((SonicPortControl) (Object) this).getEntity().getPosition(), TSounds.SCREEN_BEEP_SINGLE.get(), SoundCategory.PLAYERS,1f, 1f);
-                                    }  else if (cap1.getUsed()){
+                            ItemStack crystal = cap.getHandler().getStackInSlot(0);
+                            if(crystal.getItem() instanceof DataCrystalItem) {
+                                DataCrystalItem crystalItem = (DataCrystalItem) crystal.getItem();
+                                if (crystalItem.getType(crystal) == 0) {
+                                    if (!((IConsoleHelp) console).getAvailable().contains(crystalItem.getDimData(crystal)) && !crystalItem.getUsed(crystal)) {
+                                        ((IConsoleHelp) console).addAvailable(crystalItem.getDimData(crystal));
+                                        crystalItem.setDimData(crystal, World.OVERWORLD);
+                                        crystalItem.setUsed(crystal, true);
+                                        ((SonicPortControl) (Object) this).getEntity().world.playSound(null, ((SonicPortControl) (Object) this).getEntity().getPosition(), TSounds.SCREEN_BEEP_SINGLE.get(), SoundCategory.PLAYERS, 1f, 1f);
+                                    } else if (crystalItem.getUsed(crystal)) {
                                         ((IConsoleHelp) console).removeAvailable(MDimensions.THE_VERGE);
-                                        ((SonicPortControl) (Object) this).getEntity().world.playSound(null, ((SonicPortControl) (Object) this).getEntity().getPosition(), TSounds.ELECTRIC_SPARK.get(), SoundCategory.PLAYERS,1f, 1f);
+                                        ((SonicPortControl) (Object) this).getEntity().world.playSound(null, ((SonicPortControl) (Object) this).getEntity().getPosition(), TSounds.ELECTRIC_SPARK.get(), SoundCategory.PLAYERS, 1f, 1f);
                                     }
-                                } else if (cap1.getType() == 1) {
-                                    if (((IConsoleHelp) console).getAvailable().contains(cap1.getDimData()) && !cap1.getUsed() && !cap1.getCoords().equals(BlockPos.ZERO)) {
-                                        cap1.setUsed(true);
-                                        ((SonicPortControl) (Object) this).getEntity().world.playSound(null, ((SonicPortControl) (Object) this).getEntity().getPosition(), TSounds.REACHED_DESTINATION.get(), SoundCategory.PLAYERS,1f, 1f);
+                                } else if (crystalItem.getType(crystal) == 1) {
+                                    if (((IConsoleHelp) console).getAvailable().contains(crystalItem.getDimData(crystal)) && !crystalItem.getUsed(crystal) && !crystalItem.getCoords(crystal).equals(BlockPos.ZERO)) {
+                                        crystalItem.setUsed(crystal, true);
+                                        ((SonicPortControl) (Object) this).getEntity().world.playSound(null, ((SonicPortControl) (Object) this).getEntity().getPosition(), TSounds.REACHED_DESTINATION.get(), SoundCategory.PLAYERS, 1f, 1f);
                                         console.getWorld().getServer().enqueue(new TickDelayedTask(30, () -> {
-                                            console.setDestination(new SpaceTimeCoord(cap1.getDimData(), cap1.getCoords()));
+                                            console.setDestination(new SpaceTimeCoord(crystalItem.getDimData(crystal), crystalItem.getCoords(crystal)));
                                             console.getControl(ThrottleControl.class).ifPresent(throttle -> throttle.setAmount(1.0F));
                                             console.getControl(HandbrakeControl.class).ifPresent(handbrake -> handbrake.setFree(true));
                                             console.getSubsystem(StabilizerSubsystem.class).ifPresent(sys -> sys.setControlActivated(true));
                                             console.takeoff();
 
-                                            cap1.setDimData(World.OVERWORLD);
-                                            cap1.setCoords(BlockPos.ZERO);
+                                            crystalItem.setDimData(crystal, World.OVERWORLD);
+                                            crystalItem.setCoords(crystal, BlockPos.ZERO);
                                         }));
-                                    } else if (!cap1.getUsed() && cap1.getCoords().equals(BlockPos.ZERO)) {
-                                        ((SonicPortControl) (Object) this).getEntity().world.playSound(null, ((SonicPortControl) (Object) this).getEntity().getPosition(), TSounds.REMOTE_ACCEPT.get(), SoundCategory.PLAYERS,1f, 1f);
-                                        cap1.setCoords(console.getDestinationPosition());
-                                        cap1.setDimData(console.getDestinationDimension());
-                                    } else if(!cap1.getUsed() && !((IConsoleHelp) console).getAvailable().contains(cap1.getDimData()) && !cap1.getCoords().equals(BlockPos.ZERO)) {
+                                    } else if (!crystalItem.getUsed(crystal) && crystalItem.getCoords(crystal).equals(BlockPos.ZERO)) {
+                                        ((SonicPortControl) (Object) this).getEntity().world.playSound(null, ((SonicPortControl) (Object) this).getEntity().getPosition(), TSounds.REMOTE_ACCEPT.get(), SoundCategory.PLAYERS, 1f, 1f);
+                                        crystalItem.setCoords(crystal, console.getDestinationPosition());
+                                        crystalItem.setDimData(crystal, console.getDestinationDimension());
+                                    } else if (!crystalItem.getUsed(crystal) && !((IConsoleHelp) console).getAvailable().contains(crystalItem.getDimData(crystal)) && !crystalItem.getCoords(crystal).equals(BlockPos.ZERO)) {
                                         ((SonicPortControl) (Object) this).getEntity().world.playSound(null, ((SonicPortControl) (Object) this).getEntity().getPosition(), TSounds.CANT_START.get(), SoundCategory.PLAYERS, 1f, 1f);
                                         ((SonicPortControl) (Object) this).getEntity().world.playSound(null, ((SonicPortControl) (Object) this).getEntity().getPosition(), TSounds.SINGLE_CLOISTER.get(), SoundCategory.PLAYERS, 1f, 1f);
-                                    } else if (cap1.getUsed()){
+                                    } else if (crystalItem.getUsed(crystal)) {
                                         ((IConsoleHelp) console).removeAvailable(MDimensions.THE_VERGE);
-                                        ((SonicPortControl) (Object) this).getEntity().world.playSound(null, ((SonicPortControl) (Object) this).getEntity().getPosition(), TSounds.ELECTRIC_SPARK.get(), SoundCategory.PLAYERS,1f, 1f);
+                                        ((SonicPortControl) (Object) this).getEntity().world.playSound(null, ((SonicPortControl) (Object) this).getEntity().getPosition(), TSounds.ELECTRIC_SPARK.get(), SoundCategory.PLAYERS, 1f, 1f);
                                     }
                                 }
-                            });
+                            }
                         }
                     });
                 }

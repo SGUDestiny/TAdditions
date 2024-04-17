@@ -25,6 +25,7 @@ import net.tadditions.mod.client.model.ToyotaInteriorDoor;
 import net.tadditions.mod.client.renderers.*;
 import net.tadditions.mod.container.MContainers;
 import net.tadditions.mod.helper.IMDoorType;
+import net.tadditions.mod.items.DataCrystalItem;
 import net.tadditions.mod.items.ModItems;
 import net.tadditions.mod.screens.AdvQuantiscopeWeldScreen;
 import net.tadditions.mod.screens.DataDriveScreen;
@@ -76,44 +77,44 @@ public class MClientRegistry extends TClientRegistry {
 
         ItemModelsProperties.registerProperty(ModItems.data_crystal.get(), new ResourceLocation(QolMod.MOD_ID, "used"),
                 (stack, clientWorld, entity) -> {
-                    AtomicInteger integer = new AtomicInteger(0);
-                    stack.getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap -> {
-                        if(cap.getUsed()){
-                            integer.set(1);
+                    if(stack.getItem() instanceof DataCrystalItem) {
+                        DataCrystalItem crystal = (DataCrystalItem) stack.getItem();
+                        if (crystal.getUsed(stack)) {
+                            return 1;
                         }
-                    });
-                    return integer.get();
+                    }
+                    return 0;
                 });
         ItemModelsProperties.registerProperty(ModItems.data_crystal.get(), new ResourceLocation(QolMod.MOD_ID, "coord"),
                 (stack, clientWorld, entity) -> {
-                    AtomicInteger integer = new AtomicInteger(0);
-                    stack.getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap -> {
-                        if(cap.getType() == 1 && !cap.getUsed()){
-                            integer.set(1);
+                    if(stack.getItem() instanceof DataCrystalItem) {
+                        DataCrystalItem crystal = (DataCrystalItem) stack.getItem();
+                        if (crystal.getType(stack) == 1 && !crystal.getUsed(stack)) {
+                            return 1;
                         }
-                    });
-                    return integer.get();
+                    }
+                    return 0;
                 });
         ItemModelsProperties.registerProperty(ModItems.data_crystal.get(), new ResourceLocation(QolMod.MOD_ID, "dim"),
                 (stack, clientWorld, entity) -> {
-                    AtomicInteger integer = new AtomicInteger(0);
-                    stack.getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap -> {
-                        if(cap.getType() == 0 && !cap.getUsed()){
-                            integer.set(1);
+                    if(stack.getItem() instanceof DataCrystalItem) {
+                        DataCrystalItem crystal = (DataCrystalItem) stack.getItem();
+                        if (crystal.getType(stack) == 0 && !crystal.getUsed(stack)) {
+                            return 1;
                         }
-                    });
-                    return integer.get();
+                    }
+                    return 0;
                 });
         ItemModelsProperties.registerProperty(ModItems.BOOS_UPGRADE.get(), new ResourceLocation(QolMod.MOD_ID, "used"),
                 (stack, clientWorld, entity) -> {
                     AtomicInteger integer = new AtomicInteger(0);
                     stack.getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
-                        cap.getHandler().getStackInSlot(0).getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap1 -> {
-                            if(cap1.getUsed()){
+                        if(cap.getHandler().getStackInSlot(0).getItem() instanceof DataCrystalItem) {
+                            DataCrystalItem crystal = (DataCrystalItem) cap.getHandler().getStackInSlot(0).getItem();
+                            if (crystal.getUsed(cap.getHandler().getStackInSlot(0))) {
                                 integer.set(1);
                             }
-                        });
-
+                        }
                     });
                     return integer.get();
                 });
@@ -121,12 +122,12 @@ public class MClientRegistry extends TClientRegistry {
                 (stack, clientWorld, entity) -> {
                     AtomicInteger integer = new AtomicInteger(0);
                     stack.getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
-                        cap.getHandler().getStackInSlot(0).getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap1 -> {
-                            if(cap1.getType() == 1 && !cap1.getUsed()){
+                        if (cap.getHandler().getStackInSlot(0).getItem() instanceof DataCrystalItem) {
+                            DataCrystalItem crystal = (DataCrystalItem) cap.getHandler().getStackInSlot(0).getItem();
+                            if (crystal.getType(cap.getHandler().getStackInSlot(0)) == 1 && !crystal.getUsed(cap.getHandler().getStackInSlot(0))) {
                                 integer.set(1);
                             }
-                        });
-
+                        }
                     });
                     return integer.get();
                 });
@@ -134,12 +135,12 @@ public class MClientRegistry extends TClientRegistry {
                 (stack, clientWorld, entity) -> {
                     AtomicInteger integer = new AtomicInteger(0);
                     stack.getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
-                        cap.getHandler().getStackInSlot(0).getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap1 -> {
-                            if(cap1.getType() == 0 && !cap1.getUsed()){
+                        if(stack.getItem() instanceof DataCrystalItem) {
+                            DataCrystalItem crystal = (DataCrystalItem) cap.getHandler().getStackInSlot(0).getItem();
+                            if (crystal.getType(cap.getHandler().getStackInSlot(0)) == 0 && !crystal.getUsed(cap.getHandler().getStackInSlot(0))) {
                                 integer.set(1);
                             }
-                        });
-
+                        }
                     });
                     return integer.get();
                 });

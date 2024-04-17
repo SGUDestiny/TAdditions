@@ -1,4 +1,4 @@
-{
+
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
@@ -6,6 +6,6 @@
     }
   ],
   "result": {
-    "item": "tadditions:upgrades_manual"
+    "item": "tadditions:arcane_guidebook"
   }
 }

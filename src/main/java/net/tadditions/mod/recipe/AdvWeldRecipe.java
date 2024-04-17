@@ -31,13 +31,6 @@ public class AdvWeldRecipe implements IRecipe<AdvWeldRecipeWrapper>{
         this.processingTicks = length;
     }
 
-    public boolean itemStackMatches(AdvWeldRecipeWrapper container, int slot)
-    {
-        ItemStack stack = container.getStackInSlot(slot);
-
-        return recipeItems.get(slot).test(stack);
-    }
-
     @Override
     public boolean matches(AdvWeldRecipeWrapper inv, World worldIn) {
         /** Items to check this recipe against */

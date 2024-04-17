@@ -11,6 +11,7 @@ import net.tadditions.mod.QolMod;
 import net.tadditions.mod.cap.MCapabilities;
 import net.tadditions.mod.container.DataDriveContainer;
 import net.tadditions.mod.helper.MHelper;
+import net.tadditions.mod.items.DataCrystalItem;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
@@ -54,9 +55,11 @@ public class DataDriveScreen extends ContainerScreen<DataDriveContainer> {
     public int getLightState(){
         AtomicInteger inte = new AtomicInteger(0);
         drive.getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
-            cap.getHandler().getStackInSlot(0).getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap1 -> {
-                inte.set(cap1.getUsed() ? 0 : 2);
-            });
+            ItemStack stack = cap.getHandler().getStackInSlot(0);
+            if(stack.getItem() instanceof DataCrystalItem){
+                DataCrystalItem crystalItem = (DataCrystalItem) stack.getItem();
+                inte.set(crystalItem.getUsed(stack) ? 0 : 2);
+            }
         });
         return inte.get();
     }
@@ -66,12 +69,14 @@ public class DataDriveScreen extends ContainerScreen<DataDriveContainer> {
         drive.getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
             if(cap.getHandler().getStackInSlot(0).isEmpty()){
                 text.set(new TranslationTextComponent("tadditions.data_drive_gui_status_empty"));
-            } else if(cap.getHandler().getStackInSlot(0).getCapability(MCapabilities.CRYSTAL_CAPABILITY).isPresent()){
-                cap.getHandler().getStackInSlot(0).getCapability(MCapabilities.CRYSTAL_CAPABILITY).ifPresent(cap1-> {
-                    if(cap1.getUsed()){
+            } else if(cap.getHandler().getStackInSlot(0).getItem() instanceof DataCrystalItem){
+                ItemStack stack = cap.getHandler().getStackInSlot(0);
+                if(stack.getItem() instanceof DataCrystalItem) {
+                    DataCrystalItem crystalItem = (DataCrystalItem) stack.getItem();
+                    if (crystalItem.getUsed(stack)) {
                         text.set(new TranslationTextComponent("tadditions.data_drive_gui_status_used"));
                     } else text.set(new TranslationTextComponent("tadditions.data_drive_gui_status_ready"));
-                });
+                }
             }
         });
 
