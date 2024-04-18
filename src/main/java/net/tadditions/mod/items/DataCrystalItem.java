@@ -165,11 +165,11 @@ public class DataCrystalItem extends Item {
     }
 
     public void setCoords(ItemStack stack, BlockPos pos) {
-        stack.getOrCreateChildTag("crystal_data").put("coords", NBTUtil.writeBlockPos(pos));
+        stack.getOrCreateChildTag("crystal_data").put("coord", NBTUtil.writeBlockPos(pos));
     }
 
     public BlockPos getCoords(ItemStack stack) {
-        return NBTUtil.readBlockPos(stack.getOrCreateChildTag("crystal_data").getCompound("coords"));
+        return NBTUtil.readBlockPos(stack.getOrCreateChildTag("crystal_data").getCompound("coord"));
     }
 
     public int getType(ItemStack stack) {
