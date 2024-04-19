@@ -2,6 +2,8 @@ package net.tadditions.mod.items;
 
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -31,8 +33,8 @@ public class CoordinateDataCrystalItem extends Item {
 
     public CoordinateDataCrystalItem(Properties properties) {
         super(properties);
-        dimdata = World.OVERWORLD;
-        coord = BlockPos.ZERO;
+        this.dimdata = World.OVERWORLD;
+        this.coord = BlockPos.ZERO;
     }
 
     @Nullable
@@ -78,9 +80,13 @@ public class CoordinateDataCrystalItem extends Item {
     }
 
     @Override
-    public ActionResultType onItemUse(ItemUseContext context) {
-        this.setCoords(context.getItem(), context.getPos());
-        return super.onItemUse(context);
+    public void onUse(World worldIn, LivingEntity livingEntityIn, ItemStack stack, int count) {
+        if (!worldIn.isRemote()){
+            ItemStack newCrystal = new ItemStack(this);
+            this.setDimData(newCrystal, worldIn.getDimensionKey());
+            this.setCoords(newCrystal, livingEntityIn.getPosition());
+            livingEntityIn.setHeldItem(livingEntityIn.getActiveHand(), newCrystal);
+        }
     }
 
     public CompoundNBT serializeNBT() {
@@ -88,6 +94,19 @@ public class CoordinateDataCrystalItem extends Item {
         tag.putString("dimdata", this.dimdata.getLocation().toString());
         tag.put("coords", NBTUtil.writeBlockPos(coord));
         return tag;
+    }
+
+    @Override
+    public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+        if (worldIn.getGameTime() % 20 == 0) {
+            if (stack.getShareTag() != null) {
+                stack.getOrCreateTag().merge(stack.getShareTag());
+                this.coord = getCoords(stack);
+                this.dimdata = getDimData(stack);
+                this.serializeNBT();
+            }
+        }
+        super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
     }
 
     public void deserializeNBT(CompoundNBT nbt) {

@@ -15,7 +15,7 @@
 		{"item":"minecraft:diamond"}
 	],
 	"result":{
-		"item":"tadditions:euclid_data_crystal",
+		"item":"tadditions:data_crystal_euclid",
 		"nbt": "{crystal_data:{dimdata:\"minecraft:overworld\", coords:{X:0, Y:0, Z:0}}}"
 	}
 }
