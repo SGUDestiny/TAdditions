@@ -4,15 +4,10 @@ import com.google.common.collect.Maps;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraft.client.world.ClientWorld;
 import net.minecraft.client.world.DimensionRenderInfo;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.ItemModelsProperties;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.event.entity.player.AdvancementEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
@@ -25,7 +20,6 @@ import net.tadditions.mod.client.model.ToyotaInteriorDoor;
 import net.tadditions.mod.client.renderers.*;
 import net.tadditions.mod.container.MContainers;
 import net.tadditions.mod.helper.IMDoorType;
-import net.tadditions.mod.items.DataCrystalItem;
 import net.tadditions.mod.items.ModItems;
 import net.tadditions.mod.screens.AdvQuantiscopeWeldScreen;
 import net.tadditions.mod.screens.DataDriveScreen;
@@ -36,11 +30,7 @@ import net.tadditions.mod.world.MDimensions;
 import net.tadditions.mod.world.MarsSkyProperty;
 import net.tadditions.mod.world.TagreaSkyProperty;
 import net.tardis.mod.client.TClientRegistry;
-import net.tardis.mod.client.models.interiordoors.FortuneInteriorModel;
-import net.tardis.mod.config.TConfig;
-import software.bernie.geckolib3.renderers.geo.GeoBlockRenderer;
 
-import javax.annotation.Nullable;
 import java.util.EnumMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -75,45 +65,12 @@ public class MClientRegistry extends TClientRegistry {
             RenderTypeLookup.setRenderLayer(ModBlocks.zero_point_field_normal.get(), RenderType.getCutout());
         });
 
-        ItemModelsProperties.registerProperty(ModItems.data_crystal.get(), new ResourceLocation(QolMod.MOD_ID, "used"),
-                (stack, clientWorld, entity) -> {
-                    if(stack.getItem() instanceof DataCrystalItem) {
-                        DataCrystalItem crystal = (DataCrystalItem) stack.getItem();
-                        if (crystal.getUsed(stack)) {
-                            return 1;
-                        }
-                    }
-                    return 0;
-                });
-        ItemModelsProperties.registerProperty(ModItems.data_crystal.get(), new ResourceLocation(QolMod.MOD_ID, "coord"),
-                (stack, clientWorld, entity) -> {
-                    if(stack.getItem() instanceof DataCrystalItem) {
-                        DataCrystalItem crystal = (DataCrystalItem) stack.getItem();
-                        if (crystal.getType(stack) == 1 && !crystal.getUsed(stack)) {
-                            return 1;
-                        }
-                    }
-                    return 0;
-                });
-        ItemModelsProperties.registerProperty(ModItems.data_crystal.get(), new ResourceLocation(QolMod.MOD_ID, "dim"),
-                (stack, clientWorld, entity) -> {
-                    if(stack.getItem() instanceof DataCrystalItem) {
-                        DataCrystalItem crystal = (DataCrystalItem) stack.getItem();
-                        if (crystal.getType(stack) == 0 && !crystal.getUsed(stack)) {
-                            return 1;
-                        }
-                    }
-                    return 0;
-                });
         ItemModelsProperties.registerProperty(ModItems.BOOS_UPGRADE.get(), new ResourceLocation(QolMod.MOD_ID, "used"),
                 (stack, clientWorld, entity) -> {
                     AtomicInteger integer = new AtomicInteger(0);
                     stack.getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
-                        if(cap.getHandler().getStackInSlot(0).getItem() instanceof DataCrystalItem) {
-                            DataCrystalItem crystal = (DataCrystalItem) cap.getHandler().getStackInSlot(0).getItem();
-                            if (crystal.getUsed(cap.getHandler().getStackInSlot(0))) {
-                                integer.set(1);
-                            }
+                        if(cap.getHandler().getStackInSlot(0).getItem().equals(ModItems.BURNED_DATA_CRYSTAL.get())) {
+                            integer.set(1);
                         }
                     });
                     return integer.get();
@@ -122,11 +79,8 @@ public class MClientRegistry extends TClientRegistry {
                 (stack, clientWorld, entity) -> {
                     AtomicInteger integer = new AtomicInteger(0);
                     stack.getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
-                        if (cap.getHandler().getStackInSlot(0).getItem() instanceof DataCrystalItem) {
-                            DataCrystalItem crystal = (DataCrystalItem) cap.getHandler().getStackInSlot(0).getItem();
-                            if (crystal.getType(cap.getHandler().getStackInSlot(0)) == 1 && !crystal.getUsed(cap.getHandler().getStackInSlot(0))) {
-                                integer.set(1);
-                            }
+                        if (cap.getHandler().getStackInSlot(0).getItem().equals(ModItems.COORDINATE_DATA_CRYSTAL.get())) {
+                            integer.set(1);
                         }
                     });
                     return integer.get();
@@ -135,11 +89,8 @@ public class MClientRegistry extends TClientRegistry {
                 (stack, clientWorld, entity) -> {
                     AtomicInteger integer = new AtomicInteger(0);
                     stack.getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
-                        if(stack.getItem() instanceof DataCrystalItem) {
-                            DataCrystalItem crystal = (DataCrystalItem) cap.getHandler().getStackInSlot(0).getItem();
-                            if (crystal.getType(cap.getHandler().getStackInSlot(0)) == 0 && !crystal.getUsed(cap.getHandler().getStackInSlot(0))) {
-                                integer.set(1);
-                            }
+                        if (cap.getHandler().getStackInSlot(0).getItem().equals(ModItems.DIMENSIONAL_DATA_CRYSTAL.get())) {
+                            integer.set(1);
                         }
                     });
                     return integer.get();

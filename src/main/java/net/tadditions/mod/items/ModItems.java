@@ -43,7 +43,9 @@ public class ModItems {
     public static final RegistryObject<Item> BOOS_UPGRADE = ITEMS.register("data_drive", () -> createItem(new DataDriveItem(Prop.Items.ONE.get().group(ModItemGroups.TA))));
     public static final RegistryObject<Item> AEON_CRYSTAL = ITEMS.register("aeon_crystal", () -> createItem(new Item(Prop.Items.SIXTY_FOUR.get().group(ModItemGroups.TA))));
     public static final RegistryObject<Item> UNDEADLOCKER = ITEMS.register("undeadlocker", () -> createItem(new UndeadLocker()));
-    public static final RegistryObject<Item> data_crystal = ITEMS.register("data_crystal", () -> createItem(new DataCrystalItem(Prop.Items.ONE.get().group(ModItemGroups.TA))));
+    public static final RegistryObject<Item> BURNED_DATA_CRYSTAL = ITEMS.register("data_crystal_burnt", () -> createItem(new Item(Prop.Items.SIXTY_FOUR.get().group(ModItemGroups.TA))));
+    public static final RegistryObject<Item> DIMENSIONAL_DATA_CRYSTAL = ITEMS.register("data_crystal_noneuclid", () -> createItem(new DimensionalDataCrystalItem(Prop.Items.ONE.get().group(ModItemGroups.TA))));
+    public static final RegistryObject<Item> COORDINATE_DATA_CRYSTAL = ITEMS.register("data_crystal_euclid", () -> createItem(new CoordinateDataCrystalItem(Prop.Items.SIXTEEN.get().group(ModItemGroups.TA))));
     public static final RegistryObject<Item> QUANTUM_EXOTIC_MATTER= ITEMS.register("exotic_matter", () -> createItem(new QuantumExoticMatterItem(Prop.Items.SIXTY_FOUR.get().group(ModItemGroups.TA))));
     public static final RegistryObject<Item> DEMAT_CIRCUITMK2 = ITEMS.register("subsystem/dematerialisation_circuit_overcharged", () -> createItem(new SubsysItem(Prop.Items.ONE.get().maxDamage(5000).group(ModItemGroups.TA).setISTER(() -> DematRenderer::new), TardisConstants.Part.PartType.SUBSYSTEM, false, true)));
     public static final RegistryObject<Item> FLUID_LINKMK2 = ITEMS.register("subsystem/fluid_link_overcharged", () -> createItem(new SubsysItem(Prop.Items.ONE.get().maxDamage(1250).group(ModItemGroups.TA).setISTER(() -> FluidLinkRenderer::new), TardisConstants.Part.PartType.SUBSYSTEM, false, true)));

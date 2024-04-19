@@ -40,7 +40,7 @@ public class DataDriveContainer extends BaseContainer {
 		this.datadrive = stack;
 	      
 		stack.getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
-			this.addSlot(new SlotItemHandlerFilteredCapped(cap.getHandler(), 0, 80, 29, item -> item.getItem().equals(ModItems.data_crystal.get()), 1));
+			this.addSlot(new SlotItemHandlerFilteredCapped(cap.getHandler(), 0, 80, 29, item -> item.getItem().equals(ModItems.BURNED_DATA_CRYSTAL.get()) || item.getItem().equals(ModItems.DIMENSIONAL_DATA_CRYSTAL.get()) || item.getItem().equals(ModItems.COORDINATE_DATA_CRYSTAL.get()), 1));
 		});
 
 
