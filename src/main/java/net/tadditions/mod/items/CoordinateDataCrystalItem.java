@@ -2,15 +2,11 @@ package net.tadditions.mod.items;
 
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.NBTUtil;
-import net.minecraft.util.ActionResultType;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
@@ -20,7 +16,6 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
-import net.tadditions.mod.world.MDimensions;
 import net.tardis.mod.constants.TardisConstants;
 import net.tardis.mod.helper.WorldHelper;
 
@@ -79,34 +74,11 @@ public class CoordinateDataCrystalItem extends Item {
         }
     }
 
-    @Override
-    public void onUse(World worldIn, LivingEntity livingEntityIn, ItemStack stack, int count) {
-        if (!worldIn.isRemote()){
-            ItemStack newCrystal = new ItemStack(this);
-            this.setDimData(newCrystal, worldIn.getDimensionKey());
-            this.setCoords(newCrystal, livingEntityIn.getPosition());
-            livingEntityIn.setHeldItem(livingEntityIn.getActiveHand(), newCrystal);
-        }
-    }
-
     public CompoundNBT serializeNBT() {
         CompoundNBT tag = new CompoundNBT();
         tag.putString("dimdata", this.dimdata.getLocation().toString());
         tag.put("coords", NBTUtil.writeBlockPos(coord));
         return tag;
-    }
-
-    @Override
-    public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-        if (worldIn.getGameTime() % 20 == 0) {
-            if (stack.getShareTag() != null) {
-                stack.getOrCreateTag().merge(stack.getShareTag());
-                this.coord = getCoords(stack);
-                this.dimdata = getDimData(stack);
-                this.serializeNBT();
-            }
-        }
-        super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
     }
 
     public void deserializeNBT(CompoundNBT nbt) {

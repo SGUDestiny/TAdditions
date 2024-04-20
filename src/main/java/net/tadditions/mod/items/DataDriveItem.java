@@ -129,7 +129,7 @@ public class DataDriveItem extends Item {
                     tooltip.clear();
                     tooltip.add(0, this.getDisplayName(stack));
                     tooltip.add(new TranslationTextComponent("tadditions.data_drive_description"));
-                    tooltip.add(new TranslationTextComponent("tadditions.data_drive_crystal_type_0"));
+                    tooltip.add(new TranslationTextComponent("tadditions.data_drive_crystal_type_1"));
                     tooltip.add(new TranslationTextComponent("tadditions.data_drive_dimension").appendSibling(new StringTextComponent(WorldHelper.formatDimName(crystalItem.getDimData(crystal))).mergeStyle(TextFormatting.DARK_PURPLE)));
                     tooltip.add(new TranslationTextComponent("tadditions.data_drive_coordinates").appendSibling(new StringTextComponent(crystalItem.getCoords(crystal).getCoordinatesAsString()).mergeStyle(TextFormatting.DARK_AQUA)));
                     tooltip.add(new TranslationTextComponent("tadditions.data_drive_status").appendSibling(getStatus(stack)));
@@ -156,6 +156,16 @@ public class DataDriveItem extends Item {
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity player, Hand handIn) {
         ItemStack stack = player.getHeldItem(handIn);
+        if(stack != ItemStack.EMPTY && !player.isSneaking()){
+            stack.getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
+                ItemStack crystal = cap.getHandler().getStackInSlot(0);
+                if(crystal.getItem() instanceof CoordinateDataCrystalItem){
+                    CoordinateDataCrystalItem crystalItem = (CoordinateDataCrystalItem) crystal.getItem();
+                    crystalItem.setDimData(crystal, worldIn.getDimensionKey());
+                    crystalItem.setCoords(crystal, player.getPosition());
+                }
+            });
+        }
         if (stack != ItemStack.EMPTY) {
             if (!worldIn.isRemote && player instanceof ServerPlayerEntity) {
                 if (!player.getCooldownTracker().hasCooldown(this) && player.isSneaking()) {
