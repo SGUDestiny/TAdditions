@@ -114,6 +114,10 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> filled_electromagnetic_solenoid_container = registerforblockanimitem("filled_electromagnetic_solenoid_container", () -> setUpBlock(new SolenoidConBlock(Prop.Blocks.BASIC_TECH.get())), new Item.Properties().group(ModItemGroups.TA).setISTER(() -> SolenoidFilledItemRenderer::new));
 
+    public static final RegistryObject<Block> roundel_smooth_quartz_full = registerforblock("roundel/smooth_quartz_full", () -> setUpBlock(new RoundelBlock(AbstractBlock.Properties.create(Material.ROCK), SoundType.STONE, 1.25F, 4.2F)));
+
+    public static final RegistryObject<Block> roundel_smooth_quartz_offset = registerforblock("roundel/smooth_quartz_offset", () -> setUpBlock(new RoundelBlock(AbstractBlock.Properties.create(Material.ROCK), SoundType.STONE, 1.25F, 4.2F)));
+
     public static final RegistryObject<Block> electromagnetic_solenoid_container = register("electromagnetic_solenoid_container", () -> setUpBlock(new SolenoidConBlock(Prop.Blocks.BASIC_TECH.get())), ModItemGroups.TA);
 
     public static final RegistryObject<Block> roundelcon_alabaster = register("roundelcon/alabaster", () -> setUpBlock(new RoundelContainer(AbstractBlock.Properties.create(Material.IRON).setLightLevel((state) -> {
@@ -643,7 +647,15 @@ public class ModBlocks {
     public static final RegistryObject<Block> tungsten_blue_runner_light = register("roundelcon/tungsten_blue_runner_light", () -> setUpBlock(new RoundelContainer(Block.Properties.create(Material.ROCK).setLightLevel((state) -> {
         return 15;
     }))));
-    
+
+    public static final RegistryObject<Block> roundelcon_smooth_quartz_full = register("roundelcon/smooth_quartz_full", () -> setUpBlock(new RoundelContainer(AbstractBlock.Properties.create(Material.ROCK).setLightLevel((state) -> {
+        return 15;
+    }))));
+
+    public static final RegistryObject<Block> roundelcon_smooth_quartz_offset = register("roundelcon/smooth_quartz_offset", () -> setUpBlock(new RoundelContainer(AbstractBlock.Properties.create(Material.ROCK).setLightLevel((state) -> {
+        return 15;
+    }))));
+
     public static final RegistryObject<Block> foodmaker = register("foodmaker", () -> setUpBlock(new FoodMaker()), ModItemGroups.TA);
 
 

@@ -1,0 +1,9 @@
+{
+  "type": "tardis:spectrometer",
+  "processing_ticks": 200,
+  "download_ticks": 200,
+  "ingredient": {
+    "item":"tadditions:data_crystal_burnt"
+  },
+  "result": "tadditions:consoles/fourteenth_console"
+}
