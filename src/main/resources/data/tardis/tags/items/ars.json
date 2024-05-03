@@ -149,6 +149,12 @@
     "tadditions:roundelcon/prismarine_bricks_offset",
     "tadditions:roundelcon/bone_block_full",
     "tadditions:roundelcon/bone_block_offset",
-    "tadditions:roundelcon/tech_wall_lamp"
+    "tadditions:roundelcon/tech_wall_lamp",
+    "tadditions:roundelcon/three_point_lamp",
+    "tadditions:roundelcon/tungsten_blue_runner_light",
+    "tadditions:roundel/smooth_quartz_full",
+    "tadditions:roundel/smooth_quartz_offset",
+    "tadditions:roundelcon/smooth_quartz_full",
+    "tadditions:roundelcon/smooth_quartz_offset"
   ]
 }

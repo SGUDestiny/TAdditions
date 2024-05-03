@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "tadditions:data_crystal",
+          "name": "tadditions:data_crystal_noneuclid",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -14,7 +14,7 @@
             },
             {
               "function": "minecraft:set_nbt",
-              "tag": "{crystal: {dimdata: \"the_verge_of_reality\"}}"
+              "tag": "{crystal_data: {dimdata: \"tadditions:the_verge_of_reality\"}}"
             }
           ]
         }

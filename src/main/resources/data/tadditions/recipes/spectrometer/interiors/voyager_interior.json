@@ -1,0 +1,9 @@
+{
+  "type": "tardis:spectrometer",
+  "processing_ticks": 200,
+  "download_ticks": 200,
+  "ingredient": {
+    "item": "minecraft:smooth_quartz"
+  },
+  "result": "tadditions:interiors/voyager_interior"
+}

@@ -1,0 +1,10 @@
+{
+  "structure_resource_location":"tadditions:voyager_interior",
+  "display_name":"Voyager",
+  "x_offset":25,
+  "y_offset":7,
+  "z_offset":30,
+  "using_remote_image":false,
+  "remote_image_url":"",
+  "image_resource_location":"tadditions:textures/gui/interiors/voyager_interior.png"
+}
