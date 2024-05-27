@@ -21,6 +21,7 @@ import java.util.Optional;
 public class MHelper {
 
     public static boolean hasEnd = false;
+    public static List<RegistryKey<World>> removeWorlds = new ArrayList<>();
 
     public static boolean isInBounds(int testX, int testY, int x, int y, int u, int v) {
         return (testX > x &&
@@ -43,6 +44,8 @@ public class MHelper {
         if(!types.contains(World.THE_END) && hasEnd){
             types.add(World.THE_END);
         }
+
+        types.removeAll(removeWorlds);
         return types;
     }
 }

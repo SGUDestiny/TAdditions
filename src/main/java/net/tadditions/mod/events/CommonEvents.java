@@ -34,6 +34,8 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
+import net.minecraftforge.fml.event.server.ServerLifecycleEvent;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 import net.tadditions.mod.QolMod;
 import net.tadditions.mod.blocks.ModBlocks;
@@ -104,6 +106,11 @@ public class CommonEvents {
             }
         }
     }
+    
+    //@SubscribeEvent
+    //public static void onServerStart(FMLServerStartedEvent event) {
+    //    MHelper.removeWorlds.add(MDimensions.THE_VERGE);
+    //}
 
     @SubscribeEvent
     public static void onServerTick(TickEvent.ServerTickEvent event) {
