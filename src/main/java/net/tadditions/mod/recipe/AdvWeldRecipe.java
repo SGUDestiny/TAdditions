@@ -185,7 +185,7 @@ public class AdvWeldRecipe implements IRecipe<AdvWeldRecipeWrapper>{
             JsonArray ingredients = JSONUtils.getJsonArray(json, "ingredients");
             NonNullList<Ingredient> inputs = NonNullList.withSize(11, Ingredient.EMPTY);
 
-            for (int i = 0; i < inputs.size(); i++) {
+            for (int i = 0; i < ingredients.size() && i < inputs.size(); i++) {
                 inputs.set(i, Ingredient.deserialize(ingredients.get(i)));
             }
 
