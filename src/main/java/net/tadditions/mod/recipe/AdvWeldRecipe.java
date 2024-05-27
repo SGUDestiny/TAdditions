@@ -183,7 +183,7 @@ public class AdvWeldRecipe implements IRecipe<AdvWeldRecipeWrapper>{
             int processing_time = JSONUtils.getInt(json, "processing_time", 400);
 
             JsonArray ingredients = JSONUtils.getJsonArray(json, "ingredients");
-            NonNullList<Ingredient> inputs = NonNullList.withSize(11, Ingredient.EMPTY);
+            NonNullList<Ingredient> inputs = NonNullList.withSize(ingredients.size(), Ingredient.EMPTY);
 
             for (int i = 0; i < ingredients.size() && i < inputs.size(); i++) {
                 inputs.set(i, Ingredient.deserialize(ingredients.get(i)));
@@ -196,12 +196,12 @@ public class AdvWeldRecipe implements IRecipe<AdvWeldRecipeWrapper>{
         @Nullable
         @Override
         public AdvWeldRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
-            NonNullList<Ingredient> inputs = NonNullList.withSize(11, Ingredient.EMPTY);
+            NonNullList<Ingredient> inputs = NonNullList.withSize(buffer.readInt(), Ingredient.EMPTY);
+            int time = buffer.readInt();
 
             for (int i = 0; i < inputs.size(); i++) {
                 inputs.set(i, Ingredient.read(buffer));
             }
-            int time = buffer.readInt();
 
             ItemStack output = buffer.readItemStack();
             return new AdvWeldRecipe(recipeId, output,
@@ -210,12 +210,15 @@ public class AdvWeldRecipe implements IRecipe<AdvWeldRecipeWrapper>{
 
         @Override
         public void write(PacketBuffer buffer, AdvWeldRecipe recipe) {
+            //buffer.writeResourceLocation(recipe.id);
+
             buffer.writeInt(recipe.getIngredients().size());
-            for (Ingredient ing : recipe.getIngredients()) {
-                ing.write(buffer);
-            }
             buffer.writeInt(recipe.getProcessingTicks());
+
+            recipe.getIngredients().forEach(ingredient -> ingredient.write(buffer));
             buffer.writeItemStack(recipe.getRecipeOutput(), false);
         }
+
+
     }
 }
