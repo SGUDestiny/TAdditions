@@ -36,11 +36,13 @@ public class MHelper {
 
     public static List<RegistryKey<World>> availableDimensions(){
         List<RegistryKey<World>> types = new ArrayList<>();
-        ServerLifecycleHooks.getCurrentServer().getWorlds().forEach(world -> {
-            if(WorldHelper.canTravelToDimension(world) && !MConfigs.SERVER.BlockedDimensions.get().contains(world.getDimensionKey().getLocation().toString())) {
-                types.add(world.getDimensionKey());
-            }
-        });
+        if(ServerLifecycleHooks.getCurrentServer() != null) {
+            ServerLifecycleHooks.getCurrentServer().getWorlds().forEach(world -> {
+                if (WorldHelper.canTravelToDimension(world) && !MConfigs.SERVER.BlockedDimensions.get().contains(world.getDimensionKey().getLocation().toString())) {
+                    types.add(world.getDimensionKey());
+                }
+            });
+        }
         if(!types.contains(World.THE_END) && hasEnd){
             types.add(World.THE_END);
         }
