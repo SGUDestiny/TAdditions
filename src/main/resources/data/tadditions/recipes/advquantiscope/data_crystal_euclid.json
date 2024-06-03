@@ -1,0 +1,16 @@
+{
+	"type": "tadditions:advquantiscope",
+	"ingredients":[
+		{"item":"tardis:artron_battery"},
+		{"item":"tardis:xion_crystal"},
+		{"item":"tardis:xion_crystal"},
+		{"item":"tardis:xion_crystal"},
+		{"item":"tardis:xion_crystal"},
+		{"item":"tardis:circuits"}
+	],
+	"result":{
+		"item":"tadditions:data_crystal_euclid",
+		"nbt": "{crystal_data:{dimdata:\"minecraft:overworld\", coords:{X:0, Y:0, Z:0}}}",
+		"count": 4
+	}
+}

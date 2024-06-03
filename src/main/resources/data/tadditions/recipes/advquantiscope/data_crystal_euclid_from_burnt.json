@@ -1,0 +1,13 @@
+{
+  "type": "tadditions:advquantiscope",
+  "ingredients":[
+    {"item":"tadditions:data_crystal_burnt"},
+    {"item":"tardis:xion_crystal"},
+    {"item":"minecraft:gold_nugget"},
+    {"item":"tardis:xion_crystal"}
+  ],
+  "result":{
+    "item":"tadditions:data_crystal_euclid",
+    "nbt": "{crystal_data:{dimdata:\"minecraft:overworld\", coords:{X:0, Y:0, Z:0}}}"
+  }
+}

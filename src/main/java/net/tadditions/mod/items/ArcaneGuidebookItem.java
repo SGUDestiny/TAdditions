@@ -10,9 +10,7 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.SwordItem;
+import net.minecraft.item.*;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -147,8 +145,11 @@ public class ArcaneGuidebookItem extends Item implements IAnimatable, ISyncable 
         }
         controller.setAnimation(builder);
     }
+
     @Override
     public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
-        return false;
+        return super.shouldCauseReequipAnimation(oldStack, newStack, false);
     }
+
+
 }
