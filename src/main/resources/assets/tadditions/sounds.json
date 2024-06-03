@@ -30,7 +30,7 @@
   "murasama": {
     "subtitle": "subtitle.tadditions.murasama",
     "sounds": [
-      "tadditions:tyrus_spadra_totikfr_alternative_mix"
+      "tadditions:murasama_advancement"
     ]
   },
   "20_year": {
@@ -43,6 +43,12 @@
     "subtitle": "subtitle.tadditions.verge_visit",
     "sounds":[
       "tadditions:ambient/sentryturbo_-_despite_it_all"
+    ]
+  },
+  "power_axe": {
+    "subtitle": "subtitle.tadditions.power_axe",
+    "sounds": [
+      "tadditions:power_axe_advancement"
     ]
   }
 }
