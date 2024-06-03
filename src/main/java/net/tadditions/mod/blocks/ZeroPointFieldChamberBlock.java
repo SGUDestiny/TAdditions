@@ -17,6 +17,7 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.tardis.mod.blocks.MultiblockBlock;
 import net.tardis.mod.blocks.TileBlock;
@@ -42,15 +43,12 @@ public class ZeroPointFieldChamberBlock extends TileBlock {
         return BlockRenderType.ENTITYBLOCK_ANIMATED;
     }
 
+
     @Override
-    public void onBlockHarvested(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        if(!world.isRemote() && !player.isCreative()) {
-            if (state.getBlock().getDefaultState() == ModBlocks.zero_point_field_normal.get().getDefaultState()) {
-                world.setBlockState(pos, ModBlocks.zero_point_field_broken.get().getDefaultState());
-            }
-            if (state.getBlock().getDefaultState() == ModBlocks.zero_point_field_broken.get().getDefaultState()) {
-                super.onBlockHarvested(world, pos, state, player);
-            }
+    public void onPlayerDestroy(IWorld worldIn, BlockPos pos, BlockState state) {
+        if(state.getBlock().matchesBlock(ModBlocks.zero_point_field_normal.get()) && !worldIn.isRemote())
+        {
+            worldIn.setBlockState(pos, ModBlocks.zero_point_field_broken.get().getDefaultState(), 2);
         }
     }
 
