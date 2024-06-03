@@ -133,16 +133,22 @@ public class ArcaneGuidebookItem extends Item implements IAnimatable, ISyncable 
     public void onAnimationSync(int id, int state) {
         final AnimationController<?> controller = GeckoLibUtil.getControllerForID(this.factory, id, this.controllerName);
         controller.markNeedsReload();
+
         AnimationBuilder builder = new AnimationBuilder();
+
+        controller.transitionLengthTicks = 5;
+
         if (state == 0) {
-            controller.transitionLengthTicks = 0.1;
-            builder.addAnimation("close", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME).addAnimation("idle", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME);
-            controller.clearAnimationCache();
+            builder.addAnimation("close", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME)
+                    .addAnimation("idle", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME);
         } else if (state == 1) {
-            controller.clearAnimationCache();
-            controller.transitionLengthTicks = 35;
-            builder.addAnimation("open", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME).clearAnimations().addAnimation("loop", ILoopType.EDefaultLoopTypes.LOOP);
+            builder.addAnimation("open", ILoopType.EDefaultLoopTypes.HOLD_ON_LAST_FRAME)
+                    .addAnimation("loop", ILoopType.EDefaultLoopTypes.LOOP);
         }
         controller.setAnimation(builder);
+    }
+    @Override
+    public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
+        return false;
     }
 }
