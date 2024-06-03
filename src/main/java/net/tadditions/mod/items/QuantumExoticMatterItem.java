@@ -105,6 +105,11 @@ public class QuantumExoticMatterItem extends Item {
         }
     }
 
+    @Override
+    public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
+        return false;
+    }
+
     public int getTime(final ItemStack stack) {
       return stack.getOrCreateTag().getInt("time");
     }
