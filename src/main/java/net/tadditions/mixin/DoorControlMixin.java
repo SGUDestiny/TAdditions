@@ -66,9 +66,9 @@ public abstract class DoorControlMixin extends BaseControl {
         return true;
     }
 
-    @Shadow public abstract Vector3d getPos();
-    @Shadow public abstract SoundEvent getFailSound(ConsoleTile console);
-    @Shadow public abstract SoundEvent getSuccessSound(ConsoleTile console);
-    @Shadow public abstract CompoundNBT serializeNBT();
-    @Shadow public abstract void deserializeNBT(CompoundNBT nbt);
+    @Shadow(remap = false) public abstract Vector3d getPos();
+    @Shadow(remap = false) public abstract SoundEvent getFailSound(ConsoleTile console);
+    @Shadow(remap = false) public abstract SoundEvent getSuccessSound(ConsoleTile console);
+    @Shadow(remap = false) public abstract CompoundNBT serializeNBT();
+    @Shadow(remap = false) public abstract void deserializeNBT(CompoundNBT nbt);
 }

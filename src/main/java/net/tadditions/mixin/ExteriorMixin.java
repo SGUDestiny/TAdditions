@@ -94,7 +94,7 @@ public abstract class ExteriorMixin extends TileEntity implements IExteriorHelp 
 
     @Shadow(remap = false) public abstract void updateOrBuildBoti();
 
-    @Shadow public abstract void updateSpecific(ExteriorData data);
+    @Shadow(remap = false) public abstract void updateSpecific(ExteriorData data);
 
     private CloakState cloakState = CloakState.UNCLOAKED;
     private int cloakAnimTime = 0;

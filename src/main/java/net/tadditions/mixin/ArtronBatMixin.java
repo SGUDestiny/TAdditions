@@ -118,33 +118,4 @@ public abstract class ArtronBatMixin extends Item {
 
     @Shadow(remap = false)
     public abstract float getCharge(ItemStack stack);
-
-
-
-    /**
-     * @author me
-     * @reason yes
-     */
-    @Overwrite(remap = false)
-    public void createStatisticTooltips(ItemStack stack, World worldIn, List<ITextComponent> tooltip,
-                                        ITooltipFlag flagIn) {
-        int enchantLevelR = EnchantmentHelper.getEnchantmentLevel(TAEnchants.SUBSPACE_LINK.get(), stack);
-        int enchantLevelS = EnchantmentHelper.getEnchantmentLevel(TAEnchants.SUBSPACE_POCKET.get(), stack);
-
-        float r = 0;
-        float s = 0;
-
-        if(enchantLevelR > 0){
-            r = (float) (enchantLevelR);
-        }
-        if(enchantLevelS > 0){
-            s = (float) (enchantLevelS*1028);
-        }
-        tooltip.add(new TranslationTextComponent("tooltip.artron_battery.charge").appendSibling(new StringTextComponent(String.valueOf(this.getCharge(stack))).mergeStyle(TextFormatting.LIGHT_PURPLE).appendSibling(TardisConstants.Suffix.ARTRON_UNITS)));
-        tooltip.add(new TranslationTextComponent("tooltip.artron_battery.max_charge").appendSibling(new StringTextComponent(String.valueOf(this.getMaxCharge(stack)+s)).mergeStyle(TextFormatting.LIGHT_PURPLE).appendSibling(TardisConstants.Suffix.ARTRON_UNITS)));
-        tooltip.add(new TranslationTextComponent("tooltip.artron_battery.discharge_multiplier").appendSibling(new StringTextComponent(String.valueOf(this.getDischargeRateMultiplier()+r)).mergeStyle(TextFormatting.LIGHT_PURPLE)));
-        tooltip.add(new TranslationTextComponent("tooltip.artron_battery.charge_multiplier").appendSibling(new StringTextComponent(String.valueOf(this.getChargeRateMultiplier()+r)).mergeStyle(TextFormatting.LIGHT_PURPLE)));
-        if (this.isCreative() && this.getCharge(stack) == 0)
-            tooltip.add(new TranslationTextComponent("tooltip.artron_battery.creative_setup"));
-    }
 }
