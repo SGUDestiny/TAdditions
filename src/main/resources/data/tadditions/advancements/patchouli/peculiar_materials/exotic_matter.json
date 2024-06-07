@@ -1,0 +1,21 @@
+{
+  "criteria": {
+    "obtain_tardis": {
+      "trigger": "tardis:obtain_tardis"
+    },
+    "exotic_matter": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tadditions:exotic_matter"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    ["exotic_matter"],
+    ["obtain_tardis"]
+  ]
+}

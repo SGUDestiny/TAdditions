@@ -2,7 +2,7 @@
   "name": "Speed Artron Battery",
   "icon": "tadditions:artron_battery_speed",
   "category": "tadditions:artron_systems/artron_batteries",
-  "advancement": "tadditions:patchouli/battery_speed",
+  "advancement": "tadditions:patchouli/artron_systems/artron_batteries/artron_batteries",
   "pages": [
     {
       "type": "patchouli:spotlight",

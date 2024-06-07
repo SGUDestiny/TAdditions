@@ -2,7 +2,7 @@
   "name": "Advanced Quantiscope",
   "icon": "tadditions:advanced_quantiscope",
   "category": "tadditions:helical_contraptions",
-  "advancement": "tadditions:patchouli/advanced_quantiscope",
+  "advancement": "tadditions:patchouli/helical_contraptions/advanced_quantiscope",
   "pages": [
     {
       "type": "patchouli:spotlight",

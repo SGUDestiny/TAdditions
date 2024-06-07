@@ -2,7 +2,7 @@
   "name": "Ultra Artron Capacitor",
   "icon": "tadditions:artron_capacitor_ultra",
   "category": "tadditions:artron_systems/artron_capacitors",
-  "advancement": "tadditions:patchouli/capacitor_ultra",
+  "advancement": "tadditions:patchouli/artron_systems/artron_capacitors/artron_capacitors",
   "pages": [
     {
       "type": "patchouli:spotlight",

@@ -4,9 +4,14 @@
   "category": "tadditions:tattered_pages",
   "pages": [
     {
+
       "type": "patchouli:text",
       "title": "Introduction I",
-      "text": "''Nothing here... For now.''"
+      "text": "$(o)''...As soon as you stepped into this world, a gold-laced book, black as midnight, with an almost unsettling insignia of an eye staring right into your soul, was already waiting you at your feet. Upon picking it up and brushing it off, you had discovered that all of the pages, with exception of this one, are blank. But as you read this text, you are hit with a sense of deja vu...''$()"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(o)''The very text you are reading seems to be reminiscent of your own thoughts, written as if someone describes them from the observer perspective. A chill runs down your spine the very next moment you know it...''$()"
     }
   ]
 }

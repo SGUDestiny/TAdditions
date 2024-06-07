@@ -2,7 +2,7 @@
   "name": "Speed Artron Capacitor",
   "icon": "tadditions:artron_capacitor_speed",
   "category": "tadditions:artron_systems/artron_capacitors",
-  "advancement": "tadditions:patchouli/capacitor_speed",
+  "advancement": "tadditions:patchouli/artron_systems/artron_capacitors/artron_capacitors",
   "pages": [
     {
       "type": "patchouli:spotlight",

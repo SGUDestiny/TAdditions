@@ -1,6 +1,0 @@
-{
-  "name": "Sub-Systems",
-  "description": "WIP",
-  "icon": "tardis:subsystem/dematerialisation_circuit",
-  "parent": "tadditions:timeship"
-}

@@ -2,7 +2,7 @@
   "name": "The Verge of Reality",
   "icon": "tadditions:ash",
   "category": "tadditions:realms",
-  "advancement": "tadditions:the_verge_of_reality",
+  "advancement": "tadditions:patchouli/realms/the_verge_of_reality",
   "pages": [
     {
       "type": "patchouli:text",

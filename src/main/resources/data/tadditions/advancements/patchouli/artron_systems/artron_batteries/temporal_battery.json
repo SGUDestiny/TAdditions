@@ -1,0 +1,32 @@
+{
+  "criteria": {
+    "obtain_tardis": {
+      "trigger": "tardis:obtain_tardis"
+    },
+    "battery_speed": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tadditions:artron_battery_speed"
+          }
+        ]
+      }
+    },
+    "battery_ultra": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tadditions:artron_battery_ultra"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    ["battery_speed"],
+    ["battery_ultra"],
+    ["obtain_tardis"]
+  ]
+}

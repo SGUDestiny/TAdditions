@@ -2,7 +2,7 @@
   "name": "Aeon Crystal",
   "icon": "tadditions:aeon_crystal",
   "category": "tadditions:peculiar_materials",
-  "advancement": "tadditions:patchouli/aeon_crystal",
+  "advancement": "tadditions:patchouli/peculiar_materials/aeon_crystal",
   "pages": [
     {
       "type": "patchouli:spotlight",

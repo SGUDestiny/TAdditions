@@ -2,7 +2,7 @@
   "name": "Temporal Artron Battery",
   "icon": "tadditions:artron_battery_temporal",
   "category": "tadditions:artron_systems/artron_batteries",
-  "advancement": "tadditions:patchouli/battery_temporal",
+  "advancement": "tadditions:patchouli/artron_systems/artron_batteries/temporal_battery",
   "pages": [
     {
       "type": "patchouli:spotlight",

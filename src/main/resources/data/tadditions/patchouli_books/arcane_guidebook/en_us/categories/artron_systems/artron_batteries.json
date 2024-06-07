@@ -1,6 +1,6 @@
 {
   "name": "Artron Batteries",
-  "description": "WIP",
+  "description": "Advanced handheld Artron storage for all portable needs one may have.",
   "icon": "tadditions:artron_battery_temporal",
   "parent": "tadditions:artron_systems"
 }

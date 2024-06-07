@@ -1,0 +1,16 @@
+{
+  "name": "Flight Event Detector",
+  "icon": "tadditions:flight_event_detector",
+  "category": "tadditions:misc",
+  "advancement": "tadditions:patchouli/misc/flight_event_detector",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tadditions:flight_event_detector"
+      },
+      "title": "Flight Event Detector",
+      "text": "WIP"
+    }
+  ]
+}

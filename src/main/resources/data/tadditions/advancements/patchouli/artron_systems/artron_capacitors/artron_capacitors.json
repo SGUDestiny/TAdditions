@@ -1,0 +1,21 @@
+{
+  "criteria": {
+    "obtain_tardis": {
+      "trigger": "tardis:obtain_tardis"
+    },
+    "capacitor_high": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tardis:artron_capacitor_high"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    ["capacitor_high"],
+    ["obtain_tardis"]
+  ]
+}

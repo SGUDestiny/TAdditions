@@ -1,0 +1,17 @@
+{
+  "criteria": {
+    "obtain_tardis": {
+      "trigger": "tardis:obtain_tardis"
+    },
+    "in_mars": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "tadditions:mars"
+      }
+    }
+  },
+  "requirements": [
+    ["in_mars"],
+    ["obtain_tardis"]
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "criteria": {
+    "obtain_tardis": {
+      "trigger": "tardis:obtain_tardis"
+    },
+    "in_verge": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "tadditions:the_verge_of_reality"
+      }
+    }
+  },
+  "requirements": [
+    ["in_verge"],
+    ["obtain_tardis"]
+  ]
+}

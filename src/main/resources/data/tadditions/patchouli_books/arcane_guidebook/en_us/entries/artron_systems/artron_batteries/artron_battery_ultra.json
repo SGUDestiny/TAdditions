@@ -2,7 +2,7 @@
   "name": "Ultra Artron Battery",
   "icon": "tadditions:artron_battery_ultra",
   "category": "tadditions:artron_systems/artron_batteries",
-  "advancement": "tadditions:patchouli/battery_ultra",
+  "advancement": "tadditions:patchouli/artron_systems/artron_batteries/artron_batteries",
   "pages": [
     {
       "type": "patchouli:spotlight",

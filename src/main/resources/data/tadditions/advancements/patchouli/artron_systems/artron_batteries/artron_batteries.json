@@ -1,0 +1,21 @@
+{
+  "criteria": {
+    "obtain_tardis": {
+      "trigger": "tardis:obtain_tardis"
+    },
+    "battery_high": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tardis:artron_battery_high"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    ["battery_high"],
+    ["obtain_tardis"]
+  ]
+}
