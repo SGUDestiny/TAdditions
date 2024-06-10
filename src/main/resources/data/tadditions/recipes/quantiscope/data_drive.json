@@ -5,8 +5,7 @@
     {"item":"tardis:circuits"},
     {"item":"tardis:artron_battery"},
     {"item":"tardis:xion_crystal"},
-    {"item":"minecraft:iron_ingot"},
-    {"item":"tadditions:data_crystal"}
+    {"item":"minecraft:iron_ingot"}
   ],
   "result":{
     "item":"tadditions:data_drive"
