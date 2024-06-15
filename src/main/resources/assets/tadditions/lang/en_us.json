@@ -369,7 +369,7 @@
   "tadditions:triedmaketoyota": "Tried to obtain the Toyota Police Box Exterior",
   "guide.tadditions.name": "\u00a74Arcane Guidebook",
   "guide.tadditions.subtitle": "A mysterious notebook",
-  "guide.tadditions.landing_text": "You don't remember ever getting this book. The back of your mind tells you that it's always been there. Just... out of your sight. Until now. What secrets does it behold? It seems rather empty right now.",
+  "guide.tadditions.landing_text": "$(o)''$(l)Per Aspera Ad Astra.$() $(o)Take your flight into the unknown, trailblazing the universe and uncovering the arcane veil of the lost knowledge. The journey is yours, at the palm of your hand...''$()",
   "enchantment.tadditions.subspace_pocket": "Subspace Pocket",
   "enchantment.tadditions.subspace_link": "Subspace Link",
   "enchantment.tadditions.blessing_of_temporal_flow": "Blessing of Temporal Flow",

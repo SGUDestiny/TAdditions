@@ -2,6 +2,7 @@
   "name": "Introduction II",
   "icon": "tadditions:arcane_guidebook",
   "category": "tadditions:tattered_pages",
+  "sortnum": 1,
   "advancement": "tardis:obtain_tardis",
   "pages": [
     {

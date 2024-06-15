@@ -1,9 +1,9 @@
 {
   "name": "Helical Contraptions I",
   "icon": "tadditions:arcane_guidebook",
-  "category": "tadditions:helical_contraptions",
+  "category": "tadditions:tattered_pages",
   "advancement": "tadditions:patchouli/lore/helical_contraptions_i",
-  "sortnum": 0,
+  "sortnum": 2,
   "pages": [
     {
       "type": "patchouli:text",
