@@ -21,7 +21,7 @@ public class MDimensions {
 			new ResourceLocation(QolMod.MOD_ID, "the_verge_of_reality"));
 
 	public static final ResourceLocation MARS_SKY_PROPERTY_KEY = new ResourceLocation(QolMod.MOD_ID, "mars_sky_property");
-	public static final ResourceLocation TAGREA_SKY_PROPERTY_KEY = new ResourceLocation(QolMod.MOD_ID, "the_verge_of_reality_sky_property");
+	public static final ResourceLocation THE_VERG_SKY_PROPERTY_KEY = new ResourceLocation(QolMod.MOD_ID, "the_verge_of_reality_sky_property");
 
 }
 

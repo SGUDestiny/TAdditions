@@ -23,16 +23,15 @@ import net.tardis.mod.tileentities.ConsoleTile;
 import javax.annotation.Nullable;
 import java.text.DecimalFormat;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class OneUseRemoteItem extends ConsoleBoundItem implements IArtronItemStackBattery {
+public class OlimRemoteItem extends ConsoleBoundItem implements IArtronItemStackBattery {
 
     public static final DecimalFormat FORMAT = new DecimalFormat("###");
     private static final IFormattableTextComponent USAGE = TextHelper.createDescriptionItemTooltip(new TranslationTextComponent("tooltip.stat_remote.use"));
 
 
-    public OneUseRemoteItem(Properties properties) {
+    public OlimRemoteItem(Properties properties) {
         super(properties);
     }
 

@@ -10,6 +10,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 import net.tadditions.mod.QolMod;
 import net.tadditions.mod.config.MConfigs;
+import net.tadditions.mod.world.MDimensions;
 import net.tardis.mod.helper.NBTHelper;
 import net.tardis.mod.helper.WorldHelper;
 import org.spongepowered.asm.mixin.Dynamic;
@@ -22,6 +23,7 @@ public class MHelper {
 
     public static boolean hasEnd = false;
     public static List<RegistryKey<World>> removeWorlds = new ArrayList<>();
+    public static List<RegistryKey<World>> removeVMWorlds = Lists.newArrayList(MDimensions.THE_VERGE);
 
     public static boolean isInBounds(int testX, int testY, int x, int y, int u, int v) {
         return (testX > x &&

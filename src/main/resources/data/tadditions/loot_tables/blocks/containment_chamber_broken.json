@@ -6,17 +6,28 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "tadditions:zero_point_field_chamber_broken",
+          "name": "tadditions:containment_chamber",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "\"is_broken\": true"
+            }
+          ],
           "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "tadditions:containment_chamber",
+              "properties": {
+                "broken": "true"
+              }
+            },
             {
               "condition": "minecraft:match_tool",
               "predicate": {
                 "enchantments": [
                   {
                     "enchantment": "minecraft:silk_touch",
-                    "levels": {
-                      "min": 1
-                    }
+                    "levels": 1
                   }
                 ]
               }

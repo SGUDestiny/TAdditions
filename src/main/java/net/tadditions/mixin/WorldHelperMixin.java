@@ -5,6 +5,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
+import net.tadditions.mod.helper.MHelper;
 import net.tadditions.mod.world.MDimensions;
 import net.tardis.mod.config.TConfig;
 import net.tardis.mod.helper.WorldHelper;
@@ -26,7 +27,7 @@ public class WorldHelperMixin {
         ResourceLocation key = worldKey.getLocation();
         if(key == null)
             return false;
-        if(key == MDimensions.THE_VERGE.getLocation())
+        if(MHelper.removeVMWorlds.contains(worldKey))
             return false;
         if (TConfig.SERVER.toggleVMWhitelistDims.get()) { //If using whitelist
             List<? extends String> whitelist = TConfig.SERVER.whitelistedVMDims.get();
@@ -57,7 +58,7 @@ public class WorldHelperMixin {
         List<World> dims = new ArrayList<World>();
 
         for(ServerWorld dimension : ServerLifecycleHooks.getCurrentServer().getWorlds()) {
-            if(WorldHelper.canTravelToDimension(dimension) && dimension.getDimensionKey() != MDimensions.THE_VERGE)
+            if(WorldHelper.canTravelToDimension(dimension) && !MHelper.removeWorlds.contains(dimension.getDimensionKey()))
                 dims.add(dimension);
         }
 

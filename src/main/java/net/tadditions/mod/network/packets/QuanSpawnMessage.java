@@ -37,7 +37,6 @@ public class QuanSpawnMessage {
             ItemStack stack = new ItemStack(mes.key);
                 if(mes.key != null) {
                     int amount = Math.min(stack.getMaxStackSize(), 1);
-                    System.out.print("ItemPain");
                         InventoryHelper.spawnItemStack(world,
                                 con.get().getSender().getPosX(),
                                 con.get().getSender().getPosY(),

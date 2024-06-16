@@ -39,8 +39,8 @@ public class ModItems {
     public static final RegistryObject<Item> ZR2_UPGRADE = ITEMS.register("upgrades/zr2", () -> createItem(new TardisPartItem(Prop.Items.ONE.get().group(ModItemGroups.TA).maxDamage(1000), TardisConstants.Part.PartType.UPGRADE, false, true, TardisConstants.Translations.TEMPORAL_GRACE)));
     public static final RegistryObject<Item> FRAME_UPGRADE = ITEMS.register("upgrades/frame_stabilizer", () -> createItem(new TardisPartItem(Prop.Items.ONE.get().group(ModItemGroups.TA).maxDamage(1000), TardisConstants.Part.PartType.UPGRADE, false, true, TardisConstants.Translations.DEMAT_CIRCUIT)));
     public static final RegistryObject<Item> MURASAMA = ITEMS.register("murasama", () -> createItem(new Murasama(MItemTier.MURASAMA, 1,-2f, new Item.Properties().group(ModItemGroups.TA).isImmuneToFire().setISTER(() -> MurasamaRenderer::new))));
-    public static final RegistryObject<Item> ONEUSEREMOTE = ITEMS.register("onetimeremote", () -> createItem(new OneUseRemoteItem(Prop.Items.ONE.get().group(ModItemGroups.TA))));
-    public static final RegistryObject<Item> BOOS_UPGRADE = ITEMS.register("data_drive", () -> createItem(new DataDriveItem(Prop.Items.ONE.get().group(ModItemGroups.TA))));
+    public static final RegistryObject<Item> OLIM_REMOTE = ITEMS.register("olim_remote", () -> createItem(new OlimRemoteItem(Prop.Items.ONE.get().group(ModItemGroups.TA))));
+    public static final RegistryObject<Item> DATA_DRIVE = ITEMS.register("data_drive", () -> createItem(new DataDriveItem(Prop.Items.ONE.get().group(ModItemGroups.TA))));
     public static final RegistryObject<Item> AEON_CRYSTAL = ITEMS.register("aeon_crystal", () -> createItem(new Item(Prop.Items.SIXTY_FOUR.get().group(ModItemGroups.TA))));
     public static final RegistryObject<Item> UNDEADLOCKER = ITEMS.register("undeadlocker", () -> createItem(new UndeadLocker()));
     public static final RegistryObject<Item> BURNED_DATA_CRYSTAL = ITEMS.register("data_crystal_burnt", () -> createItem(new Item(Prop.Items.SIXTY_FOUR.get().group(ModItemGroups.TA))));

@@ -7,32 +7,22 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.tadditions.mod.QolMod;
-import net.tadditions.mod.client.renderers.DecorativeToyotaItemRenderer;
 import net.tadditions.mod.client.renderers.SolenoidFilledItemRenderer;
-import net.tadditions.mod.client.renderers.ZPFChamberBrokenItemRenderer;
-import net.tadditions.mod.client.renderers.ZPFChamberItemRenderer;
-import net.tadditions.mod.fluids.MFluids;
-import net.tadditions.mod.helper.TAMultiblockPatterns;
+import net.tadditions.mod.client.renderers.ContainmentChamberItemRenderer;
 import net.tadditions.mod.items.AnimatedBlockItem;
+import net.tadditions.mod.items.ContainmentChamberItem;
 import net.tadditions.mod.items.ModItemGroups;
 import net.tadditions.mod.items.ModItems;
 import net.tardis.mod.blocks.*;
 import net.tardis.mod.blocks.exteriors.ExteriorBlock;
-import net.tardis.mod.blocks.multiblock.MultiblockPatterns;
 import net.tardis.mod.itemgroups.TItemGroups;
-import net.tardis.mod.items.TItems;
-import net.tadditions.mod.blocks.RoundelContainer;
 import net.tardis.mod.properties.Prop;
-import software.bernie.geckolib3.renderers.geo.GeoItemRenderer;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Supplier;
 import java.util.function.ToIntFunction;
 
@@ -48,12 +38,9 @@ public class ModBlocks {
         return 15;
     }))));
 
-    public static final RegistryObject<Block> zero_point_field_normal = registerforblockanimitem("zero_point_field_chamber", () -> setUpBlock(new ZeroPointFieldChamberBlock(Prop.Blocks.BASIC_TECH.get().notSolid().setLightLevel((state) -> {
+    public static final RegistryObject<Block> containment_chamber = registerforccitem("containment_chamber", () -> setUpBlock(new ContainmentChamberBlock(Prop.Blocks.BASIC_TECH.get().notSolid().setLightLevel((state) -> {
         return 3;
-    }))), new Item.Properties().group(ModItemGroups.TA).setISTER(() -> ZPFChamberItemRenderer::new));
-    public static final RegistryObject<Block> zero_point_field_broken = registerforblockanimitem("zero_point_field_chamber_broken", () -> setUpBlock(new ZeroPointFieldChamberBlock(Prop.Blocks.BASIC_TECH.get().notSolid().setLightLevel((state) -> {
-        return 0;
-    }))), new Item.Properties().group(ModItemGroups.TA).setISTER(() -> ZPFChamberBrokenItemRenderer::new));
+    }))), new Item.Properties().group(ModItemGroups.TA).setISTER(() -> ContainmentChamberItemRenderer::new));
 
     public static final RegistryObject<Block> controlpanel_deco = registerforblock("decorative_control_panel", () -> setUpBlock(new ControlPanel(Prop.Blocks.BASIC_TECH.get().notSolid())));
 
@@ -718,6 +705,12 @@ public class ModBlocks {
     private static <T extends Block> RegistryObject<T> registerforblockanimitem(String id, Supplier<T> blockSupplier, Item.Properties props){
         RegistryObject<T> registryObject = BLOCKS.register(id, blockSupplier);
         ModItems.ITEMS.register(id, () -> new AnimatedBlockItem(registryObject.get(), props));
+        return registryObject;
+    }
+
+    private static <T extends Block> RegistryObject<T> registerforccitem(String id, Supplier<T> blockSupplier, Item.Properties props){
+        RegistryObject<T> registryObject = BLOCKS.register(id, blockSupplier);
+        ModItems.ITEMS.register(id, () -> new ContainmentChamberItem(registryObject.get(), props));
         return registryObject;
     }
 

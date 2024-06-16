@@ -2,6 +2,7 @@ package net.tadditions.mod.events;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import net.minecraft.block.Block;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.boss.dragon.EnderDragonEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -38,6 +39,7 @@ import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
 import net.minecraftforge.fml.event.server.ServerLifecycleEvent;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 import net.tadditions.mod.QolMod;
+import net.tadditions.mod.blocks.ContainmentChamberBlock;
 import net.tadditions.mod.blocks.ModBlocks;
 import net.tadditions.mod.cap.*;
 import net.tadditions.mod.commands.TACommands;
@@ -84,9 +86,9 @@ public class CommonEvents {
 
     @SubscribeEvent
     public static void attachItemStackCap(AttachCapabilitiesEvent<ItemStack> event) {
-        if (event.getObject().getItem() == ModItems.ONEUSEREMOTE.get())
+        if (event.getObject().getItem() == ModItems.OLIM_REMOTE.get())
             event.addCapability(ONEUSEREMOTE_CAP, new IOneRemote.Provider(new OneUseRemoteCapability(event.getObject())));
-        if (event.getObject().getItem() == ModItems.BOOS_UPGRADE.get())
+        if (event.getObject().getItem() == ModItems.DATA_DRIVE.get())
             event.addCapability(TAGREAOPENER_CAP, new IOpener.Provider(new DataDriveCap()));
         if (event.getObject().getItem() == ModItems.QUANTUM_EXOTIC_MATTER.get())
             event.addCapability(QUANT_CAP, new IQuant.Provider(new QuantCapability(event.getObject())));
@@ -200,15 +202,13 @@ public class CommonEvents {
 
     @SubscribeEvent
     public static void onBlockBreak(BlockEvent.BreakEvent event) {
-        if (event.getState().getBlock() instanceof IDontBreak) {
-            event.setCanceled(true);
-        }
-
         if (event.getWorld() instanceof World) {
             World world = (World) event.getWorld();
-            if (!world.isRemote()) {
-                if(world.getBlockState(event.getPos()) == ModBlocks.zero_point_field_normal.get().getDefaultState()) {
-                    world.setBlockState(event.getPos(), ModBlocks.zero_point_field_broken.get().getDefaultState());
+            if (!world.isRemote() && event.getState().getBlock().matchesBlock(ModBlocks.containment_chamber.get())) {
+                if (!event.getState().get(ContainmentChamberBlock.BROKEN))
+                {
+                    Block.spawnAsEntity(world, event.getPos(), new ItemStack(ModItems.QUANTUM_EXOTIC_MATTER.get()));
+                    world.setBlockState(event.getPos(), ModBlocks.containment_chamber.get().getDefaultState().cycleValue(ContainmentChamberBlock.BROKEN));
                     event.setCanceled(true);
                 }
             }

@@ -6,21 +6,28 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "tadditions:exotic_matter"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "tadditions:zero_point_field_chamber",
+          "name": "tadditions:containment_chamber",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "\"is_broken\": false"
+            }
+          ],
           "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "tadditions:containment_chamber",
+              "properties": {
+                "broken": "false"
+              }
+            },
             {
               "condition": "minecraft:match_tool",
               "predicate": {
                 "enchantments": [
                   {
                     "enchantment": "minecraft:silk_touch",
-                    "levels": {
-                      "min": 1
-                    }
+                    "levels": 1
                   }
                 ]
               }

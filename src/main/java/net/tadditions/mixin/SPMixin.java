@@ -32,8 +32,8 @@ import java.util.Set;
 public class SPMixin {
     public boolean onRightClicked(ConsoleTile console, PlayerEntity player) {
         if(!console.getWorld().isRemote()) {
-            if(player.getHeldItemMainhand().getItem() == TItems.SONIC.get() && console.getSonicItem().isEmpty() || player.getHeldItemMainhand().getItem() == ModItems.BOOS_UPGRADE.get() && console.getSonicItem().isEmpty()) {
-                if(player.getHeldItemMainhand().getItem() == ModItems.BOOS_UPGRADE.get()) {
+            if(player.getHeldItemMainhand().getItem() == TItems.SONIC.get() && console.getSonicItem().isEmpty() || player.getHeldItemMainhand().getItem() == ModItems.DATA_DRIVE.get() && console.getSonicItem().isEmpty()) {
+                if(player.getHeldItemMainhand().getItem() == ModItems.DATA_DRIVE.get()) {
                     player.getHeldItemMainhand().getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
                         if (!cap.getHandler().getStackInSlot(0).isItemEqual(ItemStack.EMPTY)) {
                             ItemStack crystal = cap.getHandler().getStackInSlot(0);

@@ -28,7 +28,7 @@ import net.tadditions.mod.screens.misc.AdvQuantiscopeScreenType;
 import net.tadditions.mod.tileentity.ModTileEntitys;
 import net.tadditions.mod.world.MDimensions;
 import net.tadditions.mod.world.MarsSkyProperty;
-import net.tadditions.mod.world.TagreaSkyProperty;
+import net.tadditions.mod.world.VergeSkyProperty;
 import net.tardis.mod.client.TClientRegistry;
 
 import java.util.EnumMap;
@@ -48,7 +48,7 @@ public class MClientRegistry extends TClientRegistry {
         registerScreens();
         registerInteriorDoorRenderers();
         DimensionRenderInfo.field_239208_a_.put(MDimensions.MARS_SKY_PROPERTY_KEY, new MarsSkyProperty());
-        DimensionRenderInfo.field_239208_a_.put(MDimensions.TAGREA_SKY_PROPERTY_KEY, new TagreaSkyProperty());
+        DimensionRenderInfo.field_239208_a_.put(MDimensions.THE_VERG_SKY_PROPERTY_KEY, new VergeSkyProperty());
         event.enqueueWork(() -> {
             //Block Render Layers
             RenderTypeLookup.setRenderLayer(ModBlocks.electromagnetic_solenoid_container.get(), RenderType.getCutout());
@@ -61,11 +61,9 @@ public class MClientRegistry extends TClientRegistry {
             RenderTypeLookup.setRenderLayer(ModBlocks.ancient_keyholder.get(), RenderType.getCutout());
             RenderTypeLookup.setRenderLayer(ModBlocks.ancient_door.get(), RenderType.getCutout());
             RenderTypeLookup.setRenderLayer(ModBlocks.lightbox.get(), RenderType.getCutout());
-            RenderTypeLookup.setRenderLayer(ModBlocks.zero_point_field_broken.get(), RenderType.getCutout());
-            RenderTypeLookup.setRenderLayer(ModBlocks.zero_point_field_normal.get(), RenderType.getCutout());
-        });
+            RenderTypeLookup.setRenderLayer(ModBlocks.containment_chamber.get(), RenderType.getCutout()); });
 
-        ItemModelsProperties.registerProperty(ModItems.BOOS_UPGRADE.get(), new ResourceLocation(QolMod.MOD_ID, "used"),
+        ItemModelsProperties.registerProperty(ModItems.DATA_DRIVE.get(), new ResourceLocation(QolMod.MOD_ID, "used"),
                 (stack, clientWorld, entity) -> {
                     AtomicInteger integer = new AtomicInteger(0);
                     stack.getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
@@ -75,7 +73,7 @@ public class MClientRegistry extends TClientRegistry {
                     });
                     return integer.get();
                 });
-        ItemModelsProperties.registerProperty(ModItems.BOOS_UPGRADE.get(), new ResourceLocation(QolMod.MOD_ID, "coord"),
+        ItemModelsProperties.registerProperty(ModItems.DATA_DRIVE.get(), new ResourceLocation(QolMod.MOD_ID, "coord"),
                 (stack, clientWorld, entity) -> {
                     AtomicInteger integer = new AtomicInteger(0);
                     stack.getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
@@ -85,7 +83,7 @@ public class MClientRegistry extends TClientRegistry {
                     });
                     return integer.get();
                 });
-        ItemModelsProperties.registerProperty(ModItems.BOOS_UPGRADE.get(), new ResourceLocation(QolMod.MOD_ID, "dim"),
+        ItemModelsProperties.registerProperty(ModItems.DATA_DRIVE.get(), new ResourceLocation(QolMod.MOD_ID, "dim"),
                 (stack, clientWorld, entity) -> {
                     AtomicInteger integer = new AtomicInteger(0);
                     stack.getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
@@ -95,7 +93,7 @@ public class MClientRegistry extends TClientRegistry {
                     });
                     return integer.get();
                 });
-        ItemModelsProperties.registerProperty(ModItems.BOOS_UPGRADE.get(), new ResourceLocation(QolMod.MOD_ID, "empty"),
+        ItemModelsProperties.registerProperty(ModItems.DATA_DRIVE.get(), new ResourceLocation(QolMod.MOD_ID, "empty"),
                 (stack, clientWorld, entity) -> {
                     AtomicInteger integer = new AtomicInteger(0);
                     stack.getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
@@ -113,8 +111,7 @@ public class MClientRegistry extends TClientRegistry {
         ClientRegistry.bindTileEntityRenderer(ModTileEntitys.EXTERIOR_FOURTEENTH_POLICE_BOX.get(), FourteenthExteriorRender::new);
         ClientRegistry.bindTileEntityRenderer(ModTileEntitys.FOURTEENTH_CONSOLE.get(), FourteenthConsoleRender::new);
         ClientRegistry.bindTileEntityRenderer(ModTileEntitys.WPH.get(), WeaponHolderRenderer::new);
-        ClientRegistry.bindTileEntityRenderer(ModTileEntitys.ZPFChamber.get(), ZPFChamberRenderer::new);
-        ClientRegistry.bindTileEntityRenderer(ModTileEntitys.ZPFCBroken.get(), ZPFChamberBrokenRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(ModTileEntitys.CONTAINMENT_CHAMBER.get(), ContainmentChamberRenderer::new);
         ClientRegistry.bindTileEntityRenderer(ModTileEntitys.SolenoidFilled.get(), SolenoidFilledRenderer::new);
         ClientRegistry.bindTileEntityRenderer(ModTileEntitys.DECORATIVE_TOYOTA_POLICE_BOX.get(), DecorativeToyotaExteriorRenderer::new);
         ClientRegistry.bindTileEntityRenderer(ModTileEntitys.DECORATIVE_FOURTEENTH_POLICE_BOX.get(), DecorativeFourteenthExteriorRenderer::new);

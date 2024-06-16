@@ -7,9 +7,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.util.ResourceLocation;
 import net.tadditions.mod.client.model.SolenoidFilledModel;
-import net.tadditions.mod.client.model.ZPFChamberModel;
 import net.tadditions.mod.tileentity.SolenoidFilledTile;
-import net.tadditions.mod.tileentity.ZPFChamberTile;
 import software.bernie.geckolib3.renderers.geo.GeoBlockRenderer;
 
 import javax.annotation.Nullable;

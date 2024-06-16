@@ -30,7 +30,7 @@ public class NTMHelperMixin {
                 TardisConstants.Translations.FACING.getString() + console.getExteriorFacingDirection().getName2().toUpperCase(),
                 TardisConstants.Translations.TARGET.getString() + (hasNav ? WorldHelper.formatBlockPos(console.getDestinationPosition()) : TardisConstants.Translations.UNKNOWN.getString()),
                 TardisConstants.Translations.TARGET_DIM.getString() + (hasNav ? WorldHelper.formatDimName(console.getDestinationDimension()) : TardisConstants.Translations.UNKNOWN.getString()),
-                TardisConstants.Translations.ARTRON.getString() + (console.getArtron() == Float.MAX_VALUE ? "Infinity" : TardisConstants.TEXT_FORMAT_NO_DECIMALS.format(console.getArtron()) + "AU"),
+                TardisConstants.Translations.ARTRON.getString() + (console.getArtron() == Float.MAX_VALUE ? "Infinity AU" : TardisConstants.TEXT_FORMAT_NO_DECIMALS.format(console.getArtron()) + "AU"),
                 TardisConstants.Translations.JOURNEY.getString() + TardisConstants.TEXT_FORMAT_NO_DECIMALS.format(console.getPercentageJourney() * 100.0F) + "%"
         };
     }

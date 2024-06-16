@@ -29,11 +29,8 @@ public class TimeStorm extends FlightEvent {
     public boolean onComplete(ConsoleTile tile) {
         boolean complete = super.onComplete(tile);
 
-        if(complete) {
-
-            //tile.setDestinationReachedTick((int) (tile.getReachDestinationTick()*0.9));
+        if(complete)
             tile.updateClient();
-        }
 
         return complete;
     }

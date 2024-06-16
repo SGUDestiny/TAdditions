@@ -9,7 +9,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.tadditions.mod.QolMod;
 import net.tadditions.mod.blocks.ModBlocks;
-import net.tadditions.mod.blocks.SolenoidConBlock;
 import net.tardis.mod.blocks.TileBlock;
 
 public class ModTileEntitys {
@@ -34,8 +33,7 @@ public class ModTileEntitys {
 
     public static final RegistryObject<TileEntityType<VergeBarrierTile>> BARRIER = TILES.register("barrier", () -> registerTiles(VergeBarrierTile::new, ModBlocks.barrier.get()));
 
-    public static final RegistryObject<TileEntityType<ZPFChamberTile>> ZPFChamber = TILES.register("zpfchamber", () -> registerTiles(ZPFChamberTile::new, ModBlocks.zero_point_field_normal.get()));
-    public static final RegistryObject<TileEntityType<ZPFChamberBrokenTile>> ZPFCBroken = TILES.register("zpfchamberbroken", () -> registerTiles(ZPFChamberBrokenTile::new, ModBlocks.zero_point_field_broken.get()));
+    public static final RegistryObject<TileEntityType<ContainmentChamberTile>> CONTAINMENT_CHAMBER = TILES.register("containment_chamber", () -> registerTiles(ContainmentChamberTile::new, ModBlocks.containment_chamber.get()));
 
     public static final RegistryObject<TileEntityType<SolenoidFilledTile>> SolenoidFilled = TILES.register("solenoid_filled", () -> registerTiles(SolenoidFilledTile::new, ModBlocks.filled_electromagnetic_solenoid_container.get()));
 

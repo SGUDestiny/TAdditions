@@ -128,11 +128,4 @@ public abstract class DimConMixin extends BaseControl {
     public CompoundNBT serializeNBT() {
         return new CompoundNBT();
     }
-
-    public boolean hasFreeTheEndAdvancement(ServerPlayerEntity player) {
-        AdvancementManager manager = player.getServer().getAdvancementManager();
-        Advancement advancement = manager.getAdvancement(new ResourceLocation("minecraft:end/kill_dragon"));
-        AdvancementProgress progress = player.getAdvancements().getProgress(advancement);
-        return progress.isDone();
-    }
 }
