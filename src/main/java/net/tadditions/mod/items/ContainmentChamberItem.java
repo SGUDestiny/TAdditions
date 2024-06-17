@@ -1,15 +1,18 @@
 package net.tadditions.mod.items;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.LeverBlock;
 import net.minecraft.block.ShulkerBoxBlock;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.datafix.fixes.ShulkerBoxItemColor;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.tadditions.mod.blocks.ContainmentChamberBlock;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -57,7 +60,13 @@ public class ContainmentChamberItem extends BlockItem implements IAnimatable {
     }
 
     public boolean getBroken(ItemStack item){
-        return this.getShareTag(item).getBoolean("is_broken");
+        return item.getOrCreateTag().getBoolean("is_broken");
+    }
+
+    @Override
+    protected boolean onBlockPlaced(BlockPos pos, World worldIn, @Nullable PlayerEntity player, ItemStack stack, BlockState state) {
+        state.with(ContainmentChamberBlock.BROKEN, this.getBroken(stack));
+        return super.onBlockPlaced(pos, worldIn, player, stack, state);
     }
 
     @Override

@@ -7,20 +7,7 @@
         {
           "type": "minecraft:item",
           "name": "tadditions:containment_chamber",
-          "functions": [
-            {
-              "function": "minecraft:set_nbt",
-              "tag": "\"is_broken\": false"
-            }
-          ],
           "conditions": [
-            {
-              "condition": "minecraft:block_state_property",
-              "block": "tadditions:containment_chamber",
-              "properties": {
-                "broken": "false"
-              }
-            },
             {
               "condition": "minecraft:match_tool",
               "predicate": {
