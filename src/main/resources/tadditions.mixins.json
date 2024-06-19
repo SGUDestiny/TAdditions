@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "ArtronBatMixin",
+    "AxisControlMixin",
     "CommunicatorControlMixin",
     "ConsoleMixin",
     "DimConMixin",
@@ -24,8 +25,8 @@
   ],
   "minVersion": "0.8",
   "client": [
-    "ArtronCapMixin",
     "ArtronBatClientMixin",
+    "ArtronCapMixin",
     "EngineScreenMixin",
     "ExteriorRenderMixin"
   ],
