@@ -6,7 +6,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '4.1+', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '6.0+', changing: true
         classpath group: 'org.spongepowered', name: 'mixingradle', version: '0.7-SNAPSHOT'
         classpath "gradle.plugin.com.matthewprenger:CurseGradle:1.4.0"
     }
@@ -22,6 +22,8 @@ group = "${mod_base_package}"
 archivesBaseName = "${project.jar_name}-${minecraft_version}"
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(8)
+
+jarJar.enable()
 
 minecraft {
     mappings channel: "${mappings_channel}", version: "${mappings_version}"
@@ -106,6 +108,7 @@ dependencies {
     runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}:generators")// Mekanism: Generators
     implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.16.5:3.0.106')
     implementation fg.deobf("curse.maven:patchouli-306770:3847029")
+    implementation fg.deobf("curse.maven:temporalapi-1056469:5498125")
     implementation fg.deobf('com.gitlab.Spectre0987:TardisMod:1.5.4')
 }
 

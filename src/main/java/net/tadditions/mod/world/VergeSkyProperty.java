@@ -4,6 +4,8 @@ import net.minecraft.client.world.DimensionRenderInfo;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.ISkyRenderHandler;
+import net.tadditions.mod.client.renderers.sky.VergeSkyRenderer;
 import net.tardis.mod.world.dimensions.SpaceSkyProperty;
 
 import javax.annotation.Nullable;
@@ -13,6 +15,7 @@ public class VergeSkyProperty extends DimensionRenderInfo {
 
 	public VergeSkyProperty() {
 		super(Float.NaN, true, FogType.NORMAL, false, true);
+        this.setSkyRenderHandler(new VergeSkyRenderer());
 	}
 
     public VergeSkyProperty(float cloudLevel, boolean hasGround, FogType skyType, boolean forceBrightLightmap,

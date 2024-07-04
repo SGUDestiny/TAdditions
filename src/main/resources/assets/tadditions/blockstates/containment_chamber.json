@@ -1,7 +1,7 @@
 {
 	"variants":{
 		"":{
-			"model":"tadditions:block/zero_point_field_chamber"
+			"model":"tadditions:block/containment_chamber"
 		}
 	}
 }

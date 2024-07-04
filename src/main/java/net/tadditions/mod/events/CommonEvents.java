@@ -3,6 +3,8 @@ package net.tadditions.mod.events;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import net.minecraft.block.Block;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.boss.dragon.EnderDragonEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -13,6 +15,8 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.concurrent.TickDelayedTask;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -38,6 +42,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
 import net.minecraftforge.fml.event.server.ServerLifecycleEvent;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
+import net.mistersecret312.temporal_api.events.ControlEvent;
 import net.tadditions.mod.QolMod;
 import net.tadditions.mod.blocks.ContainmentChamberBlock;
 import net.tadditions.mod.blocks.ModBlocks;
@@ -45,6 +50,8 @@ import net.tadditions.mod.cap.*;
 import net.tadditions.mod.commands.TACommands;
 import net.tadditions.mod.helper.IConsoleHelp;
 import net.tadditions.mod.helper.MHelper;
+import net.tadditions.mod.items.CoordinateDataCrystalItem;
+import net.tadditions.mod.items.DimensionalDataCrystalItem;
 import net.tadditions.mod.items.ModItems;
 import net.tadditions.mod.sound.MSounds;
 import net.tadditions.mod.world.MDimensions;
@@ -52,6 +59,9 @@ import net.tadditions.mod.world.structures.MStructures;
 import net.tardis.mod.cap.Capabilities;
 import net.tardis.mod.client.ClientHelper;
 import net.tardis.mod.controls.CommunicatorControl;
+import net.tardis.mod.controls.HandbrakeControl;
+import net.tardis.mod.controls.SonicPortControl;
+import net.tardis.mod.controls.ThrottleControl;
 import net.tardis.mod.damagesources.TDamageSources;
 import net.tardis.mod.events.LivingEvents;
 import net.tardis.mod.events.MissingMappingsLookup;
@@ -60,7 +70,9 @@ import net.tardis.mod.helper.TardisHelper;
 import net.tardis.mod.items.ISpaceHelmet;
 import net.tardis.mod.items.TItems;
 import net.tardis.mod.misc.IDontBreak;
+import net.tardis.mod.misc.SpaceTimeCoord;
 import net.tardis.mod.sounds.TSounds;
+import net.tardis.mod.subsystem.StabilizerSubsystem;
 import net.tardis.mod.tileentities.ConsoleTile;
 import net.tardis.mod.world.biomes.TBiomes;
 import net.tardis.mod.world.dimensions.TDimensions;
@@ -204,7 +216,7 @@ public class CommonEvents {
     public static void onBlockBreak(BlockEvent.BreakEvent event) {
         if (event.getWorld() instanceof World) {
             World world = (World) event.getWorld();
-            if (!world.isRemote() && event.getState().getBlock().matchesBlock(ModBlocks.containment_chamber.get())) {
+            if (!world.isRemote() && event.getState().getBlock().matchesBlock(ModBlocks.containment_chamber.get()) && !(EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, event.getPlayer().getHeldItemMainhand()) > 0)) {
                 if (!event.getState().get(ContainmentChamberBlock.BROKEN))
                 {
                     Block.spawnAsEntity(world, event.getPos(), new ItemStack(ModItems.QUANTUM_EXOTIC_MATTER.get()));
@@ -213,6 +225,52 @@ public class CommonEvents {
                 }
             }
         }
+    }
+
+    @SubscribeEvent
+    public static void onDataDrive(ControlEvent.SonicPutEvent event)
+    {
+        ItemStack stack = event.getItemStack();
+        ConsoleTile console = event.getControl().getConsole();
+
+        stack.getCapability(MCapabilities.OPENER_CAPABILITY).ifPresent(cap -> {
+            if (!cap.getHandler().getStackInSlot(0).isItemEqual(ItemStack.EMPTY)) {
+                ItemStack crystal = cap.getHandler().getStackInSlot(0);
+                if(crystal.getItem().equals(ModItems.DIMENSIONAL_DATA_CRYSTAL.get())){
+                    DimensionalDataCrystalItem crystalItem = (DimensionalDataCrystalItem) crystal.getItem();
+                    if (!((IConsoleHelp) console).getAvailable().contains(crystalItem.getDimData(crystal))) {
+                        ((IConsoleHelp) console).addAvailable(crystalItem.getDimData(crystal));
+                        cap.getHandler().setStackInSlot(0, new ItemStack(ModItems.BURNED_DATA_CRYSTAL.get()));
+                        event.getControl().getEntity().world.playSound(null, event.getControl().getEntity().getPosition(), TSounds.SCREEN_BEEP_SINGLE.get(), SoundCategory.PLAYERS, 1f, 1f);
+                    }
+                }
+                else if(crystal.getItem().equals(ModItems.COORDINATE_DATA_CRYSTAL.get())){
+                    CoordinateDataCrystalItem crystalItem = (CoordinateDataCrystalItem) crystal.getItem();
+                    if (((IConsoleHelp) console).getAvailable().contains(crystalItem.getDimData(crystal)) && !crystalItem.getCoords(crystal).equals(BlockPos.ZERO)) {
+                        cap.getHandler().setStackInSlot(0, new ItemStack(ModItems.BURNED_DATA_CRYSTAL.get()));
+                        event.getControl().getEntity().world.playSound(null, event.getControl().getEntity().getPosition(), TSounds.REACHED_DESTINATION.get(), SoundCategory.PLAYERS, 1f, 1f);
+                        console.getWorld().getServer().enqueue(new TickDelayedTask(30, () -> {
+                            console.setDestination(new SpaceTimeCoord(crystalItem.getDimData(crystal), crystalItem.getCoords(crystal)));
+                            console.getControl(ThrottleControl.class).ifPresent(throttle -> throttle.setAmount(1.0F));
+                            console.getControl(HandbrakeControl.class).ifPresent(handbrake -> handbrake.setFree(true));
+                            console.getSubsystem(StabilizerSubsystem.class).ifPresent(sys -> sys.setControlActivated(true));
+                            console.takeoff();
+
+                            crystalItem.setDimData(crystal, World.OVERWORLD);
+                            crystalItem.setCoords(crystal, BlockPos.ZERO);
+                        }));
+                    } else if (crystalItem.getCoords(crystal).equals(BlockPos.ZERO)) {
+                        event.getControl().getEntity().world.playSound(null, event.getControl().getEntity().getPosition(), TSounds.REMOTE_ACCEPT.get(), SoundCategory.PLAYERS, 1f, 1f);
+                        crystalItem.setCoords(crystal, console.getDestinationPosition());
+                        crystalItem.setDimData(crystal, console.getDestinationDimension());
+                    } else if (!((IConsoleHelp) console).getAvailable().contains(crystalItem.getDimData(crystal)) && !crystalItem.getCoords(crystal).equals(BlockPos.ZERO)) {
+                        event.getControl().getEntity().world.playSound(null, event.getControl().getEntity().getPosition(), TSounds.CANT_START.get(), SoundCategory.PLAYERS, 1f, 1f);
+                        event.getControl().getEntity().world.playSound(null, event.getControl().getEntity().getPosition(), TSounds.SINGLE_CLOISTER.get(), SoundCategory.PLAYERS, 1f, 1f);
+                    }
+                }
+            }
+        });
+
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)

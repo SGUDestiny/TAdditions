@@ -17,7 +17,6 @@
     "InvisRenMixin",
     "MonitorControlMixin",
     "NTMHelperMixin",
-    "SPMixin",
     "SubsysMixin",
     "TARDISBottomMixin",
     "TARDISEngineMixin",
