@@ -63,17 +63,17 @@ public class TADimensionSpecialEffects extends DimensionSpecialEffects {
 
         @Override
         public Vec3 getBrightnessDependentFogColor(Vec3 biomeFogColor, float daylight) {
-            return new Vec3(0.824, 0.067, 0.067);
+            return biomeFogColor;
         }
 
         @Override
         public boolean isFoggyAt(int x, int y) {
-            return true;
+            return false;
         }
     }
 
 
-    public static void registerStargateJourneyEffects(RegisterDimensionSpecialEffectsEvent event)
+    public static void registerTemporalAdditionsEffects(RegisterDimensionSpecialEffectsEvent event)
     {
         event.register(TADimensionSpecialEffects.VERGE_EFFECTS, new TADimensionSpecialEffects.Verge());
     }

@@ -1,6 +1,8 @@
 package net.tadditions.mod.item;
 
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -11,6 +13,7 @@ import net.tardis.mod.item.components.ArtronCapacitorItem;
 public class TAItems {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, TemporalAdditionsMod.MOD_ID);
+
 
     public static final RegistryObject<ArtronCapacitorItem> ARTRON_CAPACITOR_TEMPORAL = ITEMS.register("artron_capacitors/temporal",
             () -> new ArtronCapacitorItem(new Item.Properties().stacksTo(1), 2048, 7F));

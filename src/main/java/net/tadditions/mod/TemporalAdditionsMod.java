@@ -1,6 +1,8 @@
 package net.tadditions.mod;
 
 import com.mojang.logging.LogUtils;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterDimensionSpecialEffectsEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -13,9 +15,12 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.tadditions.mod.block.TABlocks;
 import net.tadditions.mod.client.level.TADimensionSpecialEffects;
+import net.tadditions.mod.flight_events.TAFlightEvents;
 import net.tadditions.mod.item.TACreativeModeTabs;
 import net.tadditions.mod.item.TAItems;
+import net.tadditions.mod.subsystems.TASubsystems;
 import net.tadditions.mod.worldgen.structures.TAStructures;
+import net.tardis.mod.item.components.ArtronCapacitorItem;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -31,6 +36,7 @@ public class TemporalAdditionsMod {
         TABlocks.register(modEventBus);
         TAStructures.register(modEventBus);
 
+        TAFlightEvents.FLIGHT_EVENTS.register(modEventBus);
         //ModBlockEntities.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
@@ -40,7 +46,7 @@ public class TemporalAdditionsMod {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-
+        TASubsystems.registerSubsystems();
     }
 
     private void addCreative(CreativeModeTabEvent.BuildContents event) {
@@ -51,6 +57,10 @@ public class TemporalAdditionsMod {
             event.accept(TAItems.ARTRON_CAPACITOR_SPEED);
             event.accept(TABlocks.ASH);
             event.accept(TABlocks.DENSE_ASH);
+            ItemStack stack = new ItemStack(TAItems.ARTRON_CAPACITOR_TEMPORAL.get());
+            if(stack.getItem() instanceof ArtronCapacitorItem capacitor)
+                capacitor.setDamage(stack, 100);
+            event.accept(stack, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
         }
     }
 
@@ -64,7 +74,7 @@ public class TemporalAdditionsMod {
 
         @SubscribeEvent
         public static void registerDimensionalEffects(RegisterDimensionSpecialEffectsEvent event){
-            TADimensionSpecialEffects.registerStargateJourneyEffects(event);
+            TADimensionSpecialEffects.registerTemporalAdditionsEffects(event);
         }
     }
 }

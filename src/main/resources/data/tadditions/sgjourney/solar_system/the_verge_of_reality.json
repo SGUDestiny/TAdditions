@@ -2,7 +2,7 @@
   "name": "solar_system.tadditions.the_verge_of_reality",
   "symbols": "sgjourney:terra",
   "symbol_prefix": 1,
-  "extragalactic_address": {"address": [], "randomizable": true},
+  "extragalactic_address": {"address": [0], "randomizable": false},
   "point_of_origin": "sgjourney:tauri",
   "dimensions":
   [

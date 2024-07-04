@@ -9,8 +9,11 @@ import net.minecraft.world.level.levelgen.heightproviders.HeightProvider;
 import net.minecraft.world.level.levelgen.structure.StructureType;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 import net.minecraftforge.fml.ModList;
+import net.povstalec.sgjourney.common.config.CommonGenerationConfig;
+import net.povstalec.sgjourney.common.structures.StargateStructure;
 
 import java.util.Optional;
+import java.util.Random;
 
 public class VergeGateStructure extends TABaseStructure{
 
@@ -30,8 +33,10 @@ public class VergeGateStructure extends TABaseStructure{
 
     @Override
     protected boolean extraSpawningChecks(GenerationContext context) {
-        return ModList.get().isLoaded("sgjourney") && context.chunkPos().x == 0 && context.chunkPos().z == 0;
+        return ModList.get().isLoaded("sgjourney") && context.chunkPos().x == StargateStructure.getX(context.seed()) && context.chunkPos().z == StargateStructure.getZ(context.seed());
     }
+
+
 
     @Override
     public StructureType<?> type() {
