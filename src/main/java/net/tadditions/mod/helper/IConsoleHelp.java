@@ -11,6 +11,12 @@ public interface IConsoleHelp {
    boolean getCloakState();
    void setCloakState(boolean state);
 
+   boolean getRecentTimeStormCompletion();
+   void setRecentTimeStormCompletion(boolean value);
+
+   int getTimeStormBoostTime();
+   void setTimeStormBoostTime(int value);
+
    void removeAvailable(RegistryKey<World> type);
    void addAvailable(RegistryKey<World> type);
 

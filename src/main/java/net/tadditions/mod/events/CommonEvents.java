@@ -11,13 +11,14 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.util.concurrent.TickDelayedTask;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.Dimension;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.FlatChunkGenerator;
@@ -42,18 +43,26 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
 import net.minecraftforge.fml.event.server.ServerLifecycleEvent;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
+import net.minecraftforge.items.ItemStackHandler;
 import net.mistersecret312.temporal_api.events.ControlEvent;
+import net.mistersecret312.temporal_api.events.MinigameStartEvent;
+import net.mistersecret312.temporal_api.events.TardisEvent;
 import net.tadditions.mod.QolMod;
 import net.tadditions.mod.blocks.ContainmentChamberBlock;
 import net.tadditions.mod.blocks.ModBlocks;
 import net.tadditions.mod.cap.*;
 import net.tadditions.mod.commands.TACommands;
+import net.tadditions.mod.enchantments.TAEnchants;
 import net.tadditions.mod.helper.IConsoleHelp;
+import net.tadditions.mod.helper.IMonitorHelp;
 import net.tadditions.mod.helper.MHelper;
 import net.tadditions.mod.items.CoordinateDataCrystalItem;
 import net.tadditions.mod.items.DimensionalDataCrystalItem;
 import net.tadditions.mod.items.ModItems;
 import net.tadditions.mod.sound.MSounds;
+import net.tadditions.mod.tileentity.FourteenthConsoleTile;
+import net.tadditions.mod.upgrades.FrameStabUpgrade;
+import net.tadditions.mod.upgrades.MUpgradeRegistry;
 import net.tadditions.mod.world.MDimensions;
 import net.tadditions.mod.world.structures.MStructures;
 import net.tardis.mod.cap.Capabilities;
@@ -69,15 +78,20 @@ import net.tardis.mod.helper.PlayerHelper;
 import net.tardis.mod.helper.TardisHelper;
 import net.tardis.mod.items.ISpaceHelmet;
 import net.tardis.mod.items.TItems;
-import net.tardis.mod.misc.IDontBreak;
-import net.tardis.mod.misc.SpaceTimeCoord;
+import net.tardis.mod.misc.*;
+import net.tardis.mod.registries.ControlRegistry;
 import net.tardis.mod.sounds.TSounds;
+import net.tardis.mod.subsystem.FlightSubsystem;
 import net.tardis.mod.subsystem.StabilizerSubsystem;
 import net.tardis.mod.tileentities.ConsoleTile;
+import net.tardis.mod.tileentities.console.misc.MonitorOverride;
+import net.tardis.mod.upgrades.Upgrade;
 import net.tardis.mod.world.biomes.TBiomes;
 import net.tardis.mod.world.dimensions.TDimensions;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.ConsoleHandler;
 
@@ -228,6 +242,124 @@ public class CommonEvents {
     }
 
     @SubscribeEvent
+    public static void onTakeoff(TardisEvent.TakeoffEvent event)
+    {
+        ((IConsoleHelp) event.getConsole()).setCloakState(false);
+
+        if(event.getConsole().getDestinationDimension().equals(World.THE_END) && event.getConsole().getUpgrade(FrameStabUpgrade.class).isPresent())
+        {
+            event.setCanceled(true);
+            event.getConsole().getWorld().playSound(null, event.getConsole().getPos(), TSounds.CANT_START.get(), SoundCategory.BLOCKS, 1F, 1F);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onLanding(TardisEvent.LandEvent event)
+    {
+        if (!event.getConsole().getWorld().isRemote && event.getConsole().getDestinationDimension() == MDimensions.THE_VERGE)
+        {
+            event.setCanceled(true);
+            if (event.getConsole().getUpgrade(FrameStabUpgrade.class).isPresent()) {
+                event.getConsole().getUpgrade(FrameStabUpgrade.class).ifPresent(up -> {
+                    if (up.isActivated() && up.isUsable()) {
+                        up.damage(10, Upgrade.DamageType.ITEM, null);
+                    } else voidCrash(event.getConsole());
+                });
+            } else voidCrash(event.getConsole());
+        }
+
+        if(!event.getConsole().getWorld().isRemote && event.getConsole().getDestinationDimension() == World.THE_END)
+        {
+            event.setCanceled(true);
+            if(event.getConsole().getUpgrade(FrameStabUpgrade.class).isPresent()){
+                event.getConsole().getUpgrade(FrameStabUpgrade.class).ifPresent(up -> {
+                    if(up.isActivated() && up.isUsable()) {
+                        up.damage(1, Upgrade.DamageType.ITEM, null);
+                    } else {
+                        event.getConsole().setDestination(event.getConsole().getReturnLocation());
+                        event.getConsole().setDestinationReachedTick(100);
+                        event.getConsole().crash(CrashTypes.DEFAULT);
+                    }
+                });
+            } else {
+                event.getConsole().setDestination(event.getConsole().getReturnLocation());
+                event.getConsole().setDestinationReachedTick(100);
+                event.getConsole().crash(CrashTypes.DEFAULT);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onSpeedCalculate(TardisEvent.SpeedCalculationEvent event)
+    {
+        ObjectWrapper<Float> speedmod = new ObjectWrapper<>(1.0F);
+        event.getConsole().getWorld().getCapability(Capabilities.TARDIS_DATA).ifPresent(tard -> {
+            ItemStackHandler handler = tard.getEngineInventoryForSide(Direction.NORTH).getHandler();
+            for(int i = 0; i<handler.getSlots(); i++){
+                if(handler.getStackInSlot(i).getItem().getRegistryName().toString().contains("overcharged")){
+                    speedmod.setValue(speedmod.getValue()+0.125F);
+                }
+                if(EnchantmentHelper.getEnchantmentLevel(TAEnchants.BLESSING_OF_FLOW.get(), handler.getStackInSlot(i)) > 0){
+                    speedmod.setValue(speedmod.getValue()*1.25F);
+                }
+                if(EnchantmentHelper.getEnchantmentLevel(TAEnchants.CURSE_OF_WINDS.get(), handler.getStackInSlot(i)) > 0){
+                    speedmod.setValue(speedmod.getValue()*0.75F);
+                }
+            }
+        });
+        if(((IConsoleHelp) event.getConsole()).getRecentTimeStormCompletion())
+            speedmod.setValue(speedmod.getValue()*4);
+
+        event.speed *= speedmod.getValue();
+    }
+
+    @SubscribeEvent
+    public static void onControlHit(ControlEvent.ControlHitEvent event)
+    {
+        if((event.getControl().getEntry().equals(ControlRegistry.X.get()) || event.getControl().getEntry().equals(ControlRegistry.Y.get()) || event.getControl().getEntry().equals(ControlRegistry.Z.get())) && event.getControl().getConsole().hasNavCom())
+            event.getPlayer().sendStatusMessage(new StringTextComponent(event.getControl().getConsole().getDestinationPosition().toString().toUpperCase()), true);
+
+        if(event.getControl().getEntry().equals(ControlRegistry.MONITOR.get()) && event.getControl().getConsole().getWorld().isRemote() && event.getPlayer().isSneaking())
+        {
+            if(event.getControl().getConsole() instanceof FourteenthConsoleTile) {
+                BlockPos pos = event.getControl().getConsole().getPos();
+                Vector3d p = event.getPlayer().getPositionVec().subtract(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5).normalize();
+
+                float hype = (float) Math.sqrt(p.x * p.x + p.z * p.z);
+                float rot;
+                if (p.z < 0)
+                    rot = (float) Math.toDegrees(Math.asin(p.x / hype));
+                else rot = -(float) Math.toDegrees(Math.asin(p.x / hype)) - 180;
+                rot = (rot + 180);
+                if (rot < 0)
+                    rot = rot + 360;
+
+                if (rot < 30)
+                    rot = 0;
+                if (rot >= 30 && rot < 90)
+                    rot = 60;
+                if (rot >= 90 && rot < 180)
+                    rot = 120;
+                if (rot >= 180 && rot < 270)
+                    rot = -120;
+                if (rot >= 270 && rot < 330)
+                    rot = -60;
+                if (rot >= 330)
+                    rot = 0;
+                ((IMonitorHelp) event.getControl()).setRotAngle(rot);
+            }
+        }
+
+    }
+
+    @SubscribeEvent
+    public static void onMinigame(MinigameStartEvent event)
+    {
+        if(event.getPlayer().isCreative())
+            event.setCanceled(true);
+    }
+
+    @SubscribeEvent
     public static void onDataDrive(ControlEvent.SonicPutEvent event)
     {
         ItemStack stack = event.getItemStack();
@@ -296,4 +428,23 @@ public class CommonEvents {
         }
     }
 
+
+    public static void voidCrash(ConsoleTile console) {
+
+        console.crash(new CrashType(100, 0, true));
+        console.getSubSystems().forEach(sub -> sub.damage(null, 38));
+
+        console.getSubsystem(FlightSubsystem.class).ifPresent(fly -> fly.damage(null, 650));
+
+        List<String> list = new ArrayList<>();
+        list.add(new TranslationTextComponent("warning.spatial_rupture.line1").getString());
+        list.add(new TranslationTextComponent("warning.spatial_rupture.line2").getString());
+        console.getInteriorManager().setMonitorOverrides(new MonitorOverride(console, 200, list));
+
+        console.getWorld().getServer().enqueue(new TickDelayedTask(400, () -> {
+            console.getInteriorManager().setAlarmOn(false);
+            console.getInteriorManager().setLight(0);
+            console.getWorld().playSound(null, console.getPos(), TSounds.POWER_DOWN.get(), SoundCategory.BLOCKS, 20F, 1F);
+            console.updateClient();
+        }));    }
 }

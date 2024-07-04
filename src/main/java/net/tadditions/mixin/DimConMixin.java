@@ -1,27 +1,13 @@
 package net.tadditions.mixin;
 
-import net.minecraft.advancements.*;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.registry.DynamicRegistries;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.fml.server.ServerLifecycleHooks;
-import net.tadditions.mod.cap.MCapabilities;
 import net.tadditions.mod.helper.IConsoleHelp;
-import net.tadditions.mod.items.ModItems;
-import net.tadditions.mod.world.MDimensions;
-import net.tardis.mod.cap.entity.PlayerDataCapability;
 import net.tardis.mod.controls.BaseControl;
 import net.tardis.mod.controls.DimensionControl;
 import net.tardis.mod.entity.ControlEntity;
@@ -35,10 +21,6 @@ import net.tardis.mod.sounds.TSounds;
 import net.tardis.mod.tileentities.ConsoleTile;
 import net.tardis.mod.tileentities.consoles.*;
 import org.spongepowered.asm.mixin.Mixin;
-
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Optional;
 
 @Mixin(DimensionControl.class)
 public abstract class DimConMixin extends BaseControl {
