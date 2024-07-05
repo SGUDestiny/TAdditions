@@ -11,6 +11,10 @@ buildscript {
         classpath "gradle.plugin.com.matthewprenger:CurseGradle:1.4.0"
     }
 }
+
+plugins {
+    id "com.github.johnrengelman.shadow" version "8.1.0"
+}
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.spongepowered.mixin'
 apply plugin: 'eclipse'
@@ -23,7 +27,9 @@ archivesBaseName = "${project.jar_name}-${minecraft_version}"
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(8)
 
-jarJar.enable()
+configurations {
+    implementation.extendsFrom shadow
+}
 
 minecraft {
     mappings channel: "${mappings_channel}", version: "${mappings_version}"
@@ -92,6 +98,7 @@ dependencies {
     implementation 'org.projectlombok:lombok:1.18.20'
     minecraft "net.minecraftforge:forge:${forge_version}"
     annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"
+    shadow(annotationProcessor("io.github.llamalad7:mixinextras-common:0.3.6"))
     implementation "org.spongepowered:mixin:${mixin_version}"
     //compileOnly fg.deobf("blusunrize.immersiveengineering:ImmersiveEngineering:${ie_version}")
     //runtimeOnly fg.deobf("blusunrize.immersiveengineering:ImmersiveEngineering:${ie_version}")
@@ -110,6 +117,12 @@ dependencies {
     implementation fg.deobf("curse.maven:patchouli-306770:3847029")
     implementation fg.deobf("curse.maven:temporalapi-1056469:5502107")
     implementation fg.deobf('com.gitlab.Spectre0987:TardisMod:1.5.4')
+}
+
+shadowJar {
+    configurations = [project.configurations.shadow]
+    relocate("com.llamalad7.mixinextras", "net.tadditions.mixin.mixinextras")
+    mergeServiceFiles()
 }
 
 

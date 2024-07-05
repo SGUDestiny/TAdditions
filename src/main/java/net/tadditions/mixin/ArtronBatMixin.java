@@ -1,34 +1,20 @@
 package net.tadditions.mixin;
 
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.*;
-import net.minecraft.world.World;
 import net.tadditions.mod.enchantments.TAEnchants;
-import net.tardis.mod.constants.TardisConstants;
-import net.tardis.mod.helper.TextHelper;
-import net.tardis.mod.items.ArtronCapacitorItem;
 import net.tardis.mod.items.ArtronItemStackBatteryItem;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.gen.Accessor;
-
-import java.util.List;
 
 @Mixin(ArtronItemStackBatteryItem.class)
 public abstract class ArtronBatMixin extends Item {
 
     @Shadow(remap = false) @Final
     private static final String CHARGE = "artron";
-
-    @Shadow(remap = false) @Final
-    protected final IFormattableTextComponent descriptionTooltip = TextHelper.createDescriptionItemTooltip(new TranslationTextComponent("tooltip.artron_capacitor.info"));
-
 
     public ArtronBatMixin(Properties properties) {
         super(properties);
@@ -42,15 +28,6 @@ public abstract class ArtronBatMixin extends Item {
 
     @Shadow(remap = false)
     public abstract void writeCharge(ItemStack stack, float charge);
-
-    @Shadow(remap = false)
-    public abstract boolean isCreative();
-
-    @Accessor(remap = false)
-    public abstract float getChargeRateMultiplier();
-
-    @Accessor(remap = false)
-    public abstract float getDischargeRateMultiplier();
 
     /**
      * @author me
@@ -115,7 +92,4 @@ public abstract class ArtronBatMixin extends Item {
             writeCharge(stack, 0);
         return current;
     }
-
-    @Shadow(remap = false)
-    public abstract float getCharge(ItemStack stack);
 }

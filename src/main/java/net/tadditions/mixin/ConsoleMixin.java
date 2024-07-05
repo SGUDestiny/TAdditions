@@ -1,61 +1,36 @@
 package net.tadditions.mixin;
 
-import com.google.common.collect.Maps;
-import jdk.internal.org.objectweb.asm.Opcodes;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.nbt.StringNBT;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
-import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.common.util.LazyOptional;
 import net.tadditions.mod.enchantments.TAEnchants;
 import net.tadditions.mod.flightevents.MFlightEvent;
 import net.tadditions.mod.helper.*;
-import net.tardis.mod.ars.ConsoleRoom;
 import net.tardis.mod.cap.Capabilities;
-import net.tardis.mod.config.TConfig;
-import net.tardis.mod.constants.TardisConstants;
-import net.tardis.mod.entity.ControlEntity;
-import net.tardis.mod.entity.DoorEntity;
-import net.tardis.mod.entity.TardisEntity;
-import net.tardis.mod.exterior.AbstractExterior;
 import net.tardis.mod.flight.FlightEvent;
 import net.tardis.mod.helper.TardisHelper;
 import net.tardis.mod.helper.WorldHelper;
 import net.tardis.mod.items.ArtronCapacitorItem;
 import net.tardis.mod.misc.*;
-import net.tardis.mod.registries.*;
-import net.tardis.mod.sounds.AbstractSoundScheme;
-import net.tardis.mod.sounds.TSounds;
-import net.tardis.mod.subsystem.*;
 import net.tardis.mod.tileentities.ConsoleTile;
-import net.tardis.mod.tileentities.console.misc.*;
 import net.tardis.mod.tileentities.exteriors.ExteriorTile;
 import net.tardis.mod.tileentities.inventory.PanelInventory;
-import net.tardis.mod.upgrades.Upgrade;
-import net.tardis.mod.upgrades.UpgradeEntry;
 import net.tardis.mod.world.dimensions.TDimensions;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
@@ -71,14 +46,14 @@ public abstract class ConsoleMixin implements IConsoleHelp {
     @Shadow(remap = false) private FlightEvent currentEvent;
     @Shadow(remap = false) protected TexVariant[] variants = {};
     @Shadow(remap = false) private boolean isBeingTowed = false;
-    @Shadow public abstract boolean isInFlight();
+    @Shadow(remap = false) public abstract boolean isInFlight();
 
     private final List<RegistryKey<World>> available = MHelper.availableDimensions();
     private boolean cloakState = false;
     private boolean timeStormCompleted = false;
     private int timeStormCountdown = 0;
 
-    @Inject(method = "tick()V", at = @At("HEAD"))
+    @Inject(method = "tick()V", at = @At("HEAD"), remap = false)
     public void tick(CallbackInfo ci) {
         if(this.getRecentTimeStormCompletion())
             timeStormCountdown();
@@ -99,7 +74,7 @@ public abstract class ConsoleMixin implements IConsoleHelp {
         }
     }
 
-    @Inject(method = "read(Lnet/minecraft/block/BlockState;Lnet/minecraft/nbt/CompoundNBT;)V", at = @At("TAIL"))
+    @Inject(method = "read(Lnet/minecraft/block/BlockState;Lnet/minecraft/nbt/CompoundNBT;)V", at = @At("TAIL"), remap = false)
     public void read(BlockState state, CompoundNBT compound, CallbackInfo ci) {
         this.cloakState = compound.getBoolean("cloakState");
 
@@ -116,7 +91,7 @@ public abstract class ConsoleMixin implements IConsoleHelp {
         this.timeStormCountdown = compound.getInt("timeStormBoostTime");
     }
 
-    @Inject(method = "write(Lnet/minecraft/nbt/CompoundNBT;)Lnet/minecraft/nbt/CompoundNBT;", at = @At("TAIL"))
+    @Inject(method = "write(Lnet/minecraft/nbt/CompoundNBT;)Lnet/minecraft/nbt/CompoundNBT;", at = @At("TAIL"), remap = false)
     public void write(CompoundNBT compound, CallbackInfoReturnable<CompoundNBT> cir) {
         compound.putBoolean("cloakState", this.cloakState);
 
@@ -133,7 +108,7 @@ public abstract class ConsoleMixin implements IConsoleHelp {
         compound.put("available", dimBlockedList);
     }
 
-    @Inject(method = "fly()V", at = @At("HEAD"))
+    @Inject(method = "fly()V", at = @At("HEAD"), remap = false)
     public void fly(CallbackInfo ci) {
         if (!((ConsoleTile) (Object) this).getWorld().isRemote && this.isInFlight() && !this.isBeingTowed && currentEvent != null && this.currentEvent.getMissedTime() < this.flightTicks && currentEvent.getEntry().equals(MFlightEvent.TIMESTORM.get()))
             this.setRecentTimeStormCompletion(true);
@@ -212,24 +187,6 @@ public abstract class ConsoleMixin implements IConsoleHelp {
             this.setRecentTimeStormCompletion(false);
         }
     }
-
-    @Shadow(remap = false)
-    protected void handleRefueling(){}
-
-    @Shadow(remap = false)
-    private void playAmbientNoises() {
-    }
-
-    @Shadow(remap = false)
-    private void handleAutoLoadOrUnloadChunks() {
-    }
-
-    @Shadow(remap = false)
-    private void findNewMission(){
-    }
-
-    @Shadow(remap = false) public abstract void getOrCreateControls();
-
     @Override
     public boolean getCloakState() {
         return cloakState;
