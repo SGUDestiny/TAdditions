@@ -1,6 +1,6 @@
 {
   "name": "Artron Capacitors",
-  "description": "State-of-the-art Artron storage capacitors.",
+  "description": "$(o)''State-of-the-art Artron storage capacitors.''$()",
   "icon": "tadditions:artron_capacitor_temporal",
   "parent": "tadditions:artron_systems"
 }
