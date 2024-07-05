@@ -1,5 +1,5 @@
 {
   "name": "Artron Systems",
-  "description": "Devices managing and controlling the Artron energy for specific purposes.",
+  "description": "$(o)''Devices managing and controlling the Artron energy for specific purposes.''$()",
   "icon": "tadditions:artron_capacitor_temporal"
 }
