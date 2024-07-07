@@ -115,7 +115,7 @@ dependencies {
     runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}:generators")// Mekanism: Generators
     implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.16.5:3.0.106')
     implementation fg.deobf("curse.maven:patchouli-306770:3847029")
-    implementation 'com.github.mistersecret312:TemporalAPI:ba85f9fdbf'
+    implementation fg.deobf('com.github.mistersecret312:TemporalAPI:3cfe5b6b3a')
     implementation fg.deobf('com.gitlab.Spectre0987:TardisMod:1.5.4')
 }
 

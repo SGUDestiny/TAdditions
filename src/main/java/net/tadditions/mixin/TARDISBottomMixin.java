@@ -14,15 +14,6 @@ import org.spongepowered.asm.mixin.Mixin;
 public class TARDISBottomMixin {
 
     public float getAmbientOcclusionLightValue(BlockState state, IBlockReader worldIn, BlockPos pos) {
-        if(worldIn.getBlockState(pos.up()).getBlock() instanceof ExteriorBlock)
-        {
-            ExteriorTile tile = (ExteriorTile) worldIn.getTileEntity(pos.up());
-            if(((IExteriorHelp) tile).getCloakState().equals(CloakState.CLOAKED))
-                return 1.0F;
-            if(((IExteriorHelp) tile).getCloakState().equals(CloakState.CLOAKING) || ((IExteriorHelp) tile).getCloakState().equals(CloakState.UNCLOAKING))
-                return 0.5F;
-            else return 0.0F;
-        }
-        else return 0.0F;
+        return 1.0F;
     }
 }

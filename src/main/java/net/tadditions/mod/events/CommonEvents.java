@@ -27,6 +27,7 @@ import net.minecraft.world.gen.settings.DimensionStructuresSettings;
 import net.minecraft.world.gen.settings.StructureSeparationSettings;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.TickEvent;
@@ -246,7 +247,7 @@ public class CommonEvents {
     {
         ((IConsoleHelp) event.getConsole()).setCloakState(false);
 
-        if(event.getConsole().getDestinationDimension().equals(World.THE_END) && event.getConsole().getUpgrade(FrameStabUpgrade.class).isPresent())
+        if(event.getConsole().getDestinationDimension().equals(World.THE_END) && !event.getConsole().getUpgrade(FrameStabUpgrade.class).isPresent())
         {
             event.setCanceled(true);
             event.getConsole().getWorld().playSound(null, event.getConsole().getPos(), TSounds.CANT_START.get(), SoundCategory.BLOCKS, 1F, 1F);
@@ -258,30 +259,37 @@ public class CommonEvents {
     {
         if (!event.getConsole().getWorld().isRemote && event.getConsole().getDestinationDimension() == MDimensions.THE_VERGE)
         {
-            event.setCanceled(true);
             if (event.getConsole().getUpgrade(FrameStabUpgrade.class).isPresent()) {
                 event.getConsole().getUpgrade(FrameStabUpgrade.class).ifPresent(up -> {
                     if (up.isActivated() && up.isUsable()) {
                         up.damage(10, Upgrade.DamageType.ITEM, null);
-                    } else voidCrash(event.getConsole());
+                    } else {
+                        event.setCanceled(true);
+                        voidCrash(event.getConsole());
+                    }
                 });
-            } else voidCrash(event.getConsole());
+            } else {
+                event.setCanceled(true);
+                voidCrash(event.getConsole());
+            }
         }
 
         if(!event.getConsole().getWorld().isRemote && event.getConsole().getDestinationDimension() == World.THE_END)
         {
-            event.setCanceled(true);
+
             if(event.getConsole().getUpgrade(FrameStabUpgrade.class).isPresent()){
                 event.getConsole().getUpgrade(FrameStabUpgrade.class).ifPresent(up -> {
                     if(up.isActivated() && up.isUsable()) {
                         up.damage(1, Upgrade.DamageType.ITEM, null);
                     } else {
+                        event.setCanceled(true);
                         event.getConsole().setDestination(event.getConsole().getReturnLocation());
                         event.getConsole().setDestinationReachedTick(100);
                         event.getConsole().crash(CrashTypes.DEFAULT);
                     }
                 });
             } else {
+                event.setCanceled(true);
                 event.getConsole().setDestination(event.getConsole().getReturnLocation());
                 event.getConsole().setDestinationReachedTick(100);
                 event.getConsole().crash(CrashTypes.DEFAULT);
@@ -317,10 +325,14 @@ public class CommonEvents {
     public static void onControlHit(ControlEvent.ControlHitEvent event)
     {
         if((event.getControl().getEntry().equals(ControlRegistry.X.get()) || event.getControl().getEntry().equals(ControlRegistry.Y.get()) || event.getControl().getEntry().equals(ControlRegistry.Z.get())) && event.getControl().getConsole().hasNavCom())
-            event.getPlayer().sendStatusMessage(new StringTextComponent(event.getControl().getConsole().getDestinationPosition().toString().toUpperCase()), true);
-
-        if(event.getControl().getEntry().equals(ControlRegistry.MONITOR.get()) && event.getControl().getConsole().getWorld().isRemote() && event.getPlayer().isSneaking())
         {
+            BlockPos position = event.getControl().getConsole().getDestinationPosition();
+            String text = "New Target Coordinates: X - " + position.getX() + ", Y - " + position.getY() + ", Z - " + position.getZ();
+            event.getPlayer().sendStatusMessage(new StringTextComponent(text), true);
+        }
+        if(event.getControl().getEntry().equals(ControlRegistry.MONITOR.get()) && event.getPlayer().isSneaking())
+        {
+            event.setCanceled(true);
             if(event.getControl().getConsole() instanceof FourteenthConsoleTile) {
                 BlockPos pos = event.getControl().getConsole().getPos();
                 Vector3d p = event.getPlayer().getPositionVec().subtract(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5).normalize();
