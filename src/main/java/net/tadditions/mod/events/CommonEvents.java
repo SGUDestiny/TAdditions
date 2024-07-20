@@ -273,7 +273,8 @@ public class CommonEvents {
                         for (ContainmentChamberBlock.ChamberPart part : ContainmentChamberBlock.ChamberPart.values()) {
                             BlockPos piecePos = ContainmentChamberBlock.ChamberPart.getPartPos(event.getPos(), event.getState().get(ContainmentChamberBlock.PART), part);
                             BlockState pieceState = world.getBlockState(piecePos);
-                            world.setBlockState(piecePos, pieceState.with(ContainmentChamberBlock.BROKEN, true).with(ContainmentChamberBlock.PART, part));
+                            if(pieceState.getBlock() != Blocks.AIR)
+                                world.setBlockState(piecePos, pieceState.with(ContainmentChamberBlock.BROKEN, true).with(ContainmentChamberBlock.PART, part));
                         }
                         Block.spawnAsEntity(world, event.getPos(), new ItemStack(ModItems.QUANTUM_EXOTIC_MATTER.get()));
                     } else {
