@@ -42,6 +42,10 @@ public class ModBlocks {
         return 3;
     }))), new Item.Properties().group(ModItemGroups.TA).setISTER(() -> ContainmentChamberItemRenderer::new));
 
+    public static final RegistryObject<Block> containment_chamber_part = registerBlockOnly("containment_chamber_part", () -> setUpBlock(new ContainmentChamberPartBlock(Prop.Blocks.BASIC_TECH.get().notSolid().setLightLevel((state) -> {
+        return 3;
+    }))));
+
     public static final RegistryObject<Block> controlpanel_deco = registerforblock("decorative_control_panel", () -> setUpBlock(new ControlPanel(Prop.Blocks.BASIC_TECH.get().notSolid())));
 
     public static final RegistryObject<Block> weaponholder = registerforblock("katana_stand", () -> setUpBlock(new WeaponHolder(AbstractBlock.Properties.create(Material.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(2F))));

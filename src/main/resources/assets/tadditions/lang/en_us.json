@@ -379,5 +379,6 @@
   "protocol.tardis.cloak_on": "Turn Cloaking Off",
   "protocol.tardis.cloak_off": "Turn Cloaking On",
   "message.tardis.cloak.false": "Turned Cloaking Off",
-  "message.tardis.cloak.true": "Turned Cloaking On"
+  "message.tardis.cloak.true": "Turned Cloaking On",
+  "tardis.axis_control.interact.target_change": "New Target Coordinates:"
 }

@@ -3,6 +3,8 @@ package net.tadditions.mod.events;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
@@ -16,7 +18,9 @@ import net.minecraft.util.concurrent.TickDelayedTask;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.Dimension;
 import net.minecraft.world.World;
@@ -34,6 +38,7 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.AdvancementEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.WorldEvent;
@@ -50,6 +55,7 @@ import net.mistersecret312.temporal_api.events.MinigameStartEvent;
 import net.mistersecret312.temporal_api.events.TardisEvent;
 import net.tadditions.mod.QolMod;
 import net.tadditions.mod.blocks.ContainmentChamberBlock;
+import net.tadditions.mod.blocks.ContainmentChamberPartBlock;
 import net.tadditions.mod.blocks.ModBlocks;
 import net.tadditions.mod.cap.*;
 import net.tadditions.mod.commands.TACommands;
@@ -68,11 +74,10 @@ import net.tadditions.mod.world.MDimensions;
 import net.tadditions.mod.world.structures.MStructures;
 import net.tardis.mod.cap.Capabilities;
 import net.tardis.mod.client.ClientHelper;
-import net.tardis.mod.controls.CommunicatorControl;
-import net.tardis.mod.controls.HandbrakeControl;
-import net.tardis.mod.controls.SonicPortControl;
-import net.tardis.mod.controls.ThrottleControl;
+import net.tardis.mod.controls.*;
 import net.tardis.mod.damagesources.TDamageSources;
+import net.tardis.mod.entity.ControlEntity;
+import net.tardis.mod.entity.TEntities;
 import net.tardis.mod.events.LivingEvents;
 import net.tardis.mod.events.MissingMappingsLookup;
 import net.tardis.mod.helper.PlayerHelper;
@@ -231,12 +236,59 @@ public class CommonEvents {
     public static void onBlockBreak(BlockEvent.BreakEvent event) {
         if (event.getWorld() instanceof World) {
             World world = (World) event.getWorld();
-            if (!world.isRemote() && event.getState().getBlock().matchesBlock(ModBlocks.containment_chamber.get()) && !(EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, event.getPlayer().getHeldItemMainhand()) > 0)) {
-                if (!event.getState().get(ContainmentChamberBlock.BROKEN))
-                {
-                    Block.spawnAsEntity(world, event.getPos(), new ItemStack(ModItems.QUANTUM_EXOTIC_MATTER.get()));
-                    world.setBlockState(event.getPos(), ModBlocks.containment_chamber.get().getDefaultState().cycleValue(ContainmentChamberBlock.BROKEN));
+            if (!world.isRemote() && event.getState().getBlock().matchesBlock(ModBlocks.containment_chamber.get())) {
+                if (!event.getState().get(ContainmentChamberBlock.BROKEN)) {
+                    if (!(EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, event.getPlayer().getHeldItemMainhand()) > 0)) {
+                        for (ContainmentChamberBlock.ChamberPart part : ContainmentChamberBlock.ChamberPart.values()) {
+                            BlockPos piecePos = ContainmentChamberBlock.ChamberPart.getPartPos(event.getPos(), event.getState().get(ContainmentChamberBlock.PART), part);
+                            BlockState pieceState = world.getBlockState(piecePos);
+                            if (!pieceState.get(ContainmentChamberBlock.BROKEN))
+                                world.setBlockState(piecePos, pieceState.with(ContainmentChamberBlock.BROKEN, true).with(ContainmentChamberBlock.PART, part));
+                        }
+                        Block.spawnAsEntity(world, event.getPos(), new ItemStack(ModItems.QUANTUM_EXOTIC_MATTER.get()));
+                        world.setBlockState(event.getPos(), ModBlocks.containment_chamber.get().getDefaultState().cycleValue(ContainmentChamberBlock.BROKEN));
+                        event.setCanceled(true);
+                    } else {
+                        for (ContainmentChamberBlock.ChamberPart part : ContainmentChamberBlock.ChamberPart.values()) {
+                            BlockPos piecePos = ContainmentChamberBlock.ChamberPart.getPartPos(event.getPos(), event.getState().get(ContainmentChamberBlock.PART), part);
+                            world.setBlockState(piecePos, Blocks.AIR.getDefaultState());
+                        }
+                        ContainmentChamberBlock.spawnItem(world, event.getPos(), event.getState().get(ContainmentChamberPartBlock.BROKEN));
+                    }
+                } else {
+                    for (ContainmentChamberBlock.ChamberPart part : ContainmentChamberBlock.ChamberPart.values()) {
+                        BlockPos piecePos = ContainmentChamberBlock.ChamberPart.getPartPos(event.getPos(), event.getState().get(ContainmentChamberBlock.PART), part);
+                        BlockState pieceState = world.getBlockState(piecePos);
+                        if (pieceState.get(ContainmentChamberBlock.BROKEN))
+                            world.setBlockState(piecePos, Blocks.AIR.getDefaultState());
+                    }
+                }
+            }
+
+            if(!world.isRemote() && event.getState().getBlock().matchesBlock(ModBlocks.containment_chamber_part.get()))
+            {
+                if(!(EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, event.getPlayer().getHeldItemMainhand()) > 0)) {
                     event.setCanceled(true);
+                    if (!event.getState().get(ContainmentChamberPartBlock.BROKEN)) {
+                        for (ContainmentChamberBlock.ChamberPart part : ContainmentChamberBlock.ChamberPart.values()) {
+                            BlockPos piecePos = ContainmentChamberBlock.ChamberPart.getPartPos(event.getPos(), event.getState().get(ContainmentChamberBlock.PART), part);
+                            BlockState pieceState = world.getBlockState(piecePos);
+                            world.setBlockState(piecePos, pieceState.with(ContainmentChamberBlock.BROKEN, true).with(ContainmentChamberBlock.PART, part));
+                        }
+                        Block.spawnAsEntity(world, event.getPos(), new ItemStack(ModItems.QUANTUM_EXOTIC_MATTER.get()));
+                    } else {
+                        for (ContainmentChamberBlock.ChamberPart part : ContainmentChamberBlock.ChamberPart.values()) {
+                            BlockPos piecePos = ContainmentChamberBlock.ChamberPart.getPartPos(event.getPos(), event.getState().get(ContainmentChamberBlock.PART), part);
+                            world.setBlockState(piecePos, Blocks.AIR.getDefaultState());
+                        }
+                    }
+                } else {
+                    for (ContainmentChamberBlock.ChamberPart part : ContainmentChamberBlock.ChamberPart.values()) {
+                        BlockPos piecePos = ContainmentChamberBlock.ChamberPart.getPartPos(event.getPos(), event.getState().get(ContainmentChamberBlock.PART), part);
+                        world.setBlockState(piecePos, Blocks.AIR.getDefaultState());
+                    }
+                    ContainmentChamberBlock.spawnItem(world, event.getPos(), event.getState().get(ContainmentChamberPartBlock.BROKEN));
+
                 }
             }
         }
@@ -327,8 +379,12 @@ public class CommonEvents {
         if((event.getControl().getEntry().equals(ControlRegistry.X.get()) || event.getControl().getEntry().equals(ControlRegistry.Y.get()) || event.getControl().getEntry().equals(ControlRegistry.Z.get())) && event.getControl().getConsole().hasNavCom())
         {
             BlockPos position = event.getControl().getConsole().getDestinationPosition();
-            String text = "New Target Coordinates: X - " + position.getX() + ", Y - " + position.getY() + ", Z - " + position.getZ();
-            event.getPlayer().sendStatusMessage(new StringTextComponent(text), true);
+            TranslationTextComponent target = new TranslationTextComponent("tardis.axis_control.interact.target_change");
+            IFormattableTextComponent x = new StringTextComponent("X - ").appendString(String.valueOf(position.getX())).mergeStyle(TextFormatting.LIGHT_PURPLE);
+            IFormattableTextComponent y = new StringTextComponent(", Y - ").appendString(String.valueOf(position.getY())).mergeStyle(TextFormatting.LIGHT_PURPLE);
+            IFormattableTextComponent z = new StringTextComponent(", Z - ").appendString(String.valueOf(position.getZ())).mergeStyle(TextFormatting.LIGHT_PURPLE);
+            target.appendSibling(x).appendSibling(y).appendSibling(z);
+            event.getPlayer().sendStatusMessage(target, true);
         }
         if(event.getControl().getEntry().equals(ControlRegistry.MONITOR.get()) && event.getPlayer().isSneaking())
         {
@@ -362,6 +418,55 @@ public class CommonEvents {
             }
         }
 
+    }
+
+    @SubscribeEvent
+    public static void onControlInteract(PlayerInteractEvent.EntityInteractSpecific event)
+    {
+        if(event.getTarget().getType().equals(TEntities.CONTROL.get()) && (((ControlEntity) event.getTarget()).getControl().getEntry().equals(ControlRegistry.X.get()) || (((ControlEntity) event.getTarget()).getControl().getEntry().equals(ControlRegistry.Y.get()) || (((ControlEntity) event.getTarget()).getControl().getEntry().equals(ControlRegistry.Z.get())) && (((ControlEntity) event.getTarget()).getControl().getConsole().hasNavCom()))))
+        {
+            BlockPos position = (((ControlEntity) event.getTarget()).getControl().getConsole().getDestinationPosition());
+            TranslationTextComponent target = new TranslationTextComponent("tardis.axis_control.interact.target_change");
+            IFormattableTextComponent x = new StringTextComponent(" X - ").appendString(String.valueOf(position.getX())).mergeStyle(TextFormatting.LIGHT_PURPLE);
+            IFormattableTextComponent y = new StringTextComponent(", Y - ").appendString(String.valueOf(position.getY())).mergeStyle(TextFormatting.LIGHT_PURPLE);
+            IFormattableTextComponent z = new StringTextComponent(", Z - ").appendString(String.valueOf(position.getZ())).mergeStyle(TextFormatting.LIGHT_PURPLE);
+            target.appendSibling(x).appendSibling(y).appendSibling(z);
+            event.getPlayer().sendStatusMessage(target, true);
+        }
+
+        if(event.getTarget().getType().equals(TEntities.CONTROL.get()) && ((ControlEntity) event.getTarget()).getControl().getEntry().equals(ControlRegistry.MONITOR.get()) && event.getPlayer().isSneaking())
+        {
+            AbstractControl control = ((ControlEntity) event.getTarget()).getControl();
+            event.setCanceled(true);
+            if(control.getConsole() instanceof FourteenthConsoleTile) {
+                BlockPos pos = control.getConsole().getPos();
+                Vector3d p = event.getPlayer().getPositionVec().subtract(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5).normalize();
+
+                float hype = (float) Math.sqrt(p.x * p.x + p.z * p.z);
+                float rot;
+                double degrees = Math.toDegrees(Math.asin(p.x / hype));
+                if (p.z < 0)
+                    rot = (float) degrees;
+                else rot = -(float) degrees - 180;
+                rot = (rot + 180);
+                if (rot < 0)
+                    rot = rot + 360;
+
+                if (rot < 30)
+                    rot = 0;
+                if (rot >= 30 && rot < 90)
+                    rot = 60;
+                if (rot >= 90 && rot < 180)
+                    rot = 120;
+                if (rot >= 180 && rot < 270)
+                    rot = -120;
+                if (rot >= 270 && rot < 330)
+                    rot = -60;
+                if (rot >= 330)
+                    rot = 0;
+                ((IMonitorHelp) control).setRotAngle(rot);
+            }
+        }
     }
 
     @SubscribeEvent

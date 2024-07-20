@@ -65,7 +65,13 @@ public class ContainmentChamberItem extends BlockItem implements IAnimatable {
         if(context.getItem().getItem() instanceof ContainmentChamberItem)
         {
             ContainmentChamberItem item = (ContainmentChamberItem) context.getItem().getItem();
-            return context.getWorld().setBlockState(context.getPos(), state.with(ContainmentChamberBlock.BROKEN, item.getBroken(context.getItem())), 11);
+            for(ContainmentChamberBlock.ChamberPart part : ContainmentChamberBlock.ChamberPart.values())
+            {
+                if(part.equals(ContainmentChamberBlock.ChamberPart.BASE))
+                    context.getWorld().setBlockState(context.getPos(), state.with(ContainmentChamberBlock.BROKEN, item.getBroken(context.getItem())), 11);
+                else context.getWorld().setBlockState(ContainmentChamberBlock.ChamberPart.getPartPos(context.getPos(), state.get(ContainmentChamberBlock.PART), part), ModBlocks.containment_chamber_part.get().getDefaultState().with(ContainmentChamberBlock.PART, part));
+            }
+            return true;
         }
         else return super.placeBlock(context, state);
     }

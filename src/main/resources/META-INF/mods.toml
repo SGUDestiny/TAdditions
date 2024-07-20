@@ -38,6 +38,6 @@ side = "BOTH"
 [[dependencies.${mod_id}]]
 modId= "temporal_api"
 mandatory = true
-versionRange = "[0.0.3]"
+versionRange = "[0.0.3, 0.0.4)"
 ordering = "BEFORE"
 side = "BOTH"
