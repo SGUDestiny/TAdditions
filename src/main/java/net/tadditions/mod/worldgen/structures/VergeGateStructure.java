@@ -15,7 +15,8 @@ import net.povstalec.sgjourney.common.structures.StargateStructure;
 import java.util.Optional;
 import java.util.Random;
 
-public class VergeGateStructure extends TABaseStructure{
+public class VergeGateStructure extends TABaseStructure
+{
 
     public static final Codec<VergeGateStructure> CODEC = RecordCodecBuilder.<VergeGateStructure>mapCodec(instance ->
             instance.group(VergeGateStructure.settingsCodec(instance),
@@ -27,19 +28,25 @@ public class VergeGateStructure extends TABaseStructure{
                     Codec.intRange(1, 128).fieldOf("max_distance_from_center").forGetter(structure -> structure.maxDistanceFromCenter)
             ).apply(instance, VergeGateStructure::new)).codec();
 
-    public VergeGateStructure(StructureSettings config, Holder<StructureTemplatePool> startPool, Optional<ResourceLocation> startJigsawName, int size, HeightProvider startHeight, Optional<Heightmap.Types> projectStartToHeightmap, int maxDistanceFromCenter) {
+    public VergeGateStructure(StructureSettings config, Holder<StructureTemplatePool> startPool,
+                              Optional<ResourceLocation> startJigsawName, int size,
+                              HeightProvider startHeight, Optional<Heightmap.Types> projectStartToHeightmap,
+                              int maxDistanceFromCenter)
+    {
         super(config, startPool, startJigsawName, size, startHeight, projectStartToHeightmap, maxDistanceFromCenter);
     }
 
     @Override
-    protected boolean extraSpawningChecks(GenerationContext context) {
+    protected boolean extraSpawningChecks(GenerationContext context)
+    {
         return ModList.get().isLoaded("sgjourney") && context.chunkPos().x == StargateStructure.getX(context.seed()) && context.chunkPos().z == StargateStructure.getZ(context.seed());
     }
 
 
 
     @Override
-    public StructureType<?> type() {
+    public StructureType<?> type()
+    {
         return null;
     }
 }

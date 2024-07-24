@@ -13,7 +13,8 @@ import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 
 import java.util.Optional;
 
-public abstract class TABaseStructure extends Structure {
+public abstract class TABaseStructure extends Structure
+{
     protected final Holder<StructureTemplatePool> startPool;
     protected final Optional<ResourceLocation> startJigsawName;
     protected final int size;
@@ -27,7 +28,8 @@ public abstract class TABaseStructure extends Structure {
                            int size,
                            HeightProvider startHeight,
                            Optional<Heightmap.Types> projectStartToHeightmap,
-                           int maxDistanceFromCenter) {
+                           int maxDistanceFromCenter)
+    {
         super(config);
         this.startPool = startPool;
         this.startJigsawName = startJigsawName;
@@ -37,16 +39,19 @@ public abstract class TABaseStructure extends Structure {
         this.maxDistanceFromCenter = maxDistanceFromCenter;
     }
 
-    protected boolean extraSpawningChecks(Structure.GenerationContext context) {
+    protected boolean extraSpawningChecks(Structure.GenerationContext context)
+    {
         return true;
     }
 
     @Override
-    public Optional<Structure.GenerationStub> findGenerationPoint(Structure.GenerationContext context) {
+    public Optional<Structure.GenerationStub> findGenerationPoint(Structure.GenerationContext context)
+    {
         if (!extraSpawningChecks(context))
             return Optional.empty();
 
-        int startY = this.startHeight.sample(context.random(), new WorldGenerationContext(context.chunkGenerator(), context.heightAccessor()));
+        int startY = this.startHeight.sample(context.random(),
+                new WorldGenerationContext(context.chunkGenerator(), context.heightAccessor()));
 
         // Turns the chunk coordinates into actual coordinates we can use. (Gets corner of that chunk)
         ChunkPos chunkPos = context.chunkPos();

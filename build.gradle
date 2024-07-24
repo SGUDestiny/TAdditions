@@ -121,18 +121,21 @@ repositories {
     // ForgeGradle automatically adds the Forge maven and Maven Central for you
     maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
     maven { url 'https://jitpack.io' }
+    maven { url "https://cursemaven.com" }
     // If you have mod jar dependencies in ./libs, you can declare them as a repository like so:
     flatDir {
          dir 'libs'
     }
+    mavenLocal()
 }
 
 dependencies {
     // Specify the version of Minecraft to use. If this is any group other than 'net.minecraft', it is assumed
     // that the dep is a ForgeGradle 'patcher' dependency, and its patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
-    minecraft 'net.minecraftforge:forge:1.19.4-45.2.0'
-    implementation files('libs/Tardis-Mod-1.19.4-0.1.0-DEV.jar', 'libs/Stargate Journey-1.19.4-0.6.26.jar')
+    minecraft 'net.minecraftforge:forge:1.19.4-45.3.0'
+    implementation fg.deobf("curse.maven:sgjourney-689083:5387374")
+    implementation fg.deobf("net.tardis.mod:TardisMod19:0.2.0-DEV-Doc-3")
 }
 
 // Example for how to get properties into the manifest for reading at runtime.
