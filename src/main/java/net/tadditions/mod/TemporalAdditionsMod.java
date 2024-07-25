@@ -56,10 +56,6 @@ public class TemporalAdditionsMod {
             event.accept(ItemInit.ARTRON_CAPACITOR_SPEED);
             event.accept(BlockInit.ASH);
             event.accept(BlockInit.DENSE_ASH);
-            ItemStack stack = new ItemStack(ItemInit.ARTRON_CAPACITOR_TEMPORAL.get());
-            if(stack.getItem() instanceof ArtronCapacitorItem capacitor)
-                capacitor.setDamage(stack, 100);
-            event.accept(stack, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
         }
     }
 
