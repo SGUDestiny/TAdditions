@@ -1,0 +1,10 @@
+{
+    "type": "forge:remove_features",
+    "biomes": "tadditions:the_verge_of_reality",
+    "features":
+    [
+        "tardis:broken_tardis",
+        "tardis:xion_patch"
+    ],
+    "steps": "underground_structures"
+}

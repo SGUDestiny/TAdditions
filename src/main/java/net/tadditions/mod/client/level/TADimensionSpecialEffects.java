@@ -56,14 +56,14 @@ public class TADimensionSpecialEffects extends DimensionSpecialEffects {
     {
         public Verge()
         {
-            super(Float.NaN, true, SkyType.NONE, false, true);
+            super(Float.NaN, true, SkyType.NONE, false, false);
         }
 
 
 
         @Override
         public Vec3 getBrightnessDependentFogColor(Vec3 biomeFogColor, float daylight) {
-            return biomeFogColor;
+            return new Vec3(0.824, 0.067, 0.067);
         }
 
         @Override

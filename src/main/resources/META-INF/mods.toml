@@ -64,13 +64,13 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mollis lacinia magn
     modId="tardis" #mandatory
     mandatory=true #mandatory
     versionRange="[0.1,)" #mandatory
-    ordering="NONE"
+    ordering="BEFORE"
     side="BOTH"
 [[dependencies.tadditions]] #optional
     modId="sgjourney" #mandatory
     mandatory=true #mandatory
     versionRange="[0.6.26,)" #mandatory
-    ordering="NONE"
+    ordering="BEFORE"
     side="BOTH"
 # Here's another dependency
 [[dependencies.tadditions]]

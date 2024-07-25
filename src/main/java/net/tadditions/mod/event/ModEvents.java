@@ -2,10 +2,12 @@ package net.tadditions.mod.event;
 
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.TickTask;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.povstalec.sgjourney.common.block_entities.stargate.AbstractStargateEntity;
+import net.povstalec.sgjourney.common.config.CommonStargateConfig;
 import net.povstalec.sgjourney.common.data.BlockEntityList;
 import net.povstalec.sgjourney.common.data.StargateNetwork;
 import net.povstalec.sgjourney.common.data.Universe;
@@ -38,9 +40,11 @@ public class ModEvents {
             event.setCanceled(true);
             Map.Entry<Address.Immutable, Stargate> entry = BlockEntityList.get(event.getServer()).getStargates().entrySet().stream().toList().get(random.nextInt(0, BlockEntityList.get(event.getServer()).getStargates().size()));
             Stargate stargate = entry.getValue();
-            StargateConnection connection = StargateConnection.create(StargateConnection.Type.INTERSTELLAR, event.getStargate().getStargateEntity(event.getServer()).get(), stargate.getStargateEntity(event.getServer()).get(), true);
+            StargateConnection connection = StargateConnection.create(StargateConnection.Type.SYSTEM_WIDE, event.getStargate().getStargateEntity(event.getServer()).get(), stargate.getStargateEntity(event.getServer()).get(), true);
             StargateNetwork.get(event.getServer()).addConnection(connection);
-            stargate.getStargateEntity(event.getServer()).ifPresent(cap -> cap.setEngagedChevrons(new int[]{}));
+            event.getServer().execute(new TickTask(140,
+                    () -> stargate.getStargateEntity(event.getServer()).ifPresent(
+                            gate -> gate.setStargateState(StargateConnection.State.INCOMING_CONNECTION, 0, false))));
         }
         if(random.nextBoolean())
         {
