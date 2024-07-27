@@ -38,13 +38,7 @@ public class ModEvents {
         if(event.getStargate().getDimension().location().equals(new ResourceLocation(TemporalAdditionsMod.MOD_ID, "the_verge_of_reality")))
         {
             event.setCanceled(true);
-            Map.Entry<Address.Immutable, Stargate> entry = BlockEntityList.get(event.getServer()).getStargates().entrySet().stream().toList().get(random.nextInt(0, BlockEntityList.get(event.getServer()).getStargates().size()));
-            Stargate stargate = entry.getValue();
-            StargateConnection connection = StargateConnection.create(StargateConnection.Type.SYSTEM_WIDE, event.getStargate().getStargateEntity(event.getServer()).get(), stargate.getStargateEntity(event.getServer()).get(), true);
-            StargateNetwork.get(event.getServer()).addConnection(connection);
-            event.getServer().execute(new TickTask(140,
-                    () -> stargate.getStargateEntity(event.getServer()).ifPresent(
-                            gate -> gate.setStargateState(StargateConnection.State.INCOMING_CONNECTION, 0, false))));
+
         }
         if(random.nextBoolean())
         {
