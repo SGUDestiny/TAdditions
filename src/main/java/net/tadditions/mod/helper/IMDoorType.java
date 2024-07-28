@@ -44,6 +44,19 @@ public interface IMDoorType {
                 default:
                     return 0.0;
             }
+        }, EnumDoorState.CLOSED, EnumDoorState.ONE, EnumDoorState.BOTH),
+
+        CORAL((state) -> {
+            switch (state) {
+                case CLOSED:
+                    return 0.0;
+                case ONE:
+                    return 70.0;
+                case BOTH:
+                    return -70.0;
+                default:
+                    return 0.0;
+            }
         }, EnumDoorState.CLOSED, EnumDoorState.ONE, EnumDoorState.BOTH);
 
         Function<EnumDoorState, Double> func;

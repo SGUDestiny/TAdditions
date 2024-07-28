@@ -15,6 +15,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.tadditions.mod.QolMod;
 import net.tadditions.mod.blocks.ModBlocks;
 import net.tadditions.mod.cap.MCapabilities;
+import net.tadditions.mod.client.model.CoralInteriorDoors;
 import net.tadditions.mod.client.model.FourteenthInteriorDoors;
 import net.tadditions.mod.client.model.ToyotaInteriorDoor;
 import net.tadditions.mod.client.renderers.*;
@@ -55,6 +56,7 @@ public class MClientRegistry extends TClientRegistry {
             RenderTypeLookup.setRenderLayer(ModBlocks.filled_electromagnetic_solenoid_container.get(), RenderType.getCutout());
             RenderTypeLookup.setRenderLayer(ModBlocks.exterior_toyota_police_box.get(), RenderType.getTranslucent());
             RenderTypeLookup.setRenderLayer(ModBlocks.exterior_fourteenth_police_box.get(), RenderType.getTranslucent());
+            RenderTypeLookup.setRenderLayer(ModBlocks.exterior_coral_police_box.get(), RenderType.getTranslucent());
             RenderTypeLookup.setRenderLayer(ModBlocks.decorative_toyota_police_box.get(), RenderType.getTranslucent());
             RenderTypeLookup.setRenderLayer(ModBlocks.sanguine_door.get(), RenderType.getCutout());
             RenderTypeLookup.setRenderLayer(ModBlocks.sanguine_trapdoor.get(), RenderType.getCutout());
@@ -109,6 +111,7 @@ public class MClientRegistry extends TClientRegistry {
     private static void registerTileRenderers() {
         ClientRegistry.bindTileEntityRenderer(ModTileEntitys.EXTERIOR_TOYOTA_POLICE_BOX.get(), ToyotaExteriorRenderer::new);
         ClientRegistry.bindTileEntityRenderer(ModTileEntitys.EXTERIOR_FOURTEENTH_POLICE_BOX.get(), FourteenthExteriorRender::new);
+        ClientRegistry.bindTileEntityRenderer(ModTileEntitys.EXTERIOR_CORAL_POLICE_BOX.get(), CoralExteriorRender::new);
         ClientRegistry.bindTileEntityRenderer(ModTileEntitys.FOURTEENTH_CONSOLE.get(), FourteenthConsoleRender::new);
         ClientRegistry.bindTileEntityRenderer(ModTileEntitys.WPH.get(), WeaponHolderRenderer::new);
         ClientRegistry.bindTileEntityRenderer(ModTileEntitys.CONTAINMENT_CHAMBER.get(), ContainmentChamberRenderer::new);
@@ -120,6 +123,7 @@ public class MClientRegistry extends TClientRegistry {
     private static void registerInteriorDoorRenderers() {
         IMDoorType.EnumDoorType.TOYOTA.setInteriorDoorModel(new ToyotaInteriorDoor());
         IMDoorType.EnumDoorType.FOURTEENTH.setInteriorDoorModel(new FourteenthInteriorDoors());
+        IMDoorType.EnumDoorType.CORAL.setInteriorDoorModel(new CoralInteriorDoors());
     }
 
     public static void registerScreens() {

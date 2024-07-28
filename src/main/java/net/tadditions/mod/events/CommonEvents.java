@@ -102,8 +102,15 @@ public class CommonEvents {
                     event.player.getFoodStats().setFoodLevel(10);
             }
             if(event.player.getEntityWorld().getDimensionKey() == TDimensions.VORTEX_DIM) {
-                if(event.player.getHealth() != 1 || PlayerHelper.isInEitherHand(event.player, TItems.VORTEX_MANIP.get())){
-                    event.player.attackEntityFrom(DamageSource.OUT_OF_WORLD, 1);
+                if (event.player.getHealth() != 1) {
+                    boolean has_vortex_manip = false;
+                    for(int i = 0; i < 9; i++){
+                        if(event.player.inventory.getStackInSlot(i).getItem().equals(TItems.VORTEX_MANIP.get()))
+                            has_vortex_manip = true;
+                    }
+                    if (!has_vortex_manip) {
+                        event.player.attackEntityFrom(DamageSource.OUT_OF_WORLD, 1);
+                    }
                 }
             }
         }

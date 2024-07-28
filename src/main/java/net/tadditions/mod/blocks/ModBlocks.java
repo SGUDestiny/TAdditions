@@ -82,6 +82,7 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> exterior_toyota_police_box = register("exterior_toyota_police_box", () -> setUpBlock(new ExteriorBlock()), false);
     public static final RegistryObject<Block> exterior_fourteenth_police_box = register("exterior_fourteenth_police_box", () -> setUpBlock(new ExteriorBlock()), false);
+    public static final RegistryObject<Block> exterior_coral_police_box = register("exterior_coral_police_box", () -> setUpBlock(new ExteriorBlock()), false);
 
     public static final RegistryObject<Block> decorative_toyota_police_box = register("decorative_toyota_police_box", () -> setUpBlock(new FakeToyotaBlock(AbstractBlock.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(-1.0F, -1.0F).variableOpacity().notSolid())), false);
     public static final RegistryObject<Block> decorative_fourteenth_police_box = register("decorative_fourteenth_police_box", () -> setUpBlock(new FakeFourteenthPoliceBoxBlock(AbstractBlock.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(-1.0F, -1.0F).variableOpacity().notSolid())), false);
