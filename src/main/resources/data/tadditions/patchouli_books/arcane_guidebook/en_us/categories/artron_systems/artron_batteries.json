@@ -1,6 +1,6 @@
 {
   "name": "Artron Batteries",
-  "description": "Advanced handheld Artron storage for all portable needs one may have.",
+  "description": "$(o)''Advanced handheld Artron storage for all portable needs one might have.''$()",
   "icon": "tadditions:artron_battery_temporal",
   "parent": "tadditions:artron_systems"
 }

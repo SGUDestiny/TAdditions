@@ -4,20 +4,16 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "ArtronBatMixin",
-    "AxisControlMixin",
     "CommunicatorControlMixin",
     "ConsoleMixin",
     "DimConMixin",
     "DoorControlMixin",
     "EmotionHandlerMixin",
     "EngineSlotMixin",
-    "ExteriorArgumentMixin",
     "ExteriorMixin",
     "FastReturnControlMixin",
     "InvisRenMixin",
     "MonitorControlMixin",
-    "NTMHelperMixin",
-    "SPMixin",
     "SubsysMixin",
     "TARDISBottomMixin",
     "TARDISEngineMixin",
@@ -27,8 +23,8 @@
   "client": [
     "ArtronBatClientMixin",
     "ArtronCapMixin",
-    "EngineScreenMixin",
     "ExteriorRenderMixin"
   ],
+  "plugin": "net.tadditions.mixin.mixinextras.MixinPlugin",
   "refmap": "tadditions.mixin-refmap.json"
 }

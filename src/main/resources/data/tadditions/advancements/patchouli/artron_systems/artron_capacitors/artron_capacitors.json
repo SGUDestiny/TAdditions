@@ -3,6 +3,16 @@
     "obtain_tardis": {
       "trigger": "tardis:obtain_tardis"
     },
+    "advanced_quantiscope": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tadditions:advanced_quantiscope"
+          }
+        ]
+      }
+    },
     "capacitor_high": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -16,6 +26,7 @@
   },
   "requirements": [
     ["capacitor_high"],
+    ["advanced_quantiscope"],
     ["obtain_tardis"]
   ]
 }

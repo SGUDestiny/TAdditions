@@ -30,6 +30,10 @@ public abstract class FastReturnControlMixin extends BaseControl {
 
     @Shadow(remap = false) public abstract EntitySize getSize();
 
+    /**
+     * @author Zolton
+     * @reason FastReturn
+     */
     @Overwrite(remap = false)
     public boolean onRightClicked(ConsoleTile console, PlayerEntity player) {
         if(!console.getWorld().isRemote() && console.getLandTime() <= 0) {

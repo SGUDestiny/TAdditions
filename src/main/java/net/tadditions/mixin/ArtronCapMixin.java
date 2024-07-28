@@ -1,29 +1,21 @@
 package net.tadditions.mixin;
 
-import com.google.common.collect.Lists;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.*;
 import net.minecraft.world.World;
 import net.tadditions.mod.enchantments.TAEnchants;
-import net.tadditions.mod.items.ModItemGroups;
-import net.tadditions.mod.items.ModItems;
 import net.tardis.mod.constants.TardisConstants;
 import net.tardis.mod.helper.TextHelper;
 import net.tardis.mod.items.ArtronCapacitorItem;
-import net.tardis.mod.items.misc.TooltipProviderItem;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Mixin(ArtronCapacitorItem.class)

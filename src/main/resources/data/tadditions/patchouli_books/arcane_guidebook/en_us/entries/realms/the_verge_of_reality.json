@@ -6,11 +6,15 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "It is unknown what this place truly is. Sanctuary? Hell? Universe's fate? One can only guess. But only one thing can be said for certain... It is horrifying and eldritch. It is a place where time doesn't exist, and the laws of physics bend to the ever-increasing entropy. The Verge of Reality resembles an infinite wasteland stretching under a wicked, blood-red sky, and comprised of ash both on the surface and"
+      "text": "$(o)''It is unknown what this place truly is... Sanctuary? Hell? The ultimate fate of everything? Or just a mere space-time anomaly... One can only guess. But only one thing can be said for certain... It is terrifying and eldritch, and no one is supposed to find it, for it shouldn't have existed in the first place.''"
     },
     {
       "type": "patchouli:text",
-      "text": "in the atmosphere, making it hard to breath. The Verge has a variety of structures, varying from simple scraps to entire dungeons containing even more mysteries, waiting for someone to discover them..."
+      "text": "$(o)''It is a place where time wraps, breaks and twists back and forth, and the laws of physics bend to the ever-increasing entropy. The Verge of Reality resembles seemingly endless dunes of ash, stretching to infinity under the wicked, vermilion sky, while ash floats heavy in the air, making it hard to breathe.''"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(o)''This... realm, has a variety of structures, varying from mere scraps, left exposed to the degrading elements, to the entire abandoned facilities, containing even more mysteries, waiting for someone to discover them...''"
     }
   ]
 }
