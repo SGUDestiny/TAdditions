@@ -32,7 +32,7 @@ public class CoralExteriorRender extends ExteriorRenderer<CoralExteriorTile> {
         if(tile.getVariant() != null)
             texture = tile.getVariant().getTexture();
 
-        matrixStackIn.translate(0, -0.45, 0);
+        matrixStackIn.translate(0, -0.39, 0);
         matrixStackIn.scale(0.6f, 0.6f, 0.6f);
         this.model.render(tile, 0.6F, matrixStackIn, bufferIn.getBuffer(TRenderTypes.getTardis(texture)), combinedLightIn, combinedOverlayIn, alpha);
         matrixStackIn.pop();
