@@ -25,6 +25,5 @@
     "ArtronCapMixin",
     "ExteriorRenderMixin"
   ],
-  "plugin": "net.tadditions.mixin.mixinextras.MixinPlugin",
   "refmap": "tadditions.mixin-refmap.json"
 }
