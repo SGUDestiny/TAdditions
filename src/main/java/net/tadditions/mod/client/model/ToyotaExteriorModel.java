@@ -17,6 +17,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.tadditions.mod.QolMod;
 import net.tadditions.mod.client.renderers.ToyotaExteriorRenderer;
 import net.tadditions.mod.helper.IMDoorType;
+import net.tardis.mod.client.TRenderTypes;
 import net.tardis.mod.client.models.LightModelRenderer;
 import net.tardis.mod.client.models.exteriors.ExteriorModel;
 import net.tardis.mod.client.models.exteriors.ModernPoliceBoxExteriorModel;
@@ -26,6 +27,7 @@ import net.tardis.mod.client.renderers.exteriors.ExteriorRenderer;
 import net.tardis.mod.client.renderers.exteriors.ModernPoliceBoxExteriorRenderer;
 import net.tardis.mod.enums.EnumDoorState;
 import net.tardis.mod.enums.EnumMatterState;
+import net.tardis.mod.helper.Helper;
 import net.tardis.mod.helper.TardisHelper;
 import net.tardis.mod.helper.WorldHelper;
 import net.tardis.mod.misc.IDoorType;
@@ -894,7 +896,7 @@ public class ToyotaExteriorModel extends ExteriorModel {
                 matrix.push();
                 matrix.scale(1.1F, 1.1F, 1.1F);
                 matrix.translate(0.0f, 0, 0);
-                this.boti.render(matrix, buf.getBuffer(RenderType.getEntityCutout(ToyotaExteriorRenderer.TEXTURE)), packedLight, packedOverlay);
+                this.boti.render(matrix, buf.getBuffer(TRenderTypes.getTardis(Helper.getVariantTextureOr(exterior.getVariant(), ToyotaExteriorRenderer.TEXTURE))), packedLight, packedOverlay);
                 matrix.pop();
             });
 
@@ -902,7 +904,7 @@ public class ToyotaExteriorModel extends ExteriorModel {
                 matrix.push();
                 matrix.translate(0.045f, -1.648f, 0.55f);
                 matrix.scale(1.1F, 1.1F, 1.05F);
-                this.door1.render(matrix, buf.getBuffer(RenderType.getEntityCutout(ToyotaExteriorRenderer.TEXTURE)), packedLight, packedOverlay);
+                this.door1.render(matrix, buf.getBuffer(TRenderTypes.getTardis(Helper.getVariantTextureOr(exterior.getVariant(), ToyotaExteriorRenderer.TEXTURE))), packedLight, packedOverlay);
                 matrix.pop();
             });
 

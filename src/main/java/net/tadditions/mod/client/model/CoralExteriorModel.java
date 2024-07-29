@@ -10,15 +10,18 @@ import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.vector.Vector3f;
-import net.tadditions.mod.client.renderers.FourteenthExteriorRender;
+import net.tadditions.mod.client.renderers.CoralExteriorRender;
 import net.tadditions.mod.helper.IMDoorType;
+import net.tardis.mod.client.TRenderTypes;
 import net.tardis.mod.client.models.LightModelRenderer;
 import net.tardis.mod.client.models.exteriors.ExteriorModel;
 import net.tardis.mod.client.renderers.boti.BOTIRenderer;
 import net.tardis.mod.client.renderers.boti.PortalInfo;
 import net.tardis.mod.client.renderers.exteriors.ExteriorRenderer;
+import net.tardis.mod.client.renderers.exteriors.SteamExteriorRenderer;
 import net.tardis.mod.enums.EnumDoorState;
 import net.tardis.mod.enums.EnumMatterState;
+import net.tardis.mod.helper.Helper;
 import net.tardis.mod.helper.WorldHelper;
 import net.tardis.mod.tileentities.exteriors.ExteriorTile;
 
@@ -296,16 +299,16 @@ public class CoralExteriorModel extends ExteriorModel {
 			info.setWorldShell(exterior.getBotiWorld());
 			info.setTranslate(matrix -> {
 				if(exterior.getBlockState().get(BlockStateProperties.HORIZONTAL_FACING) == Direction.NORTH){
-					matrix.translate(-0.5, 0.25, -0.51);
+					matrix.translate(-0.5, -0.51, -0.501);
 				}
 				if(exterior.getBlockState().get(BlockStateProperties.HORIZONTAL_FACING) == Direction.SOUTH){
-					matrix.translate(-0.5, 0.25, -0.49);
+					matrix.translate(-0.5, -0.51, -0.499);
 				}
 				if(exterior.getBlockState().get(BlockStateProperties.HORIZONTAL_FACING) == Direction.WEST){
-					matrix.translate(-0.51, 0.25, -0.5);
+					matrix.translate(-0.501, -0.51, -0.5);
 				}
 				if(exterior.getBlockState().get(BlockStateProperties.HORIZONTAL_FACING) == Direction.EAST){
-					matrix.translate(-0.49, 0.25, -0.5);
+					matrix.translate(-0.499, -0.51, -0.5);
 				}
 				ExteriorRenderer.applyTransforms(matrix, exterior);
 			});
@@ -314,20 +317,20 @@ public class CoralExteriorModel extends ExteriorModel {
 				matrix.rotate(Vector3f.XP.rotationDegrees(180));
 				matrix.rotate(Vector3f.YP.rotationDegrees(180));
 				matrix.rotate(Vector3f.YP.rotationDegrees(WorldHelper.getAngleFromFacing(exterior.getBotiWorld().getPortalDirection())));
-				matrix.translate(-0.5, -0.5, -0.45);
+				matrix.translate(-0.25, 0.1, -0.5);
 			});
 
 			info.setRenderPortal((matrix, buf) -> {
 				matrix.push();
-				matrix.scale(0.55F, 0.55F, 0.55F);
-				this.BOTI.render(matrix, buf.getBuffer(RenderType.getEntityCutout(FourteenthExteriorRender.TEXTURE)), packedLight, packedOverlay);
+				matrix.scale(0.6F, 0.6F, 0.6F);
+				this.BOTI.render(matrix, buf.getBuffer(TRenderTypes.getTardis(Helper.getVariantTextureOr(exterior.getVariant(), CoralExteriorRender.TEXTURE))), packedLight, packedOverlay);
 				matrix.pop();
 			});
 
 			info.setRenderDoor((matrix, buf) -> {
 				matrix.push();
-				matrix.scale(0.55F, 0.55F, 0.55F);
-				this.doors.render(matrix, buf.getBuffer(RenderType.getEntityCutout(FourteenthExteriorRender.TEXTURE)), packedLight, packedOverlay);
+				matrix.scale(0.6F, 0.6F, 0.6F);
+				this.doors.render(matrix, buf.getBuffer(TRenderTypes.getTardis(Helper.getVariantTextureOr(exterior.getVariant(), CoralExteriorRender.TEXTURE))), packedLight, packedOverlay);
 				matrix.pop();
 			});
 

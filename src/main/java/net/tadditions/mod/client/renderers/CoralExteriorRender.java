@@ -39,27 +39,27 @@ public class CoralExteriorRender extends ExteriorRenderer<CoralExteriorTile> {
 
         //Front
         matrixStackIn.push();
-        matrixStackIn.translate(-0.45, -2.08, -12.675 / 16.0F);
+        matrixStackIn.translate(-0.45, -2.025, -12.675 / 16.0F);
         TEXT.renderText(matrixStackIn, bufferIn, combinedLightIn, tile.getCustomName());
         matrixStackIn.pop();
 
         //Left text
         matrixStackIn.push();
-        matrixStackIn.translate(-0.79, -2.08, 7.75 / 16.0F);
+        matrixStackIn.translate(-0.79, -2.025, 7.75 / 16.0F);
         matrixStackIn.rotate(Vector3f.YP.rotationDegrees(90));
         TEXT.renderText(matrixStackIn, bufferIn, combinedLightIn, tile.getCustomName());
         matrixStackIn.pop();
 
         //Right text
         matrixStackIn.push();
-        matrixStackIn.translate(0.79, -2.08, -7.75 / 16.0F);
+        matrixStackIn.translate(0.79, -2.025, -7.75 / 16.0F);
         matrixStackIn.rotate(Vector3f.YN.rotationDegrees(90));
         TEXT.renderText(matrixStackIn, bufferIn, combinedLightIn, tile.getCustomName());
         matrixStackIn.pop();
 
         //BACK text
         matrixStackIn.push();
-        matrixStackIn.translate(0.45, -2.08, 12.675 / 16.0F);
+        matrixStackIn.translate(0.45, -2.025, 12.675 / 16.0F);
         matrixStackIn.rotate(Vector3f.YP.rotationDegrees(180));
         TEXT.renderText(matrixStackIn, bufferIn, combinedLightIn, tile.getCustomName());
         matrixStackIn.pop();
