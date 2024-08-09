@@ -1,0 +1,9 @@
+{
+  "type": "tardis:spectrometer",
+  "processing_ticks": 200,
+  "download_ticks": 200,
+  "ingredient": {
+    "item":"minecraft:warped_door"
+  },
+  "result": "tadditions:exteriors/exterior_coral"
+}

@@ -5,7 +5,6 @@ package net.tadditions.mod.client.model;// Made with Blockbench 4.10.3
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
@@ -18,7 +17,6 @@ import net.tardis.mod.client.models.exteriors.ExteriorModel;
 import net.tardis.mod.client.renderers.boti.BOTIRenderer;
 import net.tardis.mod.client.renderers.boti.PortalInfo;
 import net.tardis.mod.client.renderers.exteriors.ExteriorRenderer;
-import net.tardis.mod.client.renderers.exteriors.SteamExteriorRenderer;
 import net.tardis.mod.enums.EnumDoorState;
 import net.tardis.mod.enums.EnumMatterState;
 import net.tardis.mod.helper.Helper;

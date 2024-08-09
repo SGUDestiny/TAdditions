@@ -426,6 +426,27 @@ public class CommonEvents {
             }
         }
 
+        if(event.getControl().getEntry().equals(ControlRegistry.FAST_RETURN.get())){
+            event.setCanceled(true);
+            if(!event.getControl().getConsole().getWorld().isRemote() && event.getControl().getConsole().getLandTime() <= 0) {
+                if(event.getControl().getConsole().getCurrentLocation() == event.getControl().getConsole().getDestinationPosition()) {
+                    SpaceTimeCoord coord = event.getControl().getConsole().getReturnLocation();
+                    RegistryKey<World> worldKey = RegistryKey.getOrCreateKey(Registry.WORLD_KEY, coord.getDimRL());
+                    event.getControl().getConsole().setDestination(worldKey, coord.getPos());
+                    event.getControl().getConsole().setExteriorFacingDirection(coord.getFacing());
+                    TranslationTextComponent target = new TranslationTextComponent("tardis.fast_return_control.interact.fast_return_destination_unset");
+                    event.getPlayer().sendStatusMessage(target, true);
+                }
+                else{
+                    event.getControl().getConsole().setDestination(event.getControl().getConsole().getCurrentDimension(),event.getControl().getConsole().getCurrentLocation());
+                    event.getControl().getConsole().setExteriorFacingDirection(event.getControl().getConsole().getExteriorFacingDirection());
+                    TranslationTextComponent target = new TranslationTextComponent("tardis.fast_return_control.interact.fast_return_destination_set");
+                    event.getPlayer().sendStatusMessage(target, true);
+                }
+            }
+            ((BaseControl) event.getControl()).startAnimation();
+        }
+
     }
 
     @SubscribeEvent
@@ -474,6 +495,28 @@ public class CommonEvents {
                     rot = 0;
                 ((IMonitorHelp) control).setRotAngle(rot);
             }
+        }
+
+        if(event.getTarget().getType().equals(TEntities.CONTROL.get()) && ((ControlEntity) event.getTarget()).getControl().getEntry().equals(ControlRegistry.FAST_RETURN.get())){
+            event.setCanceled(true);
+            AbstractControl control = ((ControlEntity) event.getTarget()).getControl();
+            if(!control.getConsole().getWorld().isRemote() && control.getConsole().getLandTime() <= 0) {
+                if(control.getConsole().getCurrentLocation() == control.getConsole().getDestinationPosition()) {
+                    SpaceTimeCoord coord = control.getConsole().getReturnLocation();
+                    RegistryKey<World> worldKey = RegistryKey.getOrCreateKey(Registry.WORLD_KEY, coord.getDimRL());
+                    control.getConsole().setDestination(worldKey, coord.getPos());
+                    control.getConsole().setExteriorFacingDirection(coord.getFacing());
+                    TranslationTextComponent target = new TranslationTextComponent("tardis.fast_return_control.interact.fast_return_destination_unset");
+                    event.getPlayer().sendStatusMessage(target, true);
+                }
+                else{
+                    control.getConsole().setDestination(control.getConsole().getCurrentDimension(),control.getConsole().getCurrentLocation());
+                    control.getConsole().setExteriorFacingDirection(control.getConsole().getExteriorFacingDirection());
+                    TranslationTextComponent target = new TranslationTextComponent("tardis.fast_return_control.interact.fast_return_destination_set");
+                    event.getPlayer().sendStatusMessage(target, true);
+                }
+            }
+            ((BaseControl) control).startAnimation();
         }
     }
 

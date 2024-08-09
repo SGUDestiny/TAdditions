@@ -296,6 +296,7 @@
   "exterior.tadditions.toyota_police_box": "Toyota Police Box",
   "exterior.tardis.fourteenth_police_box": "New Modern Police Box",
   "exterior.tadditions.fourteenth_police_box": "New Modern Police Box",
+  "exterior.tadditions.coral_police_box": "Coral Police Box",
   "console.tadditions.voyager": "Voyager",
   "tooltip.part.upgrades/frame_stabilizer.description": "Stabilizes \"Frame of Reference\" of time and space coordinates, allowing to safely travel through complex anomalies.",
   "tadditions.data_crystal_will_burn": "\u00A74\u00A7oWill burn after use.\u00A7r",
@@ -384,5 +385,7 @@
   "protocol.tardis.cloak_off": "Turn Cloaking On",
   "message.tardis.cloak.false": "Turned Cloaking Off",
   "message.tardis.cloak.true": "Turned Cloaking On",
-  "tardis.axis_control.interact.target_change": "New Target Coordinates:"
+  "tardis.axis_control.interact.target_change": "New Target Coordinates:",
+  "tardis.fast_return_control.interact.fast_return_destination_set": "Last position set",
+  "tardis.fast_return_control.interact.fast_return_destination_unset": "Current position set"
 }

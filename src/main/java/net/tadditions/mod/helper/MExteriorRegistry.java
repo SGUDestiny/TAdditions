@@ -39,7 +39,7 @@ public class MExteriorRegistry extends ExteriorRegistry {
 	
 	public static final RegistryObject<AbstractExterior> TOYOTA_POLICE_BOX = EXTERIORS.register("toyota_police_box", () -> new TwoBlockBasicExterior(() -> ModBlocks.exterior_toyota_police_box.get().getDefaultState(), false, IMDoorType.EnumDoorType.TOYOTA, DoorSounds.BASE, new ResourceLocation(QolMod.MOD_ID, "textures/gui/toyota.png"), MTextureVariants.TOYOTA));
 	public static final RegistryObject<AbstractExterior> FOURTEENTH_POLICE_BOX = EXTERIORS.register("fourteenth_police_box", () -> new TwoBlockBasicExterior(() -> ModBlocks.exterior_fourteenth_police_box.get().getDefaultState(), false, IMDoorType.EnumDoorType.FOURTEENTH, DoorSounds.BASE, new ResourceLocation(QolMod.MOD_ID, "textures/gui/fourteenth.png")));
-	public static final RegistryObject<AbstractExterior> CORAL_POLICE_BOX = EXTERIORS.register("coral_police_box", () -> new TwoBlockBasicExterior(() -> ModBlocks.exterior_coral_police_box.get().getDefaultState(), false, IMDoorType.EnumDoorType.CORAL, DoorSounds.BASE, new ResourceLocation(QolMod.MOD_ID, ""), MTextureVariants.CORAL));
+	public static final RegistryObject<AbstractExterior> CORAL_POLICE_BOX = EXTERIORS.register("coral_police_box", () -> new TwoBlockBasicExterior(() -> ModBlocks.exterior_coral_police_box.get().getDefaultState(), false, IMDoorType.EnumDoorType.CORAL, DoorSounds.BASE, new ResourceLocation(QolMod.MOD_ID, "textures/gui/exterior_coral.png"), MTextureVariants.CORAL));
 
 
 }
