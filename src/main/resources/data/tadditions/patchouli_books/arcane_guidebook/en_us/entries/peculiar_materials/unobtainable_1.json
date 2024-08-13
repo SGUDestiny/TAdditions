@@ -1,9 +1,0 @@
-{
-  "name": "Locked",
-  "icon": "minecraft:barrier",
-  "category": "tadditions:peculiar_materials",
-  "advancement": "tadditions:patchouli/locked",
-  "sortnum": 15,
-  "pages": [
-  ]
-}

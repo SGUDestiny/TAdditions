@@ -22,8 +22,8 @@ public class ModItems {
             DeferredRegister.create(ForgeRegistries.ITEMS, QolMod.MOD_ID);
 
     public static final RegistryObject<Item> FOODCUBE = ITEMS.register("foodcube", () -> createItem(new Item((new Item.Properties()).group(ModItemGroups.TA).food(new Food.Builder().hunger(3).saturation(3F).build()))));
+    public static final RegistryObject<Item> UPGRADES_MANUAL = ITEMS.register("upgrades_manual", () -> createItem(new ManualVolumeTwoItem(Prop.Items.ONE.get().group(ModItemGroups.TA))));
     public static final RegistryObject<Item> IMPULSE_KEY = ITEMS.register("impulse_key", () -> createItem(new CoreKeyItem(Prop.Items.ONE.get().group(ModItemGroups.TA).isImmuneToFire().setISTER(() -> ImpulseKeyRenderer::new))));
-    public static final RegistryObject<Item> ARCANE_GUIDEBOOK = ITEMS.register("arcane_guidebook", () -> createItem(new ArcaneGuidebookItem(Prop.Items.ONE.get().group(ModItemGroups.TA).setISTER(() -> ArcaneGuideBookRenderer::new))));
     public static final RegistryObject<Item> ULTRA_HIGH_CAPACITY_ARTRON_CAPACITOR = ITEMS.register("artron_capacitor_ultra",
             () -> new ArtronCapacitorItem(1024F, 0.5F));
     public static final RegistryObject<Item> ULTRA_HIGH_RECHARGE_ARTRON_CAPACITOR = ITEMS.register("artron_capacitor_speed",

@@ -10,8 +10,7 @@ import org.spongepowered.asm.mixin.Unique;
 @Mixin(EngineSlot.class)
 public class EngineSlotMixin {
 
-    @Unique
-    public boolean tAdditions$canTakeStack(PlayerEntity player){
+    public boolean canTakeStack(PlayerEntity player){
         return !((EngineSlot) (Object) this).getStack().isEnchanted() || (EnchantmentHelper.getEnchantmentLevel(TAEnchants.CURSE_OF_WINDS.get(), ((EngineSlot) (Object) this).getStack()) <= 0) || (((EngineSlot) (Object) this).getStack().getDamage() >= ((EngineSlot) (Object) this).getStack().getMaxDamage() * 0.75);
     }
 

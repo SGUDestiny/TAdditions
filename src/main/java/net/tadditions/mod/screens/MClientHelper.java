@@ -9,6 +9,8 @@ public class MClientHelper {
 
     public static void openGUI(int guiId, GuiContext context) {
         switch (guiId) {
+            case MConstants.Gui.MANUAL:
+                Minecraft.getInstance().displayGuiScreen(new UpgradesManualScreen(context));
             case MConstants.Gui.FOODMAKER:
                 Minecraft.getInstance().displayGuiScreen(new FoodMakerScreen());
                 break;
