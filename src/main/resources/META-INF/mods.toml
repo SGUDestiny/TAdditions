@@ -41,9 +41,3 @@ mandatory = true
 versionRange = "[0.0.3, 0.0.4)"
 ordering = "BEFORE"
 side = "BOTH"
-[[dependencies.${mod_id}]]
-modId= "patchouli"
-mandatory = true
-versionRange = "[1.16.4-53.3]"
-ordering = "BEFORE"
-side = "BOTH"

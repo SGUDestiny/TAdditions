@@ -29,7 +29,7 @@ public class InvisRenMixin extends EntityRenderer<Entity> {
                               IRenderTypeBuffer bufferIn, int packedLightIn) {
         matrixStackIn.push();
         if(entity instanceof ControlEntity &&
-                Minecraft.getInstance().objectMouseOver instanceof EntityRayTraceResult && PlayerHelper.isInEitherHand(Minecraft.getInstance().player, TItems.MANUAL.get()) || Minecraft.getInstance().objectMouseOver instanceof EntityRayTraceResult && PlayerHelper.isInEitherHand(Minecraft.getInstance().player, ModItems.ARCANE_GUIDEBOOK.get()))
+                Minecraft.getInstance().objectMouseOver instanceof EntityRayTraceResult && PlayerHelper.isInEitherHand(Minecraft.getInstance().player, TItems.MANUAL.get()) || Minecraft.getInstance().objectMouseOver instanceof EntityRayTraceResult && PlayerHelper.isInEitherHand(Minecraft.getInstance().player, ModItems.UPGRADES_MANUAL.get()))
             if(((EntityRayTraceResult)Minecraft.getInstance().objectMouseOver).getEntity() == entity) {
                 matrixStackIn.translate(0, -0.2F, 0);
                 super.renderName(entity, entity.getDisplayName(), matrixStackIn, bufferIn, packedLightIn);
