@@ -1,14 +1,14 @@
 {
-  "parent": "tadditions:the_verge_crash",
+  "parent": "tadditions:tadditions",
   "display": {
     "icon": {
-      "item": "tadditions:ash"
+      "item": "tadditions:dense_ash"
     },
     "title": {
-      "translate": "advancements.tadditions.title.verge"
+      "translate": "advancements.tadditions.title.verge_crash"
     },
     "description": {
-      "translate": "advancements.tadditions.desc.verge"
+      "translate": "advancements.tadditions.desc.verge_crash"
     },
     "frame": "goal",
     "show_toast": true,
@@ -20,7 +20,7 @@
       "trigger": "tardis:tardis_landed",
       "conditions": {
         "dimension": "tadditions:the_verge_of_reality",
-        "crashed": false
+        "crashed": true
       }
     }
   },

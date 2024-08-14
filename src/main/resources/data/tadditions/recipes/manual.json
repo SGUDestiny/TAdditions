@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "tadditions:arcane_guidebook"
+      "item": "tadditions:upgrades_manual"
     }
   ],
   "result": {

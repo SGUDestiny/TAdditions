@@ -434,13 +434,13 @@ public class CommonEvents {
                     RegistryKey<World> worldKey = RegistryKey.getOrCreateKey(Registry.WORLD_KEY, coord.getDimRL());
                     event.getControl().getConsole().setDestination(worldKey, coord.getPos());
                     event.getControl().getConsole().setExteriorFacingDirection(coord.getFacing());
-                    TranslationTextComponent target = new TranslationTextComponent("tardis.fast_return_control.interact.fast_return_destination_unset");
+                    TranslationTextComponent target = new TranslationTextComponent("tardis.fast_return_control.interact.fast_return_destination_set");
                     event.getPlayer().sendStatusMessage(target, true);
                 }
                 else{
                     event.getControl().getConsole().setDestination(event.getControl().getConsole().getCurrentDimension(),event.getControl().getConsole().getCurrentLocation());
                     event.getControl().getConsole().setExteriorFacingDirection(event.getControl().getConsole().getExteriorFacingDirection());
-                    TranslationTextComponent target = new TranslationTextComponent("tardis.fast_return_control.interact.fast_return_destination_set");
+                    TranslationTextComponent target = new TranslationTextComponent("tardis.fast_return_control.interact.fast_return_destination_unset");
                     event.getPlayer().sendStatusMessage(target, true);
                 }
             }
@@ -506,13 +506,13 @@ public class CommonEvents {
                     RegistryKey<World> worldKey = RegistryKey.getOrCreateKey(Registry.WORLD_KEY, coord.getDimRL());
                     control.getConsole().setDestination(worldKey, coord.getPos());
                     control.getConsole().setExteriorFacingDirection(coord.getFacing());
-                    TranslationTextComponent target = new TranslationTextComponent("tardis.fast_return_control.interact.fast_return_destination_unset");
+                    TranslationTextComponent target = new TranslationTextComponent("tardis.fast_return_control.interact.fast_return_destination_set");
                     event.getPlayer().sendStatusMessage(target, true);
                 }
                 else{
                     control.getConsole().setDestination(control.getConsole().getCurrentDimension(),control.getConsole().getCurrentLocation());
                     control.getConsole().setExteriorFacingDirection(control.getConsole().getExteriorFacingDirection());
-                    TranslationTextComponent target = new TranslationTextComponent("tardis.fast_return_control.interact.fast_return_destination_set");
+                    TranslationTextComponent target = new TranslationTextComponent("tardis.fast_return_control.interact.fast_return_destination_unset");
                     event.getPlayer().sendStatusMessage(target, true);
                 }
             }
@@ -602,7 +602,7 @@ public class CommonEvents {
         console.crash(new CrashType(100, 0, true));
         console.getSubSystems().forEach(sub -> sub.damage(null, 38));
 
-        console.getSubsystem(FlightSubsystem.class).ifPresent(fly -> fly.damage(null, 650));
+        console.getSubsystem(FlightSubsystem.class).ifPresent(fly -> fly.damage(null, 325));
 
         List<String> list = new ArrayList<>();
         list.add(new TranslationTextComponent("warning.spatial_rupture.line1").getString());

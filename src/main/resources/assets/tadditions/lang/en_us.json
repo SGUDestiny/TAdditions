@@ -336,8 +336,10 @@
   "advancements.tadditions.desc.violence": "But it has to be this way. Kill another player using Murasama",
   "advancements.tadditions.title.mars": "Rust, Dust & Guts",
   "advancements.tadditions.desc.mars": "Visit Mars",
-  "advancements.tadditions.title.verge": "\u00A74The World Looks Red",
-  "advancements.tadditions.desc.verge": "Venture to The Verge of Reality for first time",
+  "advancements.tadditions.title.verge_crash": "\u00A74The World Looks Red",
+  "advancements.tadditions.desc.verge_crash": "Venture to The Verge of Reality for first time",
+  "advancements.tadditions.title.verge": "\u00A74You are not welcome here",
+  "advancements.tadditions.desc.verge": "Land safely at the Verge of Reality for the first time",
   "advancements.tadditions.title.alldiscs": "\u00a74You have sinned.",
   "advancements.tadditions.desc.alldiscs": "\u00a74Somewhere in Nevada. Recover an entire collection of dusty music discs",
   "advancements.tadditions.title.onedisc": "\u00a78Echoes of Mindless Violence",
@@ -387,5 +389,6 @@
   "message.tardis.cloak.true": "Turned Cloaking On",
   "tardis.axis_control.interact.target_change": "New Target Coordinates:",
   "tardis.fast_return_control.interact.fast_return_destination_set": "Last position set",
-  "tardis.fast_return_control.interact.fast_return_destination_unset": "Current position set"
+  "tardis.fast_return_control.interact.fast_return_destination_unset": "Current position set",
+  "subtitle.tadditions.verge_visit": "Landed at the Verge of Reality"
 }

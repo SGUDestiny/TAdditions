@@ -17,9 +17,9 @@
   },
   "criteria": {
     "0": {
-      "trigger": "minecraft:changed_dimension",
+      "trigger": "tardis:tardis_landed",
       "conditions": {
-        "to": "tadditions:mars"
+        "dimension": "tadditions:mars"
       }
     }
   },

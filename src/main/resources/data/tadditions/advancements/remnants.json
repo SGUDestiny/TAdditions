@@ -14,7 +14,7 @@
     "announce_to_chat": true,
     "hidden": false
   },
-  "parent": "tadditions:the_verge_of_reality",
+  "parent": "tadditions:the_verge_crash",
   "criteria": {
     "in_remnants": {
       "trigger": "minecraft:location",
