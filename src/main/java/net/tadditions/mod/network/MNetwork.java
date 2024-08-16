@@ -5,6 +5,7 @@ import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
 import net.tadditions.mod.QolMod;
 import net.tadditions.mod.network.packets.AdvQuantiscopeTabMessage;
+import net.tadditions.mod.network.packets.CloakingUpdateMessage;
 import net.tadditions.mod.network.packets.FoodSpawnMessage;
 import net.tadditions.mod.network.packets.QuanSpawnMessage;
 
@@ -19,6 +20,7 @@ public class MNetwork {
         NETWORK_CHANNEL.registerMessage(nextId(), FoodSpawnMessage.class, FoodSpawnMessage::encode, FoodSpawnMessage::decode, FoodSpawnMessage::handle);
         NETWORK_CHANNEL.registerMessage(nextId(), AdvQuantiscopeTabMessage.class, AdvQuantiscopeTabMessage::encode, AdvQuantiscopeTabMessage::decode, AdvQuantiscopeTabMessage::handle);
         NETWORK_CHANNEL.registerMessage(nextId(), QuanSpawnMessage.class, QuanSpawnMessage::encode, QuanSpawnMessage::decode, QuanSpawnMessage::handle);
+        NETWORK_CHANNEL.registerMessage(nextId(), CloakingUpdateMessage.class, CloakingUpdateMessage::encode, CloakingUpdateMessage::decode, CloakingUpdateMessage::handle);
     }
 
     /**

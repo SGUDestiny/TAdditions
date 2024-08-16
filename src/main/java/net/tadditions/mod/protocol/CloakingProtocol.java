@@ -8,6 +8,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.tadditions.mod.helper.CloakState;
 import net.tadditions.mod.helper.IConsoleHelp;
 import net.tadditions.mod.helper.IExteriorHelp;
+import net.tadditions.mod.network.MNetwork;
+import net.tadditions.mod.network.packets.CloakingUpdateMessage;
 import net.tardis.mod.client.ClientHelper;
 import net.tardis.mod.constants.TardisConstants;
 import net.tardis.mod.misc.GuiContext;
@@ -15,6 +17,7 @@ import net.tardis.mod.network.Network;
 import net.tardis.mod.network.packets.ConsoleUpdateMessage;
 import net.tardis.mod.network.packets.console.AntigravsData;
 import net.tardis.mod.network.packets.console.DataTypes;
+import net.tardis.mod.protocols.ForcefieldProtocol;
 import net.tardis.mod.protocols.Protocol;
 import net.tardis.mod.tileentities.ConsoleTile;
 
@@ -29,6 +32,7 @@ public class CloakingProtocol extends Protocol {
         if (!world.isRemote) {
             ((IConsoleHelp) console).setCloakState(!((IConsoleHelp) console).getCloakState());
             console.getOrFindExteriorTile().ifPresent(ex -> ((IExteriorHelp) ex).setCloakState(((IConsoleHelp) console).getCloakState() ? CloakState.CLOAKING : CloakState.UNCLOAKING));
+            MNetwork.sendToServer(new CloakingUpdateMessage(((IConsoleHelp) console).getCloakState()));
             for (PlayerEntity player : world.getEntitiesWithinAABB(PlayerEntity.class, new AxisAlignedBB(console.getPos()).grow(16))) {
                 player.sendStatusMessage(new TranslationTextComponent(TRANS + ((IConsoleHelp) console).getCloakState()), true);
             }
