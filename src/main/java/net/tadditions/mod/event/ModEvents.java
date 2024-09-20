@@ -26,29 +26,6 @@ import java.util.Random;
 @Mod.EventBusSubscriber(modid = TemporalAdditionsMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ModEvents {
 
-    @SubscribeEvent
-    public static void onStargateConnect(final StargateEvent.Connect event)
-    {
-        Random random = new Random();
-        if (event.getConnectedStargate().getDimension().location().equals(new ResourceLocation(TemporalAdditionsMod.MOD_ID, "the_verge_of_reality")))
-        {
-            event.setCanceled(true);
-            event.getStargate().getStargateEntity(event.getServer()).ifPresent(stargate -> stargate.resetStargate(Stargate.Feedback.UNKNOWN_ERROR));
-        }
-        if(event.getStargate().getDimension().location().equals(new ResourceLocation(TemporalAdditionsMod.MOD_ID, "the_verge_of_reality")))
-        {
-            event.setCanceled(true);
 
-        }
-        if(random.nextBoolean())
-        {
-            event.setCanceled(true);
-            Universe.get(event.getServer()).getSolarSystemFromExtragalacticAddress(new Address.Immutable(new Address(new int[]{0}))).ifPresent(system -> StargateNetwork.findStargates(event.getServer().getLevel(system.getDimensions().get(0))));
-            Optional<Stargate> stargate = Universe.get(event.getServer()).getSolarSystemFromExtragalacticAddress(new Address.Immutable(new Address(new int[]{0}))).get().getRandomStargate(event.getServer().getLevel(event.getStargate().getDimension()).getSeed());
-            AbstractStargateEntity sg = stargate.get().getStargateEntity(event.getServer()).get();
-            StargateConnection connection = StargateConnection.create(StargateConnection.Type.INTERSTELLAR, event.getStargate().getStargateEntity(event.getServer()).get(), sg, true);
-            StargateNetwork.get(event.getServer()).addConnection(connection);
-        }
-    }
 
 }

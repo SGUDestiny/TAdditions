@@ -1,12 +1,9 @@
 package net.tadditions.mod;
 
 import com.mojang.logging.LogUtils;
-import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterDimensionSpecialEffectsEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -21,20 +18,20 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegisterEvent;
 import net.tadditions.mod.client.level.TADimensionSpecialEffects;
+import net.tadditions.mod.client.phenomena.EntropicDriftPhenomenaRenderer;
+import net.tadditions.mod.compat.StargateJourney;
 import net.tadditions.mod.init.*;
 import net.tadditions.mod.item.VergeGateOpener;
-import net.tardis.mod.item.components.ArtronCapacitorItem;
+import net.tadditions.mod.worldgen.structures.VergeGateStructure;
+import net.tardis.mod.client.gui.monitor.MonitorFlightCourseScreen;
+import net.tardis.mod.client.gui.monitor.vortex_phenomena.DefaultVortexPhenomenaRenderer;
 import org.slf4j.Logger;
-
-import javax.annotation.Nullable;
-import java.util.Optional;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(TemporalAdditionsMod.MOD_ID)
 public class TemporalAdditionsMod {
     public static final String MOD_ID = "tadditions";
-    private static @Nullable Boolean isStargateJourneyLoaded = null;
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
 
     public static final String STARGATE_JOURNEY = "sgjourney";
 
@@ -45,9 +42,10 @@ public class TemporalAdditionsMod {
         ItemInit.register(modEventBus);
         BlockInit.register(modEventBus);
         StructureInit.register(modEventBus);
+        PhenomenaInit.register(modEventBus);
+        UpgradeInit.register(modEventBus);
 
         BlockEntityInit.register(modEventBus);
-
 
         MinecraftForge.EVENT_BUS.register(this);
 
@@ -58,9 +56,8 @@ public class TemporalAdditionsMod {
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
-
-
-
+        if(ModList.get().isLoaded(STARGATE_JOURNEY))
+            StargateJourney.stargate();
     }
 
     private void addCreative(CreativeModeTabEvent.BuildContents event)
@@ -81,16 +78,11 @@ public class TemporalAdditionsMod {
 
     public void register(RegisterEvent event)
     {
-        if(isStargateJourneyLoaded())
+        if(ModList.get().isLoaded(STARGATE_JOURNEY))
+        {
+            event.register(Registries.STRUCTURE_TYPE, new ResourceLocation(MOD_ID, "verge_gate"), () -> StructureInit.typeConvert(VergeGateStructure.CODEC));
             event.register(ForgeRegistries.ITEMS.getRegistryKey(), new ResourceLocation(MOD_ID, "verge_gate_opener"), () -> new VergeGateOpener(new Item.Properties().stacksTo(1)));
-    }
-
-    public static boolean isStargateJourneyLoaded()
-    {
-        if(isStargateJourneyLoaded == null)
-            isStargateJourneyLoaded = ModList.get().isLoaded(STARGATE_JOURNEY);
-
-        return isStargateJourneyLoaded;
+        }
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
@@ -99,7 +91,7 @@ public class TemporalAdditionsMod {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
-
+            MonitorFlightCourseScreen.registerVortexPhenomenaRenderer(new EntropicDriftPhenomenaRenderer());
         }
 
         @SubscribeEvent

@@ -134,8 +134,8 @@ dependencies {
     // that the dep is a ForgeGradle 'patcher' dependency, and its patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft 'net.minecraftforge:forge:1.19.4-45.3.0'
-    implementation fg.deobf("curse.maven:sgjourney-689083:5387374")
-    implementation fg.deobf("net.tardis.mod:TardisMod19:0.2.0-DEV-Doc-3")
+    implementation fg.deobf("curse.maven:sgjourney-689083:5726463")
+    implementation files('libs/Tardis-Mod-1.19.4-0.4.0.jar')
 }
 
 // Example for how to get properties into the manifest for reading at runtime.

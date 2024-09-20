@@ -68,8 +68,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mollis lacinia magn
     side="BOTH"
 [[dependencies.tadditions]] #optional
     modId="sgjourney" #mandatory
-    mandatory=true #mandatory
-    versionRange="[0.6.26,)" #mandatory
+    mandatory=false #mandatory
+    versionRange="[0.6.31,)" #mandatory
     ordering="BEFORE"
     side="BOTH"
 # Here's another dependency

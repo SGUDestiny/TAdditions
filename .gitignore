@@ -23,3 +23,5 @@ run
 
 # Files from Forge MDK
 forge*changelog.txt
+/libs/Tardis-Mod-1.19.4-0.4.0.jar
+/libs/TardisMod-1.19.4.zip
