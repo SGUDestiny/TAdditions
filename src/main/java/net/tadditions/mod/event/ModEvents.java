@@ -1,31 +1,34 @@
 package net.tadditions.mod.event;
 
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.TickTask;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.event.entity.player.PlayerContainerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.povstalec.sgjourney.common.block_entities.stargate.AbstractStargateEntity;
-import net.povstalec.sgjourney.common.config.CommonStargateConfig;
-import net.povstalec.sgjourney.common.data.BlockEntityList;
-import net.povstalec.sgjourney.common.data.StargateNetwork;
-import net.povstalec.sgjourney.common.data.Universe;
-import net.povstalec.sgjourney.common.events.custom.StargateEvent;
-import net.povstalec.sgjourney.common.stargate.Address;
-import net.povstalec.sgjourney.common.stargate.SolarSystem;
-import net.povstalec.sgjourney.common.stargate.Stargate;
-import net.povstalec.sgjourney.common.stargate.StargateConnection;
+import net.minecraftforge.items.ItemStackHandler;
 import net.tadditions.mod.TemporalAdditionsMod;
-
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Random;
+import net.tadditions.mod.init.ItemInit;
+import net.tardis.api.events.TardisEvent;
+import net.tardis.mod.cap.level.ITardisLevel;
+import net.tardis.mod.misc.tardis.TardisEngine;
 
 @Mod.EventBusSubscriber(modid = TemporalAdditionsMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ModEvents {
 
-
+    @SubscribeEvent
+    public static void refuelRate(TardisEvent.CalcRechargeEvent event)
+    {
+        ITardisLevel tardis = event.getTARDIS();
+        ItemStackHandler capacitorHandler = tardis.getEngine().getInventoryFor(TardisEngine.EngineSide.CAPACITORS);
+        for(int i = 0; i < capacitorHandler.getSlots(); i++)
+        {
+            ItemStack capacitor = capacitorHandler.getStackInSlot(i);
+            if(capacitor.getItem().equals(ItemInit.ARTRON_CAPACITOR_VORTEX.get()))
+                event.setRechargeRate(event.getRechargeRate()+0.025f);
+            if(capacitor.getItem().equals(ItemInit.ARTRON_CAPACITOR_QUANTUM.get()))
+                event.setRechargeRate(event.getRechargeRate()-0.025f);
+            if(capacitor.getItem().equals(ItemInit.ARTRON_CAPACITOR_TEMPORAL.get()))
+                event.setRechargeRate(event.getRechargeRate()+0.05f);
+        }
+    }
 
 }

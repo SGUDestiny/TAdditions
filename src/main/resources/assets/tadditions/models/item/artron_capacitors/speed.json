@@ -1,7 +1,0 @@
-{
-    "parent":"tardis:item/artron_capacitors/basic",
-	"textures":{
-		"0":"tadditions:item/artron_capacitors/speed",
-		"particle":"tadditions:item/artron_capacitors/speed"
-	}
-}

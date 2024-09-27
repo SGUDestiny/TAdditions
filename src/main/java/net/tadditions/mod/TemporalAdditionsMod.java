@@ -24,7 +24,6 @@ import net.tadditions.mod.init.*;
 import net.tadditions.mod.item.VergeGateOpener;
 import net.tadditions.mod.worldgen.structures.VergeGateStructure;
 import net.tardis.mod.client.gui.monitor.MonitorFlightCourseScreen;
-import net.tardis.mod.client.gui.monitor.vortex_phenomena.DefaultVortexPhenomenaRenderer;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -65,13 +64,13 @@ public class TemporalAdditionsMod {
 
         if(event.getTab() == TabInit.TADDITIONS_TAB) {
             event.accept(ItemInit.ARTRON_CAPACITOR_TEMPORAL);
-            event.accept(ItemInit.ARTRON_CAPACITOR_ULTRA);
-            event.accept(ItemInit.ARTRON_CAPACITOR_SPEED);
+            event.accept(ItemInit.ARTRON_CAPACITOR_QUANTUM);
+            event.accept(ItemInit.ARTRON_CAPACITOR_VORTEX);
             event.accept(BlockInit.ASH);
             event.accept(BlockInit.DENSE_ASH);
 
             Item opener = ForgeRegistries.ITEMS.getValue(new ResourceLocation(MOD_ID, "verge_gate_opener"));
-            if(opener != null)
+            if(ModList.get().isLoaded(STARGATE_JOURNEY) && opener != null)
                 event.accept(opener);
         }
     }
@@ -80,7 +79,6 @@ public class TemporalAdditionsMod {
     {
         if(ModList.get().isLoaded(STARGATE_JOURNEY))
         {
-            event.register(Registries.STRUCTURE_TYPE, new ResourceLocation(MOD_ID, "verge_gate"), () -> StructureInit.typeConvert(VergeGateStructure.CODEC));
             event.register(ForgeRegistries.ITEMS.getRegistryKey(), new ResourceLocation(MOD_ID, "verge_gate_opener"), () -> new VergeGateOpener(new Item.Properties().stacksTo(1)));
         }
     }

@@ -8,7 +8,6 @@ public class EntropicDriftingEffect implements IFlightDurationEffect
     @Override
     public void onFlightTick(ITardisLevel tardis)
     {
-
     }
 
     @Override

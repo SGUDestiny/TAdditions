@@ -1,0 +1,12 @@
+{
+    "required": true,
+    "package": "net.tadditions.mixin",
+    "compatibilityLevel": "JAVA_17",
+    "refmap": "tadditions.refmap.json",
+    "mixins": [
+        "FilteredSlotItemHandlerMixin"
+    ],
+    "client": [
+    ],
+    "minVersion": "0.8"
+}
