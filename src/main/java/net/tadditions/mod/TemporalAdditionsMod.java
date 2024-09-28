@@ -19,6 +19,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegisterEvent;
 import net.tadditions.mod.client.level.TADimensionSpecialEffects;
 import net.tadditions.mod.client.phenomena.EntropicDriftPhenomenaRenderer;
+import net.tadditions.mod.client.phenomena.TimeStormPhenomenaRenderer;
 import net.tadditions.mod.compat.StargateJourney;
 import net.tadditions.mod.init.*;
 import net.tadditions.mod.item.VergeGateOpener;
@@ -90,6 +91,7 @@ public class TemporalAdditionsMod {
         public static void onClientSetup(FMLClientSetupEvent event)
         {
             MonitorFlightCourseScreen.registerVortexPhenomenaRenderer(new EntropicDriftPhenomenaRenderer());
+            MonitorFlightCourseScreen.registerVortexPhenomenaRenderer(new TimeStormPhenomenaRenderer());
         }
 
         @SubscribeEvent
