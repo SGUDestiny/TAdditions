@@ -51,10 +51,10 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
-            property 'forge.enabledGameTestNamespaces', 'tutorialmod'
+            property 'forge.enabledGameTestNamespaces', 'tadditions'
 
             mods {
-                tutorialmod {
+                tadditions {
                     source sourceSets.main
                 }
             }
@@ -67,10 +67,10 @@ minecraft {
 
             property 'forge.logging.console.level', 'debug'
 
-            property 'forge.enabledGameTestNamespaces', 'tutorialmod'
+            property 'forge.enabledGameTestNamespaces', 'tadditions'
 
             mods {
-                tutorialmod {
+                tadditions {
                     source sourceSets.main
                 }
             }
@@ -86,10 +86,10 @@ minecraft {
 
             property 'forge.logging.console.level', 'debug'
 
-            property 'forge.enabledGameTestNamespaces', 'tutorialmod'
+            property 'forge.enabledGameTestNamespaces', 'tadditions'
 
             mods {
-                tutorialmod {
+                tadditions {
                     source sourceSets.main
                 }
             }
@@ -106,7 +106,7 @@ minecraft {
             args '--mod', 'tadditions', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
             mods {
-                tutorialmod {
+                tadditions {
                     source sourceSets.main
                 }
             }

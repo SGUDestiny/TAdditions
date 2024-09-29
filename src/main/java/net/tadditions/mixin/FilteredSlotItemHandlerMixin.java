@@ -1,7 +1,6 @@
 package net.tadditions.mixin;
 
 import net.minecraft.world.item.ItemStack;
-import net.tadditions.mod.TemporalAdditionsMod;
 import net.tadditions.mod.init.ItemInit;
 import net.tardis.mod.menu.slots.FilteredSlotItemHandler;
 import org.spongepowered.asm.mixin.Mixin;
@@ -21,15 +20,14 @@ public class FilteredSlotItemHandlerMixin
         for (int i = 0; i < handler.getItemHandler().getSlots(); i++)
         {
             ItemStack stackCap = handler.getItemHandler().getStackInSlot(i);
-            if(stackCap.getItem().equals(ItemInit.ARTRON_CAPACITOR_QUANTUM.get()))
+            if(stackCap.getItem() == ItemInit.ARTRON_CAPACITOR_QUANTUM.get())
                 quantumCount++;
-            if(stackCap.getItem().equals(ItemInit.ARTRON_CAPACITOR_VORTEX.get()))
+            if(stackCap.getItem() == ItemInit.ARTRON_CAPACITOR_VORTEX.get())
                 vortexCount++;
-            TemporalAdditionsMod.LOGGER.info("{} :: {}", quantumCount, vortexCount);
         }
-        if(quantumCount > 0 && stack.getItem().equals(ItemInit.ARTRON_CAPACITOR_VORTEX.get()))
+        if(quantumCount > 0 && stack.getItem() == ItemInit.ARTRON_CAPACITOR_VORTEX.get())
             cir.setReturnValue(false);
-        if(vortexCount > 0 && stack.getItem().equals(ItemInit.ARTRON_CAPACITOR_QUANTUM.get()))
+        if(vortexCount > 0 && stack.getItem() == ItemInit.ARTRON_CAPACITOR_QUANTUM.get())
             cir.setReturnValue(false);
     }
 }
