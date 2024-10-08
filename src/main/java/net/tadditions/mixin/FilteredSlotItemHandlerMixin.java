@@ -11,8 +11,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(FilteredSlotItemHandler.class)
 public class FilteredSlotItemHandlerMixin
 {
-    @Inject(at = @At("HEAD"), method = "m_5857_(Lnet/minecraft/world/item/ItemStack;)Z", remap = false, cancellable = true)
+    @Inject(at = @At("HEAD"), method = "mayPlace(Lnet/minecraft/world/item/ItemStack;)Z", remap = false, cancellable = true)
     public void placeItem(ItemStack stack, CallbackInfoReturnable<Boolean> cir)
+    {
+        placeItemCall(stack, cir);
+    }
+
+    public void placeItemCall(ItemStack stack, CallbackInfoReturnable<Boolean> cir)
     {
         FilteredSlotItemHandler handler = ((FilteredSlotItemHandler) (Object) this);
         int quantumCount = 0;

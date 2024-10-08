@@ -1,9 +1,10 @@
 package net.tadditions.mod;
 
 import com.mojang.logging.LogUtils;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterDimensionSpecialEffectsEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -23,8 +24,8 @@ import net.tadditions.mod.client.phenomena.TimeStormPhenomenaRenderer;
 import net.tadditions.mod.compat.StargateJourney;
 import net.tadditions.mod.init.*;
 import net.tadditions.mod.item.VergeGateOpener;
-import net.tadditions.mod.worldgen.structures.VergeGateStructure;
 import net.tardis.mod.client.gui.monitor.MonitorFlightCourseScreen;
+import net.tardis.mod.item.ItemRegistry;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -62,7 +63,6 @@ public class TemporalAdditionsMod {
 
     private void addCreative(CreativeModeTabEvent.BuildContents event)
     {
-
         if(event.getTab() == TabInit.TADDITIONS_TAB) {
             event.accept(ItemInit.ARTRON_CAPACITOR_TEMPORAL);
             event.accept(ItemInit.ARTRON_CAPACITOR_QUANTUM);

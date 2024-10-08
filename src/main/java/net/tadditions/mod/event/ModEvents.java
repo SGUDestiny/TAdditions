@@ -1,6 +1,7 @@
 package net.tadditions.mod.event;
 
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.event.entity.player.PlayerContainerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;

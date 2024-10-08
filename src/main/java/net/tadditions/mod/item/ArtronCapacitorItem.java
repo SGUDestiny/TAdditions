@@ -21,10 +21,11 @@ public class ArtronCapacitorItem extends net.tardis.mod.item.components.ArtronCa
     }
 
     @Override
-    public void m_7373_(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced)
+    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced)
     {
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
         pTooltipComponents.add(Component.translatable("tadditions.artron_capacitor.refuel_rate").append(Component.literal(String.valueOf(this.refuelRate))).withStyle(Style.EMPTY.applyFormat(ChatFormatting.DARK_AQUA)));
-
     }
+
+
 }
