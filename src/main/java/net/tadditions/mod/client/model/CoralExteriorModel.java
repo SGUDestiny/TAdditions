@@ -315,7 +315,7 @@ public class CoralExteriorModel extends ExteriorModel {
 				matrix.rotate(Vector3f.XP.rotationDegrees(180));
 				matrix.rotate(Vector3f.YP.rotationDegrees(180));
 				matrix.rotate(Vector3f.YP.rotationDegrees(WorldHelper.getAngleFromFacing(exterior.getBotiWorld().getPortalDirection())));
-				matrix.translate(-0.25, 0.1, -0.5);
+				matrix.translate(-0.5, 0.1, -0.5);
 			});
 
 			info.setRenderPortal((matrix, buf) -> {

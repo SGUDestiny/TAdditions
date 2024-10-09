@@ -32,10 +32,11 @@ public class CoralInteriorDoors extends AbstractInteriorDoorModel {
 	private final ModelRenderer cube_r1;
 	private final ModelRenderer cube_r2;
 	private final ModelRenderer cube_r3;
-	private final ModelRenderer label;
 	private final ModelRenderer cube_r4;
-	private final LightModelRenderer label_lights;
+	private final ModelRenderer label;
 	private final ModelRenderer cube_r5;
+	private final LightModelRenderer label_lights;
+	private final ModelRenderer cube_r6;
 	private final ModelRenderer doors;
 	private final ModelRenderer door_r;
 	private final LightModelRenderer windows1;
@@ -54,8 +55,8 @@ public class CoralInteriorDoors extends AbstractInteriorDoorModel {
 		frame = new ModelRenderer(this);
 		frame.setRotationPoint(4.5F, -2.0F, -10.5F);
 		root.addChild(frame);
-		frame.setTextureOffset(20, 68).addBox(10.5F, -60.0F, -8.5F, 5.0F, 58.0F, 5.0F, 0.0F, false);
-		frame.setTextureOffset(0, 68).addBox(-24.5F, -60.0F, -8.5F, 5.0F, 58.0F, 5.0F, 0.0F, false);
+		frame.setTextureOffset(223, 124).addBox(10.5F, -60.0F, -8.5F, 3.0F, 58.0F, 6.0F, 0.0F, false);
+		frame.setTextureOffset(199, 124).addBox(-22.5F, -60.0F, -8.5F, 3.0F, 58.0F, 6.0F, 0.0F, false);
 
 		cube_r1 = new ModelRenderer(this);
 		cube_r1.setRotationPoint(-4.5F, -63.0F, -3.5F);
@@ -67,38 +68,43 @@ public class CoralInteriorDoors extends AbstractInteriorDoorModel {
 		cube_r2.setRotationPoint(-4.5F, -63.0F, -2.5F);
 		frame.addChild(cube_r2);
 		setRotationAngle(cube_r2, 0.0F, 3.1416F, 0.0F);
-		cube_r2.setTextureOffset(55, 52).addBox(-20.0F, -3.0F, -1.0F, 40.0F, 1.0F, 7.0F, 0.0F, false);
-		cube_r2.setTextureOffset(102, 28).addBox(-20.0F, -2.0F, -1.0F, 3.0F, 4.0F, 7.0F, 0.0F, false);
-		cube_r2.setTextureOffset(105, 101).addBox(-1.0F, -2.0F, -1.0F, 2.0F, 4.0F, 7.0F, 0.0F, false);
-		cube_r2.setTextureOffset(0, 60).addBox(-20.0F, 2.0F, -1.0F, 40.0F, 1.0F, 7.0F, 0.0F, false);
+		cube_r2.setTextureOffset(164, 75).addBox(-18.0F, -3.0F, -1.0F, 36.0F, 1.0F, 7.0F, 0.0F, false);
+		cube_r2.setTextureOffset(153, 47).addBox(-1.0F, -2.0F, -1.0F, 2.0F, 4.0F, 7.0F, 0.0F, false);
+		cube_r2.setTextureOffset(164, 86).addBox(-18.0F, 2.0F, -1.0F, 36.0F, 1.0F, 7.0F, 0.0F, false);
 
 		cube_r3 = new ModelRenderer(this);
-		cube_r3.setRotationPoint(-41.5F, -67.0F, -2.5F);
+		cube_r3.setRotationPoint(-39.5F, -67.0F, -2.5F);
 		frame.addChild(cube_r3);
 		setRotationAngle(cube_r3, 0.0F, 3.1416F, 0.0F);
-		cube_r3.setTextureOffset(102, 17).addBox(-20.0F, 2.0F, -1.0F, 3.0F, 4.0F, 7.0F, 0.0F, false);
+		cube_r3.setTextureOffset(152, 21).addBox(-20.0F, 2.0F, -1.0F, 3.0F, 4.0F, 7.0F, 0.0F, false);
+
+		cube_r4 = new ModelRenderer(this);
+		cube_r4.setRotationPoint(-6.5F, -67.0F, -2.5F);
+		frame.addChild(cube_r4);
+		setRotationAngle(cube_r4, 0.0F, 3.1416F, 0.0F);
+		cube_r4.setTextureOffset(152, 34).addBox(-20.0F, 2.0F, -1.0F, 3.0F, 4.0F, 7.0F, 0.0F, false);
 
 		label = new ModelRenderer(this);
 		label.setRotationPoint(-4.5F, -64.0F, -2.5F);
 		frame.addChild(label);
 
 
-		cube_r4 = new ModelRenderer(this);
-		cube_r4.setRotationPoint(0.5F, 1.0F, 0.0F);
-		label.addChild(cube_r4);
-		setRotationAngle(cube_r4, 0.0F, 3.1416F, 0.0F);
-		cube_r4.setTextureOffset(62, 48).addBox(-13.0F, -2.0F, 0.0F, 27.0F, 4.0F, 0.0F, 0.0F, false);
+		cube_r5 = new ModelRenderer(this);
+		cube_r5.setRotationPoint(0.5F, 1.0F, 0.0F);
+		label.addChild(cube_r5);
+		setRotationAngle(cube_r5, 0.0F, 3.1416F, 0.0F);
+		cube_r5.setTextureOffset(62, 48).addBox(-13.0F, -2.0F, 0.0F, 27.0F, 4.0F, 0.0F, 0.0F, false);
 
 		label_lights = new LightModelRenderer(this);
 		label_lights.setRotationPoint(0.0F, 0.0F, 0.0F);
 		label.addChild(label_lights);
 
 
-		cube_r5 = new ModelRenderer(this);
-		cube_r5.setRotationPoint(-0.5F, 1.0F, 0.0F);
-		label_lights.addChild(cube_r5);
-		setRotationAngle(cube_r5, 0.0F, 3.1416F, 0.0F);
-		cube_r5.setTextureOffset(62, 44).addBox(-14.0F, -2.0F, 0.0F, 27.0F, 4.0F, 0.0F, 0.0F, false);
+		cube_r6 = new ModelRenderer(this);
+		cube_r6.setRotationPoint(-0.5F, 1.0F, 0.0F);
+		label_lights.addChild(cube_r6);
+		setRotationAngle(cube_r6, 0.0F, 3.1416F, 0.0F);
+		cube_r6.setTextureOffset(62, 44).addBox(-14.0F, -2.0F, 0.0F, 27.0F, 4.0F, 0.0F, 0.0F, false);
 
 		doors = new ModelRenderer(this);
 		doors.setRotationPoint(-1.0F, -6.0F, 3.0F);
@@ -254,7 +260,7 @@ public class CoralInteriorDoors extends AbstractInteriorDoorModel {
 						matrix.translate(0, 1.63, 0.775);
 					}
 					else {
-						matrix.translate(0.025, 1.63, 0.820);
+						matrix.translate(0.025, 1.63, 0.84);
 					}
 					matrix.scale(0.55F, 0.55F, 1.1F);
 					this.SOTO.render(matrix, impl.getBuffer(RenderType.getEntityCutout(this.getTexture())), packedLight, packedOverlay);
