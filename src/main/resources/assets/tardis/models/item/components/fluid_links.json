@@ -1,23 +1,23 @@
 {
   "loader": "forge:obj",
   "flip_v": true,
-  "model": "tardis:models/item/components/dematerialization_circuit.obj",
+  "model": "tardis:models/item/components/fluid_links.obj",
   "textures": {
-    "particle": "tardis:item/components/demat_circuit"
+    "particle": "tardis:item/components/fluid_links"
   },
   "display": {
     "thirdperson_righthand": {
       "scale": [
-        0.5,
-        0.5,
-        0.5
+        0.3,
+        0.3,
+        0.3
       ]
     },
     "thirdperson_lefthand": {
       "scale": [
-        0.5,
-        0.5,
-        0.5
+        0.3,
+        0.3,
+        0.3
       ]
     },
     "firstperson_righthand": {
@@ -27,9 +27,9 @@
         0
       ],
       "scale": [
-        0.5,
-        0.5,
-        0.5
+        0.3,
+        0.3,
+        0.3
       ],
       "rotation": [
         0,
@@ -44,9 +44,9 @@
         0
       ],
       "scale": [
-        0.5,
-        0.5,
-        0.5
+        0.3,
+        0.3,
+        0.3
       ],
       "rotation": [
         0,
@@ -56,9 +56,14 @@
     },
     "ground": {
       "scale": [
-        0.5,
-        0.5,
-        0.5
+        0.3,
+        0.3,
+        0.3
+      ],
+      "translation": [
+        0,
+        4,
+        0
       ]
     },
     "gui": {
@@ -66,13 +71,23 @@
         35,
         50,
         0
+      ],
+      "scale": [
+        0.6,
+        0.6,
+        0.6
       ]
     },
     "fixed": {
       "rotation": [
-        -90,
+        0,
         0,
         0
+      ],
+      "scale": [
+        0.8,
+        0.8,
+        0.8
       ]
     }
   }

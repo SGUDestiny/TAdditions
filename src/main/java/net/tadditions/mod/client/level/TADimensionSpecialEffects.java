@@ -14,6 +14,7 @@ import org.joml.Matrix4f;
 public class TADimensionSpecialEffects extends DimensionSpecialEffects {
 
     public static final ResourceLocation VERGE_EFFECTS = new ResourceLocation(TemporalAdditionsMod.MOD_ID, "the_verge_of_reality");
+    public static final ResourceLocation MARS_EFFECTS = new ResourceLocation(TemporalAdditionsMod.MOD_ID, "mars");
 
 
     public TADimensionSpecialEffects(float cloudLevel, boolean hasGround, SkyType skyType,
@@ -72,9 +73,36 @@ public class TADimensionSpecialEffects extends DimensionSpecialEffects {
         }
     }
 
+    public static class Mars extends TADimensionSpecialEffects
+    {
+        public Mars()
+        {
+            super(Float.NaN, true, SkyType.NONE, false, false);
+        }
+
+
+
+        @Override
+        public Vec3 getBrightnessDependentFogColor(Vec3 biomeFogColor, float daylight) {
+            return new Vec3(0.8, 0.97, 1);
+        }
+
+        @Override
+        public boolean isFoggyAt(int x, int y) {
+            return true;
+        }
+
+        @Override
+        public boolean renderSky(ClientLevel level, int ticks, float partialTick, PoseStack poseStack, Camera camera, Matrix4f projectionMatrix, boolean isFoggy, Runnable setupFog)
+        {
+            return true;
+        }
+    }
+
 
     public static void registerTemporalAdditionsEffects(RegisterDimensionSpecialEffectsEvent event)
     {
         event.register(TADimensionSpecialEffects.VERGE_EFFECTS, new TADimensionSpecialEffects.Verge());
+        event.register(TADimensionSpecialEffects.MARS_EFFECTS, new Mars());
     }
 }

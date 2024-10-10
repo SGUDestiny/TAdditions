@@ -1,0 +1,11 @@
+{
+  "type": "tadditions:mars",
+  "generator": {
+    "type": "minecraft:noise",
+    "settings": "tadditions:mars",
+    "biome_source": {
+      "type": "minecraft:fixed",
+      "biome": "tadditions:mars"
+    }
+  }
+}
