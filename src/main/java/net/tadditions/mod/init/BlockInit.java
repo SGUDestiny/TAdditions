@@ -23,6 +23,17 @@ public class BlockInit {
     public static final RegistryObject<Block> ASH = registerBlock("ash", () -> new FallingBlock(BlockBehaviour.Properties.of(Material.SAND).sound(SoundType.SAND)));
     public static final RegistryObject<Block> DENSE_ASH = registerBlock("dense_ash", () -> new Block(BlockBehaviour.Properties.of(Material.SAND)));
 
+    public static final RegistryObject<Block> FROSTBEARING_DUST = registerBlock("frostbearing_dust", () -> new FallingBlock(
+            BlockBehaviour.Properties.of(Material.SNOW)
+                    .sound(SoundType.SNOW)
+                    .instabreak()
+    ));
+    public static final RegistryObject<Block> FROSTBEARING_ROCK = registerBlock("frostbearing_rock", () -> new Block(
+            BlockBehaviour.Properties.of(Material.ICE_SOLID)
+                    .sound(SoundType.GLASS)
+                    .instabreak()
+    ));
+
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block)
     {

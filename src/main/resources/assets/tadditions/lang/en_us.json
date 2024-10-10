@@ -5,6 +5,8 @@
 
   "block.tadditions.ash": "Ash",
   "block.tadditions.dense_ash": "Dense Ash",
+  "block.tadditions.frostbearing_dust": "Frostbearing Dust",
+  "block.tadditions.frostbearing_rock": "Frostbearing Rock",
 
   "creativemodetab.tadditions_tab": "Temporal Additions",
   "tadditions.artron_capacitor.refuel_rate": "Refuel Rate: "

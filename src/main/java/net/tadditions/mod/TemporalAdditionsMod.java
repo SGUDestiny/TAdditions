@@ -69,6 +69,8 @@ public class TemporalAdditionsMod {
             event.accept(ItemInit.ARTRON_CAPACITOR_VORTEX);
             event.accept(BlockInit.ASH);
             event.accept(BlockInit.DENSE_ASH);
+            event.accept(BlockInit.FROSTBEARING_DUST);
+            event.accept(BlockInit.FROSTBEARING_ROCK);
 
             Item opener = ForgeRegistries.ITEMS.getValue(new ResourceLocation(MOD_ID, "verge_gate_opener"));
             if(ModList.get().isLoaded(STARGATE_JOURNEY) && opener != null)
