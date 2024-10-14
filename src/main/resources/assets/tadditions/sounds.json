@@ -1,3 +1,10 @@
 {
-
+    "cold_calculated": {
+        "sounds": [
+            {
+                "name": "tadditions:music/entropy_zero_2_cold_calculated",
+                "stream": true
+            }
+        ]
+    }
 }

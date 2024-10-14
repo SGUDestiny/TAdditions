@@ -1,0 +1,35 @@
+{
+  "display": {
+    "icon": {
+      "item": "tadditions:frostbearing_dust"
+    },
+    "title": {
+      "translate": "advancements.tadditions.title.arrive_to_mars"
+    },
+    "description": {
+      "translate": "advancements.tadditions.desc.arrive_to_mars"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "tadditions:root",
+  "criteria": {
+    "mars": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "tadditions:mars"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "mars"
+    ]
+  ],
+  "rewards": {
+    "function": "tadditions:mars_entry_music",
+    "experience": 50
+  }
+}
