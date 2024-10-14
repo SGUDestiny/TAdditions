@@ -1,0 +1,36 @@
+{
+  "display": {
+    "icon": {
+      "item": "tardis:manual"
+    },
+    "title": {
+      "translate": "advancements.tadditions.title.root"
+    },
+    "description": {
+      "translate": "advancements.tadditions.desc.root"
+    },
+    "background": "tadditions:textures/block/frostbearing_rock.png",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "manual": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tardis:manual"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "manual"
+    ]
+  ]
+}
