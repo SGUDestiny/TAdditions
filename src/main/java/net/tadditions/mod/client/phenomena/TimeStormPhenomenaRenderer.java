@@ -5,6 +5,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.util.Mth;
+import net.tadditions.mod.init.PhenomenaInit;
 import net.tadditions.mod.init.UpgradeInit;
 import net.tardis.mod.cap.Capabilities;
 import net.tardis.mod.cap.level.ITardisLevel;
@@ -18,7 +19,7 @@ public class TimeStormPhenomenaRenderer extends DefaultVortexPhenomenaRenderer
     public void render(PoseStack stack, VortexPhenomenaType<?> type, int x, int y, int radius)
     {
         ClientLevel level = Minecraft.getInstance().level;
-        if(level != null)
+        if(level != null && type.equals(PhenomenaInit.TIME_STORM.get()))
         {
 
             final float aspect = (float) 58 / 52;
