@@ -68,6 +68,7 @@ public class TemporalAdditionsMod {
             event.accept(ItemInit.ARTRON_CAPACITOR_TEMPORAL);
             event.accept(ItemInit.ARTRON_CAPACITOR_QUANTUM);
             event.accept(ItemInit.ARTRON_CAPACITOR_VORTEX);
+            //event.accept(ItemInit.UPGRADE_ENTROPIC_DRIFTING);
             event.accept(BlockInit.ASH);
             event.accept(BlockInit.DENSE_ASH);
             event.accept(BlockInit.FROSTBEARING_DUST);

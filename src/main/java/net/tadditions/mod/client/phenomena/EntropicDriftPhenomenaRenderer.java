@@ -1,9 +1,11 @@
 package net.tadditions.mod.client.phenomena;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.util.Mth;
 import net.tadditions.mod.init.PhenomenaInit;
 import net.tadditions.mod.init.UpgradeInit;
@@ -15,13 +17,21 @@ import net.tardis.mod.misc.tardis.vortex.VortexPhenomenaType;
 import net.tardis.mod.upgrade.Upgrade;
 import net.tardis.mod.upgrade.tardis.BaseSubsytemTardisUpgrade;
 
-public class EntropicDriftPhenomenaRenderer extends DefaultVortexPhenomenaRenderer
+import static net.tardis.mod.client.gui.monitor.vortex_phenomena.DefaultVortexPhenomenaRenderer.TEXTURE;
+
+public class EntropicDriftPhenomenaRenderer implements VortexPhenomenaRenderer
 {
+    @Override
+    public boolean isValid(VortexPhenomenaType<?> type)
+    {
+        return type.equals(PhenomenaInit.ENTROPIC_DRIFT.get());
+    }
+
     @Override
     public void render(PoseStack stack, VortexPhenomenaType<?> type, int x, int y, int radius)
     {
         ClientLevel level = Minecraft.getInstance().level;
-        if(level != null && type.equals(PhenomenaInit.ENTROPIC_DRIFT.get()))
+        if(level != null)
         {
             level.getCapability(Capabilities.TARDIS).ifPresent(tardis ->
             {
@@ -39,6 +49,19 @@ public class EntropicDriftPhenomenaRenderer extends DefaultVortexPhenomenaRender
                 }
             });
         }
+
+    }
+
+    @Override
+    public void setupRenderer(PoseStack stack)
+    {
+        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        RenderSystem.setShaderTexture(0, TEXTURE);
+    }
+
+    @Override
+    public void endRenderer(PoseStack stack)
+    {
 
     }
 }
