@@ -11,9 +11,9 @@
   "creativemodetab.tadditions_tab": "Temporal Additions",
   "tadditions.artron_capacitor.refuel_rate": "Refuel Rate: ",
 
-  "flight_event.tadditions.time_storm": "Time Storm",
+  "flight_event.tadditions.tardis.time_storm": "Time Storm",
 
-  "vortex_phenomena.tadditions.time_storm": "Time Storm",
+  "vortex_phenomena.tadditions.tardis.time_storm": "Time Storm",
 
   "advancements.tadditions.title.root": "Temporal Additions",
   "advancements.tadditions.desc.root": "temp desc",

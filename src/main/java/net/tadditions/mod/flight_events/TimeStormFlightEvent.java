@@ -55,4 +55,10 @@ public class TimeStormFlightEvent extends FlightEvent
     {
 
     }
+
+    @Override
+    public float getTimeMult()
+    {
+        return 5.0f;
+    }
 }
