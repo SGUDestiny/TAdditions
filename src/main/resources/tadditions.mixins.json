@@ -23,5 +23,5 @@
     "ArtronCapMixin",
     "ExteriorRenderMixin"
   ],
-  "refmap": "tadditions.mixin-refmap.json"
+  "refmap": "tadditions.refmap.json"
 }
