@@ -80,7 +80,7 @@ minecraft {
 }
 
 mixin {
-    add sourceSets.main, "${mod_id}.refmap.json"
+    add sourceSets.main, "tadditions.refmap.json"
     config 'tadditions.mixins.json'
     disableOverwriteChecker = true;
 }
