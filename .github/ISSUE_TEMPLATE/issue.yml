@@ -16,8 +16,8 @@ body:
     id: mod-version
     attributes:
       label: Mod version
-      description: Enter your Windows version. For Windows 10 and 11 include build/update number.
-      placeholder: ex. Windows 10 20H2
+      description: Enter the version of Temporal Additions used
+      placeholder: Example: tadditions-1.16.5-3.1
     validations:
       required: true
   - type: checkboxes
@@ -25,6 +25,9 @@ body:
     attributes:
       label: Other mods
       description: Check this box if you have any other mods installed than Temporal Additions (And it's dependencies)
+      options:
+        - label: There are other mods present in the installation
+          required: false
   - type: textarea
     id: issue-description
     attributes:
