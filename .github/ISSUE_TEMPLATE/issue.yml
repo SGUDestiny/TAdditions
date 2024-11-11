@@ -8,7 +8,7 @@ body:
       label: Required confirmation
       description: Please confirm that you have provided logs AND are sure this issue is not known
       options:
-        - label: 
+        - label: I confirm that I have provided a log and this issue is not repeated
           required: true
     validations:
       required: true
@@ -25,11 +25,6 @@ body:
     attributes:
       label: Other mods
       description: Check this box if you have any other mods installed than Temporal Additions (And it's dependencies)
-      options:
-        - label:
-          required: false
-    validations:
-      required: false
   - type: textarea
     id: issue-description
     attributes:
