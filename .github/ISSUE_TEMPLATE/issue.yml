@@ -2,21 +2,11 @@ name: Issue Template
 description: If you have any problem with the mod working, you should select this template.
 
 body:
-  - type: checkboxes
-    id: i-am-not-an-idiot-check
-    attributes:
-      label: Required confirmation
-      description: Please confirm that you have provided logs AND are sure this issue is not known
-      options:
-        - label: I confirm that I have provided a log and this issue is not repeated
-          required: true
-    validations:
-      required: true
   - type: input
     id: mod-version
     attributes:
       label: Mod version
-      description: Enter the version of Temporal Additions used
+      description: Enter the version of Temporal Additions used.
       placeholder: Example - tadditions-1.16.5-3.1
     validations:
       required: true
@@ -26,13 +16,23 @@ body:
       label: Other mods
       description: Check this box if you have any other mods installed than Temporal Additions (And it's dependencies)
       options:
-        - label: There are other mods present in the installation
+        - label: There are other mods present in the installation.
           required: false
   - type: textarea
     id: issue-description
     attributes:
       label: Describe the issue
-      description: Please describe the issue you have with the mod, and steps on how to replicate it
-      placeholder: You can attach screenshots here if necessary
+      description: Please describe the issue you have with the mod, and steps on how to replicate it.
+      placeholder: You have to attach a log here. You can also attach screenshots if necessary.
+    validations:
+      required: true
+  - type: checkboxes
+    id: i-am-not-an-idiot-check
+    attributes:
+      label: Required confirmation
+      description: Please confirm that you have provided logs AND are sure this issue is not known.
+      options:
+        - label: I confirm that I have provided a log and this issue is not repeated.
+          required: true
     validations:
       required: true
