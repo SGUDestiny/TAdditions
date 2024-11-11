@@ -1,0 +1,36 @@
+name: Suggestion Template
+description: If you have a good idea for an addition to the mod, you should use this template.
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### Attention: If you have submitted an invalid suggestion, the developers are not obligated to review it.
+  - type: dropdown
+    id: suggestion-type
+    attributes:
+      label: Suggestion difficulty
+      description: Please choose how difficult your suggestion is to implement
+      options:
+        - Cosmetic (Only asset changes needed)
+        - Minor
+        - Major
+    validations:
+      required: true
+  - type: textarea
+    id: suggestion-description
+    attributes:
+      label: Describe the suggestion
+      description: Please describe your suggestion. Be as precise and descriptive as possible.
+    validations:
+      required: true
+  - type: checkboxes
+    id: i-am-not-an-idiot-check
+    attributes:
+      label: Required confirmation
+      description: Please confirm that you have provided a clear and described suggestion that is not planned or already in the mod.
+      options:
+        - label: I confirm that I have provided a well-written suggestion that is not planned or already implemented.
+          required: true
+    validations:
+      required: true
