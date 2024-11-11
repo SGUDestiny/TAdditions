@@ -17,7 +17,7 @@ body:
     attributes:
       label: Mod version
       description: Enter the version of Temporal Additions used
-      placeholder: Example: tadditions-1.16.5-3.1
+      placeholder: Example - tadditions-1.16.5-3.1
     validations:
       required: true
   - type: checkboxes
