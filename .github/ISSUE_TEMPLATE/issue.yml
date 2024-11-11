@@ -2,6 +2,10 @@ name: Issue Template
 description: If you have any problem with the mod working, you should select this template.
 
 body:
+  - type: markdown
+    attributes:
+      value: |
+        ### Attention: If you have submitted an invalid issue, the developers are not obligated to review it.
   - type: input
     id: mod-version
     attributes:
