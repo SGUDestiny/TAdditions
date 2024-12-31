@@ -25,6 +25,7 @@ public class ArtronCapacitorItem extends net.tardis.mod.item.components.ArtronCa
     {
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
         pTooltipComponents.add(Component.translatable("tadditions.artron_capacitor.refuel_rate").append(Component.literal(String.valueOf(this.refuelRate))).withStyle(Style.EMPTY.applyFormat(ChatFormatting.DARK_AQUA)));
+
     }
 
 
