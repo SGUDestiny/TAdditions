@@ -19,6 +19,8 @@ import net.povstalec.sgjourney.common.stargate.Stargate;
 import net.povstalec.sgjourney.common.stargate.StargateConnection;
 import net.tadditions.mod.TemporalAdditionsMod;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -40,10 +42,22 @@ public class VergeGateOpener extends Item
         if(blockState.getBlock() instanceof AbstractStargateBlock stargateBlock && context.getLevel().dimension().location().equals(new ResourceLocation(TemporalAdditionsMod.MOD_ID, "the_verge_of_reality")))
         {
             AbstractStargateEntity stargateEntity = stargateBlock.getStargate(context.getLevel(), context.getClickedPos(), blockState);
-            Map.Entry<Address.Immutable, Stargate> entry = BlockEntityList.get(server).getStargates().entrySet().stream().toList().get(random.nextInt(0, BlockEntityList.get(server).getStargates().size()));
+            List<Map.Entry<Address.Immutable, Stargate>> entryList = new ArrayList<>(BlockEntityList.get(server).getStargates().entrySet().stream().toList());
+            entryList.removeIf(predicate -> predicate.getKey().equals(stargateEntity.getAddress().immutable()));
+            Map.Entry<Address.Immutable, Stargate> entry = entryList.get(random.nextInt(0, BlockEntityList.get(server).getStargates().size()));
             Stargate stargate = entry.getValue();
-            StargateConnection connection = StargateConnection.create(StargateConnection.Type.SYSTEM_WIDE, stargateEntity, stargate.getStargateEntity(server).get(), true);
-            StargateNetwork.get(server).addConnection(connection);
+            if(stargate.isConnected(server))
+            {
+                StargateNetwork.get(server).removeConnection(stargate.getStargateEntity(server).get().getConnectionID(), Stargate.Feedback.ALREADY_CONNECTED);
+                StargateConnection connection = StargateConnection.create(StargateConnection.Type.SYSTEM_WIDE, stargateEntity, stargate.getStargateEntity(server).get(), true);
+                StargateNetwork.get(server).addConnection(connection);
+            }
+            else
+            {
+                StargateConnection connection = StargateConnection.create(StargateConnection.Type.SYSTEM_WIDE, stargateEntity, stargate.getStargateEntity(server).get(), true);
+                StargateNetwork.get(server).addConnection(connection);
+            }
+
             context.getPlayer().setItemInHand(context.getHand(), ItemStack.EMPTY);
         }
 

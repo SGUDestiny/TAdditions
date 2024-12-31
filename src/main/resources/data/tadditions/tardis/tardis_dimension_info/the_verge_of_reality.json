@@ -1,0 +1,8 @@
+{
+    "can_travel_to": true,
+    "dimension_type": "tadditions:the_verge_of_reality",
+    "must_be_unlocked": true,
+    "must_land_inside": false,
+    "name": "The Verge Of Reality",
+    "travel_distance": 2000
+}

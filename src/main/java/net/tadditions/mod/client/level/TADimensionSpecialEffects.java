@@ -98,10 +98,10 @@ public class TADimensionSpecialEffects extends DimensionSpecialEffects {
             super(Float.NaN, true, SkyType.NORMAL, false, false);
         }
 
-        @Override
-        public Vec3 getBrightnessDependentFogColor(Vec3 biomeFogColor, float daylight) {
-            return new Vec3(0.8, 0.97, 1);
-        }
+        //@Override
+        //public Vec3 getBrightnessDependentFogColor(Vec3 biomeFogColor, float daylight) {
+        //    return new Vec3(0.8, 0.97, 1);
+        //}
 
         @Override
         public boolean isFoggyAt(int x, int y) {

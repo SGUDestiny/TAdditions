@@ -163,10 +163,10 @@ dependencies {
     annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
 
     minecraft 'net.minecraftforge:forge:1.19.4-45.3.0'
-    implementation fg.deobf("curse.maven:sgjourney-689083:5788389")
-    compileOnly fg.deobf("maven.modrinth:stellarview:ZcLZ3D89")
-    runtimeOnly fg.deobf("maven.modrinth:stellarview:ZcLZ3D89")
-    implementation fg.deobf("net.tardismod:TardisMod:0.7.0-DEV")
+    implementation fg.deobf("curse.maven:sgjourney-689083:5845041")
+    compileOnly fg.deobf("maven.modrinth:stellarview:9PT9WNbE")
+    runtimeOnly fg.deobf("maven.modrinth:stellarview:9PT9WNbE")
+    implementation fg.deobf("net.tardismod:TardisMod:0.8.1-DEV")
     implementation fg.deobf("software.bernie.geckolib:geckolib-forge-1.19.4:4.2")
     implementation("com.eliotlash.mclib:mclib:20")
 }

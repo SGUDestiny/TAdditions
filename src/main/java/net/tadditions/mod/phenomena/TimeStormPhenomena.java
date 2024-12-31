@@ -20,8 +20,6 @@ public class TimeStormPhenomena extends VortexPheonomena
     public void onGenerated(ServerLevel level)
     {
         super.onGenerated(level);
-        System.out.println("TIME STORM DETECTED! TIME STORM DETECTED!");
-        System.out.println("X: " + this.getPos().x + ", Z: " + this.getPos().z);
     }
 
     @Override

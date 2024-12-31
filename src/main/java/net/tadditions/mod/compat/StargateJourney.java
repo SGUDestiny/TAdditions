@@ -2,7 +2,10 @@ package net.tadditions.mod.compat;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.event.IModBusEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.povstalec.sgjourney.common.block_entities.stargate.AbstractStargateEntity;
 import net.povstalec.sgjourney.common.data.StargateNetwork;
 import net.povstalec.sgjourney.common.data.Universe;
@@ -24,18 +27,20 @@ public class StargateJourney
     }
 
     @SubscribeEvent
-    public static void onStargateConnect(final StargateEvent.Connect event)
+    public void onStargateConnect(final StargateEvent.Connect event)
     {
         Random random = new Random();
         if (event.getConnectedStargate().getDimension().location().equals(new ResourceLocation(TemporalAdditionsMod.MOD_ID, "the_verge_of_reality")))
         {
             event.setCanceled(true);
             event.getStargate().getStargateEntity(event.getServer()).ifPresent(stargate -> stargate.resetStargate(Stargate.Feedback.UNKNOWN_ERROR));
+            return;
         }
         if(event.getStargate().getDimension().location().equals(new ResourceLocation(TemporalAdditionsMod.MOD_ID, "the_verge_of_reality")))
         {
             event.setCanceled(true);
-            event.getServer().overworld().getPlayers(player -> true);
+            event.getStargate().getStargateEntity(event.getServer()).ifPresent(stargate -> stargate.resetStargate(Stargate.Feedback.UNKNOWN_ERROR));
+            return;
         }
         if(random.nextBoolean())
         {

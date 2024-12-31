@@ -1,0 +1,8 @@
+{
+    "can_travel_to": true,
+    "dimension_type": "tadditions:mars",
+    "must_be_unlocked": true,
+    "must_land_inside": false,
+    "name": "Mars",
+    "travel_distance": 200
+}
