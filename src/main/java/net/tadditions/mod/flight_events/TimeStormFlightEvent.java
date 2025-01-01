@@ -9,11 +9,12 @@ import net.tardis.mod.flight_event.FlightEventType;
 import net.tardis.mod.misc.landing.TardisLandingContext;
 import net.tardis.mod.registry.ControlRegistry;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TimeStormFlightEvent extends FlightEvent
 {
-    public List<ControlType<?>> controls = List.of(ControlRegistry.RANDOMIZER.get(), ControlRegistry.INCREMENT.get(), ControlRegistry.THROTTLE.get());
+    public ArrayList<ControlType<?>> controls = new ArrayList<>();
 
     public TimeStormFlightEvent(FlightEventType type, ITardisLevel level)
     {
@@ -53,7 +54,9 @@ public class TimeStormFlightEvent extends FlightEvent
     @Override
     public void onStart()
     {
-
+        controls.add(ControlRegistry.RANDOMIZER.get());
+        controls.add(ControlRegistry.INCREMENT.get());
+        controls.add(ControlRegistry.THROTTLE.get());
     }
 
     @Override

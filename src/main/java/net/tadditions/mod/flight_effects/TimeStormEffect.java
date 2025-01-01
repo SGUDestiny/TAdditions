@@ -12,7 +12,7 @@ public class TimeStormEffect implements IFlightDurationEffect
     public void onFlightTick(ITardisLevel tardis)
     {
         timePassed++;
-        if(timePassed/20 > 60)
+        if(timePassed > 200)
             ((TardisCap) tardis).effects.remove(this);
     }
 
