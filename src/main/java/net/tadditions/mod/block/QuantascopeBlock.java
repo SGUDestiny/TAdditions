@@ -25,7 +25,15 @@ public class QuantascopeBlock extends HorizontalDirectionalBlock
     {
         if(state.getValue(ACTIVE))
         {
-            level.addParticle(ParticleTypes.FLAME, pos.getX() + 0.5, pos.getY() + 0.35, pos.getZ() + 0.5, 0d, 0.01d, 0d);
+            level.addParticle(ParticleTypes.FLAME, pos.getCenter().x, pos.getCenter().y, pos.getCenter().z, 0, 0.01, 0);
+
+            double velocityX = (random.nextDouble() - 0.5) * 2;
+            double velocityY = (random.nextDouble() - 0.5) * 2;
+            double velocityZ = (random.nextDouble() - 0.5) * 2;
+
+            level.addParticle(ParticleTypes.ELECTRIC_SPARK, pos.getCenter().x, pos.getCenter().y, pos.getCenter().z, velocityX, velocityY, velocityZ);
+
+            level.addParticle(ParticleTypes.SMOKE, pos.getCenter().x, pos.getCenter().y, pos.getCenter().z, 0, 0.03, 0);
         }
     }
 
