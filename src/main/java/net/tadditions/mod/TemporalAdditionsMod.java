@@ -42,10 +42,12 @@ public class TemporalAdditionsMod {
 
         ItemInit.register(modEventBus);
         BlockInit.register(modEventBus);
+        BlockEntityInit.register(modEventBus);
         StructureInit.register(modEventBus);
         PhenomenaInit.register(modEventBus);
         FlightEventInit.register(modEventBus);
         UpgradeInit.register(modEventBus);
+        MenuInit.register(modEventBus);
 
         BlockEntityInit.register(modEventBus);
 
