@@ -13,6 +13,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.tadditions.mod.TemporalAdditionsMod;
+import net.tadditions.mod.block.QuantascopeBlock;
 
 import java.util.function.Supplier;
 
@@ -20,6 +21,8 @@ public class BlockInit {
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, TemporalAdditionsMod.MOD_ID);
 
+    public static final RegistryObject<Block> QUANTASCOPE = registerBlock("quantascope", () -> new QuantascopeBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL)));
+    
     public static final RegistryObject<Block> ASH = registerBlock("ash", () -> new FallingBlock(BlockBehaviour.Properties.of(Material.SAND).sound(SoundType.SAND)));
     public static final RegistryObject<Block> DENSE_ASH = registerBlock("dense_ash", () -> new Block(BlockBehaviour.Properties.of(Material.SAND)));
 

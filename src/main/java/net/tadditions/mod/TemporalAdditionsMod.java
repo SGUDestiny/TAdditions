@@ -65,10 +65,11 @@ public class TemporalAdditionsMod {
     private void addCreative(CreativeModeTabEvent.BuildContents event)
     {
         if(event.getTab() == TabInit.TADDITIONS_TAB) {
+            event.accept(BlockInit.QUANTASCOPE);
             event.accept(ItemInit.ARTRON_CAPACITOR_TEMPORAL);
             event.accept(ItemInit.ARTRON_CAPACITOR_QUANTUM);
             event.accept(ItemInit.ARTRON_CAPACITOR_VORTEX);
-            //event.accept(ItemInit.UPGRADE_ENTROPIC_DRIFTING);
+            event.accept(ItemInit.UPGRADE_ENTROPIC_DRIFTING);
             event.accept(BlockInit.ASH);
             event.accept(BlockInit.DENSE_ASH);
             event.accept(BlockInit.FROSTBEARING_DUST);

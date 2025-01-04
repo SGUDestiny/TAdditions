@@ -1,0 +1,35 @@
+{
+  "display": {
+    "icon": {
+      "item": "tadditions:ash"
+    },
+    "title": {
+      "translate": "advancements.tadditions.title.arrive_to_verge"
+    },
+    "description": {
+      "translate": "advancements.tadditions.desc.arrive_to_verge"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "tadditions:root",
+  "criteria": {
+    "verge": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "tadditions:the_verge_of_reality"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "verge"
+    ]
+  ],
+  "rewards": {
+    "function": "tadditions:mars_entry_music",
+    "experience": 50
+  }
+}
