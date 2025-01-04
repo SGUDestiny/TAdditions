@@ -47,8 +47,7 @@ public class TemporalAdditionsMod {
         PhenomenaInit.register(modEventBus);
         FlightEventInit.register(modEventBus);
         UpgradeInit.register(modEventBus);
-
-        BlockEntityInit.register(modEventBus);
+        MenuInit.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
 
