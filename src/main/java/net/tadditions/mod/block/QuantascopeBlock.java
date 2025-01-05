@@ -38,6 +38,8 @@ public class QuantascopeBlock extends HorizontalDirectionalBlock implements Enti
         return new QuantascopeEntity(pos, state);
     }
 
+
+
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult trace)
     {

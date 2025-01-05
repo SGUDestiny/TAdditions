@@ -26,9 +26,23 @@ public class PhasingQuantascopeScreen extends AbstractContainerScreen<PhasingQua
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, TEXTURE);
-        int x = (width - (imageWidth-80)) / 2;
+        int x = (width - (imageWidth)) / 2;
         int y = (height - imageHeight) / 2;
 
-        blit(stack, x, y, 0, 166, imageWidth, imageHeight);
+        blit(stack, x, y, 0, 0, imageWidth, imageHeight);
+    }
+
+    @Override
+    public void render(PoseStack pPoseStack, int pMouseX, int pMouseY, float pPartialTick)
+    {
+        renderBackground(pPoseStack);
+        super.render(pPoseStack, pMouseX, pMouseY, pPartialTick);
+        renderTooltip(pPoseStack, pMouseX, pMouseY);
+    }
+
+    @Override
+    protected void renderLabels(PoseStack pPoseStack, int pMouseX, int pMouseY)
+    {
+
     }
 }

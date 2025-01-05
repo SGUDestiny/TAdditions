@@ -37,7 +37,27 @@ public class PhasingQuantascopeMenu extends AbstractContainerMenu
         this.quantascope.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(
         handler ->
         {
-            this.addSlot(new SlotItemHandler(handler, 0, 80, 20));
+            this.addSlot(new SlotItemHandler(handler, 0, 9, 29));
+            this.addSlot(new SlotItemHandler(handler, 1, 22, 9));
+            this.addSlot(new SlotItemHandler(handler, 2, 43, 9));
+            this.addSlot(new SlotItemHandler(handler, 3, 57, 29));
+            this.addSlot(new SlotItemHandler(handler, 4, 43, 49));
+            this.addSlot(new SlotItemHandler(handler, 5, 22, 49));
+
+            this.addSlot(new SlotItemHandler(handler, 6, 103, 29));
+            this.addSlot(new SlotItemHandler(handler, 7, 117, 9));
+            this.addSlot(new SlotItemHandler(handler, 8, 138, 9));
+            this.addSlot(new SlotItemHandler(handler, 9, 151, 29));
+            this.addSlot(new SlotItemHandler(handler, 10, 117, 49));
+            this.addSlot(new SlotItemHandler(handler, 11, 138, 49));
+
+            this.addSlot(new SlotItemHandler(handler, 12, 80, 49));
+
+
+
+
+
+
         });
     }
 
@@ -76,7 +96,7 @@ public class PhasingQuantascopeMenu extends AbstractContainerMenu
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
     // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 1;  // must match TileEntityInventoryBasic.NUMBER_OF_SLOTS
+    private static final int TE_INVENTORY_SLOT_COUNT = 13;  // must match TileEntityInventoryBasic.NUMBER_OF_SLOTS
 
 
     @Override
