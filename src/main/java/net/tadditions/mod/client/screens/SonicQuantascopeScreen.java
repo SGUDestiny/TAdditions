@@ -53,10 +53,10 @@ public class SonicQuantascopeScreen extends AbstractContainerScreen<SonicQuantas
         super.init();
         this.imageHeight = 178;
 
-        this.addRenderableWidget(new ImageButton(97, 85, 4, 6, 177, 7, TEXTURE, (button) -> {
+        this.addRenderableWidget(new ImageButton(this.leftPos + 97, this.topPos + 79, 4, 7, 177, 1, TEXTURE, (button) -> {
             NetworkInit.sendToServer(new QuantascopeModeChangeMessage(this.getMenu().quantascope.getBlockPos(), 1));
         }));
-        this.addRenderableWidget(new ImageButton(163, 85, 4, 6, 182, 7, TEXTURE, (button) -> {
+        this.addRenderableWidget(new ImageButton(this.leftPos + 163, this.topPos + 79, 4, 7, 182, 1, TEXTURE, (button) -> {
             NetworkInit.sendToServer(new QuantascopeModeChangeMessage(this.getMenu().quantascope.getBlockPos(), 3));
         }));
 

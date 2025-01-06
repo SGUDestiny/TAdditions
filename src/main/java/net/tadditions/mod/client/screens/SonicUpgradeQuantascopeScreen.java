@@ -32,16 +32,16 @@ public class SonicUpgradeQuantascopeScreen extends AbstractContainerScreen<Sonic
         super.init();
         this.imageHeight = 178;
 
-        this.addRenderableWidget(new ImageButton(97, 85, 4, 6, 177, 7, TEXTURE, (button) -> {
+        this.addRenderableWidget(new ImageButton(this.leftPos + 97, this.topPos + 79, 4, 7, 177, 1, TEXTURE, (button) -> {
             NetworkInit.sendToServer(new QuantascopeModeChangeMessage(this.getMenu().quantascope.getBlockPos(), 2));
         }));
-        this.addRenderableWidget(new ImageButton(163, 85, 4, 6, 182, 7, TEXTURE, (button) -> {
+        this.addRenderableWidget(new ImageButton(this.leftPos + 163, this.topPos + 79, 4, 7, 182, 1, TEXTURE, (button) -> {
             NetworkInit.sendToServer(new QuantascopeModeChangeMessage(this.getMenu().quantascope.getBlockPos(), 0));
         }));
 
-        this.addRenderableWidget(new ToggleButton(this.leftPos + 29, this.topPos + 65, 193, 34, 18, b -> {
+        this.addRenderableWidget(new ToggleButton(this.leftPos + 29, this.topPos + 46, 193, 15, 18, b -> {
             b.setState(!b.getState());
-            Network.sendToServer(new SonicUpgradeQuantascopeMessage(this.getMenu().quantascope.getBlockPos(), b.getState()));
+            NetworkInit.sendToServer(new SonicUpgradeQuantascopeMessage(this.getMenu().quantascope.getBlockPos(), b.getState()));
         }));
     }
 

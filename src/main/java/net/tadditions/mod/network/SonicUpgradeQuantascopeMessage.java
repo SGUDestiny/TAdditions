@@ -5,6 +5,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.network.NetworkEvent;
+import net.tadditions.mod.block_entities.QuantascopeEntity;
 import net.tardis.mod.blockentities.machines.QuantiscopeTile;
 import net.tardis.mod.cap.Capabilities;
 import net.tardis.mod.cap.items.ISonicCapability;
@@ -27,7 +28,7 @@ public record SonicUpgradeQuantascopeMessage(BlockPos position, boolean state) {
         context.get().setPacketHandled(true);
         context.get().enqueueWork(() ->
         {
-            if (context.get().getSender().getLevel().getBlockEntity(mes.position()) instanceof QuantiscopeTile tile)
+            if (context.get().getSender().getLevel().getBlockEntity(mes.position()) instanceof QuantascopeEntity tile)
             {
                 tile.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(inv ->
                 {
