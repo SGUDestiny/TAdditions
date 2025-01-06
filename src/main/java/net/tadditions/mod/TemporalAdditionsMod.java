@@ -60,6 +60,11 @@ public class TemporalAdditionsMod {
     {
         if(ModList.get().isLoaded(STARGATE_JOURNEY))
             StargateJourney.stargate();
+        event.enqueueWork(
+        () ->
+        {
+            NetworkInit.registerPackets();
+        });
     }
 
     private void addCreative(CreativeModeTabEvent.BuildContents event)

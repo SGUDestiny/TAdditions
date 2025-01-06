@@ -3,6 +3,11 @@ package net.tadditions.mod.block_entities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -12,14 +17,19 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.tadditions.mod.init.BlockEntityInit;
+import net.tadditions.mod.menu.PhasingQuantascopeMenu;
+import net.tadditions.mod.menu.SonicQuantascopeMenu;
+import net.tadditions.mod.menu.SonicUpgradeQuantascopeMenu;
+import net.tadditions.mod.menu.WeldingQuantascopeMenu;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
 public class QuantascopeEntity extends BlockEntity
 {
-    protected final ItemStackHandler itemHandler = createHandler();
+    public final ItemStackHandler itemHandler = createHandler();
     protected final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
+    public int mode = 0;
 
 
     public QuantascopeEntity(BlockPos pPos, BlockState pBlockState)
@@ -39,6 +49,7 @@ public class QuantascopeEntity extends BlockEntity
     {
         super.load(nbt);
         itemHandler.deserializeNBT(nbt.getCompound("Inventory"));
+        this.mode = nbt.getInt("mode");
 
     }
 
@@ -46,8 +57,19 @@ public class QuantascopeEntity extends BlockEntity
     protected void saveAdditional(@NotNull CompoundTag nbt)
     {
         nbt.put("Inventory", itemHandler.serializeNBT());
+        nbt.putInt("mode", this.mode);
 
         super.saveAdditional(nbt);
+    }
+
+    public int getMode()
+    {
+        return mode;
+    }
+
+    public void setMode(int mode)
+    {
+        this.mode = mode;
     }
 
     @Override
@@ -92,6 +114,70 @@ public class QuantascopeEntity extends BlockEntity
                 return super.insertItem(slot, stack, simulate);
 
             }
+        };
+    }
+
+    public static MenuProvider getMenu(QuantascopeEntity tile)
+    {
+        return switch (tile.getMode())
+        {
+            case 0 -> new MenuProvider()
+            {
+                @Override
+                public Component getDisplayName()
+                {
+                    return Component.translatable("screen.tadditions.quantascope");
+                }
+
+                @Override
+                public AbstractContainerMenu createMenu(int windowId, Inventory playerInventory, Player playerEntity)
+                {
+                    return new PhasingQuantascopeMenu(windowId, playerInventory, tile);
+                }
+            };
+            case 1 -> new MenuProvider()
+            {
+                @Override
+                public Component getDisplayName()
+                {
+                    return Component.translatable("screen.tadditions.quantascope");
+                }
+
+                @Override
+                public AbstractContainerMenu createMenu(int windowId, Inventory playerInventory, Player playerEntity)
+                {
+                    return new WeldingQuantascopeMenu(windowId, playerInventory, tile);
+                }
+            };
+            case 2 -> new MenuProvider()
+            {
+                @Override
+                public Component getDisplayName()
+                {
+                    return Component.translatable("screen.tadditions.quantascope");
+                }
+
+                @Override
+                public AbstractContainerMenu createMenu(int windowId, Inventory playerInventory, Player playerEntity)
+                {
+                    return new SonicQuantascopeMenu(windowId, playerInventory, tile);
+                }
+            };
+            case 3 -> new MenuProvider()
+            {
+                @Override
+                public Component getDisplayName()
+                {
+                    return Component.translatable("screen.tadditions.quantascope");
+                }
+
+                @Override
+                public AbstractContainerMenu createMenu(int windowId, Inventory playerInventory, Player playerEntity)
+                {
+                    return new SonicUpgradeQuantascopeMenu(windowId, playerInventory, tile);
+                }
+            };
+            default -> throw new IllegalStateException("Unexpected value: " + tile.mode);
         };
     }
 }
