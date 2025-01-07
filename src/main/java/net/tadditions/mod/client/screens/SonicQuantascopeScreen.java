@@ -42,6 +42,10 @@ public class SonicQuantascopeScreen extends AbstractContainerScreen<SonicQuantas
 
     public SonicQuantascopeScreen(SonicQuantascopeMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
+        this.titleLabelX = 10;
+        this.titleLabelY = -3;
+        this.inventoryLabelX = 6;
+        this.inventoryLabelY = 79;
 
         for(SonicPartRegistry.SonicPartType type : SonicPartRegistry.REGISTRY.get()){
             partMap.computeIfAbsent(type.getSlot(), t -> new ArrayList<>()).add(type);
@@ -163,6 +167,7 @@ public class SonicQuantascopeScreen extends AbstractContainerScreen<SonicQuantas
     @Override
     protected void renderLabels(PoseStack pPoseStack, int pMouseX, int pMouseY)
     {
-
+        this.font.draw(pPoseStack, this.title, (float)this.titleLabelX, (float)this.titleLabelY, 0);
+        this.font.draw(pPoseStack, this.playerInventoryTitle, (float)this.inventoryLabelX, (float)this.inventoryLabelY, 0);
     }
 }

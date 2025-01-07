@@ -37,21 +37,21 @@ public class PhasingQuantascopeMenu extends AbstractContainerMenu
         this.quantascope.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(
         handler ->
         {
-            this.addSlot(new SlotItemHandler(handler, 0, 9, 35));
-            this.addSlot(new SlotItemHandler(handler, 1, 22, 15));
-            this.addSlot(new SlotItemHandler(handler, 2, 43, 15));
-            this.addSlot(new SlotItemHandler(handler, 3, 57, 35));
-            this.addSlot(new SlotItemHandler(handler, 4, 43, 55));
-            this.addSlot(new SlotItemHandler(handler, 5, 22, 55));
+            this.addSlot(new SlotItemHandler(handler, 0, 9, 29));
+            this.addSlot(new SlotItemHandler(handler, 1, 22, 9));
+            this.addSlot(new SlotItemHandler(handler, 2, 43, 9));
+            this.addSlot(new SlotItemHandler(handler, 3, 57, 29));
+            this.addSlot(new SlotItemHandler(handler, 4, 43, 49));
+            this.addSlot(new SlotItemHandler(handler, 5, 22, 49));
 
-            this.addSlot(new SlotItemHandler(handler, 6, 103, 35));
-            this.addSlot(new SlotItemHandler(handler, 7, 117, 15));
-            this.addSlot(new SlotItemHandler(handler, 8, 138, 15));
-            this.addSlot(new SlotItemHandler(handler, 9, 151, 35));
-            this.addSlot(new SlotItemHandler(handler, 10, 117, 55));
-            this.addSlot(new SlotItemHandler(handler, 11, 138, 55));
+            this.addSlot(new SlotItemHandler(handler, 6, 103, 29));
+            this.addSlot(new SlotItemHandler(handler, 7, 117, 9));
+            this.addSlot(new SlotItemHandler(handler, 8, 138, 9));
+            this.addSlot(new SlotItemHandler(handler, 9, 151, 29));
+            this.addSlot(new SlotItemHandler(handler, 10, 117, 49));
+            this.addSlot(new SlotItemHandler(handler, 11, 138, 49));
 
-            this.addSlot(new SlotItemHandler(handler, 12, 80, 55));
+            this.addSlot(new SlotItemHandler(handler, 12, 80, 49));
 
         });
     }
@@ -62,7 +62,7 @@ public class PhasingQuantascopeMenu extends AbstractContainerMenu
         {
             for (int l = 0; l < 9; ++l)
             {
-                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 96 + i * 18));
+                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 90 + i * 18));
             }
         }
     }
@@ -71,7 +71,7 @@ public class PhasingQuantascopeMenu extends AbstractContainerMenu
     {
         for (int i = 0; i < 9; ++i)
         {
-            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 154));
+            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 148));
         }
     }
 

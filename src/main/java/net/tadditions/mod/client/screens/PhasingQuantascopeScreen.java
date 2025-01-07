@@ -27,18 +27,23 @@ public class PhasingQuantascopeScreen extends AbstractContainerScreen<PhasingQua
     public PhasingQuantascopeScreen(PhasingQuantascopeMenu pMenu, Inventory pPlayerInventory, Component pTitle)
     {
         super(pMenu, pPlayerInventory, pTitle);
-        this.imageHeight = 178;
+        this.titleLabelX = 10;
+        this.titleLabelY = -3;
+        this.inventoryLabelX = 6;
+        this.inventoryLabelY = 79;
     }
 
     @Override
     protected void init()
     {
         super.init();
-        this.addRenderableWidget(new ImageButton(this.leftPos + 97, this.topPos + 79, 4, 7, 177, 1, TEXTURE, (button) -> {
+        this.imageHeight = 178;
+
+        this.addRenderableWidget(new ImageButton(this.leftPos + 97, this.topPos + 73, 4, 7, 177, 1, TEXTURE, (button) -> {
             if(this.getMenu().level.isClientSide())
                 NetworkInit.sendToServer(new QuantascopeModeChangeMessage(this.getMenu().quantascope.getBlockPos(), 3));
         }));
-        this.addRenderableWidget(new ImageButton(this.leftPos + 163, this.topPos + 79, 4, 7, 182, 1, TEXTURE, (button) -> {
+        this.addRenderableWidget(new ImageButton(this.leftPos + 163, this.topPos + 73, 4, 7, 182, 1, TEXTURE, (button) -> {
             if(this.getMenu().level.isClientSide())
                 NetworkInit.sendToServer(new QuantascopeModeChangeMessage(this.getMenu().quantascope.getBlockPos(), 1));
         }));
@@ -67,6 +72,7 @@ public class PhasingQuantascopeScreen extends AbstractContainerScreen<PhasingQua
     @Override
     protected void renderLabels(PoseStack pPoseStack, int pMouseX, int pMouseY)
     {
-
+        this.font.draw(pPoseStack, this.title, (float)this.titleLabelX, (float)this.titleLabelY, 0);
+        this.font.draw(pPoseStack, this.playerInventoryTitle, (float)this.inventoryLabelX, (float)this.inventoryLabelY, 0);
     }
 }
