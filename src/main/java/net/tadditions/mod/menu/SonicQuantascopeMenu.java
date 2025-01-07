@@ -40,10 +40,10 @@ public class SonicQuantascopeMenu extends AbstractContainerMenu
         this.quantascope.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(
         handler ->
         {
-            this.addSlot(new SlotItemHandler(handler, 0, 44, 56));
+            this.addSlot(new SlotItemHandler(handler, 0, 44, 50));
         });
 
-        for(Slot slot : GuiHelper.getPlayerSlots(inv, 8, 96)){
+        for(Slot slot : GuiHelper.getPlayerSlots(inv, 8, 90)){
             this.addSlot(slot);
         }
     }

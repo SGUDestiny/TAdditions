@@ -9,6 +9,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.tadditions.mod.TemporalAdditionsMod;
+import net.tadditions.mod.client.widgets.Switch;
 import net.tadditions.mod.init.NetworkInit;
 import net.tadditions.mod.menu.SonicUpgradeQuantascopeMenu;
 import net.tadditions.mod.network.QuantascopeModeChangeMessage;
@@ -32,14 +33,14 @@ public class SonicUpgradeQuantascopeScreen extends AbstractContainerScreen<Sonic
         super.init();
         this.imageHeight = 178;
 
-        this.addRenderableWidget(new ImageButton(this.leftPos + 97, this.topPos + 79, 4, 7, 177, 1, TEXTURE, (button) -> {
+        this.addRenderableWidget(new ImageButton(this.leftPos + 97, this.topPos + 73, 4, 7, 177, 1, TEXTURE, (button) -> {
             NetworkInit.sendToServer(new QuantascopeModeChangeMessage(this.getMenu().quantascope.getBlockPos(), 2));
         }));
-        this.addRenderableWidget(new ImageButton(this.leftPos + 163, this.topPos + 79, 4, 7, 182, 1, TEXTURE, (button) -> {
+        this.addRenderableWidget(new ImageButton(this.leftPos + 163, this.topPos + 73, 4, 7, 182, 1, TEXTURE, (button) -> {
             NetworkInit.sendToServer(new QuantascopeModeChangeMessage(this.getMenu().quantascope.getBlockPos(), 0));
         }));
 
-        this.addRenderableWidget(new ToggleButton(this.leftPos + 29, this.topPos + 46, 193, 15, 18, b -> {
+        this.addRenderableWidget(new Switch(this.leftPos + 29, this.topPos + 40, 7, 18, 177, 15, b -> {
             b.setState(!b.getState());
             NetworkInit.sendToServer(new SonicUpgradeQuantascopeMessage(this.getMenu().quantascope.getBlockPos(), b.getState()));
         }));
@@ -47,16 +48,20 @@ public class SonicUpgradeQuantascopeScreen extends AbstractContainerScreen<Sonic
 
     @Override
     public void render(PoseStack pPoseStack, int pMouseX, int pMouseY, float pPartialTick) {
+        renderBackground(pPoseStack);
         super.render(pPoseStack, pMouseX, pMouseY, pPartialTick);
-        this.renderTooltip(pPoseStack, pMouseX, pMouseY);
+        renderTooltip(pPoseStack, pMouseX, pMouseY);
     }
 
     @Override
-    protected void renderBg(PoseStack pPoseStack, float pPartialTick, int pMouseX, int pMouseY) {
-        this.renderBackground(pPoseStack);
+    protected void renderBg(PoseStack stack, float pPartialTick, int pMouseX, int pMouseY) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, TEXTURE);
-        blit(pPoseStack, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
+        int x = (width - imageWidth) / 2;
+        int y = (height - imageHeight) / 2;
+
+        blit(stack, x, y, 0, 0, imageWidth, imageHeight);
     }
 
     @Override

@@ -41,17 +41,21 @@ public class WeldingQuantascopeScreen extends AbstractContainerScreen<WeldingQua
     }
 
     @Override
-    protected void renderBg(PoseStack pose, float pPartialTick, int pMouseX, int pMouseY) {
-        this.renderBackground(pose);
+    protected void renderBg(PoseStack stack, float pPartialTick, int pMouseX, int pMouseY) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, TEXTURE);
-        blit(pose, width / 2 - this.imageWidth / 2, this.height / 2 - this.imageHeight / 2, 0, 0, imageWidth, imageHeight);
+        int x = (width - imageWidth) / 2;
+        int y = (height - imageHeight) / 2;
+
+        blit(stack, x, y, 0, 0, imageWidth, imageHeight);
     }
 
     @Override
     public void render(PoseStack pPoseStack, int pMouseX, int pMouseY, float pPartialTick) {
+        renderBackground(pPoseStack);
         super.render(pPoseStack, pMouseX, pMouseY, pPartialTick);
-        this.renderTooltip(pPoseStack, pMouseX, pMouseY);
+        renderTooltip(pPoseStack, pMouseX, pMouseY);
     }
 
     @Override

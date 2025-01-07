@@ -53,10 +53,10 @@ public class SonicQuantascopeScreen extends AbstractContainerScreen<SonicQuantas
         super.init();
         this.imageHeight = 178;
 
-        this.addRenderableWidget(new ImageButton(this.leftPos + 97, this.topPos + 79, 4, 7, 177, 1, TEXTURE, (button) -> {
+        this.addRenderableWidget(new ImageButton(this.leftPos + 97, this.topPos + 73, 4, 7, 177, 1, TEXTURE, (button) -> {
             NetworkInit.sendToServer(new QuantascopeModeChangeMessage(this.getMenu().quantascope.getBlockPos(), 1));
         }));
-        this.addRenderableWidget(new ImageButton(this.leftPos + 163, this.topPos + 79, 4, 7, 182, 1, TEXTURE, (button) -> {
+        this.addRenderableWidget(new ImageButton(this.leftPos + 163, this.topPos + 73, 4, 7, 182, 1, TEXTURE, (button) -> {
             NetworkInit.sendToServer(new QuantascopeModeChangeMessage(this.getMenu().quantascope.getBlockPos(), 3));
         }));
 
@@ -64,11 +64,11 @@ public class SonicQuantascopeScreen extends AbstractContainerScreen<SonicQuantas
             int xOffset = slot == SonicPartSlot.HANDLE ? 103 : 31 + (slot.ordinal() * 36);
             //Forward
             this.addRenderableWidget(new ImageButton(
-                    this.leftPos + xOffset, this.topPos + 34, 6, 6, 177, 21, TEXTURE, but ->
+                    this.leftPos + xOffset, this.topPos + 22, 6, 7, 177, 15, TEXTURE, but ->
                             this.setNext(slot, true)));
             //Backwards
             this.addRenderableWidget(new ImageButton(
-                    this.leftPos + xOffset, this.topPos + 58, 6, 6, 177, 28, TEXTURE, but ->
+                    this.leftPos + xOffset, this.topPos + 46, 6, 7, 184, 15, TEXTURE, but ->
                     this.setNext(slot, false)));
         }
 
@@ -76,20 +76,24 @@ public class SonicQuantascopeScreen extends AbstractContainerScreen<SonicQuantas
 
     @Override
     public void render(PoseStack pPoseStack, int pMouseX, int pMouseY, float pPartialTick) {
+        renderBackground(pPoseStack);
         super.render(pPoseStack, pMouseX, pMouseY, pPartialTick);
-        this.renderTooltip(pPoseStack, pMouseX, pMouseY);
+        renderTooltip(pPoseStack, pMouseX, pMouseY);
     }
 
     @Override
-    protected void renderBg(PoseStack pPoseStack, float pPartialTick, int pMouseX, int pMouseY) {
-        this.renderBackground(pPoseStack);
+    protected void renderBg(PoseStack stack, float pPartialTick, int pMouseX, int pMouseY) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, TEXTURE);
-        blit(pPoseStack, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
+        int x = (width - imageWidth) / 2;
+        int y = (height - imageHeight) / 2;
+
+        blit(stack, x, y, 0, 0, imageWidth, imageHeight);
 
         this.getMenu().quantascope.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(inv -> {
             inv.getStackInSlot(0).getCapability(Capabilities.SONIC).ifPresent(sonic -> {
-                this.renderSonicSlot(pPoseStack, sonic);
+                this.renderSonicSlot(stack, sonic);
             });
         });
 

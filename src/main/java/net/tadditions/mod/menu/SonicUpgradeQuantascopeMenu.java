@@ -36,12 +36,12 @@ public class SonicUpgradeQuantascopeMenu extends AbstractContainerMenu
          {
              for(int i = 0; i < 6; ++i)
              {
-                 this.addSlot(new SlotItemHandler(handler, i, 30 + (i * 20), 27));
+                 this.addSlot(new SlotItemHandler(handler, i, 30 + (i * 20), 21));
              }
-             this.addSlot(new SlotItemHandler(handler, 6, 40, 47));
+             this.addSlot(new SlotItemHandler(handler, 6, 40, 41));
          });
         
-        for(Slot s : GuiHelper.getPlayerSlots(inv, 8, 96)){
+        for(Slot s : GuiHelper.getPlayerSlots(inv, 8, 90)){
             this.addSlot(s);
         }
     }
