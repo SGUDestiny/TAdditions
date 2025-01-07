@@ -5,7 +5,7 @@ import net.minecraft.client.gui.components.AbstractButton;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.network.chat.Component;
 
-public class Switch extends AbstractButton {
+public class ToggleButton extends AbstractButton {
 
     public static int WIDTH = 0, HEIGHT = 0;
     public static int U = 0,
@@ -13,7 +13,7 @@ public class Switch extends AbstractButton {
     private boolean isOn = false;
     private IButtonAction action;
 
-    public Switch(int pX, int pY, int width, int height, int u, int v, IButtonAction run) {
+    public ToggleButton(int pX, int pY, int width, int height, int u, int v, IButtonAction run) {
         super(pX, pY, width, height, Component.empty());
         this.action = run;
         this.WIDTH = width;
@@ -39,7 +39,7 @@ public class Switch extends AbstractButton {
         this.blit(pPoseStack, this.getX(), this.getY(), U, V + (this.getState() ? HEIGHT + 1 : 0), WIDTH, HEIGHT);
     }
 
-    public Switch setState(boolean state){
+    public ToggleButton setState(boolean state){
         this.isOn = state;
         return this;
     }
@@ -49,6 +49,6 @@ public class Switch extends AbstractButton {
     }
 
     public static interface IButtonAction{
-        void onPress(Switch button);
+        void onPress(ToggleButton button);
     }
 }

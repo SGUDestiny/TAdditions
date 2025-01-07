@@ -9,14 +9,11 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.tadditions.mod.TemporalAdditionsMod;
-import net.tadditions.mod.client.widgets.Switch;
+import net.tadditions.mod.client.widgets.ToggleButton;
 import net.tadditions.mod.init.NetworkInit;
 import net.tadditions.mod.menu.SonicUpgradeQuantascopeMenu;
 import net.tadditions.mod.network.QuantascopeModeChangeMessage;
 import net.tadditions.mod.network.SonicUpgradeQuantascopeMessage;
-import net.tardis.mod.client.gui.widgets.ToggleButton;
-import net.tardis.mod.network.Network;
-import net.tardis.mod.network.packets.SonicUpgradeQuantiscopeMessage;
 
 public class SonicUpgradeQuantascopeScreen extends AbstractContainerScreen<SonicUpgradeQuantascopeMenu>
 {
@@ -40,7 +37,7 @@ public class SonicUpgradeQuantascopeScreen extends AbstractContainerScreen<Sonic
             NetworkInit.sendToServer(new QuantascopeModeChangeMessage(this.getMenu().quantascope.getBlockPos(), 0));
         }));
 
-        this.addRenderableWidget(new Switch(this.leftPos + 29, this.topPos + 40, 7, 18, 177, 15, b -> {
+        this.addRenderableWidget(new ToggleButton(this.leftPos + 29, this.topPos + 40, 7, 18, 177, 15, b -> {
             b.setState(!b.getState());
             NetworkInit.sendToServer(new SonicUpgradeQuantascopeMessage(this.getMenu().quantascope.getBlockPos(), b.getState()));
         }));
