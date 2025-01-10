@@ -159,20 +159,22 @@ public class CommonEvents {
         if (server != null && server.isServerRunning() && event.phase == TickEvent.Phase.START) {
             for (World world : server.getWorlds()) {
                 if (world.getCapability(Capabilities.TARDIS_DATA).isPresent() && world.getGameTime() % 40 == 0) {
-                    ConsoleTile tile = TardisHelper.getConsole(server, world).orElse(null);
-                    if (tile.getInteriorManager().isAlarmOn()) {
-                        tile.getOrFindExteriorTile().ifPresent(ext -> ext.getWorld().playSound(null, ext.getPos(), TSounds.SINGLE_CLOISTER.get(), SoundCategory.BLOCKS, 5F, 0.5F));
-                    }
+                    TardisHelper.getConsole(server, world).ifPresent(tile -> {
+                        if (tile.getInteriorManager().isAlarmOn()) {
+                            tile.getOrFindExteriorTile().ifPresent(ext -> ext.getWorld().playSound(null, ext.getPos(), TSounds.SINGLE_CLOISTER.get(), SoundCategory.BLOCKS, 5F, 0.5F));
+                        }
+                    });
                 }
                 if(world.getCapability(Capabilities.TARDIS_DATA).isPresent() && world.getGameTime() % 100 == 0){
-                    ConsoleTile tile = TardisHelper.getConsole(server, world).orElse(null);
-                    if (!tile.getDistressSignals().isEmpty() && !tile.getInteriorManager().isAlarmOn()) {
-                        if(tile.getControl(CommunicatorControl.class).get().usePhoneSounds(tile)) {
-                            tile.getOrFindExteriorTile().ifPresent(ext -> ext.getWorld().playSound(null, ext.getPos(), TSounds.COMMUNICATOR_RING.get(), SoundCategory.BLOCKS, 1F, 1F));
-                        } else {
-                            tile.getOrFindExteriorTile().ifPresent(ext -> ext.getWorld().playSound(null, ext.getPos(), TSounds.COMMUNICATOR_BEEP.get(), SoundCategory.BLOCKS, 1F, 1F));
+                    TardisHelper.getConsole(server, world).ifPresent(tile -> {
+                        if (!tile.getDistressSignals().isEmpty() && !tile.getInteriorManager().isAlarmOn()) {
+                            if (tile.getControl(CommunicatorControl.class).get().usePhoneSounds(tile)) {
+                                tile.getOrFindExteriorTile().ifPresent(ext -> ext.getWorld().playSound(null, ext.getPos(), TSounds.COMMUNICATOR_RING.get(), SoundCategory.BLOCKS, 1F, 1F));
+                            } else {
+                                tile.getOrFindExteriorTile().ifPresent(ext -> ext.getWorld().playSound(null, ext.getPos(), TSounds.COMMUNICATOR_BEEP.get(), SoundCategory.BLOCKS, 1F, 1F));
+                            }
                         }
-                    }
+                    });
                 }
             }
         }
