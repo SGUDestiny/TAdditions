@@ -11,5 +11,5 @@ Development Team:<br>
 
 But most importantly, have fun!
 
-<a href="https://discord.gg/xdPBseQWKK"><img src="https://i.imgur.com/sYzK6oy.png" width="150px"></img></a></br>
+<a href="https://discord.gg/r3wJrhcNQq"><img src="https://i.imgur.com/sYzK6oy.png" width="150px"></img></a></br>
 <a href="https://www.curseforge.com/minecraft/mc-mods/t-additions"><img src="https://i.imgur.com/jsGdKtY.png" width="100px"></img></a>
