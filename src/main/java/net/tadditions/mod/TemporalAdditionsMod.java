@@ -37,6 +37,7 @@ public class TemporalAdditionsMod {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ItemInit.register(modEventBus);
+        TabInit.register(modEventBus);
         BlockInit.register(modEventBus);
         BlockEntityInit.register(modEventBus);
         StructureInit.register(modEventBus);
