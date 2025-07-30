@@ -4,10 +4,8 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FallingBlock;
-import net.minecraft.world.level.block.SandBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.Material;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -21,18 +19,18 @@ public class BlockInit {
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, TemporalAdditionsMod.MOD_ID);
 
-    public static final RegistryObject<Block> QUANTASCOPE = registerBlock("quantascope", () -> new QuantascopeBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL)));
+    public static final RegistryObject<Block> QUANTASCOPE = registerBlock("quantascope", () -> new QuantascopeBlock(BlockBehaviour.Properties.of()));
     
-    public static final RegistryObject<Block> ASH = registerBlock("ash", () -> new FallingBlock(BlockBehaviour.Properties.of(Material.SAND).sound(SoundType.SAND)));
-    public static final RegistryObject<Block> DENSE_ASH = registerBlock("dense_ash", () -> new Block(BlockBehaviour.Properties.of(Material.SAND)));
+    public static final RegistryObject<Block> ASH = registerBlock("ash", () -> new FallingBlock(BlockBehaviour.Properties.of().sound(SoundType.SAND)));
+    public static final RegistryObject<Block> DENSE_ASH = registerBlock("dense_ash", () -> new Block(BlockBehaviour.Properties.of()));
 
     public static final RegistryObject<Block> FROSTBEARING_DUST = registerBlock("frostbearing_dust", () -> new FallingBlock(
-            BlockBehaviour.Properties.of(Material.SNOW)
+            BlockBehaviour.Properties.of()
                     .sound(SoundType.SNOW)
                     .instabreak()
     ));
     public static final RegistryObject<Block> FROSTBEARING_ROCK = registerBlock("frostbearing_rock", () -> new Block(
-            BlockBehaviour.Properties.of(Material.ICE_SOLID)
+            BlockBehaviour.Properties.of()
                     .sound(SoundType.GLASS)
                     .instabreak()
     ));

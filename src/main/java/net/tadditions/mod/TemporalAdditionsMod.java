@@ -2,13 +2,10 @@ package net.tadditions.mod;
 
 import com.mojang.logging.LogUtils;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterDimensionSpecialEffectsEvent;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
@@ -25,7 +22,6 @@ import net.tadditions.mod.compat.StargateJourney;
 import net.tadditions.mod.init.*;
 import net.tadditions.mod.item.VergeGateOpener;
 import net.tardis.mod.client.gui.monitor.MonitorFlightCourseScreen;
-import net.tardis.mod.item.ItemRegistry;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -52,7 +48,6 @@ public class TemporalAdditionsMod {
         MinecraftForge.EVENT_BUS.register(this);
 
         modEventBus.addListener(this::commonSetup);
-        modEventBus.addListener(this::addCreative);
         modEventBus.addListener(this::register);
     }
 
@@ -65,25 +60,6 @@ public class TemporalAdditionsMod {
         {
             NetworkInit.registerPackets();
         });
-    }
-
-    private void addCreative(CreativeModeTabEvent.BuildContents event)
-    {
-        if(event.getTab() == TabInit.TADDITIONS_TAB) {
-            event.accept(BlockInit.QUANTASCOPE);
-            event.accept(ItemInit.ARTRON_CAPACITOR_TEMPORAL);
-            event.accept(ItemInit.ARTRON_CAPACITOR_QUANTUM);
-            event.accept(ItemInit.ARTRON_CAPACITOR_VORTEX);
-            event.accept(ItemInit.UPGRADE_ENTROPIC_DRIFTING);
-            event.accept(BlockInit.ASH);
-            event.accept(BlockInit.DENSE_ASH);
-            event.accept(BlockInit.FROSTBEARING_DUST);
-            event.accept(BlockInit.FROSTBEARING_ROCK);
-
-            Item opener = ForgeRegistries.ITEMS.getValue(new ResourceLocation(MOD_ID, "verge_gate_opener"));
-            if(ModList.get().isLoaded(STARGATE_JOURNEY) && opener != null)
-                event.accept(opener);
-        }
     }
 
     public void register(RegisterEvent event)

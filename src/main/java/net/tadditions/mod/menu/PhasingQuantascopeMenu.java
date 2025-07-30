@@ -22,13 +22,13 @@ public class PhasingQuantascopeMenu extends AbstractContainerMenu
 
     public PhasingQuantascopeMenu(int containerId, Inventory inventory, FriendlyByteBuf buffer)
     {
-        this(containerId, inventory, inventory.player.level.getBlockEntity(buffer.readBlockPos()));
+        this(containerId, inventory, inventory.player.level().getBlockEntity(buffer.readBlockPos()));
     }
 
     public PhasingQuantascopeMenu(int containerId, Inventory inventory, BlockEntity blockEntity)
     {
         super(MenuInit.PHASING_QUANTASCOPE.get(), containerId);
-        this.level = inventory.player.level;
+        this.level = inventory.player.level();
         this.quantascope = (QuantascopeEntity) blockEntity;
 
         addPlayerInventory(inventory);

@@ -26,7 +26,7 @@ public record SonicChangeModelMessage(BlockPos position, SonicPartRegistry.Sonic
     public static void handle(SonicChangeModelMessage mes, Supplier<NetworkEvent.Context> context){
         context.get().setPacketHandled(true);
         context.get().enqueueWork(() -> {
-            if(context.get().getSender().level.getBlockEntity(mes.position()) instanceof QuantascopeEntity tile)
+            if(context.get().getSender().level().getBlockEntity(mes.position()) instanceof QuantascopeEntity tile)
             {
                 tile.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(
                 handler -> {

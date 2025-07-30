@@ -13,8 +13,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.event.RegisterDimensionSpecialEffectsEvent;
 import net.minecraftforge.fml.ModList;
-import net.povstalec.sgjourney.client.render.level.SGJourneySkyRenderer;
-import net.povstalec.stellarview.client.resourcepack.ViewCenters;
+import net.povstalec.stellarview.api.client.StellarViewRendering;
 import net.tadditions.mod.TemporalAdditionsMod;
 import org.joml.Matrix4f;
 
@@ -113,7 +112,7 @@ public class TADimensionSpecialEffects extends DimensionSpecialEffects {
         {
             if(ModList.get().isLoaded("stellarview"))
             {
-                return ViewCenters.renderViewCenterSky(level, ticks, partialTick, poseStack, camera, projectionMatrix, isFoggy, setupFog);
+                return StellarViewRendering.renderViewCenterSky(level, ticks, partialTick, poseStack, camera, projectionMatrix, isFoggy, setupFog);
             }
             Vec3 vec3 = level.getSkyColor(Minecraft.getInstance().gameRenderer.getMainCamera().getPosition(), partialTick);
             float f = (float)vec3.x;

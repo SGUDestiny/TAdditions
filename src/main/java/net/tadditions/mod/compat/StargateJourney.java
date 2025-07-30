@@ -10,9 +10,10 @@ import net.povstalec.sgjourney.common.block_entities.stargate.AbstractStargateEn
 import net.povstalec.sgjourney.common.data.StargateNetwork;
 import net.povstalec.sgjourney.common.data.Universe;
 import net.povstalec.sgjourney.common.events.custom.StargateEvent;
-import net.povstalec.sgjourney.common.stargate.Address;
-import net.povstalec.sgjourney.common.stargate.Stargate;
-import net.povstalec.sgjourney.common.stargate.StargateConnection;
+import net.povstalec.sgjourney.common.sgjourney.Address;
+import net.povstalec.sgjourney.common.sgjourney.StargateConnection;
+import net.povstalec.sgjourney.common.sgjourney.StargateInfo;
+import net.povstalec.sgjourney.common.sgjourney.stargate.Stargate;
 import net.tadditions.mod.TemporalAdditionsMod;
 
 import java.util.Optional;
@@ -29,27 +30,6 @@ public class StargateJourney
     @SubscribeEvent
     public void onStargateConnect(final StargateEvent.Connect event)
     {
-        Random random = new Random();
-        if (event.getConnectedStargate().getDimension().location().equals(new ResourceLocation(TemporalAdditionsMod.MOD_ID, "the_verge_of_reality")))
-        {
-            event.setCanceled(true);
-            event.getStargate().getStargateEntity(event.getServer()).ifPresent(stargate -> stargate.resetStargate(Stargate.Feedback.UNKNOWN_ERROR));
-            return;
-        }
-        if(event.getStargate().getDimension().location().equals(new ResourceLocation(TemporalAdditionsMod.MOD_ID, "the_verge_of_reality")))
-        {
-            event.setCanceled(true);
-            event.getStargate().getStargateEntity(event.getServer()).ifPresent(stargate -> stargate.resetStargate(Stargate.Feedback.UNKNOWN_ERROR));
-            return;
-        }
-        if(random.nextBoolean())
-        {
-            event.setCanceled(true);
-            Universe.get(event.getServer()).getSolarSystemFromExtragalacticAddress(new Address.Immutable(new Address(new int[]{0}))).ifPresent(system -> StargateNetwork.findStargates(event.getServer().getLevel(system.getDimensions().get(0))));
-            Optional<Stargate> stargate = Universe.get(event.getServer()).getSolarSystemFromExtragalacticAddress(new Address.Immutable(new Address(new int[]{0}))).flatMap(solarSystemFromExtragalacticAddress -> solarSystemFromExtragalacticAddress.getRandomStargate(event.getServer().getLevel(event.getStargate().getDimension()).getSeed()));
-            AbstractStargateEntity sg = stargate.flatMap(optionalStargate -> optionalStargate.getStargateEntity(event.getServer())).get();
-            StargateConnection connection = StargateConnection.create(StargateConnection.Type.INTERSTELLAR, event.getStargate().getStargateEntity(event.getServer()).get(), sg, true);
-            StargateNetwork.get(event.getServer()).addConnection(connection);
-        }
+
     }
 }
