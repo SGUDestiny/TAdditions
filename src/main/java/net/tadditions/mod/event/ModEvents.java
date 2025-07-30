@@ -1,8 +1,6 @@
 package net.tadditions.mod.event;
 
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.event.CreativeModeTabEvent;
-import net.minecraftforge.event.entity.player.PlayerContainerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.items.ItemStackHandler;
@@ -10,7 +8,6 @@ import net.tadditions.mod.TemporalAdditionsMod;
 import net.tadditions.mod.flight_effects.TimeStormEffect;
 import net.tadditions.mod.init.ItemInit;
 import net.tardis.api.events.TardisEvent;
-import net.tardis.mod.cap.level.ITardisLevel;
 import net.tardis.mod.cap.level.TardisCap;
 import net.tardis.mod.misc.tardis.TardisEngine;
 

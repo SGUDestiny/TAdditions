@@ -28,12 +28,12 @@ public class SonicQuantascopeMenu extends AbstractContainerMenu
 
     public SonicQuantascopeMenu(int id, Inventory inv, FriendlyByteBuf buffer)
     {
-        this(id, inv, inv.player.level.getBlockEntity(buffer.readBlockPos()));
+        this(id, inv, inv.player.level().getBlockEntity(buffer.readBlockPos()));
     }
 
     public SonicQuantascopeMenu(int id, Inventory inv, BlockEntity blockEntity){
         super(MenuInit.SONIC_QUANTASCOPE.get(), id);
-        this.level = inv.player.level;
+        this.level = inv.player.level();
         this.quantascope = (QuantascopeEntity) blockEntity;
 
 

@@ -32,7 +32,7 @@ public record QuantascopeModeChangeMessage(BlockPos pos, int mode) {
     {
         context.get().setPacketHandled(true);
         context.get().enqueueWork(() -> {
-            if(context.get().getSender().getLevel().getBlockEntity(mes.pos()) instanceof QuantascopeEntity tile){
+            if(context.get().getSender().level().getBlockEntity(mes.pos()) instanceof QuantascopeEntity tile){
                 tile.setMode(mes.mode);
                 getMenu(mes.mode, tile).ifPresent(menu -> NetworkHooks.openScreen(context.get().getSender(), new SimpleMenuProvider(menu, tile.getBlockState().getBlock().getName()), tile.getBlockPos()));
 
