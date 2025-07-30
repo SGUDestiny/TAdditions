@@ -32,13 +32,13 @@ side="BOTH"
 [[dependencies.${mod_id}]]
 modId="tardis"
 mandatory=true
-versionRange="[4.4.9, )"
+versionRange="[1.1.2, )"
 ordering="NONE"
 side="BOTH"
 
 [[dependencies.${mod_id}]]
 modId="sgjourney"
 mandatory=true
-versionRange="[4.4.9, )"
+versionRange="[0.6.39, )"
 ordering="NONE"
 side="BOTH"
